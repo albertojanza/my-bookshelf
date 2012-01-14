@@ -7,7 +7,7 @@ gem 'rails', '3.1.3'
 
 gem 'mysql2'
 
-#gem 'pg' #HEROKU
+gem 'pg' #HEROKU
 gem 'thin'
 gem 'therubyracer'
 
