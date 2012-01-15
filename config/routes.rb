@@ -1,5 +1,8 @@
 MyBookshelf::Application.routes.draw do
 
+
+  match 'welcome/search' => 'welcome#search', :as => :search
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
