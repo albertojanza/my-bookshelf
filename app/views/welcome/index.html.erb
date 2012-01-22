@@ -20,3 +20,30 @@
 <%= link_to 'logout', logout_path  %>
 
 <% end %>
+
+<%= form_tag search_path  do  %>
+<%= text_field_tag "title"  %>
+<%= submit_tag 'procura' %>
+
+<% end %>
+<% if @books %>
+
+<% @books.each do |book| %>
+  <%= debug book.raw.pretty_inspect %>
+  <%= book.raw.ASIN %><br> 
+  <%= book.raw.ItemAttributes.Author%><br> 
+  <%= book.raw.ItemAttributes.Manufacturer%><br> 
+  <%= book.raw.ItemAttributes.ProductGroup%><br> 
+    <%= link_to book.raw.Description, book.raw.DetailPageURL%><br>
+  <%= book.raw.ItemAttributes.Title%><br> 
+
+
+
+
+  <% book.raw.ItemLinks.ItemLink.each do |link| %>
+
+    <%= link_to link.Description, link.URL %><br>
+  <% end %>
+<br>
+<% end %>
+<% end %> 

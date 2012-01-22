@@ -10,6 +10,7 @@ MyBookshelf::Application.routes.draw do
   
   get '/logout' => 'sessions#destroy', :as => :logout
 
+  match 'welcome/search' => 'welcome#search', :as => :search
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
