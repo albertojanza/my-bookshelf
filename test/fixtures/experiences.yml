@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  review: MyString
+  started_at: 2012-01-22 14:24:34
+  finised_at: 2012-01-22 14:24:34
+  user_id: 1
+  adventure_id: 1
+
+two:
+  review: MyString
+  started_at: 2012-01-22 14:24:34
+  finised_at: 2012-01-22 14:24:34
+  user_id: 1
+  adventure_id: 1

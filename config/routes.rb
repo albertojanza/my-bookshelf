@@ -1,5 +1,9 @@
 MyBookshelf::Application.routes.draw do
 
+  resources :comments
+
+  resources :experiences
+
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
 
   get "facebook/permission" => 'sessions#facebook_permission'
