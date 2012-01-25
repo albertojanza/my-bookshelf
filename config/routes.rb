@@ -4,13 +4,18 @@ MyBookshelf::Application.routes.draw do
 
   resources :experiences
 
+  resources :reviews
+
+  resources :books
+  post 'books/search' => 'books#search', :as => :search
+
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
 
-  get "facebook/permission" => 'sessions#facebook_permission'
+  get "facebook/permission" => 'sessions#facebook_permission', :as => 'facebook_permission'
   
   get '/logout' => 'sessions#destroy', :as => :logout
 
-  match 'welcome/search' => 'welcome#search', :as => :search
+  get 'welcome/fake' => 'welcome#fake', :as => :fake
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

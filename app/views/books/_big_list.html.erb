@@ -1,0 +1,39 @@
+
+
+<% @books.each do |book| %>
+
+  <%= debug book.raw.pretty_inspect %>
+  <%= book.raw.ASIN %><br> 
+  <%= book.raw.ItemAttributes.Author%><br> 
+  <%= book.raw.ItemAttributes.Manufacturer%><br> 
+  <%= book.raw.ItemAttributes.ProductGroup%><br> 
+    <%= link_to book.raw.Description, book.raw.DetailPageURL%><br>
+  <%= book.raw.ItemAttributes.Title%><br> 
+
+
+
+
+  <% book.raw.ItemLinks.ItemLink.each do |link| %>
+
+    <%= link_to link.Description, link.URL %><br>
+  <% end %>
+<br>
+<div id="experience_<%= book.raw.ASIN %>" class="right_float">
+
+
+<%= form_tag experiences_path, :remote => true  do  %>
+<%= hidden_field_tag 'asin',  book.raw.ASIN %>
+<%= submit_tag 'Read in the past' %>
+
+<% end %>
+
+<%= form_tag experiences_path, :remote => true  do  %>
+<%= hidden_field_tag 'asin',  book.raw.ASIN %>
+<%= hidden_field_tag 'now',  true %>
+<%= submit_tag 'Reading now' %>
+
+<% end %>
+</div>
+
+
+<% end %>

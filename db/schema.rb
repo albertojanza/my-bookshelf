@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122022340) do
+ActiveRecord::Schema.define(:version => 20120122195003) do
+
+  create_table "adventures", :force => true do |t|
+    t.integer  "experience_id"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", :force => true do |t|
     t.string   "uid"
@@ -20,6 +28,37 @@ ActiveRecord::Schema.define(:version => 20120122022340) do
     t.string   "token"
     t.string   "secret"
     t.string   "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "books", :force => true do |t|
+    t.string   "asin"
+    t.string   "title"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "experience_id"
+    t.integer  "user_id"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experiences", :force => true do |t|
+    t.string   "review"
+    t.time     "started_at"
+    t.time     "finised_at"
+    t.integer  "user_id"
+    t.integer  "adventure_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movies", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

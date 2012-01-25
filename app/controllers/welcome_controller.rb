@@ -1,13 +1,13 @@
 class WelcomeController < ApplicationController
   def index
+
+    unless logged_in?
+
+      render :landing, :layout => 'landing'
+
+    end
+
   end
 
-  def search
-client = ASIN::Client.instance
-@books = client.search(:Keywords => params[:title], :SearchIndex => :Books)
-
-  render :index
-
-  end
 
 end

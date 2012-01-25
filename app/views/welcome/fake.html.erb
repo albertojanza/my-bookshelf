@@ -1,0 +1,46 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<%= ENV['FACEBOOK_KEY'] %>";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+<div class="fb-add-to-timeline" data-show-faces="true"></div>
+
+
+<% if  logged_in? %>
+<%= link_to 'logout', logout_path  %>
+
+<% end %>
+
+<%= form_tag search_path  do  %>
+<%= text_field_tag "title"  %>
+<%= submit_tag 'procura' %>
+
+<% end %>
+<% if @books %>
+
+<% @books.each do |book| %>
+  <%= debug book.raw.pretty_inspect %>
+  <%= book.raw.ASIN %><br> 
+  <%= book.raw.ItemAttributes.Author%><br> 
+  <%= book.raw.ItemAttributes.Manufacturer%><br> 
+  <%= book.raw.ItemAttributes.ProductGroup%><br> 
+    <%= link_to book.raw.Description, book.raw.DetailPageURL%><br>
+  <%= book.raw.ItemAttributes.Title%><br> 
+
+
+
+
+  <% book.raw.ItemLinks.ItemLink.each do |link| %>
+
+    <%= link_to link.Description, link.URL %><br>
+  <% end %>
+<br>
+<% end %>
+<% end %> 

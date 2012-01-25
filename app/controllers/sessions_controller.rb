@@ -45,7 +45,8 @@ class SessionsController < ApplicationController
     end 
 
 
-    render :callback
+    #render :callback
+    redirect_to root_path
   end
 
   # This action redirects to facebook to ask for permission.

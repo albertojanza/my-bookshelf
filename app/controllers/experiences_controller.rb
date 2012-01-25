@@ -40,16 +40,14 @@ class ExperiencesController < ApplicationController
   # POST /experiences
   # POST /experiences.json
   def create
-    @experience = Experience.new(params[:experience])
-
-    respond_to do |format|
-      if @experience.save
-        format.html { redirect_to @experience, notice: 'Experience was successfully created.' }
-        format.json { render json: @experience, status: :created, location: @experience }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @experience.errors, status: :unprocessable_entity }
+    book = Book.find_by_asin params[:asin]
+    if book
+     Experience.create do |experience|
+        experience.adventure_id = book.adventure.id
+        experience.user_id = current_user.id
+        (experience.started_at = Time.now) if params[:now]
       end
+
     end
   end
 

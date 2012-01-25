@@ -5,6 +5,7 @@ class Experience < ActiveRecord::Base
   has_many :comments
   belongs_to :resource, :polymorphic => true, :dependent => :destroy
 
+
   attr_accessible :text
 
 
