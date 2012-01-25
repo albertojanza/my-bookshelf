@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
 
   create_table "books", :force => true do |t|
     t.string   "asin"
+    t.string   "permalink"
     t.string   "title"
     t.string   "author"
     t.datetime "created_at"

@@ -9,5 +9,9 @@ class WelcomeController < ApplicationController
 
   end
 
+  def timeline
+    @experiences = current_user.experiences()
+  end
+
 
 end

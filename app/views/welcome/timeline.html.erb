@@ -1,0 +1,13 @@
+
+
+
+
+<% @experiences.each do |experience|  %>
+<%= link_to experience.adventure.resource.title, book_path(experience.adventure.resource)  %>
+
+<% end %>
+
+
+
+
+

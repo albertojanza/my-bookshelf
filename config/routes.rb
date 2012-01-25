@@ -16,6 +16,7 @@ MyBookshelf::Application.routes.draw do
   get '/logout' => 'sessions#destroy', :as => :logout
 
   get 'welcome/fake' => 'welcome#fake', :as => :fake
+  get 'welcome/timeline' => 'welcome#timeline', :as => :timeline
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
