@@ -1,9 +1,42 @@
+
+
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
   http_basic_authenticate_with :name => ENV['HTTP_USER'], :password => ENV['HTTP_PASSWORD']
+
+#  def required_logged_in
+#    unless logged_in?
+#  @encoded_sig, @payload = params[:signed_request].split('.')
+#   @facebook_params =ActiveSupport::JSON.decode base64_url_decode(@payload)
+#
+##   @facebook_params =ActiveSupport::JSON.decode base64_url_decode(params[:signed_request])
+#
+#    #render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&scope=publish_actions,publish_stream'</script>" # 
+#if @facebook_params['user_id']
+#    authentication = Authentication.find_by_provider_and_uid('facebook', @facebook_params['user_id'])
+#    # The next line doesnt work, because the previous call to logged_in? method already set up the @current_user variable.
+#    #session[:user_id] = authentication.user.id
+#    self.current_user=(authentication.user)
+#
+#    logger.info('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBB')  if logged_in?
+#    logger.info('BBBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBB')  unless logged_in?
+#end
+#    #render :text =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&scope=publish_actions,publish_stream'</script>"
+#    render "/welcome/canvas"
+#  end
+  #end
+
+ def base64_url_decode(str)
+   str += '=' * (4 - str.length.modulo(4))
+   Base64.decode64(str.tr('-_','+/'))
+ end
+
+
+
 
 
   def logged_in?

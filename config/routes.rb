@@ -10,6 +10,7 @@ MyBookshelf::Application.routes.draw do
   post 'books/search' => 'books#search', :as => :search
 
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
+  get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'
 
   get "facebook/permission" => 'sessions#facebook_permission', :as => 'facebook_permission'
   
@@ -17,6 +18,7 @@ MyBookshelf::Application.routes.draw do
 
   get 'welcome/fake' => 'welcome#fake', :as => :fake
   get 'welcome/timeline' => 'welcome#timeline', :as => :timeline
+  post 'canvas' => 'welcome#canvas', :as => :canvas
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

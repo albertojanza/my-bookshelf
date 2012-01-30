@@ -1,0 +1,33 @@
+
+
+<%= debug @encoded_sig%>
+<%= debug @payload%>
+<%= debug @facebook_params%>
+
+
+
+<% if logged_in? %>
+sadfsdf allllllllllllllllAA
+<%= current_user.username %>
+<% end %> 
+     <div id="allContent" style="background-color: #0000FF; height:100%">
+  		<div id="output" style="color: #FFFFFF;" />
+     </div>
+
+     <div id="fb-root"></div>
+     <script src="http://connect.facebook.net/en_US/all.js"></script>
+     <script type="text/javascript">
+  	 FB.init({
+    		appId  : 'APP ID',
+  	    });
+
+  	 function echoSize() {
+    	      document.getElementById('output').innerHTML = 
+                 "HTML Content Width: " + window.innerWidth + 
+                 " Height: " + window.innerHeight;
+    	      console.log(window.innerWidth + ' x ' + window.innerHeight);
+  	    }
+
+	   echoSize();
+  	   window.onresize = echoSize;
+     </script>
