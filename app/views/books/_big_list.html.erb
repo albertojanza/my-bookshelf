@@ -2,6 +2,16 @@
 
 <% @books.each do |book| %>
 
+
+<% if book.raw.ImageSets %>
+<div style="float:left">
+ssdf
+  <%= image_tag book.raw.ImageSets.ImageSet.MediumImage.URL unless book.raw.ImageSets.ImageSet.class.eql?(Array)%><br> 
+
+  <% end %>
+
+</div>
+
   <%= debug book.raw.pretty_inspect %>
   <%= book.raw.ASIN %><br> 
   <%= book.raw.ItemAttributes.Author%><br> 
@@ -32,8 +42,14 @@
 <%= hidden_field_tag 'now',  true %>
 <%= submit_tag 'Reading now' %>
 
+
+
+
 <% end %>
 </div>
 
+<div style="clear:both">
+
+</div>
 
 <% end %>

@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
   def search
 client = ASIN::Client.instance
-@books = client.search(:Keywords => params[:title], :SearchIndex => :Books)
+@books = client.search(:Keywords => params[:title], :SearchIndex => :Books,:ResponseGroup => [:Images,:ItemAttributes])
 
   #render :index
 
