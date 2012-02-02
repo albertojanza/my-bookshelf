@@ -6,8 +6,9 @@ class WelcomeController < ApplicationController
   def index
 
     unless logged_in?
-
-      render :landing, :layout => 'landing'
+      # TODO take a look at the landing layout, if it is not useful remove it
+      #render :landing, :layout => 'landing'
+      render :landing #, :layout => 'landing'
 
     end
 

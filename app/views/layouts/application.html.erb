@@ -8,18 +8,68 @@
 </head>
 <body>
 
-<div class="wrapper">
-    <div id="header">
-        <div id="logo">
+<div id="fixed-header">
+  <div class="wrapper_with_wings">
+      <div id="header" class="wrapper">
+        <div id="logo" class="left_float">
             <%= link_to 'EventMonitor', root_path %>
+        </div>
+        
+        <div class="right_float">
+        
+      <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
+
         </div>
         <ul class="menu right_float">
             <li><%= link_to "Help", root_path %></li>
             <li><%= link_to "timeline", timeline_path %></li>
         </ul>
-
     </div>
+    </div>
+</div>
+<div id="main" class="wrapper" >
+
+        <div class="white-box">
+          <div id="login-message">
+            <div class="title">
+              Login
+            </div>
+          <p>
+            What are you waiting for? Click on the green button above to start.
+          </p>
+          </div>
+          <div id="welcome-message">
+          <h1>Welcome to MyeBookshelf </h1>
+          <p>
+            Are you a reader? try us. You will find out what your friends are reading or have read in the past. Share your readings.
+          </p>
+          </div>
+        </div>
+
+        <div class="green-button">
+          Join us
+        </div>
+
+        <div class="green-button2">
+          Join us through<a class="facebook-big-icon">&nbsp;</a>
+        </div>
+
+        <div class="green-button2">
+          Join us through<a class="facebook-medium-icon">&nbsp;</a>
+        </div>
+        <div class="green-button3">
+          Join us through<a class="facebook-medium-icon">&nbsp;</a>
+        </div>
+        <div class="green-button4">
+          Join us through<a class="facebook-medium-icon">&nbsp;</a>
+        </div>
     <%= yield %>
+</div>
+
+<div class="box-accross wrapper_with_wings">
+    </div>
+
+<div class="wrapper">
     <div id="footer">
         <ul class="menu left_float">
             <li><%= link_to "Home", root_path %></li>
