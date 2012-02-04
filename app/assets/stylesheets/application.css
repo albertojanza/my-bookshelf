@@ -29,8 +29,11 @@ div.hidden {display:none;}
 .right_float{float:right;}
 
 /* HEADER */
-#header{padding-top:10px;}
+#header{padding-top:10px;color:white;}
+#header a{color:white;font-weight:bold;}
+#header .menu{margin-top:10px;}
 #fixed-header {
+    
     left: 0;
     position: fixed;
     top: 0;

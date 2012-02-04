@@ -16,53 +16,24 @@
         </div>
         
         <div class="right_float">
-        
-      <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
+          <% unless logged_in? %> 
+            <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
+          <% else %>
+            <ul class="menu">
+              <li><%= link_to "Bookshelf", bookshelf_path, :class => 'link' %></li>
+              <li><%= link_to "Logout", logout_path, :class => 'link' %></li>
+              <li><%= link_to "Fake", fake_path, :class => 'link' %></li>
+              <li><%= link_to "Help", root_path, :class => 'link' %></li>
+              <li><%= link_to "timeline", timeline_path , :class => 'link'%></li>
+            </ul>
+          <% end %>
 
         </div>
-        <ul class="menu right_float">
-            <li><%= link_to "Help", root_path %></li>
-            <li><%= link_to "timeline", timeline_path %></li>
-        </ul>
     </div>
     </div>
 </div>
 <div id="main" class="wrapper" >
 
-        <div class="white-box">
-          <div id="login-message">
-            <div class="title">
-              Login
-            </div>
-          <p>
-            What are you waiting for? Click on the green button above to start.
-          </p>
-          </div>
-          <div id="welcome-message">
-          <h1>Welcome to MyeBookshelf </h1>
-          <p>
-            Are you a reader? try us. You will find out what your friends are reading or have read in the past. Share your readings.
-          </p>
-          </div>
-        </div>
-
-        <div class="green-button">
-          Join us
-        </div>
-
-        <div class="green-button2">
-          Join us through<a class="facebook-big-icon">&nbsp;</a>
-        </div>
-
-        <div class="green-button2">
-          Join us through<a class="facebook-medium-icon">&nbsp;</a>
-        </div>
-        <div class="green-button3">
-          Join us through<a class="facebook-medium-icon">&nbsp;</a>
-        </div>
-        <div class="green-button4">
-          Join us through<a class="facebook-medium-icon">&nbsp;</a>
-        </div>
     <%= yield %>
 </div>
 

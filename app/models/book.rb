@@ -1,3 +1,4 @@
+#TODO internationalization, title in different languages, books available in different languages
 class Book < ActiveRecord::Base
   has_one :adventure, :as => :resource
 
@@ -28,7 +29,23 @@ class Book < ActiveRecord::Base
       client = ASIN::Client.instance
       amazon_book = client.lookup args[0]
       unless amazon_book.empty?
-        Book.create(:asin =>  args[0],:author => amazon_book[0].raw.ItemAttributes.Author, :title => amazon_book[0].raw.ItemAttributes.Title)
+        Book.create do |book| 
+          book.asin =  args[0]
+          book.author = amazon_book[0].raw.ItemAttributes.Author
+          book.title = amazon_book[0].raw.ItemAttributes.Title
+          book.detail_page_url = amazon_book[0].raw.ItemAttributes.DetailPageURL
+          book.ean = amazon_book[0].raw.ItemAttributes.EAN
+          #book.edition = amazon_book[0].raw.ItemAttributes.Edition
+          book.isbn = amazon_book[0].raw.ItemAttributes.ISBN
+          book.number_of_pages= amazon_book[0].raw.ItemAttributes.NumberOfPages
+          book.product_group = amazon_book[0].raw.ItemAttributes.ProductGroup
+          book.studio = amazon_book[0].raw.ItemAttributes.Studio
+          book.publisher = amazon_book[0].raw.ItemAttributes.Publisher
+          book.publication_date = amazon_book[0].raw.ItemAttributes.PublicationDate
+          book.medium_image = amazon_book[0].raw.ImageSets.ImageSet.MediumImage.URL
+          book.medium_tiny = amazon_book[0].raw.ImageSets.ImageSet.TinyImage.URL
+          book.thumbnail_image = amazon_book[0].raw.ImageSets.ImageSet.ThumbnailImage.URL
+        end
       end
       book = super(*args)
     end
