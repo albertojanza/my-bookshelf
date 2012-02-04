@@ -6,7 +6,7 @@ MyBookshelf::Application.routes.draw do
 
   resources :reviews
 
-  get ":username/bookshelf" => 'books#bookshelf', :as => 'bookshelf'
+  get "/bookshelf" => 'books#bookshelf', :as => 'bookshelf'
   resources :books
   post 'books/search' => 'books#search', :as => :search
 

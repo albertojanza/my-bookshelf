@@ -18,7 +18,7 @@ client = ASIN::Client.instance
   end
 
   def bookshelf
-    user = User.find_by_username params[:username]
+    user = User.find_by_id params[:id]
     @read_books = user.experiences
   end
 

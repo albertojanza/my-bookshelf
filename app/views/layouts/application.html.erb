@@ -20,7 +20,7 @@
             <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
           <% else %>
             <ul class="menu">
-              <li><%= link_to "Bookshelf", bookshelf_path, :class => 'link' %></li>
+              <li><%= link_to "My Bookshelf", bookshelf_path(current_user.id), :class => 'link' %></li>
               <li><%= link_to "Logout", logout_path, :class => 'link' %></li>
               <li><%= link_to "Fake", fake_path, :class => 'link' %></li>
               <li><%= link_to "Help", root_path, :class => 'link' %></li>
