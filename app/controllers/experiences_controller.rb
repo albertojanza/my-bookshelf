@@ -45,7 +45,10 @@ class ExperiencesController < ApplicationController
      Experience.create do |experience|
         experience.adventure_id = book.adventure.id
         experience.user_id = current_user.id
-        (experience.started_at = Time.now) if params[:now]
+        if params[:now]
+        experience.started_at = Time.now 
+        experience.code = 1
+        end
       end
 
     end

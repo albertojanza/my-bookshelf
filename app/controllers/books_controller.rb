@@ -19,7 +19,11 @@ client = ASIN::Client.instance
 
   def bookshelf
     user = User.find_by_id params[:id]
-    @read_books = user.experiences
+    @read_books = user.experiences.where(:code => 0)
+    @reading = user.experiences.where(:code => 1)
+    @next_books = user.experiences.where(:code => 2)
+    @recommendations = user.experiences.where(:code => 3)
+
   end
 
 end

@@ -6,7 +6,7 @@ class CreateExperiences < ActiveRecord::Migration
       t.time :finised_at, :default => nil
       t.integer :user_id
       t.integer :adventure_id
-
+      t.integer :code,  :default => 0#0 - Read, 1 - reading, 2 - future reading, 3 - recommendation
       t.timestamps
     end
   end

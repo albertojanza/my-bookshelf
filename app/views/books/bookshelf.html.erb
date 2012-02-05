@@ -1,1 +1,38 @@
-<%= debug @book%>
+
+REad books
+<div >
+
+<% @read_books.each_slice(4).each do |slice| %>
+<% slice.each do |book| %>
+<div class="left_float" style="width:200px;">
+
+  <%= image_tag book.adventure.resource.medium_image%><br> 
+  <%= link_to book.adventure.resource.title, book_path(book) %>
+  <%= book.adventure.resource.author%>
+
+</div>
+
+<% end %>
+
+<div class="cleaner">
+<% end %>
+
+
+
+Reading
+<div >
+
+<% @reading.each_slice(4).each do |slice| %>
+<% slice.each do |book| %>
+<div class="left_float">
+  <%= image_tag book.adventure.resource.medium_image%><br> 
+  <%= link_to book.adventure.resource.title, book_path(book) %>
+  <%= book.adventure.resource.author%>
+
+
+</div>
+
+<% end %>
+
+<div class="cleaner">
+<% end %>
