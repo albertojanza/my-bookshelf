@@ -2,11 +2,14 @@
 
 
 class ApplicationController < ActionController::Base
+  rescue_from Authentication::TokenExpiration, :with => :ouath_process
   protect_from_forgery
 
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
+
   http_basic_authenticate_with :name => ENV['HTTP_USER'], :password => ENV['HTTP_PASSWORD']
+
 
 #  def required_logged_in
 #    unless logged_in?
@@ -78,5 +81,13 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+private
 
+  def ouath_process
+    respond_to do |format| 
+      format.html { redirect_to "http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream" }
+      format.js { render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream'</script>" }
+    end 
+    
+  end
 end

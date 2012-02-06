@@ -7,7 +7,7 @@ class CreateAuthentications < ActiveRecord::Migration
       t.integer   :user_id
 
       t.string    :token
-      t.string    :secret
+      t.string    :expires
 
       t.string    :info
 

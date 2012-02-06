@@ -23,6 +23,7 @@ client = ASIN::Client.instance
     @reading = user.experiences.where(:code => 1)
     @next_books = user.experiences.where(:code => 2)
     @recommendations = user.experiences.where(:code => 3)
+    @friends = user.friends
 
   end
 

@@ -1,5 +1,5 @@
 
-REad books
+<h2>REad books</h2>
 <div >
 
 <% @read_books.each_slice(4).each do |slice| %>
@@ -7,7 +7,7 @@ REad books
 <div class="left_float" style="width:200px;">
 
   <%= image_tag book.adventure.resource.medium_image%><br> 
-  <%= link_to book.adventure.resource.title, book_path(book) %>
+  <%= link_to book.adventure.resource.title, book_path(book.adventure.resource) %>
   <%= book.adventure.resource.author%>
 
 </div>
@@ -19,14 +19,14 @@ REad books
 
 
 
-Reading
+<h2>Reading</h2>
 <div >
 
 <% @reading.each_slice(4).each do |slice| %>
 <% slice.each do |book| %>
-<div class="left_float">
+<div class="left_float" style="width:200px;">
   <%= image_tag book.adventure.resource.medium_image%><br> 
-  <%= link_to book.adventure.resource.title, book_path(book) %>
+  <%= link_to book.adventure.resource.title, book_path(book.adventure.resource) %>
   <%= book.adventure.resource.author%>
 
 
@@ -36,3 +36,5 @@ Reading
 
 <div class="cleaner">
 <% end %>
+
+  <%= debug @friends%>
