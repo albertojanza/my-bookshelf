@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
       friends_data = MultiJson.decode(response.body)
       raise(Authentication::TokenExpiration.new(facebook_auth,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
       Rails.cache.write "friend_#{self.id}", friends_data['data']
+      friends_data['data']
+    else
+      friends
     end
-    friends || Rails.cache.fetch("friend_#{self.id}")
   end
 end

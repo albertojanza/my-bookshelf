@@ -52,7 +52,7 @@ require 'cgi'
   science_fiction << Book.find_by_asin('0060731338') # Steven Levit Freakonomics
    
   # Engineering
-  ingeneering << Book.find_by_asin('0486411095') #David Heinemeer Agile Web Development with Ruby on Rails
+  ingeneering << Book.find_by_asin('1934356549') #David Heinemeer Agile Web Development with Ruby on Rails
 
  
 #-------------------------------------------------------------------------------  

@@ -6,7 +6,13 @@ MyBookshelf::Application.routes.draw do
 
   resources :reviews
 
+  get "/friends_bookshelf" => 'books#friends_bookshelf', :as => 'friends_bookshelf'
   get "/bookshelf" => 'books#bookshelf', :as => 'bookshelf'
+  get "/bookcase/read_books" => 'books#bookcase_read_books', :as => 'read_books'
+  get "/bookcase/recommended_books" => 'books#bookcase_recommended_books', :as => 'recommended_books'
+  get "/bookcase/next_books" => 'books#bookcase_next_books', :as => 'next_books'
+  get "/bookcase/reading_books" => 'books#bookcase_reading_books', :as => 'reading_books'
+
   resources :books
   post 'books/search' => 'books#search', :as => :search
 

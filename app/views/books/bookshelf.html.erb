@@ -1,40 +1,7 @@
 
-<h2>REad books</h2>
-<div >
-
-<% @read_books.each_slice(4).each do |slice| %>
-<% slice.each do |book| %>
-<div class="left_float" style="width:200px;">
-
-  <%= image_tag book.adventure.resource.medium_image%><br> 
-  <%= link_to book.adventure.resource.title, book_path(book.adventure.resource) %>
-  <%= book.adventure.resource.author%>
-
-</div>
-
-<% end %>
-
-<div class="cleaner">
-<% end %>
+<%= render 'slider1', :books => @recommended_books.map { |experience| experience.adventure.resource}, :type => 3, :items_slide => 8 %>
+<%= render 'slider1', :books => @next_books.map { |experience| experience.adventure.resource}, :type => 2, :items_slide => 8 %>
+<%= render 'slider1', :books => @reading.map { |experience| experience.adventure.resource}, :type => 1, :items_slide => 8   %>
+<%= render 'slider1', :books => @read_books.map { |experience| experience.adventure.resource}, :type => 0, :items_slide => 8 %>
 
 
-
-<h2>Reading</h2>
-<div >
-
-<% @reading.each_slice(4).each do |slice| %>
-<% slice.each do |book| %>
-<div class="left_float" style="width:200px;">
-  <%= image_tag book.adventure.resource.medium_image%><br> 
-  <%= link_to book.adventure.resource.title, book_path(book.adventure.resource) %>
-  <%= book.adventure.resource.author%>
-
-
-</div>
-
-<% end %>
-
-<div class="cleaner">
-<% end %>
-
-  <%= debug @friends%>

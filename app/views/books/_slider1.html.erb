@@ -1,0 +1,32 @@
+
+<div class="book_list"> 
+  <div>
+    <%= link_to "<h2>#{title(type)}</h2>".html_safe, bookshelf_path(:id => current_user.id), :class => 'link' %>
+    
+    <ul class="menu">
+      <li><%= link_to "All Books", bookcase_path(type), :class => 'link' %></li>
+      <li><%= link_to "Previous", bookshelf_path(:id => current_user.id), :class => 'link' %></li>
+      <li><%= link_to "Next", bookshelf_path(:id => current_user.id), :class => 'link' %></li>
+    </ul>
+  </div>
+  <div class="bookshelf-slider1 cleaner">
+      <% books.each_slice(items_slide).each_with_index do |slice,index| %>
+        <div id="2-bookshelf-slide-<%= index %>" class="bookshelf-slide1 <%= 'hidden' unless index.eql?(0) %>">
+          <% slice.each do |book| %>
+            <div class="book" >
+              <%= image_tag book.medium_tiny %>
+              <div class="info">
+                <div class="title"><%= truncate(book.title, :length => 35, :separator => ' ', :omission => '..') %></div>
+                <div class="author"><%= truncate("by #{book.author}", :length => 20,  :omission => '..') %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  </div> 
+  <div class="cleaner">
+  </div> 
+</div> 
+
+
+

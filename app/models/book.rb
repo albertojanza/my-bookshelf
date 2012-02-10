@@ -52,4 +52,26 @@ class Book < ActiveRecord::Base
     book
   end
 
+  def people_have_read
+    #Experience.joins(:user => :authentications).where(:adventure_id => self.adventure.id)
+    users_with_this_experience(0)
+  end
+
+  def people_are_reading
+    users_with_this_experience(1)
+  end
+
+  def people_will_read
+    users_with_this_experience(2)
+  end
+
+private 
+  def users_with_this_experience(code)
+    book_cache = Rails.cache.fetch("book_#{self.id}") || {}
+    if book_cache.empty? || book_cache["ex_#{code}"].nil?
+      book_cache["ex_#{code}"] = Authentication.joins(:user => :experiences).where('experiences.adventure_id = ? AND code = ?', self.adventure.id,code).map {|auth| auth.uid }
+      Rails.cache.write "book_#{self.id}", book_cache
+    end
+    book_cache["ex_#{code}"]
+  end
 end
