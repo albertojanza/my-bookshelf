@@ -2,6 +2,7 @@ class CreateBooks < ActiveRecord::Migration
   def change
     create_table :books do |t|
       t.string :asin
+      t.integer :experience_id
       t.string :permalink
       t.string :title
       t.string :author

@@ -13,29 +13,9 @@
 
 ActiveRecord::Schema.define(:version => 20120122195003) do
 
-  create_table "adventures", :force => true do |t|
-    t.integer  "experience_id"
-    t.integer  "resource_id"
-    t.string   "resource_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "authentications", :force => true do |t|
-    t.string   "uid"
-    t.string   "provider"
-    t.integer  "user_id"
-    t.string   "link"
-    t.string   "name"
-    t.string   "token"
-    t.string   "expires"
-    t.string   "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "books", :force => true do |t|
     t.string   "asin"
+    t.integer  "experience_id"
     t.string   "permalink"
     t.string   "title"
     t.string   "author"
@@ -69,21 +49,23 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.time     "finised_at"
     t.integer  "user_id"
     t.integer  "recommender_id"
-    t.integer  "adventure_id"
+    t.integer  "book_id"
     t.integer  "code",           :default => 0
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
 
-  create_table "movies", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "users", :force => true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.string   "link"
+    t.string   "name"
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "token"
+    t.string   "expires"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -2,7 +2,7 @@
 
 
 class ApplicationController < ActionController::Base
-  rescue_from Authentication::TokenExpiration, :with => :ouath_process
+  rescue_from User::TokenExpiration, :with => :ouath_process
   protect_from_forgery
 
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default

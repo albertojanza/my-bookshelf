@@ -88,17 +88,15 @@ require 'cgi'
       request  = Net::HTTP::Get.new "me?access_token=#{user['access_token']}"
       response = http.request request
       user_data = MultiJson.decode response.body
-      user = User.create(:username => user_data['username'],:first_name => user_data['first_name'],:last_name => user_data['last_name'])
-      authentication = Authentication.create do |authentication|
-        authentication.provider = 'facebook'
-        authentication.uid= user_data['id']
-        authentication.name= user_data['name']
-        authentication.link= user_data['link']
-        authentication.token = app_users['data'][0]['access_token']
-        # TWITTER authentication.secret = auth['credentials']['secret']
-        authentication.user_id = user.id
-        authentication.info = {:nickname => user_data['username'],
-                                 :name => user_data['name']}
+      User.create do |user|
+        user.provider = 'facebook'
+        user.uid= user_data['id']
+        user.name= user_data['name']
+        user.first_name= user_data['first_name']
+        user.last_name= user_data['last_name']
+        user.username= user_data['username']
+        user.link= user_data['link']
+        user.token = app_users['data'][0]['access_token']
       end
 
     end
@@ -113,13 +111,13 @@ require 'cgi'
   # The first user reads science_fiction
   science_fiction[0..(science_fiction.size - 2)].each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
       end
   end 
  science_fiction[(science_fiction.size - 2)..science_fiction.size].each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
         experience.started_at = Time.now
         experience.code = 1
@@ -129,7 +127,7 @@ require 'cgi'
   users[5..7].each do |user| 
   science_fiction[0..(science_fiction.size - 2)].each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = user.id
       end
   end
@@ -139,13 +137,13 @@ require 'cgi'
   # The third user reads science_fiction too
   science_fiction[0..(science_fiction.size - 1)].each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[2].id
       end
   end 
  science_fiction[(science_fiction.size - 1)..science_fiction.size].each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[2].id
         experience.started_at = Time.now
         experience.code = 1
@@ -154,39 +152,39 @@ require 'cgi'
   # The second guy reads history and cook books
   history.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[1].id
       end
   end 
   cook.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[1].id
       end
   end 
   #Everyone reads ingeneering books
   ingeneering.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
       end
   end 
   ingeneering.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[1].id
       end
   end 
   ingeneering.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[2].id
       end
   end 
   #Only the firs guy reads other books
   other.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
       end
   end 
@@ -194,14 +192,14 @@ require 'cgi'
   #The eighth reads classic
   classics.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[7].id
       end
   end 
   #The eighth recommends all classic books to the first one
   classics.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
         experience.recommender_id = users[7].id
         experience.code = 3
@@ -212,7 +210,7 @@ require 'cgi'
   #The eighth recommends all classic books to the first one
   geographic.each do |book|
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = users[0].id
         experience.code = 2
       end

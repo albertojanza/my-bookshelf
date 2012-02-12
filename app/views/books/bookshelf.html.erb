@@ -1,9 +1,9 @@
 
 
-<%= render 'slider1', :books => @recommended_books.map { |experience| experience.adventure.resource}, :type => 3, :items_slide => 3,:slider_index => 0 %>
-<%= render 'slider1', :books => @next_books.map { |experience| experience.adventure.resource}, :type => 2, :items_slide => 3,:slider_index => 1 %>
-<%= render 'slider1', :books => @reading.map { |experience| experience.adventure.resource}, :type => 1, :items_slide => 3,:slider_index => 2  %>
-<%= render 'slider1', :books => @read_books.map { |experience| experience.adventure.resource}, :type => 0, :items_slide => 6,:slider_index => 3%>
+<%= render 'slider1', :books => @recommended_books, :type => 3, :items_slide => 3,:slider_index => 0 %>
+<%= render 'slider1', :books => @next_books, :type => 2, :items_slide => 3,:slider_index => 1 %>
+<%= render 'slider1', :books => @reading, :type => 1, :items_slide => 3,:slider_index => 2  %>
+<%= render 'slider1', :books => @read_books, :type => 0, :items_slide => 6,:slider_index => 3%>
 
 <script type="text/javascript" >
     var sliders = [[0,<%= (@recommended_books.size + 2) / 3 %>],[0,<%= (@next_books.size + 2) / 3 %>],[0,<%= (@reading.size + 2) / 3 %>],[0,<%= (@read_books.size + 2) / 6 %>] ];

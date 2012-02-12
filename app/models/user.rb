@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
 
-  has_many :authentications
+  #has_many :authentications
   has_many :experiences 
-  has_many :adventures, :through => :experiences
+  #has_many :adventures, :through => :experiences
+  has_many :books, :through => :experiences
   has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id'
 
 
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
       http.use_ssl = true
       response = http.request request
       friends_data = MultiJson.decode(response.body)
-      raise(Authentication::TokenExpiration.new(facebook_auth,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
+      raise(User::TokenExpiration.new(facebook_auth,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
       Rails.cache.write "friend_#{self.id}", (friends_data['data'].map! {|value| value['id']})
       friends_data['data']
     else
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def friend_reading_experiences
+  def friends_reading
 
 
 #    auths = Authentication.includes(:users).find(:all, self.friends)
@@ -40,11 +41,19 @@ class User < ActiveRecord::Base
     end
     select << ' AND code = 1 '
 
-    Experience.joins(:user => :authentications).where(select).order(:updated_at).limit(100)
+    Book.joins(:experiences => :user).where(select).order(:updated_at).limit(100)
 
   end
 
 
   end
 
+class TokenExpiration < Exception
+  attr :authentication
+  attr :message
+  def initialize(authentication,message)
+    @authentication = authentication
+    @message = message
+  end
+end
 end

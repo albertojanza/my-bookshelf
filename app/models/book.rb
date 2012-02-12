@@ -1,12 +1,13 @@
 #TODO internationalization, title in different languages, books available in different languages
 class Book < ActiveRecord::Base
-  has_one :adventure, :as => :resource
+  #has_one :adventure, :as => :resource
+  has_many :experiences
 
   validates :title, :presence => true
   validates :author, :presence => true
   validates :asin, :presence => true
 
-  after_create :create_adventure
+#  after_create :create_adventure
   before_save :create_permalink
 
   serialize :author
@@ -15,9 +16,9 @@ class Book < ActiveRecord::Base
     self.permalink = "#{self.title}-#{self.author}".parameterize
   end
 
-  def create_adventure
-    Adventure.create :resource => self
-  end
+#  def create_adventure
+#    Adventure.create :resource => self
+#  end
 
  def to_param
    permalink
@@ -72,7 +73,7 @@ private
   def users_with_this_experience(code)
     book_cache = Rails.cache.fetch("book_#{self.id}") || {}
     if book_cache.empty? || book_cache["ex_#{code}"].nil?
-      book_cache["ex_#{code}"] = Authentication.joins(:user => :experiences).where('experiences.adventure_id = ? AND code = ?', self.adventure.id,code).map {|auth| auth.uid }
+      book_cache["ex_#{code}"] = User.joins(:experiences).where('experiences.book_id = ? AND code = ?', self.id,code).map {|auth| auth.uid }
       Rails.cache.write "book_#{self.id}", book_cache
     end
     book_cache["ex_#{code}"]
