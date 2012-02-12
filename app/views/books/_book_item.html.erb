@@ -1,0 +1,8 @@
+            <div class="book-item" >
+              <%= link_to image_tag(book_item.tiny_image), book_item %>
+              <div class="info">
+                <div class="title"><%= link_to truncate(book_item.title, :length => 35, :separator => ' ', :omission => '..'), book_item %></div>
+                <div class="author"><%= truncate("by #{by_authors(book_item.author)}", :length => 20,  :omission => '..') %></div>
+              </div>
+            </div>
+

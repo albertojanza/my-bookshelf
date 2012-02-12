@@ -15,7 +15,8 @@ class CreateBooks < ActiveRecord::Migration
       t.string :publisher
       t.string :publication_date
       t.string :medium_image
-      t.string :medium_tiny
+      t.string :tiny_image
+      t.string :large_image
       t.string :thumbnail_image
       t.timestamps
     end

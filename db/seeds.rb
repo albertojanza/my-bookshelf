@@ -79,6 +79,8 @@ require 'cgi'
       authentication = Authentication.create do |authentication|
         authentication.provider = 'facebook'
         authentication.uid= user_data['id']
+        authentication.name= user_data['name']
+        authentication.link= user_data['link']
         authentication.token = app_users['data'][0]['access_token']
         # TWITTER authentication.secret = auth['credentials']['secret']
         authentication.user_id = user.id
@@ -110,6 +112,17 @@ require 'cgi'
         experience.code = 1
       end
   end
+  # The sixth, seventh and eigth read science_fiction
+  users[5..7].each do |user| 
+  science_fiction[0..(science_fiction.size - 2)].each do |book|
+     Experience.create do |experience|
+        experience.adventure_id = book.adventure.id
+        experience.user_id = user.id
+      end
+  end
+  end
+
+
   # The third user reads science_fiction too
   science_fiction[0..(science_fiction.size - 1)].each do |book|
      Experience.create do |experience|

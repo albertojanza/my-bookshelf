@@ -1,5 +1,18 @@
 module BooksHelper
 
+
+  def by_authors(authors)
+    if authors.class.eql? Array
+      result = authors[0..(authors.size - 2)].join(', ')
+      result << " and #{authors.last}"
+    else 
+      result = authors
+    end
+    result 
+      
+
+  end
+
   def title(type)
     case type
       when 0

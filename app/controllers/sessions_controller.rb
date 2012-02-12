@@ -72,6 +72,8 @@ private
         authentication.uid= user_data['id']
         authentication.expires = expires
         authentication.token = token
+        authentication.name = user_data['name']
+        authentication.link = user_data['link']
         # TWITTER authentication.secret = auth['credentials']['secret']
         authentication.user_id = session[:user_id]
         authentication.info = {:nickname => user_data['username'],

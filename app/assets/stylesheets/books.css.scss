@@ -2,10 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//book
+.book h1{color:#333333;margin:0px;font-size:21px;margin-top:10px;padding-left:10px;}
+.book p.authors{font-size:14px;color:#8f8f8f;margin: 0 0 10px 15px; }
+.book img{float:left; border:1px solid; color:#e7e7e7;}
+.book .info{margin-left:320px;
+word-wrap: break-word; 
+
+}
+
 // Slide 1, only one slide is displayed, the rest of the slides have display none, and the slides fade out and fade in
 .bookshelf-slide1{}
 
-.bookshelf-slider1{height:100px;padding:3px  1px 5px 1px;}
+.bookshelf-slider1{height:250px;padding:3px  1px 5px 1px;}
 
 
 //Slide 2. every slide is displayed but they are hidden for the container, that has the overflow:hidden property, the slides move to one direction.
@@ -30,7 +39,8 @@
 .book_list .menu a{color:#333333;font-size:14px;}
 .book_list .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
 
-.book{
+// Book item
+.book-item{
   margin-right:7px;
   padding:5px 2px 4px 4px;
   border: medium none;
@@ -44,8 +54,8 @@
     height: 110px;
     float:left;
 }
-.book img{float:left; border:1px solid; color:#e7e7e7;}
-.book .info{padding-left:5px;
+.book-item img{float:left; border:1px solid; color:#e7e7e7;}
+.book-item .info{padding-left:5px;
 word-wrap: break-word; 
 display: table-cell;
     vertical-align: top;
@@ -53,10 +63,10 @@ display: table-cell;
 }
 
 
-.book .title{font-size:13px; }
-.book .author{font-size:11px;color:#8f8f8f; }
+.book-item .title a{font-size:13px;text-decoration:none;color:black; }
+.book-item .author{font-size:11px;color:#8f8f8f; }
 
-.book:hover {
+.book-item:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;
     // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
     z-index: 1;

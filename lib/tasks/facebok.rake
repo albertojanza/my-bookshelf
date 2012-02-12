@@ -14,8 +14,8 @@ task :create_users => :environment do
     # Asking for the users associated to this app. If there are no users we will create them
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
     app_users = MultiJson.decode response.body
-    if app_users["data"].size < 3
-      (3 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
+    if app_users["data"].size < 9
+      (9 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
       response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
       app_users = MultiJson.decode response.body
     end
@@ -28,7 +28,7 @@ end
 
 desc "This task changes the password of the facebook test users associated to this app"
 task :change_names => :environment do
-    names = ['ironmaiden','bunbury','heroes']
+    names = ['ironmaiden','bunbury','heroes','helloween','acdc','celtascortos','sober','seether','aerosmith','elcantodeloco']
 
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -80,6 +80,46 @@ task :make_friends => :environment do
     request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][2]['access_token']})
      http.request(request)
 
+    # Ironmaiden is friend of helloween
+    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][3]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+    http.request(request)
+    request = Net::HTTP::Post.new "/#{app_users['data'][3]['id']}/friends/#{app_users['data'][0]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][3]['access_token']})
+     http.request(request)
+
+    # Ironmaiden is friend of acdc
+    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][4]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+    http.request(request)
+    request = Net::HTTP::Post.new "/#{app_users['data'][4]['id']}/friends/#{app_users['data'][0]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][4]['access_token']})
+     http.request(request)
+
+    # Ironmaiden is friend of sober
+    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][6]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+    http.request(request)
+    request = Net::HTTP::Post.new "/#{app_users['data'][6]['id']}/friends/#{app_users['data'][0]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][6]['access_token']})
+     http.request(request)
+
+    # Ironmaiden is friend of seether
+    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][7]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+    http.request(request)
+    request = Net::HTTP::Post.new "/#{app_users['data'][7]['id']}/friends/#{app_users['data'][0]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][7]['access_token']})
+     http.request(request)
+
+    # Ironmaiden is friend of aerosmith
+    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][8]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+    http.request(request)
+    request = Net::HTTP::Post.new "/#{app_users['data'][8]['id']}/friends/#{app_users['data'][0]['id']}"
+    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][8]['access_token']})
+     http.request(request)
+
     # Bunbury is friend of heroes
     request = Net::HTTP::Post.new "/#{app_users['data'][1]['id']}/friends/#{app_users['data'][2]['id']}"
     request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][1]['access_token']})
@@ -118,6 +158,12 @@ task :delete_users => :environment do
     end
 
 end
-#ironmaiden_tzslbif_ironmaiden@tfbnw.net
-#bunbury_kkugoqc_bunbury@tfbnw.net
-#heroes_trknowe_heroes@tfbnw.net
+#ironmaiden_mnlkupo_ironmaiden@tfbnw.net
+#bunbury_ieacrok_bunbury@tfbnw.net
+#heroes_cuanicy_heroes@tfbnw.net
+#helloween_jmfqzgu_helloween@tfbnw.net
+# acdc_xhwduuf_acdc@tfbnw.net
+# celtascortos_sxexqkn_celtascortos@tfbnw.net
+# sober_pyebrnk_sober@tfbnw.net
+# seether_yksbvkq_seether@tfbnw.net
+#aerosmith_hmwyfrh_aerosmith@tfbnw.net

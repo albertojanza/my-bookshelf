@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by_permalink params[:id]
+    @friends_have_read_it = @book.people_have_read && current_user.friends if logged_in?
   end
 
   def search

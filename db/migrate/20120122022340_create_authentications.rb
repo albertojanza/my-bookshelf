@@ -6,6 +6,8 @@ class CreateAuthentications < ActiveRecord::Migration
       t.string    :provider   # Third party
       t.integer   :user_id
 
+      t.string    :link
+      t.string    :name
       t.string    :token
       t.string    :expires
 

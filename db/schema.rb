@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
+    t.string   "link"
+    t.string   "name"
     t.string   "token"
     t.string   "expires"
     t.string   "info"
@@ -46,7 +48,8 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "publisher"
     t.string   "publication_date"
     t.string   "medium_image"
-    t.string   "medium_tiny"
+    t.string   "tiny_image"
+    t.string   "large_image"
     t.string   "thumbnail_image"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

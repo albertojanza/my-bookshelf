@@ -2,12 +2,6 @@
 <%= link_to "<h1>#{title(0)}</h2>".html_safe, bookshelf_path(:id => current_user.id), :class => 'link' %>
 
           <% @books.map{ |experience| experience.adventure.resource }.each do |book| %>
-            <div class="book" >
-              <%= image_tag book.medium_tiny %>
-              <div class="info">
-                <div class="title"><%= truncate(book.title, :length => 35, :separator => ' ', :omission => '..') %></div>
-                <div class="author"><%= truncate("by #{book.author}", :length => 20,  :omission => '..') %></div>
-              </div>
-            </div>
+            <%= render :partial => 'book_item', :object => book %>
           <% end %>
 
