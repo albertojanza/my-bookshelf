@@ -68,10 +68,11 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.time     "started_at"
     t.time     "finised_at"
     t.integer  "user_id"
+    t.integer  "recommender_id"
     t.integer  "adventure_id"
-    t.integer  "code",         :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.integer  "code",           :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "movies", :force => true do |t|

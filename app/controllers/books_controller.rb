@@ -7,7 +7,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by_permalink params[:id]
-    @friends_have_read_it = @book.people_have_read && current_user.friends if logged_in?
+    @friends_have_read_it = Authentication.find_all_by_uid((@book.people_have_read & current_user.friends)) if logged_in?
+    #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end
 
   def search
@@ -21,6 +22,7 @@ client = ASIN::Client.instance
   def friends_bookshelf
     @user = User.find session[:user_id]
     @friends = @user.friends
+    @reading = @user.friend_reading_experiences
   end
 
   def bookshelf

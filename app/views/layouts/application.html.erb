@@ -37,10 +37,13 @@
     </div>
 </div>
 <div id="main" class="wrapper" >
-
-    <%= yield %>
+  <div id="main-content">
+      <%= yield %>
+  </div>
+  <div id="main-sidebar">
+    <%= yield :head %>
+  </div>
 </div>
-
 
 <div class="wrapper">
     <div id="footer">

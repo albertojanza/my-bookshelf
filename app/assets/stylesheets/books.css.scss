@@ -6,22 +6,21 @@
 .book h1{color:#333333;margin:0px;font-size:21px;margin-top:10px;padding-left:10px;}
 .book p.authors{font-size:14px;color:#8f8f8f;margin: 0 0 10px 15px; }
 .book img{float:left; border:1px solid; color:#e7e7e7;}
-.book .info{margin-left:320px;
-word-wrap: break-word; 
-
-}
+.book .info{margin-left:320px;word-wrap: break-word; }
+.book .friends img{float:left; border:1px solid; color:#e7e7e7;}
+.book .friends .name{margin-left:55px;word-wrap: break-word;}
 
 // Slide 1, only one slide is displayed, the rest of the slides have display none, and the slides fade out and fade in
 .bookshelf-slide1{}
 
-.bookshelf-slider1{height:250px;padding:3px  1px 5px 1px;}
+.bookshelf-slider1{padding:3px  1px 5px 1px;}
 
 
 //Slide 2. every slide is displayed but they are hidden for the container, that has the overflow:hidden property, the slides move to one direction.
 .bookshelf-slider-container{width:10000px;}
 .bookshelf-slide{float:left;}
 
-.bookshelf-slider{float:left;overflow:hidden;height:100px;width:848px;padding:5px 1px;}
+.bookshelf-slider{float:left;overflow:hidden;height:100px;width:848px;padding:5px 1px;} // width:848px;
 
 .slider-left-arrow{float:left;width:50px;height:100px;
     background-image: url("slider-left-arrow.png");width: 50px; height:47px;
@@ -55,16 +54,18 @@ word-wrap: break-word;
     float:left;
 }
 .book-item img{float:left; border:1px solid; color:#e7e7e7;}
-.book-item .info{padding-left:5px;
-word-wrap: break-word; 
-display: table-cell;
-    vertical-align: top;
+.book-item .info-container{padding-left:5px; word-wrap: break-word; display: table-cell; vertical-align: top;min-width:120px;}
+.book-item .info{ height: 110px;position:relative;}
 
-}
-
-
-.book-item .title a{font-size:13px;text-decoration:none;color:black; }
-.book-item .author{font-size:11px;color:#8f8f8f; }
+.book-item .title a {text-decoration:none; }
+.book-item .title a div{font-size:13px;color:black; line-height: 1.1;max-height: 47px;overflow: hidden; }
+.book-item .author{font-size:11px;color:#8f8f8f;  line-height: 1.2;max-height: 14px;overflow: hidden; }
+.book-item .experiences{position:absolute; bottom:0px;}
+.book-item .experiences ul {list-style: none; margin:0; padding:0; }
+.book-item .experiences ul li{padding:0;font-size:11px;color:#8f8f8f;float:left;}
+.book-item .experiences ul li.separator{padding:0 5px;}
+.book-item .experiences ul a{font-size:11px;color:#8f8f8f;text-decoration:none;}
+.book-item .experiences ul a:hover{color:#333333;font-size:11px;text-decoration:underline;}
 
 .book-item:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;

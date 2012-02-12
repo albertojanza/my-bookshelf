@@ -16,6 +16,8 @@ require 'cgi'
   cook = []
   other = []
   ingeneering = []
+  classics = []
+  geographic = []
   
   science_fiction<<  Book.find_by_asin('0486411095') # Bram Stoker Drakula
   # Stephen king it
@@ -49,10 +51,21 @@ require 'cgi'
 
   # Other 
   other << Book.find_by_asin('1594771766') # Iboga
+  other << Book.find_by_asin('0307472590') # la sombra del viento 
+
   science_fiction << Book.find_by_asin('0060731338') # Steven Levit Freakonomics
    
   # Engineering
   ingeneering << Book.find_by_asin('1934356549') #David Heinemeer Agile Web Development with Ruby on Rails
+
+  # Classics
+  classics << Book.find_by_asin('1466257555') # jules verne twenty thousand leagues under the sea
+  classics << Book.find_by_asin('0689848374') # edgar alan poe 
+  classics << Book.find_by_asin('1589770242') # el quijote
+
+  geographic << Book.find_by_asin('142630840X') # National Geographic Children's Books
+  geographic << Book.find_by_asin('B005HQXYI2')
+
 
  
 #-------------------------------------------------------------------------------  
@@ -177,3 +190,32 @@ require 'cgi'
         experience.user_id = users[0].id
       end
   end 
+
+  #The eighth reads classic
+  classics.each do |book|
+     Experience.create do |experience|
+        experience.adventure_id = book.adventure.id
+        experience.user_id = users[7].id
+      end
+  end 
+  #The eighth recommends all classic books to the first one
+  classics.each do |book|
+     Experience.create do |experience|
+        experience.adventure_id = book.adventure.id
+        experience.user_id = users[0].id
+        experience.recommender_id = users[7].id
+        experience.code = 3
+      end
+  end 
+  
+
+  #The eighth recommends all classic books to the first one
+  geographic.each do |book|
+     Experience.create do |experience|
+        experience.adventure_id = book.adventure.id
+        experience.user_id = users[0].id
+        experience.code = 2
+      end
+  end 
+  
+
