@@ -67,6 +67,8 @@
 .book-item .experiences ul a{font-size:11px;color:#8f8f8f;text-decoration:none;}
 .book-item .experiences ul a:hover{color:#333333;font-size:11px;text-decoration:underline;}
 
+.book-item .experiences img{float:right;}
+
 .book-item:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;
     // text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);

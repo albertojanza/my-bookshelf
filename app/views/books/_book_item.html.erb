@@ -1,23 +1,37 @@
             <div class="book-item" >
-              <%= link_to image_tag(book_item.tiny_image), book_item %>
+              <%= link_to image_tag(book_item.book.tiny_image), book_item.book %>
               <div class="info-container">
               <div class="info">
-                <div class="title"><%= link_to "<div>#{truncate(book_item.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item %></div>
+                <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item %></div>
 
-                <div class="author"><%= truncate("by #{by_authors(book_item.author)}", :length => 20,  :omission => '..') %></div>
+                <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..') %></div>
                 <div class="experiences">
-            <ul >
-              <li><%= link_to "Read it", book_item %></li>
-              <li class="separator">|</li>
-                    
-               <li> <%= link_to "Going to read", book_item %></li>
-            </ul>
-            <ul >
-              <li><%= link_to "Reading", book_item %></li>
-              <li class="separator">|</li>
-                    
-               <li> <%= link_to "Recommend", book_item %></li>
-            </ul>
+              <% if params[:action].eql? 'friends_bookshelf'    %>
+              <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture"  ), bookshelf_path(:id => book_item.user.id )%>
+              <%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%>
+              <% elsif @user.eql? current_user # Bookshelf of the logged user %>
+                <% case book_item.code 
+                  when 0 %>
+
+                    <ul >
+                      <li><%= link_to "Read it", book_item.book %></li>
+                      <li class="separator">|</li>
+                            
+                       <li> <%= link_to "Going to read", book_item.book %></li>
+                    </ul>
+                    <ul >
+                      <li><%= link_to "Reading", book_item.book %></li>
+                      <li class="separator">|</li>
+                            
+                       <li> <%= link_to "Recommend", book_item.book %></li>
+                    </ul>
+                <% when 1 %>
+                <% when 2 %>
+                <% when 3 %>
+
+                <% end %>
+
+              <% end %>
                 </div>
               </div>
               </div>

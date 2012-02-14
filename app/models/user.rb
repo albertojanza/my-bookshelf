@@ -10,9 +10,8 @@ class User < ActiveRecord::Base
   def friends
     friends = Rails.cache.fetch "friend_#{self.id}"
     unless friends
-      facebook_auth = (self.authentications.find {|auth| auth if auth.provider.eql?('facebook') }) 
       http = Net::HTTP.new "graph.facebook.com", 443
-      request = Net::HTTP::Get.new "/me/friends?access_token=#{facebook_auth.token}"
+      request = Net::HTTP::Get.new "/me/friends?access_token=#{self.token}"
       http.use_ssl = true
       response = http.request request
       friends_data = MultiJson.decode(response.body)
@@ -41,7 +40,7 @@ class User < ActiveRecord::Base
     end
     select << ' AND code = 1 '
 
-    Book.joins(:experiences => :user).where(select).order(:updated_at).limit(100)
+    Experience.joins(:user).where(select).order('experiences.updated_at').limit(100).includes(:book).includes(:user)
 
   end
 
