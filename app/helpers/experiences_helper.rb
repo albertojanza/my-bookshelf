@@ -1,7 +1,7 @@
 module ExperiencesHelper
 
-  def confirm_message
-    case @experience.code
+  def confirm_message(code)
+    case code
       when 0
         'In your read bookcase'
       when 1

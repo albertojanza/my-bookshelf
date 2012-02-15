@@ -6,6 +6,17 @@ class User < ActiveRecord::Base
   has_many :books, :through => :experiences
   has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id'
 
+  def experiences_and_books_cache
+    books = Rails.cache.fetch "user_book_list_#{self.id}"
+    unless books
+      experiences = self.experiences.includes(:book)
+      books = {}
+      experiences.each { |experience| books[experience.book.asin] = [experience.id,experience.code]}
+      Rails.cache.write "user_book_list_#{self.id}", books
+    end
+    books
+  end
+
 
   def friends
     friends = Rails.cache.fetch "friend_#{self.id}"

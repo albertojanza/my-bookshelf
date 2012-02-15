@@ -23,6 +23,7 @@ client = ASIN::Client.instance
     @user = current_user
     @friends = current_user.friends
     @reading = current_user.friends_reading
+    @book_list = current_user.experiences_and_books_cache
   end
 
   def bookshelf

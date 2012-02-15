@@ -6,46 +6,71 @@
       <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..') %></div>
       <div class="experiences">
 
-        <% if params[:action].eql? 'friends_bookshelf'    %>
-          <div class="recommender">
-            <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture",:width => 30  ), bookshelf_path(:id => book_item.user.id )%>
-            <div class="user-name"><%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%></div>
-          </div>
-          <div class="cleaner" ></div>
-          <ul id="experience_options_<%= book_item.id%>">
-            <li>
-              <%= link_to_function "Read", "$('#experience_form_#{book_item.id}').submit();" %>
-              <%= form_for(book_item, :html => { :id => "experience_form_#{book_item.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 0) %>
-              <% end %>
-            </li>
+        <% if params[:action].eql? 'friends_bookshelf' # The user is seeing the books of his friends    %>
 
-            <li class="separator">|</li>
-            <li> <%= link_to "Reading", book_item.book %></li>
-            <li class="separator">|</li>
-            <li> <%= link_to "Next", book_item.book %></li>
-          </ul>
+          <% if @book_list[book_item.book.asin] %>
+            <div class="confirm_message"><%= confirm_message(@book_list[book_item.book.asin][1]) %></div>
+          <% else %>
+
+            <div class="recommender">
+              <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture",:width => 30  ), bookshelf_path(:id => book_item.user.id )%>
+              <div class="user-name"><%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%></div>
+            </div>
+            <div class="cleaner" ></div>
+            <ul id="experience_options_<%= book_item.id%>">
+              <li>
+                <%= link_to_function "Read", "$('#experience_0_form_#{book_item.id}').submit();" %>
+                <%= form_for(book_item, :html => { :id => "experience_form_#{book_item.id}",:remote => true }) do |f| %>
+                  <%= f.hidden_field(:code, :value => 0) %>
+                <% end %>
+              </li>
+
+              <li class="separator">|</li>
+              <li> <%= link_to "Reading", book_item.book %>
+                <%= form_for(book_item, :html => { :id => "experience_1_form_#{book_item.id}",:remote => true }) do |f| %>
+                  <%= f.hidden_field(:code, :value => 1) %>
+                <% end %>
+              </li>
+              <li class="separator">|</li>
+              <li> <%= link_to "Next", book_item.book %>
+                <%= form_for(book_item, :html => { :id => "experience_2_form_#{book_item.id}",:remote => true }) do |f| %>
+                  <%= f.hidden_field(:code, :value => 2) %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
 
 
 
 
         <% elsif @user.eql? current_user # Bookshelf of the logged user %>
-                <% case book_item.code 
-                  when 0 %>
-
-                    <ul >
-                      <li><%= link_to "Read it", book_item.book %></li>
-                      <li class="separator">|</li>
+          <% case book_item.code 
+            when 0 %>
+              <ul >
                             
-                       <li> <%= link_to "Going to read", book_item.book %></li>
+                       <li> <%= link_to "Your influence rate is 80", book_item.book %></li>
                     </ul>
                     <ul >
-                      <li><%= link_to "Reading", book_item.book %></li>
-                      <li class="separator">|</li>
                             
                        <li> <%= link_to "Recommend", book_item.book %></li>
+                      <li class="separator">|</li>
+                      <li><%= link_to "Friends", book_item.book %></li>
                     </ul>
-                <% when 1 %>
+            <% when 1 %>
+              <ul id="experience_options_<%= book_item.id%>">
+                <li>
+                  <%= link_to_function "Read", "$('#experience_0_form_#{book_item.id}').submit();" %>
+                  <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 0) %>
+                  <% end %>
+                </li>
+                <li class="separator">|</li>
+                <li> <%= link_to "Recommend", book_item.book %>
+                  <%= form_for(Experience.new, :html => { :id => "experience_1_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 1) %>
+                  <% end %>
+                </li>
+              </ul>
                 <% when 2 %>
                 <% when 3 %>
 
