@@ -1,7 +1,29 @@
 require 'active_record'
 require 'cgi'
 
-desc "This task shows the urls of three test facebook users associated with this Facebook app. If the app doesnt have any test user this task will create three facebok test users in the case that they dont exist."
+desc "This tasks grab the test users from other app"
+task :import_users => :environment do
+    http = Net::HTTP.new "graph.facebook.com", 443
+    http.use_ssl = true
+
+    # Asking for the token of the app owner
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_OWNER_KEY']}&&client_secret=#{ENV['FACEBOOK_OWNER_SECRET']}&grant_type=client_credentials"))
+    app_owner_token = CGI.parse(response.body)["access_token"][0]
+
+    # Asking for the token of the app 
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    app_token = CGI.parse(response.body)["access_token"][0]
+
+    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_OWNER_KEY']}/accounts/test-users?access_token=#{app_owner_token}"))
+    app_users = MultiJson.decode response.body
+
+    app_users["data"].each do |user|
+      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=read_stream&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
+      MultiJson.decode response.body
+    end
+end
+
+desc "this task shows the urls of three test facebook users associated with this facebook app. if the app doesnt have any test user this task will create three facebok test users in the case that they dont exist."
 task :create_users => :environment do
 
     http = Net::HTTP.new "graph.facebook.com", 443
