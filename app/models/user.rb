@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     end
     select << ' AND code = 1 '
 
-    Experience.joins(:user).where(select).order('experiences.updated_at').limit(100).includes(:book).includes(:user)
+    Experience.joins(:user).where(select).order('experiences.updated_at DESC').limit(100).includes(:book).includes(:user)
 
   end
 

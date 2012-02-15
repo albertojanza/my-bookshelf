@@ -28,27 +28,27 @@ client = ASIN::Client.instance
 
   def bookshelf
     @user = User.find_by_id params[:id]
-    @read_books = @user.experiences.where('code = 0').includes(:book)
-    @reading = @user.experiences.where('code = 1').includes(:book)
-    @next_books = @user.experiences.where('code = 2').includes(:book)
-    @recommended_books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
+    @read_books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
+    @reading = @user.experiences.where('code = 1').order('updated_at DESC').includes(:book)
+    @next_books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
+    @recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
   end
 
   def bookcase_read_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code = 0').includes(:book)
+    @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
     render 'bookcase'
   end
   
   def bookcase_reading_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code = 0').includes(:book)
+    @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
     render 'bookcase'
   end
 
   def bookcase_next_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code = 2').includes(:book)
+    @books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
     render 'bookcase'
   end
 
