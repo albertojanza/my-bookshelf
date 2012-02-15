@@ -58,7 +58,7 @@ private
     elsif session[:user_id].nil?  && user
       # We have the user but his session has expired or he logged out previously
       session[:user_id] = user.id
-      user.update_attributes(:token => token, :expires => expires)
+      user.update_attributes(:token => token, :expires => expires, :name => user_data['name'])
     else # NEW USER
 
       user = User.create do |user|

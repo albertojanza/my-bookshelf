@@ -57,17 +57,9 @@ class ExperiencesController < ApplicationController
   # PUT /experiences/1
   # PUT /experiences/1.json
   def update
+    # TODO security, only the owner can do this
     @experience = Experience.find(params[:id])
-
-    respond_to do |format|
-      if @experience.update_attributes(params[:experience])
-        format.html { redirect_to @experience, notice: 'Experience was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @experience.errors, status: :unprocessable_entity }
-      end
-    end
+    @experience.update_attributes(params[:experience])
   end
 
   # DELETE /experiences/1

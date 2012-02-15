@@ -39,20 +39,8 @@
 .book_list .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
 
 // Book item
-.book-item{
-  margin-right:7px;
-  padding:5px 2px 4px 4px;
-  border: medium none;
-    border-radius: 4px 4px 4px 4px;
-     box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.3);
-
-    //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-    //border-radius: 0 0 100% 100% / 0 0 10px 10px;
-    margin-bottom: 7px;
-    width: 225px;
-    height: 110px;
-    float:left;
-}
+.book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px; box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.3);
+    width: 225px; height: 110px;float:left;}
 .book-item img{float:left; border:1px solid; color:#e7e7e7;}
 .book-item .info-container{padding-left:5px; word-wrap: break-word; display: table-cell; vertical-align: top;min-width:120px;}
 .book-item .info{ height: 110px;position:relative;}
@@ -67,7 +55,11 @@
 .book-item .experiences ul a{font-size:11px;color:#8f8f8f;text-decoration:none;}
 .book-item .experiences ul a:hover{color:#333333;font-size:11px;text-decoration:underline;}
 
-.book-item .experiences img{float:right;}
+.book-item .experiences img{margin-left:0px;float:left;border: 0;}
+.book-item .experiences .user-name{ margin-left:30px;line-height: 1.1;padding-left:3px;height:20px;overflow:hidden;}
+.book-item .experiences .user-name a{ font-size:12px;color:black;text-decoration:none;}
+.book-item .experiences .recommender{ margin-bottom:12px;}
+.book-item .experiences .confirm_message{ font-size:12px; color:#2160BA}
 
 .book-item:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;

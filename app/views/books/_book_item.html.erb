@@ -1,15 +1,35 @@
-            <div class="book-item" >
-              <%= link_to image_tag(book_item.book.tiny_image), book_item.book %>
-              <div class="info-container">
-              <div class="info">
-                <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item %></div>
+<div id="experience_<%= book_item.id %>" class="book-item" >
+  <%= link_to image_tag(book_item.book.tiny_image), book_item.book %>
+  <div class="info-container">
+    <div class="info">
+      <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item %></div>
+      <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..') %></div>
+      <div class="experiences">
 
-                <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..') %></div>
-                <div class="experiences">
-              <% if params[:action].eql? 'friends_bookshelf'    %>
-              <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture"  ), bookshelf_path(:id => book_item.user.id )%>
-              <%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%>
-              <% elsif @user.eql? current_user # Bookshelf of the logged user %>
+        <% if params[:action].eql? 'friends_bookshelf'    %>
+          <div class="recommender">
+            <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture",:width => 30  ), bookshelf_path(:id => book_item.user.id )%>
+            <div class="user-name"><%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%></div>
+          </div>
+          <div class="cleaner" ></div>
+          <ul id="experience_options_<%= book_item.id%>">
+            <li>
+              <%= link_to_function "Read", "$('#experience_form_#{book_item.id}').submit();" %>
+              <%= form_for(book_item, :html => { :id => "experience_form_#{book_item.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 0) %>
+              <% end %>
+            </li>
+
+            <li class="separator">|</li>
+            <li> <%= link_to "Reading", book_item.book %></li>
+            <li class="separator">|</li>
+            <li> <%= link_to "Next", book_item.book %></li>
+          </ul>
+
+
+
+
+        <% elsif @user.eql? current_user # Bookshelf of the logged user %>
                 <% case book_item.code 
                   when 0 %>
 

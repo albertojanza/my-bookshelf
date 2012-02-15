@@ -50,7 +50,8 @@ div.hidden {display:none;}
 
 #header .menu {margin-top:10px;}
 #header .menu li{color:#CCCCCC;font-size:15px;}
-#header .menu li a{color:#333333;font-size:15px;}
+#header .menu li a{color:#333333;font-size:15px;text-decoration:none}
+#header .menu li a.selected{color:#8F8F8F;font-size:15px;}
 
 /* MAIN CONTENT */
 #main{margin-top:50px;min-height:400px;}

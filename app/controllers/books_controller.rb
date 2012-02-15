@@ -35,25 +35,25 @@ client = ASIN::Client.instance
 
   def bookcase_read_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code => 0').includes(:book)
+    @books = @user.experiences.where('code = 0').includes(:book)
     render 'bookcase'
   end
   
   def bookcase_reading_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code => 0').includes(:book)
+    @books = @user.experiences.where('code = 0').includes(:book)
     render 'bookcase'
   end
 
   def bookcase_next_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code => 2').includes(:book)
+    @books = @user.experiences.where('code = 2').includes(:book)
     render 'bookcase'
   end
 
   def bookcase_recommended_books
     @user = User.find params[:id]
-    @books = @user.experiences.where('code => 3').includes(:book).includes(:recommender)
+    @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
     render 'bookcase'
   end
   

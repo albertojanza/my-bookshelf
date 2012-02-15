@@ -20,15 +20,15 @@
             <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
           <% else %>
             <ul class="menu">
-              <li><%= link_to "Books", bookshelf_path(:id => current_user.id), :class => 'link' %></li>
+              <li><%= link_to "Books", bookshelf_path(:id => current_user.id), :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '') %></li>
               <li class="separator">|</li>
-              <li><%= link_to "My Bookshelf", bookshelf_path(:id => current_user.id), :class => 'link' %></li>
+              <li><%= link_to "My Bookshelf", bookshelf_path(:id => current_user.id), :class => ((params[:controller].eql?('books') && (params[:action].eql?('bookshelf') || params[:action].eql?('bookcase_read_books') || params[:action].eql?('bookcase_reading_books') || params[:action].eql?('bookcase_next_books') || params[:action].eql?('bookcase_recommended_books'))) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
-              <li><%= link_to "Friends Bookshelf", friends_bookshelf_path(:id => current_user.id), :class => 'link' %></li>
+              <li><%= link_to "Friends Bookshelf", friends_bookshelf_path(:id => current_user.id), :class => ((params[:controller].eql?('books') && params[:action].eql?('friends_bookshelf')) ? 'selected' : '') %></li>
               <li class="separator">|</li>
-              <li><%= link_to "Home", root_path, :class => 'link' %></li>
+              <li><%= link_to "Home", root_path, :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '') %></li>
               <li class="separator">|</li>
-              <li><%= link_to "Logout", logout_path, :class => 'link' %></li>
+              <li><%= link_to "Logout", logout_path, :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '')  %></li>
             </ul>
           <% end %>
 

@@ -8,7 +8,7 @@ class Experience < ActiveRecord::Base
   belongs_to :recommender, :class_name => 'User',:foreign_key  => 'recommender_id'
 
 
-  attr_accessible :text
+  attr_accessible :code
 
 
 end

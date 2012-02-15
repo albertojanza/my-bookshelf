@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
       http.use_ssl = true
       response = http.request request
       friends_data = MultiJson.decode(response.body)
-      raise(User::TokenExpiration.new(facebook_auth,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
+      raise(User::TokenExpiration.new(self,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
       Rails.cache.write "friend_#{self.id}", (friends_data['data'].map! {|value| value['id']})
       friends_data['data']
     else
@@ -48,10 +48,10 @@ class User < ActiveRecord::Base
   end
 
 class TokenExpiration < Exception
-  attr :authentication
+  attr :user
   attr :message
-  def initialize(authentication,message)
-    @authentication = authentication
+  def initialize(user,message)
+    @user = user
     @message = message
   end
 end
