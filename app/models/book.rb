@@ -45,10 +45,10 @@ class Book < ActiveRecord::Base
           book.studio = amazon_book[0].raw.ItemAttributes.Studio
           book.publisher = amazon_book[0].raw.ItemAttributes.Publisher
           book.publication_date = amazon_book[0].raw.ItemAttributes.PublicationDate
-          book.medium_image = amazon_book[0].raw.ImageSets.ImageSet.MediumImage.URL
-          book.tiny_image = amazon_book[0].raw.ImageSets.ImageSet.TinyImage.URL
-          book.large_image = amazon_book[0].raw.ImageSets.ImageSet.LargeImage.URL
-          book.thumbnail_image = amazon_book[0].raw.ImageSets.ImageSet.ThumbnailImage.URL
+          book.medium_image = ( amazon_book[0].raw.ImageSets.ImageSet.class.eql?(Array) ? amazon_book[0].raw.ImageSets.ImageSet[0].MediumImage.URL : amazon_book[0].raw.ImageSets.ImageSet.MediumImage.URL)
+          book.tiny_image = ( amazon_book[0].raw.ImageSets.ImageSet.class.eql?(Array) ? amazon_book[0].raw.ImageSets.ImageSet[0].TinyImage.URL : amazon_book[0].raw.ImageSets.ImageSet.TinyImage.URL)
+          book.large_image = ( amazon_book[0].raw.ImageSets.ImageSet.class.eql?(Array) ? amazon_book[0].raw.ImageSets.ImageSet[0].LargeImage.URL : amazon_book[0].raw.ImageSets.ImageSet.LargeImage.URL)
+          book.thumbnail_image = ( amazon_book[0].raw.ImageSets.ImageSet.class.eql?(Array) ? amazon_book[0].raw.ImageSets.ImageSet[0].ThumbnailImage.URL : amazon_book[0].raw.ImageSets.ImageSet.ThumbnailImage.URL)
         end
       end
       book = super(*args)

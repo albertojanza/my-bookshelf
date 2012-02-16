@@ -58,7 +58,7 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 #header .menu li a.selected{color:#8F8F8F;font-size:15px;}
 #book-search{
   border-radius: 5px;
-    margin:10px 10px 0 0;
+    margin:10px 30px 0 0;
   /*  -moz-border-bottom-colors: none;
     -moz-border-image: none;
     -moz-border-left-colors: none;
@@ -78,6 +78,47 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 
 
 }
+
+ #header .dropdown  {
+position:relative;
+}
+
+#header  .dropdown ul{ position:absolute;list-style: none; margin:0; padding:0; top:32px;
+    box-shadow: 1 1px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 1 1px 1px rgba(0,0,0,0.5);
+}
+
+#header .dropdown ul li a{
+text-decoration: none;
+}
+#header .dropdown ul li{
+color:black;
+background-color: #EAEAEA;
+width:80px;
+padding: 2px;
+}
+#dropdown_image{
+padding-top:5px;
+position:absolute;
+
+z-index:2;
+}
+
+.overlayer{
+margin-top:5px;
+background-repeat:repeat;
+ background-image: url("pixel-widget.png");
+min-width:30px;
+min-height:30px;
+z-index:20;
+position:absolute;
+}
+
+
+
+
+
 /*  MODAL WINDOW */
 /* Z-index of #mask must lower than #boxes .window */
 .modal-wrapper {display:none; height: 100%; position: absolute; width: 100%; z-index: 9999;margin-top:-76px;}/* background: transparent;}*/

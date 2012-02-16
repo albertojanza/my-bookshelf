@@ -9,6 +9,17 @@
 //= require jquery-ui
 //= require_tree .
 
+function search_input(id_location)
+{
+  var search_input =document.getElementById('book-search'); 
+  if (search_input.value == 'Search for books')
+  {
+      search_input.value = '';
+  }
+
+}
+
+
 function next_slide(slider_index){
   if ((sliders[slider_index][0] + 1) < sliders[slider_index][1]) {
    $('#' + slider_index + '-bookshelf-slide-' + sliders[slider_index][0]).fadeOut(500,function(){ $( '#' + slider_index + '-bookshelf-slide-' + (sliders[slider_index][0] + 1)).fadeIn(500);sliders[slider_index][0] = sliders[slider_index][0] + 1;}  );
