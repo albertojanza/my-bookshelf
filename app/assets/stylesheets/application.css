@@ -31,6 +31,10 @@ div.hidden {display:none;}
 /* HEADER */
 #fixed-header{
  background: -moz-linear-gradient(#FAFAFA, #EAEAEA) repeat scroll 0 0 transparent;
+background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea')";
+  background: linear-gradient(#FAFAFA,#EAEAEA);
+
     border-bottom: 1px solid #CACACA;
     box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.6), 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0;
@@ -52,6 +56,53 @@ div.hidden {display:none;}
 #header .menu li{color:#CCCCCC;font-size:15px;}
 #header .menu li a{color:#333333;font-size:15px;text-decoration:none}
 #header .menu li a.selected{color:#8F8F8F;font-size:15px;}
+#book-search{
+  border-radius: 5px;
+    margin:10px 10px 0 0;
+  /*  -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+   /* background: url("../../images/modules/header/userbox/icons.png") no-repeat scroll -147px 5px white; */
+    border-color: #CDCDCD #DDDDDD #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 #F1F1F1, 0 1px 1px #E0E0E0 inset;
+    color: #999999;
+    font-size: 12px;
+    padding: 5px 5px 5px 30px;
+    width: 150px;
+
+
+
+}
+/*  MODAL WINDOW */
+/* Z-index of #mask must lower than #boxes .window */
+.modal-wrapper {display:none; height: 100%; position: absolute; width: 100%; z-index: 9999;margin-top:-76px;}/* background: transparent;}*/
+  /* the position fixed is necessary to avoid areas without modal when the user does scroll */
+.modal-screen { background-color:white;  background-color: rgba(0, 0, 0, .2); height: 100%; position: fixed; width: 100%;}
+.modal-content {
+  background-color: white;
+  position: relative;
+  margin: 100px auto 0;
+  padding:14px;
+  border-color: #969696;
+  border-width: 3px;
+  border-style: solid;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.modal-recommend{
+  width: 430px;
+}
+
+
 
 /* MAIN CONTENT */
 #main{margin-top:50px;min-height:400px;}

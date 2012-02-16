@@ -8,6 +8,14 @@
 </head>
 <body>
 
+  <div class="modal-wrapper" id="modal-recommend">
+      <div class="modal-screen">
+          <div id="inner-modal-widget-howto" class="modal-content modal-recommend">
+            my friend
+          </div>
+      </div>
+  </div>
+
 <div id="fixed-header">
   <div class="wrapper_with_wings">
       <div id="header" class="wrapper">
@@ -15,8 +23,7 @@
             <%= link_to 'EventMonitor', root_path %>
         </div>
         
-        <div class="right_float">
-          <% unless logged_in? %> 
+        <div class="right_float"> <% unless logged_in? %> 
             <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
           <% else %>
             <ul class="menu">
@@ -33,6 +40,14 @@
           <% end %>
 
         </div>
+        <div class="right_float">
+          <%= form_tag search_path  do  %>
+            <%= text_field_tag 'title','Search for books', {:id => 'book-search', :autocomplete =>'off',} %>
+          <% end %>
+
+
+        </div>
+
     </div>
     </div>
 </div>
