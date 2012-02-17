@@ -1,8 +1,16 @@
+<%# we have to configure this page depending on
+    - We just created the book. The links is an book_asin_path
+    - The book was previously in our database and it has evangelists 
+    - The user is logged_in and we want to show him friends that are reading it
+%>
+
+
 <div class="book">
   <h1><%= @book.title %> </h1>
   <p class="authors"><%= " by #{ by_authors @book.author}"%></p>
   
   <%= link_to image_tag(@book.large_image,:width => 300), @book.detail_page_url %>
+<% if @friends_have_read_it %>
   <div class="info">
     <div class="friends">
       <p> Readers between your friends </p>
@@ -13,6 +21,7 @@
       <% end %>
     </div>
   </div>
+<% end %>
   
   
   <div style="margin-top:50px;"

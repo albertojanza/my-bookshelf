@@ -1,0 +1,11 @@
+    
+<%= form_tag search_path do  %>
+<%= text_field_tag 'title', params[:title]  %>
+<%= submit_tag 'procura' %>
+  <% end %>
+<div id="book_search_results">
+ <% if @books %>
+    <%= render :partial => 'search_book_item', :collection => @books%>
+  <% end %>
+</div>
+

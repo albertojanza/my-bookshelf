@@ -15,7 +15,7 @@
             Do you want to know who friends have read it and what people are saying about it?
           </p>
 <%= form_tag search_path, :remote => true  do  %>
-<%= text_field_tag "title"  %>
+<%= text_field_tag 'title', params[:title]  %>
 <%= submit_tag 'procura' %>
           </div>
 

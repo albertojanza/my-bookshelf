@@ -6,16 +6,22 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by_permalink params[:id]
-    @friends_have_read_it = User.find_all_by_uid((@book.people_have_read & current_user.friends)) if logged_in?
+    if params[:asin]
+      @book = Book.find_by_asin params[:asin]
+    else
+      @book = Book.find_by_permalink params[:id]
+      @friends_have_read_it = User.find_all_by_uid((@book.people_have_read & current_user.friends)) if logged_in?
+    end
     #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end
 
   def search
-client = ASIN::Client.instance
-@books = client.search(:Keywords => params[:title], :SearchIndex => :Books,:ResponseGroup => [:Images,:ItemAttributes])
-
-  #render :index
+    client = ASIN::Client.instance
+    @books = client.search(:Keywords => params[:title], :SearchIndex => :Books,:ResponseGroup => [:Images,:ItemAttributes])
+    respond_to do |format|
+      format.html 
+      format.json  
+    end
 
   end
 

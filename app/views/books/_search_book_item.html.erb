@@ -1,0 +1,19 @@
+<div  class="book-item" >
+
+<% if search_book_item.raw.ImageSets && !search_book_item.raw.ImageSets.ImageSet.class.eql?(Array)# TODO study these cases%>
+  <%= link_to image_tag(search_book_item.raw.ImageSets.ImageSet.TinyImage.URL), book_asin_path(:asin => search_book_item.raw.ASIN)  %>
+<% elsif search_book_item.raw.ImageSets  %>
+  <%= link_to image_tag(search_book_item.raw.ImageSets.ImageSet[0].TinyImage.URL), book_asin_path(:asin => search_book_item.raw.ASIN)  %>
+<% else # TODO default image%>
+<% end %>
+  <div class="info-container">
+    <div class="info">
+      <div class="title"><%= link_to("<div>#{truncate(search_book_item.raw.ItemAttributes.Title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_asin_path(:asin => search_book_item.raw.ASIN)) %></div>
+      <div class="author"><%= truncate("by #{by_authors(search_book_item.raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') %></div>
+      <div class="experiences">
+
+  <%= search_book_item.raw.ASIN %><br> 
+      </div>
+    </div>
+  </div>
+</div>
