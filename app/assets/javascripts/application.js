@@ -161,9 +161,9 @@ function submit_recommendations()
 
     for(var key in recommendation_uid )
     {
-        alert(key);
+      $('#create_recommendations').append('<input type="hidden" value="' + key + '" name="uid[]" id="uid_">');
     }
-    // $('#create_recommendations').submit();
+     $('#create_recommendations').submit();
 }
 
 
