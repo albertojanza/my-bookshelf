@@ -99,7 +99,7 @@ width:80px;
 padding: 2px;
 }
 #dropdown_image{
-padding-top:5px;
+padding-top:10px;
 position:absolute;
 
 z-index:2;
@@ -135,7 +135,7 @@ position:absolute;
 
 .modal-content {
   background-color:white;
-  margin: 100px auto 0;
+  margin: 60px auto 0;
   padding:10px 0 10px 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
@@ -143,12 +143,12 @@ position:absolute;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  width:600px;
+  width:650px;
 }
 
 
 .modal-recommend-friends-box{
-  width: 600px;
+  width: 650px;
   max-height:400px;
   overflow-y: scroll;
 }

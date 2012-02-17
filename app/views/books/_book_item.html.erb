@@ -2,7 +2,7 @@
   <%= link_to image_tag(book_item.book.tiny_image), book_item.book %>
   <div class="info-container">
     <div class="info">
-      <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item %></div>
+      <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item.book %></div>
       <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..') %></div>
       <div class="experiences">
 
@@ -48,21 +48,21 @@
                 <li> <%= link_to "Your influence rate is 80", book_item.book %></li>
               </ul>
               <ul>
-                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
                 <li class="separator">|</li>
                 <li><%= link_to_function "Friends", "alert('show modal window with friends');" %></li>
               </ul>
             <% when 1 %>
               <div id="experience_options_<%= book_item.id%>">
               <ul >
-                <li>
+                <li.book>
                   <%= link_to_function "Read", "$('#experience_0_form_#{book_item.id}').submit();" %>
                   <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
                     <%= f.hidden_field(:code, :value => 0) %>
                   <% end %>
                 </li>
                 <li class="separator">|</li>
-                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
               </ul>
               <ul id="experience_options_<%= book_item.id%>">
                 <li><%= link_to_function "Friends", "alert('show modal window with friends');" %></li>
@@ -87,7 +87,7 @@
                 </li>
               </ul>
               <ul id="experience_options_<%= book_item.id%>">
-                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
                 <li class="separator">|</li>
                 <li>
                   <%= link_to_function "Friends", "alert('show modal window with friends');" %>

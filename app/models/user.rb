@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       response = http.request request
       friends_data = MultiJson.decode(response.body)
       raise(User::TokenExpiration.new(self,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
-      Rails.cache.write "friend_#{self.id}", (friends_data['data'].map! {|value| value['id']})
+      Rails.cache.write "friend_#{self.id}", friends_data['data'] #(friends_data['data'].map! {|value| value['id']})
       friends_data['data']
     else
       friends
@@ -39,15 +39,17 @@ class User < ActiveRecord::Base
 
 #    auths = Authentication.includes(:users).find(:all, self.friends)
   resul = []  
-  unless  self.friends.empty?
+
+  my_friends = self.friends
+  unless  my_friends.empty?
     select = ''
-    if self.friends.size > 1
-      self.friends[0..(self.friends.size - 2)].each do |uid|
-        select << "uid = '#{uid}' OR "
+    if  my_friends.size > 1
+      my_friends[0..(my_friends.size - 2)].each do |friend|
+        select << "uid = '#{friend['id']}' OR "
       end
-      select << friends[self.friends.size - 1]
+      select << my_friends[my_friends.size - 1]['id']
     else
-      " uid = '#{uid}'" 
+      " uid = '#{my_friend[my_friends.size - 1]['id']}'" 
     end
     select << ' AND code = 1 '
 

@@ -4,6 +4,7 @@ MyBookshelf::Application.routes.draw do
 
   resources :experiences
   get 'recommend_books' => 'experiences#recommend', :as => :book_recommend
+  post 'create_recommendations' => 'experiences#create_recommendations', :as => :create_recommendations
 
   resources :reviews
 

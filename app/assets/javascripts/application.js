@@ -83,4 +83,77 @@ function updating_twitter_stream(pointer_to_new_tweets,queue_size,url,twitter_id
 
 }
 
+function recommend_friends(){
+  $('#recommend-friends').show();
+  $('#recommend-selected-friends').hide();
+  $('#recommend-read-friends').hide();
+  $('#link-recommend-friends').css('background-color','#e7e7e7');
+  $('#link-recommend-selected-friends').css('background-color','#ffffff');
+  $('#link-recommend-read-friends').css('background-color','#ffffff');
+  $('#link-recommend-friends').css('color','#ffffff');
+  $('#link-recommend-selected-friends').css('color','#e7e7e7');
+  $('#link-recommend-read-friends').css('color','#e7e7e7');
+
+}
+
+function recommend_selected_friends(){
+  $('#recommend-friends').hide();
+  $('#recommend-selected-friends').show();
+  $('#recommend-read-friends').hide();
+  $('#link-recommend-friends').css('background-color','#ffffff');
+  $('#link-recommend-selected-friends').css('background-color','#e7e7e7');
+  $('#link-recommend-read-friends').css('background-color','#ffffff');
+  $('#link-recommend-friends').css('color','#e7e7e7');
+  $('#link-recommend-selected-friends').css('color','#ffffff');
+  $('#link-recommend-read-friends').css('color','#e7e7e7');
+
+}
+
+function recommend_read_friends(){
+  $('#recommend-friends').hide();
+  $('#recommend-selected-friends').hide();
+  $('#recommend-read-friends').show();
+  $('#link-recommend-friends').css('background-color','#ffffff');
+  $('#link-recommend-selected-friends').css('background-color','#ffffff');
+  $('#link-recommend-read-friends').css('background-color','#e7e7e7');
+  $('#link-recommend-friends').css('color','#e7e7e7');
+  $('#link-recommend-selected-friends').css('color','#e7e7e7');
+  $('#link-recommend-read-friends').css('color','#ffffff');
+
+}
+
+function add_friend_recommendation(uid){
+  if (recommendation_uid.size == 20)
+  {
+    //No more
+  }
+  else
+  {
+    recommendation_uid[uid] = true;
+    $('#friend-' + uid ).click(function() {
+        remove_friend_recommendation(uid);
+    });
+    $('#friend-' + uid ).css('background-color','#e7e7e7');
+  }
+}
+
+function remove_friend_recommendation(uid){
+  delete recommendation_uid[uid];
+    $('#friend-' + uid ).click(function() {
+        add_friend_recommendation(uid);
+    });
+    $('#friend-' + uid ).css('background-color','#ffffff');
+}
+
+
+function submit_recommendations()
+{
+
+    for(var key in recommendation_uid )
+    {
+        alert(key);
+    }
+    // $('#create_recommendations').submit();
+}
+
 

@@ -69,7 +69,7 @@ private
         user.last_name= user_data['last_name']
         user.username= user_data['username']
         user.link= user_data['link']
-        user.token = app_users['data'][0]['access_token']
+        user.token = token
         user.expires = expires
       end
         session[:user_id] = user.id

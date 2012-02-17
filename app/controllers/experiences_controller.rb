@@ -76,8 +76,14 @@ class ExperiencesController < ApplicationController
   end
 
   def recommend
+    @book = Book.find params[:id]
     @experience = Experience.find(params[:id])
+    @friends = current_user.friends
+    @friends = (@friends + @friends) * 20
     
+  end
+
+  def create_recommendations
 
   end
 

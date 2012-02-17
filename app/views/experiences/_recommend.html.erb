@@ -1,8 +1,44 @@
+  <div>
+    <%= render :partial => '/books/book_item_small', :object => @book %>
+    <div class="recommend-header"> 
+        <h2>Recommend this book to your friends.</h2>
+          <p> If your friends read this book then they trust you and you are a good <b>influencer</b>. </p>
+        <ul class="menu">
+              <li ><%= link_to_function "Friends", "recommend_friends();", :class => 'selected',:id => 'link-recommend-friends'%></li>
+              <li><%= link_to_function "Selected", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
+              <li><%= link_to_function "Who read it?", "recommend_read_friends();",:id => 'link-recommend-read-friends' %></li>
+        </ul>
 
-<h1> Chooose your friens </h1>
-          <div  class="modal-recommend-friends-box">
+    </div>
+ </div>
+  <div  class="modal-recommend-friends-box">
 
-          <% 1000.times do %>
-           <p> my friend </p>
-          <% end %>
-          </div>
+  <div id="recommend-friends" class="">
+    <%= render :partial => 'friend', :collection => @friends  %>
+  </div>
+  <div id="recommend-selected-friends" class="hidden">
+    <%= render :partial => 'friend', :collection => @friends[1..30]  %>
+  </div>
+  <div id="recommend-read-friends" class="hidden">
+    <%= render :partial => 'friend', :collection => @friends[1..4]  %>
+  </div>
+
+
+ </div>
+  <div class="recommend_form">
+    <%= form_tag(create_recommendations_path,:id => 'create_recommendations') do -%>
+    <%= hidden_field_tag 'uid[]', 'ala' %>
+    <%= hidden_field_tag 'uid[]', 'alu' %>
+    <%= hidden_field_tag 'uid[]', nil %>
+    <%= hidden_field_tag 'uid[]', nil %>
+    <%= hidden_field_tag 'uid[]', nil %>
+
+    <% end -%>
+
+
+        <%= link_to_function "Send recommendations".html_safe, "submit_recommendations();",:class => 'submit'   %>
+  </div>
+
+<script type="text/javascript" >
+    var  recommendation_uid = new Array();
+</script>    
