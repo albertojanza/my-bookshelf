@@ -1,3 +1,6 @@
+
+      <%= link_to_function "X", "jQuery('#modal-recommend').hide();", :class => 'modal-close-icon'%>
+
   <div>
     <%= render :partial => '/books/book_item_small', :object => @book %>
     <div class="recommend-header"> 
@@ -17,7 +20,6 @@
     <%= render :partial => 'friend', :collection => @friends  %>
   </div>
   <div id="recommend-selected-friends" class="hidden">
-    <%= render :partial => 'friend', :collection => @friends[1..30]  %>
   </div>
   <div id="recommend-read-friends" class="hidden">
     <%= render :partial => 'friend', :collection => @friends[1..4]  %>

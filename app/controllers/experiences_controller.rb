@@ -79,7 +79,9 @@ class ExperiencesController < ApplicationController
     @book = Book.find params[:id]
     @experience = Experience.find(params[:id])
     @friends = current_user.friends
-    @friends = (@friends + @friends) * 20
+
+    # TODO REMOVE ME or DIE
+    50.times { @friends << {'id' => rand(1000000).to_s, 'name' => 'tasfsd' } }
     
   end
 

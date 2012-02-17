@@ -130,19 +130,29 @@ function add_friend_recommendation(uid){
   else
   {
     recommendation_uid[uid] = true;
+  $('#friend-' + uid ).unbind("click");
     $('#friend-' + uid ).click(function() {
         remove_friend_recommendation(uid);
     });
     $('#friend-' + uid ).css('background-color','#e7e7e7');
+    //$('#recommend-selected-friends').append($('#friend-' + uid ).innerHTML);
+    $('#recommend-selected-friends').append('<div id="selected-friend-' + uid + '" class="friend-box">' + document.getElementById('friend-' + uid).innerHTML + '</div>');
+    $('#selected-friend-' + uid).click(function() {
+        remove_friend_recommendation(uid);
+    });
+
+
   }
 }
 
 function remove_friend_recommendation(uid){
   delete recommendation_uid[uid];
+  $('#friend-' + uid ).unbind("click");
     $('#friend-' + uid ).click(function() {
         add_friend_recommendation(uid);
     });
     $('#friend-' + uid ).css('background-color','#ffffff');
+    $('#selected-friend-' + uid).remove();
 }
 
 
