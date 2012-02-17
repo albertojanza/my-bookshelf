@@ -121,26 +121,36 @@ position:absolute;
 
 /*  MODAL WINDOW */
 /* Z-index of #mask must lower than #boxes .window */
-.modal-wrapper {display:none; height: 100%; position: absolute; width: 100%; z-index: 9999;margin-top:-76px;}/* background: transparent;}*/
+.modal-wrapper {bottom: 0;display: none;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 6000;
+}
+/* .modal-wrapper { display:none; height: 100%; position: absolute; width: 100%; z-index: 9999;margin-top:-76px;}/* background: transparent;}*/
   /* the position fixed is necessary to avoid areas without modal when the user does scroll */
 .modal-screen { background-color:white;  background-color: rgba(0, 0, 0, .2); height: 100%; position: fixed; width: 100%;}
+
 .modal-content {
-  background-color: white;
-  position: relative;
+  background-color:white;
   margin: 100px auto 0;
-  padding:14px;
-  border-color: #969696;
-  border-width: 3px;
-  border-style: solid;
+  padding:10px 0 10px 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  width:600px;
 }
-.modal-recommend{
-  width: 430px;
+
+
+.modal-recommend-friends-box{
+  width: 600px;
+  max-height:400px;
+  overflow-y: scroll;
 }
 
 

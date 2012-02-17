@@ -48,9 +48,8 @@
                 <li> <%= link_to "Your influence rate is 80", book_item.book %></li>
               </ul>
               <ul>
-                <li> <%= link_to "Recommend", book_item.book %></li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
                 <li class="separator">|</li>
-                  
                 <li><%= link_to_function "Friends", "alert('show modal window with friends');" %></li>
               </ul>
             <% when 1 %>
@@ -63,14 +62,10 @@
                   <% end %>
                 </li>
                 <li class="separator">|</li>
-                <li>
-                  <%= link_to_function 'Recommend', 'jQuery("#modal-recommend").fadeIn(100);'  %>
-                </li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
               </ul>
               <ul id="experience_options_<%= book_item.id%>">
-                <li>
-                  <%= link_to_function "Friends", "alert('show modal window with friends');" %>
-                </li>
+                <li><%= link_to_function "Friends", "alert('show modal window with friends');" %></li>
                 </li>
               </ul>
               </div>
@@ -92,9 +87,7 @@
                 </li>
               </ul>
               <ul id="experience_options_<%= book_item.id%>">
-                <li>
-                  <%= link_to_function "Recommend", "alert('show modal window to recommend the book to a friend');" %>
-                </li>
+                <li><%= link_to 'Recommend', book_recommend_path(:id => book_item.id), :remote => true  %></li>
                 <li class="separator">|</li>
                 <li>
                   <%= link_to_function "Friends", "alert('show modal window with friends');" %>

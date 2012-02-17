@@ -74,4 +74,11 @@ class ExperiencesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def recommend
+    @experience = Experience.find(params[:id])
+    
+
+  end
+
 end

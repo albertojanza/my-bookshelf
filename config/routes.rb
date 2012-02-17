@@ -3,6 +3,7 @@ MyBookshelf::Application.routes.draw do
   resources :comments
 
   resources :experiences
+  get 'recommend_books' => 'experiences#recommend', :as => :book_recommend
 
   resources :reviews
 
@@ -14,7 +15,7 @@ MyBookshelf::Application.routes.draw do
   get "/bookcase/reading_books" => 'books#bookcase_reading_books', :as => 'reading_books'
 
   resources :books
-  get 'books/asin/' => 'books#show', :as => :book_asin
+  get 'book_asin' => 'books#show', :as => :book_asin
   post 'books/search' => 'books#search', :as => :search
 
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
