@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.time     "finised_at"
     t.integer  "user_id"
     t.integer  "recommender_id"
+    t.integer  "evangelist_id"
+    t.integer  "influencer_id"
     t.integer  "book_id"
     t.integer  "code",           :default => 0
     t.datetime "created_at",                    :null => false
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
+    t.integer  "influence_rate", :default => 0
     t.string   "link"
     t.string   "name"
     t.string   "username"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "last_name"
     t.string   "token"
     t.string   "expires"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
 end

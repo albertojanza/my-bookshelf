@@ -115,7 +115,7 @@ require 'cgi'
         experience.user_id = users[0].id
       end
   end 
- science_fiction[(science_fiction.size - 2)..science_fiction.size].each do |book|
+ science_fiction[(science_fiction.size - 1)..science_fiction.size].each do |book|
      Experience.create do |experience|
         experience.book_id = book.id
         experience.user_id = users[0].id
@@ -135,7 +135,7 @@ require 'cgi'
 
 
   # The third user reads science_fiction too
-  science_fiction[0..(science_fiction.size - 1)].each do |book|
+  science_fiction[0..(science_fiction.size - 2)].each do |book|
      Experience.create do |experience|
         experience.book_id = book.id
         experience.user_id = users[2].id

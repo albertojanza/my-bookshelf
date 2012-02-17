@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :uid       # twitter and facebook id
       t.string    :provider   # Third party
       t.integer   :user_id
+      t.integer   :influence_rate, :default => 0
       t.string    :link
       t.string    :name
       t.string    :username

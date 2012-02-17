@@ -8,14 +8,14 @@
 
         <% unless book_item.user.eql? current_user #if params[:action].eql? 'friends_bookshelf' # The user is seeing the books of his friends    %>
 
-          <% if @book_list[book_item.book.asin] %>
-            <div class="confirm_message"><%= confirm_message(@book_list[book_item.book.asin][1]) %></div>
-          <% else %>
 
             <div class="recommender">
               <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture",:width => 30  ), bookshelf_path(:id => book_item.user.id )%>
               <div class="user-name"><%= link_to book_item.user.name, bookshelf_path(:id => book_item.user.id )%></div>
             </div>
+          <% if @book_list[book_item.book.asin] %>
+            <div class="confirm_message"><%= confirm_message(@book_list[book_item.book.asin][1]) %></div>
+          <% else %>
             <div class="cleaner" ></div>
             <ul id="experience_options_<%= book_item.id%>">
               <li>
