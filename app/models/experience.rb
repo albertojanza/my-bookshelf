@@ -18,12 +18,15 @@ class Experience < ActiveRecord::Base
   before_save :recommender_to_influencer
   after_update :count_influences
   after_save :remove_book_cache
+  after_save :remove_experiences_and_books_cache
 
   def remove_book_cache
     self.book.remove_cache_users_with_this_experience(self.code_was)
-    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     self.book.remove_cache_users_with_this_experience(self.code)
-    
+  end
+
+  def remove_experiences_and_books_cache
+    self.user.remove_experiences_and_books_cache
   end
 
 

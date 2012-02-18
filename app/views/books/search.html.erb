@@ -1,11 +1,17 @@
     
-<%= form_tag search_path do  %>
-<%= text_field_tag 'title', params[:title]  %>
-<%= submit_tag 'procura' %>
-  <% end %>
+<%# form_tag search_path do  %>
+<%# text_field_tag 'title', params[:title]  %>
+<%# submit_tag 'procura' %>
+  <%# end %>
+
+
+<div class="book_list"> 
+ <h2><%= "Results for <span class=\"search_paramater\">#{params[:title]}</span>".html_safe %></h2>
+<div class="cleaner"></div>
 <div id="book_search_results">
  <% if @books %>
     <%= render :partial => 'search_book_item', :collection => @books%>
   <% end %>
+</div>
 </div>
 

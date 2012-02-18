@@ -40,17 +40,14 @@ class ExperiencesController < ApplicationController
   # POST /experiences
   # POST /experiences.json
   def create
-    book = Book.find_by_asin params[:asin]
-    if book
-     Experience.create do |experience|
-        experience.book_id = book.id
+    @book = Book.find_by_asin params[:asin]
+    if @book
+     @experience = Experience.create do |experience|
+        experience.book_id = @book.id
         experience.user_id = current_user.id
-        if params[:now]
         experience.started_at = Time.now 
         experience.code = 1
-        end
       end
-
     end
   end
 

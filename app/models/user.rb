@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
     books
   end
 
+  def remove_experiences_and_books_cache
+      Rails.cache.write "user_book_list_#{self.id}", nil
+  end
 
   def friends
     friends = Rails.cache.fetch "friend_#{self.id}"

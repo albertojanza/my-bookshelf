@@ -18,9 +18,10 @@ class BooksController < ApplicationController
   def search
     client = ASIN::Client.instance
     @books = client.search(:Keywords => params[:title], :SearchIndex => :Books,:ResponseGroup => [:Images,:ItemAttributes])
+    @book_list = current_user.experiences_and_books_cache
     respond_to do |format|
       format.html 
-      format.json  
+    #  format.json  
     end
 
   end

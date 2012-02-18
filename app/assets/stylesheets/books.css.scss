@@ -13,7 +13,7 @@
 // Slide 1, only one slide is displayed, the rest of the slides have display none, and the slides fade out and fade in
 .bookshelf-slide1{}
 
-.bookshelf-slider1{padding:3px  1px 5px 1px;}
+.bookshelf-slider1{padding:1px  1px 3px 1px;}
 
 
 //Slide 2. every slide is displayed but they are hidden for the container, that has the overflow:hidden property, the slides move to one direction.
@@ -33,8 +33,9 @@
 
 
 
-.book_list h2{float:left;color:#333333;margin:0px;font-size:19px;margin-top:10px;padding-left:10px;}
-.book_list .menu{float:right;padding:10px 35px 0 0;}
+.book_list h2{float:left;color:#333333;margin:0px;font-size:19px;margin-top:1px;padding-left:10px;}
+.book_list .menu{float:right;padding:5px 35px 0 0;}
+.book_list .menu li{padding:0 5px;}
 .book_list .menu a{color:#333333;font-size:14px;}
 .book_list .menu a{color:#333333;font-size:14px;}
 .book_list .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
@@ -44,7 +45,7 @@
 .book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px; box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.3);
     width: 225px; height: 110px;float:left;}
 .book-item-small{width: 165px; height: 80px;}
-.search-book-item{width:335px}
+//.book-item-search{width:335px}
 .book-item img{float:left; border:1px solid; color:#e7e7e7;}
 .book-item .info-container{padding-left:5px; word-wrap: break-word; display: table-cell; vertical-align: top;min-width:120px;}
 .book-item-small .info-container{min-width:70px;}
@@ -75,4 +76,4 @@
     background-color:#EBEBEB;
 }
 
-
+span.search_paramater{color:#555555;font-size:17px;}
