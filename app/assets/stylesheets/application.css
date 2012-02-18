@@ -147,7 +147,7 @@ position:absolute;
   position:relative;
 }
 
-a.modal-close-icon{font-size:25px;font-weight:bold;padding:0 10px 0 0;color: #e7e7e7;text-decoration:none;position:absolute; right:0px;}
+a.modal-close-icon{font-size:25px;font-weight:bold;padding:0 10px 0 0;color: #555555;text-decoration:none;position:absolute; right:0px;}
 a.modal-close-icon:hover{color: #000000;}
 
 

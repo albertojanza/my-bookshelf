@@ -92,6 +92,7 @@ require 'cgi'
         user.provider = 'facebook'
         user.uid= user_data['id']
         user.name= user_data['name']
+        user.locale = user_data['locale']
         user.first_name= user_data['first_name']
         user.last_name= user_data['last_name']
         user.username= user_data['username']

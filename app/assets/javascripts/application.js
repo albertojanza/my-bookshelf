@@ -87,12 +87,12 @@ function recommend_friends(){
   $('#recommend-friends').show();
   $('#recommend-selected-friends').hide();
   $('#recommend-read-friends').hide();
-  $('#link-recommend-friends').css('background-color','#e7e7e7');
+  $('#link-recommend-friends').css('background-color','#555555');
   $('#link-recommend-selected-friends').css('background-color','#ffffff');
   $('#link-recommend-read-friends').css('background-color','#ffffff');
   $('#link-recommend-friends').css('color','#ffffff');
-  $('#link-recommend-selected-friends').css('color','#e7e7e7');
-  $('#link-recommend-read-friends').css('color','#e7e7e7');
+  $('#link-recommend-selected-friends').css('color','#555555');
+  $('#link-recommend-read-friends').css('color','#555555');
 
 }
 
@@ -101,11 +101,11 @@ function recommend_selected_friends(){
   $('#recommend-selected-friends').show();
   $('#recommend-read-friends').hide();
   $('#link-recommend-friends').css('background-color','#ffffff');
-  $('#link-recommend-selected-friends').css('background-color','#e7e7e7');
+  $('#link-recommend-selected-friends').css('background-color','#555555');
   $('#link-recommend-read-friends').css('background-color','#ffffff');
-  $('#link-recommend-friends').css('color','#e7e7e7');
+  $('#link-recommend-friends').css('color','#555555');
   $('#link-recommend-selected-friends').css('color','#ffffff');
-  $('#link-recommend-read-friends').css('color','#e7e7e7');
+  $('#link-recommend-read-friends').css('color','#555555');
 
 }
 
@@ -115,9 +115,9 @@ function recommend_read_friends(){
   $('#recommend-read-friends').show();
   $('#link-recommend-friends').css('background-color','#ffffff');
   $('#link-recommend-selected-friends').css('background-color','#ffffff');
-  $('#link-recommend-read-friends').css('background-color','#e7e7e7');
-  $('#link-recommend-friends').css('color','#e7e7e7');
-  $('#link-recommend-selected-friends').css('color','#e7e7e7');
+  $('#link-recommend-read-friends').css('background-color','#555555');
+  $('#link-recommend-friends').css('color','#555555');
+  $('#link-recommend-selected-friends').css('color','#555555');
   $('#link-recommend-read-friends').css('color','#ffffff');
 
 }

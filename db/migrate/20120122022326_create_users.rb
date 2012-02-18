@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string    :token
       t.string    :expires
+      t.string    :locale
 
       t.timestamps
     end

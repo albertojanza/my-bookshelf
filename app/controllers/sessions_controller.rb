@@ -69,6 +69,7 @@ private
         user.last_name= user_data['last_name']
         user.username= user_data['username']
         user.link= user_data['link']
+        user.locale = user_data['locale']
         user.token = token
         user.expires = expires
       end
