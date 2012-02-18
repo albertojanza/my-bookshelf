@@ -56,24 +56,39 @@ class Book < ActiveRecord::Base
     book
   end
 
-  def people_have_read
+  def cache_people_have_read
     #Experience.joins(:user => :authentications).where(:adventure_id => self.adventure.id)
     users_with_this_experience(0)
   end
 
-  def people_are_reading
+  def cache_people_are_reading
     users_with_this_experience(1)
   end
 
-  def people_will_read
+  def cache_people_will_read
     users_with_this_experience(2)
   end
 
+  def cache_people_with_recommendations
+    users_with_this_experience(3)
+  end
+
+  def remove_cache_users_with_this_experience(code)
+    book_cache = Rails.cache.fetch("book_#{self.id}") 
+    if book_cache
+      book_cache["ex_#{code}"] = nil 
+      Rails.cache.write "book_#{self.id}", book_cache
+    end
+  end
+
+
 private 
+
+
   def users_with_this_experience(code)
     book_cache = Rails.cache.fetch("book_#{self.id}") || {}
     if book_cache.empty? || book_cache["ex_#{code}"].nil?
-      book_cache["ex_#{code}"] = User.joins(:experiences).where('experiences.book_id = ? AND code = ?', self.id,code).map {|auth| auth.uid }
+      book_cache["ex_#{code}"] = User.joins(:experiences).where('experiences.book_id = ? AND code = ?', self.id,code).map {|user| {:id => user.id, :uid => user.uid, :name => user.name } }
       Rails.cache.write "book_#{self.id}", book_cache
     end
     book_cache["ex_#{code}"]

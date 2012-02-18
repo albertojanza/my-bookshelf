@@ -17,9 +17,18 @@ class Experience < ActiveRecord::Base
   validates :book, :presence => true
   before_save :recommender_to_influencer
   after_update :count_influences
+  after_save :remove_book_cache
+
+  def remove_book_cache
+    self.book.remove_cache_users_with_this_experience(self.code_was)
+    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    self.book.remove_cache_users_with_this_experience(self.code)
+    
+  end
+
 
   def duplicated_experiences
-    raise DuplictedExperience(self,"Duplicated experience") if Experience.find_by_user_id_and_book_id(self.user_id,self.book_id)
+    raise DuplicatedExperience.new(self,"Duplicated experience") if Experience.find_by_user_id_and_book_id(self.user_id,self.book_id)
   end
 
   def recommender_to_influencer

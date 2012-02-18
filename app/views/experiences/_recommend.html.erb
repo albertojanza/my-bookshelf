@@ -22,18 +22,21 @@
   <div id="recommend-selected-friends" class="hidden">
   </div>
   <div id="recommend-read-friends" class="hidden">
-    <%= render :partial => 'friend', :collection => @friends[1..4]  %>
+    <%= render :partial => 'friend', :collection => @friends_with_experience  %>
   </div>
 
 
  </div>
   <div class="recommend_form">
-    <%= form_tag(create_recommendations_path,:id => 'create_recommendations') do -%>
+    <%= form_tag(create_recommendations_path,:id => 'create_recommendations',:remote => true) do -%>
+            <%= hidden_field_tag :id , @book.id%>
 
     <% end -%>
 
 
         <%= link_to_function "Send recommendations".html_safe, "submit_recommendations();",:class => 'submit'   %>
+      <div id="recommendation_error_message" class="left_float hidden error">
+  </div>
   </div>
 
 <script type="text/javascript" >

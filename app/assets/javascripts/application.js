@@ -125,7 +125,8 @@ function recommend_read_friends(){
 function add_friend_recommendation(uid){
   if (recommendation_uid.size == 20)
   {
-    //No more
+  $('#recommendation_error_message').html('You can not send more than 20 recommendations at once.')
+  $('#recommendation_error_message').show();
   }
   else
   {
@@ -140,6 +141,7 @@ function add_friend_recommendation(uid){
     $('#selected-friend-' + uid).click(function() {
         remove_friend_recommendation(uid);
     });
+  $('#recommendation_error_message').hide();
 
 
   }
@@ -147,6 +149,7 @@ function add_friend_recommendation(uid){
 
 function remove_friend_recommendation(uid){
   delete recommendation_uid[uid];
+  $('#recommendation_error_message').hide();
   $('#friend-' + uid ).unbind("click");
     $('#friend-' + uid ).click(function() {
         add_friend_recommendation(uid);
@@ -158,12 +161,21 @@ function remove_friend_recommendation(uid){
 
 function submit_recommendations()
 {
+  if (recommendation_uid.size == 0)
+  {
+    $('#recommendation_error_message').html('You haven\'t selected any friend.')
+    $('#recommendation_error_message').show();
+  }
+  else 
+  {
 
     for(var key in recommendation_uid )
     {
       $('#create_recommendations').append('<input type="hidden" value="' + key + '" name="uid[]" id="uid_">');
     }
      $('#create_recommendations').submit();
+  }
+
 }
 
 

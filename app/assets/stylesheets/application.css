@@ -204,6 +204,9 @@ width:300px; float:right;}
 .white-box #login-message .title{ color:#2160BA;font-size: 14px;
     font-weight: bold;}
 
+/* Forms */
+.error{color:red;font-size:16px;}
+
 /* BUTTONS */
 
 .box-accross{ 

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :books, :through => :experiences
   has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id'
 
+  validates :uid, :uniqueness => true
+
   def experiences_and_books_cache
     books = Rails.cache.fetch "user_book_list_#{self.id}"
     unless books
@@ -57,7 +59,13 @@ class User < ActiveRecord::Base
 
   end
 
+  end
 
+  # from an uid list this method returns those friends with that uid
+  def friends? uid_list
+    #my_friends = self.friends.map {|friend| friend['id']}
+    #uid_list.all? {|friend_uid| my_friends.include? friend_uid }
+    self.friends.select{ |friend| uid_list.include? friend['id'] }
   end
 
 class TokenExpiration < Exception

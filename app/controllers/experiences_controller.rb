@@ -43,7 +43,7 @@ class ExperiencesController < ApplicationController
     book = Book.find_by_asin params[:asin]
     if book
      Experience.create do |experience|
-        experience.adventure_id = book.adventure.id
+        experience.book_id = book.id
         experience.user_id = current_user.id
         if params[:now]
         experience.started_at = Time.now 
@@ -78,15 +78,52 @@ class ExperiencesController < ApplicationController
   def recommend
     @book = Book.find params[:id]
     @experience = Experience.find(params[:id])
-    @friends = current_user.friends
+    @friends = []
+    @friends_with_experience = []
+    uid_people_have_read = @book.cache_people_have_read.map{|user| user[:uid]}
+    uid_people_are_reading = @book.cache_people_are_reading.map{|user| user[:uid]}
+    uid_people_will_read = @book.cache_people_will_read.map{|user| user[:uid]}
+    uid_people_with_recommendations = @book.cache_people_with_recommendations.map{|user| user[:uid]}
+    current_user.friends.each do |friend| 
+      if uid_people_have_read.include?(friend['id']) || uid_people_are_reading.include?(friend['id'])  || uid_people_will_read.include?(friend['id']) || uid_people_with_recommendations.include?(friend['id']) 
+        @friends_with_experience << friend
+      else
+        @friends << friend
+      end
+    end
+    
 
     # TODO REMOVE ME or DIE
-    50.times { @friends << {'id' => rand(1000000).to_s, 'name' => 'tasfsd' } }
+    #50.times { @friends << {'id' => rand(1000000).to_s, 'name' => 'tasfsd' } }
     
   end
 
   def create_recommendations
 
+    @book = Book.find params[:id]
+    @friends_in = []
+    @friends_out = []
+    @selected_friends = current_user.friends?(params[:uid])
+    if !@selected_friends.empty? && @book
+      @selected_friends.each do |friend|
+        user = User.find_by_uid(friend['id'])
+        user = User.create(:uid => uid, :name => friend['name'] ) unless user
+        @friends_in << friend if user.token
+        @friends_out << friend unless user.token
+        begin 
+          Experience.create do |experience|
+           experience.book_id = @book.id
+           experience.user_id = user.id
+           experience.recommender_id = current_user.id
+            experience.started_at = Time.now 
+            experience.code = 3
+          end
+        rescue Experience::DuplicatedExperience => e
+          logger.error("ERROR #{e.message}")
+
+        end
+      end
+    end
   end
 
 end
