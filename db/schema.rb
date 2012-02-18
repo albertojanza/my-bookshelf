@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "last_name"
     t.string   "token"
     t.string   "expires"
+    t.string   "locale"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end

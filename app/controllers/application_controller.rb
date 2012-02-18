@@ -4,12 +4,36 @@
 class ApplicationController < ActionController::Base
   rescue_from User::TokenExpiration, :with => :ouath_process
   protect_from_forgery
+  before_filter :set_locale
+
 
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
 
   http_basic_authenticate_with :name => ENV['HTTP_USER'], :password => ENV['HTTP_PASSWORD']
 
+  def set_locale
+
+    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    if !session[:locale].nil? 
+      # User has a current session.
+      I18n.locale = session[:locale]
+    elsif logged_in?
+      if I18n.available_locales.include? current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+        I18n.locale =  current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+      else
+        I18n.locale =   I18n.default_locale
+      end
+      session[:locale] = I18n.locale
+    elsif !request.env["HTTP_ACCEPT_LANGUAGE"].nil?
+      I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+      session[:locale] = I18n.locale
+    else
+      I18n.locale = I18n.default_locale
+      session[:locale] = I18n.locale
+    end
+  end
+ 
 
 #  def required_logged_in
 #    unless logged_in?

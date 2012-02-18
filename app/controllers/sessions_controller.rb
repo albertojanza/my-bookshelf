@@ -77,6 +77,12 @@ private
 
     end 
 
+      if I18n.available_locales.include? current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+        I18n.locale =  current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+      else
+        I18n.locale =   I18n.default_locale
+      end
+      session[:locale] = I18n.locale
 
   end
 
