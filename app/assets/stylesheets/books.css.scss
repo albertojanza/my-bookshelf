@@ -33,7 +33,7 @@
 
 
 
-.book_list h2{float:left;color:#333333;margin:0px;font-size:19px;margin-top:1px;padding-left:10px;}
+.book_list h2{float:left;color:#333333;margin:0px;font-size:19px;margin-bottom:2px;margin-top:1px;padding-left:10px;}
 .book_list .menu{float:right;padding:5px 35px 0 0;}
 .book_list .menu li{padding:0 5px;}
 .book_list .menu a{color:#333333;font-size:14px;}
@@ -42,7 +42,7 @@
 .book_list .menu a.disabled{color:#8F8F8F;cursor:default;}
 
 // Book item
-.book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px; box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.3);
+.book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3); //rgba(0,0,0,.2) 0 1px 2px;
     width: 225px; height: 110px;float:left;}
 .book-item-small{width: 165px; height: 80px;}
 //.book-item-search{width:335px}
