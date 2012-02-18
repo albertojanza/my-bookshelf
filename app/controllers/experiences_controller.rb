@@ -57,7 +57,7 @@ class ExperiencesController < ApplicationController
     # TODO security, only the owner can do this
     @experience = Experience.find(params[:id])
     @experience.update_attributes(params[:experience])
-    render :create
+    render :update
   end
 
   # DELETE /experiences/1
