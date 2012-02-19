@@ -39,6 +39,7 @@ class BooksController < ApplicationController
     @reading = @user.experiences.where('code = 1').order('updated_at DESC').includes(:book)
     @next_books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
     @recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
+    @book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
   end
 
   def shelf
@@ -47,8 +48,8 @@ class BooksController < ApplicationController
       @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
     else
       @books = @user.experiences.where('code = ?',params[:code]).order('updated_at DESC').includes(:book)
-  
     end
+    @book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
 
   end
 
