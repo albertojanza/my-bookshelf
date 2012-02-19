@@ -51,7 +51,6 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 
 
 }
-
 #header .menu {margin-top:10px;}
 #header .menu li{color:#CCCCCC;font-size:15px;}
 #header .menu li a{color:#333333;font-size:15px;text-decoration:none}
@@ -165,8 +164,8 @@ a.modal-close-icon:hover{color: #000000;}
 
 /* MAIN CONTENT */
 #main{padding-top:50px;min-height:550px;background-color:#ffffff;padding-bottom:10px;}
-#main-sidebar{float:right}
-#main-content{width:718px;}
+#main-sidebar{float:right;width:240px;}
+#main-content{width:718px;margin-right:240px;}
 #main-header{}
 #main-header .title{margin-right:200px; }
 #main-header .title h1{margin:0 0 5px 0;font-size:25px; color:#333333; }

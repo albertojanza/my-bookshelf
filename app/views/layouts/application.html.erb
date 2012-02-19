@@ -45,9 +45,9 @@
       
         </div>
             <ul class="menu right_float">
-              <li><%= link_to "My Bookshelf", bookshelf_path(:id => current_user.id), :class => ((params[:controller].eql?('books') && (params[:action].eql?('bookshelf') || params[:action].eql?('bookcase_read_books') || params[:action].eql?('bookcase_reading_books') || params[:action].eql?('bookcase_next_books') || params[:action].eql?('bookcase_recommended_books'))) ? 'selected' : '')  %></li>
+              <li><%= link_to "My Bookcase", bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && !params[:action].eql?('friends_bookcase') ) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
-              <li><%= link_to "Friends Bookshelf", friends_bookshelf_path(:id => current_user.id), :class => ((params[:controller].eql?('books') && params[:action].eql?('friends_bookshelf')) ? 'selected' : '') %></li>
+              <li><%= link_to "Friends Bookcase", friends_bookcase_path(:id => current_user.id), :class => ((!current_user.eql?(@user) || params[:action].eql?('friends_bookcase'))   ? 'selected' : '') %></li>
               <li class="separator">|</li>
               <li><%= link_to "Home", root_path, :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '') %></li>
               <li class="separator">|</li>
@@ -73,11 +73,12 @@
   <div id="main-header">
       <%= yield :mainheader %>
   </div>
+
+  <div id="main-sidebar">
+    <%= yield :sidebar%>
+  </div>
   <div id="main-content">
       <%= yield %>
-  </div>
-  <div id="main-sidebar">
-    <%= yield :head %>
   </div>
   </div>
 </div>

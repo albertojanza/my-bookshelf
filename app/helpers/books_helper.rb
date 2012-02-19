@@ -26,7 +26,8 @@ module BooksHelper
     end
   end
 
-  def bookcase_path(type)
+  # TODO remove me
+  def bookcase_path_old(type)
     case type
       when 0
         read_books_path(:id => @user.id)

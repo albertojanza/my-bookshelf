@@ -26,14 +26,14 @@ class BooksController < ApplicationController
 
   end
 
-  def friends_bookshelf
+  def friends_bookcase
     @user = current_user
     @friends = current_user.friends
     @reading = current_user.friends_reading
     @book_list = current_user.experiences_and_books_cache
   end
 
-  def bookshelf
+  def bookcase
     @user = User.find_by_id params[:id]
     @read_books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
     @reading = @user.experiences.where('code = 1').order('updated_at DESC').includes(:book)
@@ -41,29 +41,41 @@ class BooksController < ApplicationController
     @recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
   end
 
-  def bookcase_read_books
+  def shelf
     @user = User.find params[:id]
-    @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
-    render 'bookcase'
-  end
+    if (params[:code].eql? 3)
+      @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
+    else
+      @books = @user.experiences.where('code = ?',params[:code]).order('updated_at DESC').includes(:book)
   
-  def bookcase_reading_books
-    @user = User.find params[:id]
-    @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
-    render 'bookcase'
+    end
+
   end
 
-  def bookcase_next_books
-    @user = User.find params[:id]
-    @books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
-    render 'bookcase'
-  end
 
-  def bookcase_recommended_books
-    @user = User.find params[:id]
-    @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
-    render 'bookcase'
-  end
+  #def bookcase_read_books
+  #  @user = User.find params[:id]
+  #  @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
+  #  render 'bookcase'
+  #end
+  #
+  #def bookcase_reading_books
+  #  @user = User.find params[:id]
+  #  @books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
+  #  render 'bookcase'
+  #end
+
+  #def bookcase_next_books
+  #  @user = User.find params[:id]
+  #  @books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
+  #  render 'bookcase'
+  #end
+
+  #def bookcase_recommended_books
+  #  @user = User.find params[:id]
+  #  @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
+  #  render 'bookcase'
+  #end
   
 
 end
