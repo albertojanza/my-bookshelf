@@ -68,11 +68,17 @@
     </div>
 </div>
 <div id="main" class="wrapper_with_wings" >
-  <div id="main-content" class="wrapper">
+  <div class="wrapper">
+
+  <div id="main-header">
+      <%= yield :mainheader %>
+  </div>
+  <div id="main-content">
       <%= yield %>
   </div>
   <div id="main-sidebar">
     <%= yield :head %>
+  </div>
   </div>
 </div>
 

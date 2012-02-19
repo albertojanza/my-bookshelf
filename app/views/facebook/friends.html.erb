@@ -1,0 +1,29 @@
+<% content_for :mainheader do %>
+
+  <%= render 'submenu_friends' %>
+<div class="title">
+<h1>My friends</h1>
+</div>
+
+
+<% end %>
+
+<div>
+Friends in
+
+<% @friends_in.each do |friend| %>
+  <%= friend.name %> </br>
+
+<% end %>
+
+</div>
+<div>
+Friends out
+
+<% @friends_out.each do |friend| %>
+  <%= friend['name'] %> </br>
+
+<% end %>
+
+</div>
+

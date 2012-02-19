@@ -104,7 +104,7 @@ class ExperiencesController < ApplicationController
     if !@selected_friends.empty? && @book
       @selected_friends.each do |friend|
         user = User.find_by_uid(friend['id'])
-        user = User.create(:uid => uid, :name => friend['name'] ) unless user
+        user = User.create(:uid => friend['id'], :name => friend['name'] ) unless user
         @friends_in << friend if user.token
         @friends_out << friend unless user.token
         begin 
