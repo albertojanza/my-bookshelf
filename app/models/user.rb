@@ -47,14 +47,14 @@ class User < ActiveRecord::Base
 
   my_friends = self.friends
   unless  my_friends.empty?
-    select = ''
+    select = '('
     if  my_friends.size > 1
       my_friends[0..(my_friends.size - 2)].each do |friend|
         select << "uid = '#{friend['id']}' OR "
       end
-      select << my_friends[my_friends.size - 1]['id']
+      select << "' uid = #{my_friends[my_friends.size - 1]['id']}')"
     else
-      " uid = '#{my_friend[my_friends.size - 1]['id']}'" 
+      " uid = '#{my_friend[my_friends.size - 1]['id']}')" 
     end
     select << ' AND code = 1 '
 
