@@ -10,7 +10,7 @@ a:hover {background-color:transparent;}
 a.link{text-decoration: none;}
 /* REDEFINITIONS*/
 /* colors e9eaec */
-body  { background-color:white;font:normal 100% helvetica,arial,clean,sans-serif; color:black;margin:0; }
+body  { background-color:#888888;font:normal 100% helvetica,arial,clean,sans-serif; color:black;margin:0; }
 
 
 /*ul {list-style: none; margin:0; padding:0} */
@@ -116,6 +116,10 @@ position:absolute;
 }
 
 
+/*  FOOTER */
+div#footer {width:100%;bottom:0px;background-color:#888888;color:#ffffff;height:30px;}
+div#footer a{color:#ffffff;font-size:12px;text-decoration:none;}
+div#footer ul{margin: 0 auto ; width:400px;}
 
 
 
@@ -160,7 +164,7 @@ a.modal-close-icon:hover{color: #000000;}
 
 
 /* MAIN CONTENT */
-#main{margin-top:50px;min-height:400px;}
+#main{padding-top:50px;min-height:550px;background-color:#ffffff;padding-bottom:10px;}
 #main-sidebar{float:right}
 #main-content{width:718px;}
 
