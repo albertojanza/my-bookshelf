@@ -98,6 +98,10 @@
 
             <% when 3 %>
               <div id="experience_options_<%= book_item.id%>">
+            <div class="recommender">
+              <%= link_to image_tag("http://graph.facebook.com/#{book_item.recommender.uid}/picture",:width => 30  ), bookcase_path(:id => book_item.recommender.id )%>
+              <div class="user-name"><%= link_to book_item.recommender.name, bookcase_path(:id => book_item.recommender.id )%></div>
+            </div>
               <ul >
                 <li>
                   <%= link_to_function "Read", "$('#experience_0_form_#{book_item.id}').submit();" %>
@@ -112,18 +116,12 @@
                     <%= f.hidden_field(:code, :value => 1) %>
                   <% end %>
                 </li>
-              </ul>
-              <ul id="experience_options_<%= book_item.id%>">
+                <li class="separator">|</li>
                 <li>
                   <%= link_to_function "Next", "$('#experience_2_form_#{book_item.id}').submit();" %>
                   <%= form_for(book_item, :html => { :id => "experience_2_form_#{book_item.id}",:remote => true }) do |f| %>
                     <%= f.hidden_field(:code, :value => 2) %>
                   <% end %>
-                </li>
-                <li class="separator">|</li>
-                <li>
-                  <%= link_to_function "Friends", "alert('show modal window with friends');" %>
-                </li>
                 </li>
               </ul>
               </div>
