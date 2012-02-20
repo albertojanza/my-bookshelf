@@ -9,5 +9,7 @@
 
 <% end %>
 
+<div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">
           <%= render :partial => 'book_item', :collection => @books %>
+</div>
 
