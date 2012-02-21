@@ -165,6 +165,10 @@ a.modal-close-icon:hover{color: #000000;}
 /* MAIN CONTENT */
 #main{padding-top:50px;min-height:550px;background-color:#ffffff;padding-bottom:10px;}
 #main-sidebar{float:right;width:240px;}
+
+.bottom_sidebar_shadow{ background:url('bottom_sidebar_shadow.png'); height:48px; width:11px;}
+.top_sidebar_shadow{ background:url('top_sidebar_shadow.png'); height:48px; width:11px;}
+.sidebar_shadow{ background:url('sidebar_shadow.png') repeat-y;  min-height:370px; padding-left:45px;}
 #main-content{width:718px;margin-right:240px;}
 #main-header{}
 #main-header .title{margin-right:200px; }

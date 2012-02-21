@@ -10,14 +10,14 @@
     </ul>
   <% end %>
   </div>
-  <div class="bookshelf-slider1 cleaner" style="height:<%= 125 * ((items_slide  + 2) / 3) %>px">
+  <div class="bookshelf-slider1 " style="clear:left; height:<%= 125 * ((items_slide  + 2) / 3) %>px">
       <% books.each_slice(items_slide).each_with_index do |slice,index| %>
         <div id="<%= slider_index %>-bookshelf-slide-<%= index %>" class="bookshelf-slide1 <%= 'hidden' unless index.eql?(0) %>">
           <%= render :partial => 'book_item', :collection => slice %>
         </div>
       <% end %>
   </div> 
-  <div class="cleaner">
+  <div  style="clear:left;">
   </div> 
 </div> 
 
