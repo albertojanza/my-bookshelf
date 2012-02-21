@@ -39,17 +39,19 @@ class Experience < ActiveRecord::Base
   end
 
   def count_influences
-    if self.influencer_id.eql? self.recommender_id
-      case self.code
-        when 0
-          self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 3)
-        when 1
-          self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 2)
-        when 2
-          self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 1)
-        end
-    else 
-      self.influencer.influence_rate = self.influencer.influence_rate + 1
+    if self.influencer_id
+      if  self.influencer_id.eql?(self.recommender_id)
+        case self.code
+          when 0
+            self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 3)
+          when 1
+            self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 2)
+          when 2
+            self.influencer.update_attribute(:influence_rate, self.influencer.influence_rate + 1)
+          end
+      else 
+        self.influencer.influence_rate = self.influencer.influence_rate + 1
+      end
     end
 
   end

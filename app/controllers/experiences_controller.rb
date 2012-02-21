@@ -46,7 +46,7 @@ class ExperiencesController < ApplicationController
         experience.book_id = @book.id
         experience.user_id = current_user.id
         experience.started_at = Time.now 
-        experience.code = 1
+        experience.code = params[:code]
       end
     end
   end
