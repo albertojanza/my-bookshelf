@@ -176,6 +176,15 @@ a.modal-close-icon:hover{color: #000000;}
 
 
 
+/* USER widget */
+
+.user-widget{padding:3px;margin:0 5px 5px 0;float:left;width:100%;overflow:hidden; border:1px solid #e7e7e7; }
+.user-widget img{margin-left:0px;float:left;border: 0;}
+.user-widget .user-name{ font-size:15px;margin-left:45px;line-height: 1.1;padding-top:2px;padding-left:3px;height:40px;overflow:hidden;}
+.user-widget .user-readings a{font-size:13px;text-decoration:none;color:#333333;}
+
+
+
 .white-box{
  margin-top:5px;
  margin-bottom:10px;

@@ -3,7 +3,7 @@ class CreateExperiences < ActiveRecord::Migration
     create_table :experiences do |t|
       t.string :review, :default => nil
       t.time :started_at, :default => nil
-      t.time :finised_at, :default => nil
+      t.time :finished_at, :default => nil
       t.integer :user_id
       t.integer :recommender_id
       t.integer :evangelist_id
