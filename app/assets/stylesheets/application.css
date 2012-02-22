@@ -174,8 +174,9 @@ a.modal-close-icon:hover{color: #000000;}
 #main-header .title{margin-right:200px; }
 #main-header .title h1{margin:0 0 5px 0;font-size:25px; color:#333333; }
 #main-header .menu{height:20px;float:right;padding-right:40px; }
-#main-header .menu a{color:#2160BA;font-size: 15px;height:20px;float:right;font-weight:bold;text-decoration:none; }
+#main-header .menu a{color:#2160BA;font-size: 15px;height:20px;float:right;text-decoration:none; }
 #main-header .menu a:hover{text-decoration:underline; } 
+#main-header .menu .separator{color:#2160BA;font-size: 14px; }
  /*#main-header .menu a:hover{background-color:#2160BA;color:white;padding:5px;border-radius:3px; } */
 
 

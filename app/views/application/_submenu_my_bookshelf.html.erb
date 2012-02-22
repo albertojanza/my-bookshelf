@@ -1,7 +1,11 @@
 <ul class="menu">
   <li><%= link_to "Recommended books", shelf_path(:id => @user.id,:code => 3)  %></li>
+              <li class="separator">|</li>
   <li><%= link_to "Next books", shelf_path(:id => @user.id,:code => 2)  %></li>
+              <li class="separator">|</li>
   <li><%= link_to "Read books", shelf_path(:id => @user.id,:code => 0)  %></li>
+              <li class="separator">|</li>
   <li><%= link_to "Reading books", shelf_path(:id => @user.id,:code => 1)  %></li>
+              <li class="separator">|</li>
   <li><%= link_to "My bookcase", bookcase_path %></li>
 </ul>
