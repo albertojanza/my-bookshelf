@@ -1,0 +1,14 @@
+<div id="user-widget-<%= @user.id %>" class="user-widget">
+    <div class="user-influencer">
+      <div class="count" >24</div>
+    </div>
+    <div class="user-info">
+      <div> <%= image_tag("http://graph.facebook.com/#{@user.uid}/picture",:width => 45  )%>
+      <div class="user-name"><%= @user.name %></div>
+      </div>
+      <div class="cleaner"> </div>
+      <div class="user-readings"><%= link_to "Reading #{@user.reading_count} books",shelf_path(:id => @user.id,:code => 1) %></div>
+      <div class="user-readings"><%= link_to "Read #{@user.read_count} books",shelf_path(:id => @user.id,:code => 0) %></div>
+    </div>
+</div>
+

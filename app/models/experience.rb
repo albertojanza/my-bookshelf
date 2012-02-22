@@ -19,6 +19,7 @@ class Experience < ActiveRecord::Base
   after_update :count_influences
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
+  after_save :count_experiences
 
   def remove_book_cache
     self.book.remove_cache_users_with_this_experience(self.code_was)
@@ -37,6 +38,20 @@ class Experience < ActiveRecord::Base
   def recommender_to_influencer
     self.influencer_id = self.recommender_id if self.recommender_id
   end
+
+  def count_experiences
+    if self.new_record?
+      self.user.reading_count = self.user.reading_count + 1 if self.code.eql?(1)
+      self.user.read_count = self.user.read_count + 1 if self.code.eql?(0)
+    else
+      self.user.reading_count = self.user.reading_count - 1 if self.code_was.eql?(1)
+      self.user.reading_count = self.user.reading_count + 1 if self.code.eql?(1)
+      self.user.read_count = self.user.read_count + 1 if self.code.eql?(0)
+    end
+    self.user.save
+
+  end
+
 
   def count_influences
     if self.influencer_id

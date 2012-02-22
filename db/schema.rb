@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
   create_table "experiences", :force => true do |t|
     t.string   "review"
     t.time     "started_at"
-    t.time     "finised_at"
+    t.time     "finished_at"
     t.integer  "user_id"
     t.integer  "recommender_id"
     t.integer  "evangelist_id"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
+    t.integer  "read_count",     :default => 0
+    t.integer  "reading_count",  :default => 0
     t.integer  "influence_rate", :default => 0
     t.string   "link"
     t.string   "name"
