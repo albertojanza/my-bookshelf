@@ -1,6 +1,7 @@
 
 <div class="book_list"> 
   <div>
+    <div class="book-list-title">
     <%= link_to "<h2>#{title(type)}</h2>".html_safe, shelf_path(:id => @user, :code => type), :class => 'link' %>
   <% if items_slide < books.size %>    
     <ul class="menu">
@@ -9,6 +10,7 @@
       <li><%= link_to_function "Next", "next_slide(#{slider_index})", :class => 'link',:id=> "next_#{slider_index}"  %></li>
     </ul>
   <% end %>
+    </div>
   </div>
   <div class="bookshelf-slider1 " style="clear:left; height:<%= 125 * ((items_slide  + 2) / 3) %>px">
       <% books.each_slice(items_slide).each_with_index do |slice,index| %>
