@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122195003) do
+ActiveRecord::Schema.define(:version => 20120223225103) do
 
   create_table "books", :force => true do |t|
     t.string   "asin"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "books", ["asin"], :name => "index_books_on_asin"
+  add_index "books", ["permalink"], :name => "index_books_on_permalink"
+
   create_table "comments", :force => true do |t|
     t.integer  "experience_id"
     t.integer  "user_id"
@@ -57,6 +60,10 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.datetime "updated_at",                    :null => false
   end
 
+  add_index "experiences", ["book_id"], :name => "index_experiences_on_book_id"
+  add_index "experiences", ["recommender_id"], :name => "index_experiences_on_recommender_id"
+  add_index "experiences", ["user_id", "code"], :name => "index_experiences_on_user_id_and_code"
+
   create_table "users", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
@@ -75,5 +82,7 @@ ActiveRecord::Schema.define(:version => 20120122195003) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
+
+  add_index "users", ["uid"], :name => "index_users_on_uid"
 
 end
