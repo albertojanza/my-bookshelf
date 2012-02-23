@@ -10,7 +10,7 @@ class BooksController < ApplicationController
       @book = Book.find_by_asin params[:asin]
     else
       @book = Book.find_by_permalink params[:id]
-      @friends_have_read_it = User.find_all_by_uid((@book.people_have_read & current_user.friends)) if logged_in?
+      @friends_have_read_it = User.find_all_by_uid((@book.cache_people_have_read & current_user.friends)) if logged_in?
     end
     #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end
