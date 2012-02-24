@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20120223225103) do
 
   create_table "books", :force => true do |t|
     t.string   "asin"
-    t.integer  "experience_id"
     t.string   "permalink"
     t.string   "title"
     t.string   "author"
@@ -67,7 +66,6 @@ ActiveRecord::Schema.define(:version => 20120223225103) do
   create_table "users", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
-    t.integer  "user_id"
     t.integer  "read_count",     :default => 0
     t.integer  "reading_count",  :default => 0
     t.integer  "influence_rate", :default => 0
