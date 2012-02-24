@@ -4,12 +4,12 @@
 
 //book
 .book { margin:0 7px 7px 0;padding:5px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3);} //rgba(0,0,0,.2) 0 1px 2px;
+.book .book-header{ margin: 0 0 10px 15px;}
 .book h1{color:#333333;margin:0px;font-size:21px;margin-top:10px;padding-left:10px;}
 .book p.authors{font-size:14px;color:#8f8f8f;margin: 0 0 10px 15px; }
-.book img{float:left; border:1px solid; color:#e7e7e7;}
-.book .info{margin-left:320px;word-wrap: break-word; }
-.book .friends img{float:left; border:1px solid; color:#e7e7e7;}
-.book .friends .name{margin-left:55px;word-wrap: break-word;}
+.book img{border:1px solid; color:#e7e7e7;}
+.book .book-image{float:left;width:260px; }
+.book .book-info{float:right;width:440px;word-wrap: break-word; }
 
 // Book item
 .book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3); //rgba(0,0,0,.2) 0 1px 2px;

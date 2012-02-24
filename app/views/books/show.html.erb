@@ -6,42 +6,30 @@
 
 
 <div class="book">
-  <h1><%= @book.title %> </h1>
-  <p class="authors"><%= " by #{ by_authors @book.author}"%></p>
-  
-  <%= link_to image_tag(@book.large_image,:width => 250), @book.detail_page_url %>
-<% if @friends_have_read_it %>
-  <div class="info">
-    <div class="friends">
-      <p> Readers between your friends </p>
-      <% @friends_have_read_it.each do |user| %>
-        <%= link_to image_tag("http://graph.facebook.com/#{user[:uid]}/picture"), bookcase_path(:id => user[:id])%> 
-        <div class="name"> <%= link_to user[:name], bookcase_path(:id => user[:id])%> </div>
-        <%= debug user %>
-      <% end %>
-    </div>
+  <div class="book-header">
+    <h1><%= @book.title %> </h1>
+    <p class="authors"><%= " by #{ by_authors @book.author}"%></p>
   </div>
-<% end %>
   
-<%= render 'slider',:title => 'Readers between your friends',:path => friends_bookcase_path, :partial => 'widget_small_user',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
+  <div class="book-image">
+    <%= link_to image_tag(@book.large_image,:width => 250), @book.detail_page_url %>
+  </div>
+  <div class="book-info">
+    <% if @friends_have_read_it %>
+      <div class="friends">
+        <%= render 'slider',:title => 'Readers between your friends',:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
+        <script type="text/javascript" >
+          var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
+        </script>    
+      </div>
+    <% end %>
+  </div>
+  <div class="cleaner">
+  </div>
 
-<script type="text/javascript" >
-    var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
-</script>    
-  
-  <div style="margin-top:50px;"
-  <%= debug @book%>
-  <h1> <%= "#{@book.title} by #{@book.author}" %> </h1>
-  
-  <div >
-  
-  <div class="left_float">
-    <%= image_tag @book.medium_image%> 
-  </div>
-  <div class="left_float">
-    <%= %>
-  </div>
-  
-  </div>
 </div>
 
+  <div style="margin-top:50px;">
+  <%= debug @book%>
+  
+  </div >
