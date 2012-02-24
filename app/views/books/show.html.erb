@@ -15,14 +15,19 @@
     <div class="friends">
       <p> Readers between your friends </p>
       <% @friends_have_read_it.each do |user| %>
-        <%= link_to image_tag("http://graph.facebook.com/#{user.uid}/picture"), user.link%> 
-        <div class="name"> <%= link_to user.name, user.link %> </div>
+        <%= link_to image_tag("http://graph.facebook.com/#{user[:uid]}/picture"), bookcase_path(:id => user[:id])%> 
+        <div class="name"> <%= link_to user[:name], bookcase_path(:id => user[:id])%> </div>
         <%= debug user %>
       <% end %>
     </div>
   </div>
 <% end %>
   
+<%= render 'slider',:title => 'Readers between your friends',:path => friends_bookcase_path, :partial => 'widget_small_user',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
+
+<script type="text/javascript" >
+    var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
+</script>    
   
   <div style="margin-top:50px;"
   <%= debug @book%>

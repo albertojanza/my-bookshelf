@@ -22,8 +22,8 @@ function search_input(id_location)
 
 function next_slide(slider_index){
   if ((sliders[slider_index][0] ) < (sliders[slider_index][1] -1)) {
-   $('#' + slider_index + '-bookshelf-slide-' + sliders[slider_index][0]).fadeOut(500,
-    function(){ $( '#' + slider_index + '-bookshelf-slide-' + (sliders[slider_index][0] + 1)).fadeIn(500);
+   $('#' + slider_index + '-slide-' + sliders[slider_index][0]).fadeOut(500,
+    function(){ $( '#' + slider_index + '-slide-' + (sliders[slider_index][0] + 1)).fadeIn(500);
       sliders[slider_index][0] = sliders[slider_index][0] + 1;
        $('#previous_' + slider_index).css('color','#333333');
        $('#previous_' + slider_index).css('cursor','pointer');
@@ -39,8 +39,8 @@ function next_slide(slider_index){
 
 function previous_slide(slider_index){
   if ((sliders[slider_index][0] ) > 0) {
-   $('#' + slider_index + '-bookshelf-slide-' + sliders[slider_index][0]).fadeOut(500,
-    function(){ $( '#' + slider_index + '-bookshelf-slide-' + (sliders[slider_index][0] - 1)).fadeIn(500);
+   $('#' + slider_index + '-slide-' + sliders[slider_index][0]).fadeOut(500,
+    function(){ $( '#' + slider_index + '-slide-' + (sliders[slider_index][0] - 1)).fadeIn(500);
       sliders[slider_index][0] = sliders[slider_index][0] - 1 ;
        $('#next_' + slider_index).css('color','#333333');
        $('#next_' + slider_index).css('cursor','pointer');

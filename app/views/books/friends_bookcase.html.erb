@@ -10,9 +10,9 @@
 
 
 
-<%= render 'slider1', :books => @reading, :type => 1, :items_slide => 12,:slider_index => 0 %>
+<%= render 'slider',:title => title(1), :path => shelf_path(:id => @user, :code => 1),:partial => 'book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
 
 <script type="text/javascript" >
-    var sliders = [[0,<%= (@reading.size + 2) / 12 %>]];
+    var sliders = [[0,<%= (@reading.size + 11) / 12 %>]];
 </script>    
 
