@@ -13,7 +13,7 @@
   <% end %>
     </div>
   </div>
-  <div class="slider-container" style="clear:left; height:<%= 125 * ((items_slide  + 2) / 3) %>px">
+  <div class="slider-container" >
       <% collection.each_slice(items_slide).each_with_index do |slice,index| %>
         <div id="<%= slider_index %>-slide-<%= index %>" class=" <%= 'hidden' unless index.eql?(0) %>">
           <%= render :partial => partial, :collection => slice %>

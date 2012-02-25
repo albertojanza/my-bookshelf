@@ -1,4 +1,4 @@
-<div  class="friend-box">
+<div  class="book-reader-box">
     <%= link_to image_tag("http://graph.facebook.com/#{friend[:uid]}/picture",:width => 45), bookcase_path(:id => friend[:id])%> 
     <div class="user-name"><%= link_to friend[:name], bookcase_path(:id => friend[:id])%></div>
 </div>

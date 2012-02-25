@@ -7,5 +7,5 @@
               <li class="separator">|</li>
   <li><%= link_to "Reading books", shelf_path(:id => @user.id,:code => 1)  %></li>
               <li class="separator">|</li>
-  <li><%= link_to "My bookcase", bookcase_path %></li>
+  <li><%= link_to "My bookcase", bookcase_path(:id => @user.id) %></li>
 </ul>

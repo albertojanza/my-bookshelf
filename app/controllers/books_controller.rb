@@ -11,11 +11,12 @@ class BooksController < ApplicationController
     else
       @book = Book.find_by_permalink params[:id]
       #@friends_have_read_it = User.find_all_by_uid((@book.cache_people_have_read & current_user.friends)) if logged_in?
-      if logged_in?
-        friend_ids = current_user.friends.map {|friend|  friend['id']}
-        readers = @book.cache_people_are_reading + @book.cache_people_have_read
-        @friends_have_read_it = readers.select{ |user| friend_ids.include?(user[:uid])  }
-      end
+    end
+    if logged_in?
+      friend_ids = current_user.friends.map {|friend|  friend['id']}
+      readers = @book.cache_people_are_reading + @book.cache_people_have_read
+      @friends_have_read_it = readers.select{ |user| friend_ids.include?(user[:uid])  }
+      @experience = Experience.find_by_user_id_and_book_id(@current_user.id,@book.id)
     end
     #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end

@@ -23,7 +23,54 @@
         </script>    
       </div>
     <% end %>
+
   </div>
+
+  <div class="experiences">
+
+
+    <% if @experience %>
+      it is in your libroshelf
+    <% else %>
+    <div class="slider"> 
+      <div class="slider-title">
+        <h2><%= 'Sent this book to your Bookcase!!!' %></h2>
+      </div>
+    </div>
+            <ul class="menu" >
+              <li>
+                <%= link_to_function 'To your Read bookshelf', "$('#experience_0_form_#{@book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_0_form_#{@book.asin}",:remote => true) do -%>
+                  <%= hidden_field_tag :asin, @book.asin%>
+                  <%= hidden_field_tag(:code, 0) %>
+                <% end -%>
+              </li>
+
+              <li>
+                <%= link_to_function 'To Reading bookshelf', "$('#experience_1_form_#{@book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_1_form_#{@book.asin}",:remote => true) do -%>
+                  <%= hidden_field_tag :asin, @book.asin%>
+                  <%= hidden_field_tag(:code, 1) %>
+                <% end -%>
+
+              </li>
+              <li> 
+                <%= link_to_function 'To your Next bookshelf', "$('#experience_2_form_#{@book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_2_form_#{@book.asin}",:remote => true) do -%>
+                  <%= hidden_field_tag :asin, @book.asin%>
+                  <%= hidden_field_tag(:code, 2) %>
+                <% end -%>
+              </li>
+              <li> 
+                <%= link_to 'Buy it', @book.detail_page_url  %>
+              </li>
+            </ul>
+    <% end %>
+
+
+
+  </div>
+
   <div class="cleaner">
   </div>
 

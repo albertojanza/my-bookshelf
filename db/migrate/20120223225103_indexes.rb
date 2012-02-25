@@ -6,6 +6,7 @@ class Indexes < ActiveRecord::Migration
     add_index 'experiences','recommender_id'
     add_index 'experiences','book_id'
     add_index 'experiences',['user_id','code']
+    add_index 'experiences',['user_id','book_id']
   end
 
   def down
