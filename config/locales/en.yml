@@ -1,5 +1,44 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-es:
-  hello: "hola world"
+en:
+  hello: "Hello world"
+
+#######################################
+# Main layout
+###################################
+#Header menu options
+  my_bookcase_option: "My Bookcase"
+  friends_bookcase_option: "Friends' Bookcases" 
+# Search for books form
+  input_search_field: "Search for books"
+#Footer menu options
+  terms_of_use: "Terms"
+  privacy_policy: "Privacy"
+  contact: "Contact"
+
+
+#######################################
+# My bookcase or his bookcase pages
+###################################
+#page title
+  my_bookcase: "Your Bookcase at Libroshelf"
+  his_bookcase: "%{name}'s Bookcase at Libroshelf" 
+  friends_bookcase: "Last updates from your friends' Bookcases"
+#bookshelves, section titles
+  his_read_bookshelf: "%{name}'s Read Bookshelf"
+  his_reading_bookshelf: "%{name}'s Reading Bookshelf"
+  his_recommended_bookshelf: "%{name}'s Recommended Bookshelf"
+  his_favorite_bookshelf: "%{name}'s Favorite Bookshelf"
+  his_next_bookshelf: "%{name}'s Next Bookshelf"
+  my_read_bookshelf: "Your Read Bookshelf"
+  my_reading_bookshelf: "Your Reading Bookshelf"
+  my_recommended_bookshelf: "Your Recommended Bookshelf"
+  my_favorite_bookshelf: "Your Favorite Bookshelf"
+  my_next_bookshelf: "Your Next Bookshelf"
+# submenu options
+  read_bookshelf: "Read Bookshelf"
+  reading_bookshelf: "Reading Bookshelf"
+  recommended_bookshelf: "Recommended Bookshelf"
+  favorite_bookshelf: "Favorite Bookshelf"
+  next_bookshelf: "Next Bookshelf"

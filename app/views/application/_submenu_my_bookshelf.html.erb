@@ -1,11 +1,11 @@
 <ul class="menu">
-  <li><%= link_to "Recommended books", shelf_path(:id => @user.id,:code => 3)  %></li>
+  <li><%= link_to I18n.t('recommended_bookshelf'), shelf_path(:id => @user.id,:code => 3)  %></li>
               <li class="separator">|</li>
-  <li><%= link_to "Next books", shelf_path(:id => @user.id,:code => 2)  %></li>
+  <li><%= link_to I18n.t('next_bookshelf'), shelf_path(:id => @user.id,:code => 2)  %></li>
               <li class="separator">|</li>
-  <li><%= link_to "Read books", shelf_path(:id => @user.id,:code => 0)  %></li>
+  <li><%= link_to I18n.t('reading_bookshelf'), shelf_path(:id => @user.id,:code => 0)  %></li>
               <li class="separator">|</li>
-  <li><%= link_to "Reading books", shelf_path(:id => @user.id,:code => 1)  %></li>
+  <li><%= link_to I18n.t('read_bookshelf'), shelf_path(:id => @user.id,:code => 1)  %></li>
               <li class="separator">|</li>
-  <li><%= link_to "My bookcase", bookcase_path(:id => @user.id) %></li>
+  <li><%= link_to 'Bookcase', bookcase_path(:id => @user.id) %></li>
 </ul>

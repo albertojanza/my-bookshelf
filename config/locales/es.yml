@@ -1,5 +1,42 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
-  hello: "Hello world"
+es:
+  hello: "hola world"
+
+#######################################
+# Main layout
+###################################
+#Header menu options
+  my_bookcase_option: "Mi Estantería"
+  friends_bookcase_option: "Estanterías de amigos" 
+  input_search_field: "Buscador de libros"
+#Footer menu options
+  terms_of_use: "Términos de Uso"
+  privacy_policy: "Privacidad"
+  contact: "Contacto"
+
+#######################################
+# My bookcase or his bookcase
+###################################
+#page title
+  my_bookcase: "Tu Estantería en Libroshelf"
+  his_bookcase: "La Estantería de %{name} en Libroshelf"
+  friends_bookcase: "Novedades en las Estanterías de tus amigos"
+#bookshelves, section titles
+  my_read_bookshelf: "Estante con libros que ya has leido"
+  my_reading_bookshelf: "Estante con tus actuales libros"
+  my_recommended_bookshelf: "Estante de libros recomendados por tus amigos"
+  my_favorite_bookshelf: "Estante con tus libros favoritos"
+  my_next_bookshelf: "Estante con libros que leerás"
+  his_read_bookshelf: "Estante de libros leídos de %{name}"
+  his_reading_bookshelf: "Estante con los libros que %{name} está leyendo"
+  his_recommended_bookshelf: "Estante con los libros recomendados por %{name}'"
+  his_favorite_bookshelf: "Estante con los libros favoritos de %{name}"
+  his_next_bookshelf: "Esta con las próximas lecturas de %{name}"
+# submenu options
+  read_bookshelf: "Estante de Leídos"
+  reading_bookshelf: "Estante de Actuales"
+  recommended_bookshelf: "Estante de Recomendados"
+  favorite_bookshelf: "Estante de Favoritos"
+  next_bookshelf: "Estante de Próximos"

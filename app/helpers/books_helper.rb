@@ -14,15 +14,29 @@ module BooksHelper
   end
 
   def title(type)
-    case type
-      when 0
-        'Your bookshelf - Books that you have read'
-      when 1
-        'Books that you are reading'
-      when 2
-        'Your next books.'
-      when 3
-        'Recommendations'
+    if logged_in? && @user.eql?(current_user)
+      case type
+        when 0
+          I18n.t('my_read_bookshelf') 
+        when 1
+          I18n.t('my_reading_bookshelf')
+        when 2
+          I18n.t('my_next_bookshelf')
+        when 3
+          I18n.t('my_recommended_bookshelf')
+      end
+    else
+      case type
+        when 0
+          I18n.t('his_read_bookshelf', :name => @user.name.capitalize) 
+        when 1
+          I18n.t('his_reading_bookshelf', :name => @user.name.capitalize)
+        when 2
+          I18n.t('his_next_bookshelf', :name => @user.name.capitalize) 
+        when 3
+          I18n.t('his_recommended_bookshelf', :name => @user.name.capitalize)
+      end
+
     end
   end
 

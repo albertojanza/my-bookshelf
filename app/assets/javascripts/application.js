@@ -12,7 +12,7 @@
 function search_input(id_location)
 {
   var search_input =document.getElementById('book-search'); 
-  if (search_input.value == 'Search for books')
+  if ((search_input.value == 'Search for books') || (search_input.value == 'Buscador de libros'))
   {
       search_input.value = '';
   }
