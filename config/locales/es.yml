@@ -40,3 +40,12 @@ es:
   recommended_bookshelf: "Estante de Recomendados"
   favorite_bookshelf: "Estante de Favoritos"
   next_bookshelf: "Estante de Próximos"
+# Book show and book item legends
+  in_your_read_bookshelf_big: "Este libro ya está en tu Estantería de Leídos"
+  in_your_reading_bookshelf_big: "Este libro ya está en tu Estantería de actuales lecturas"
+  in_your_next_bookshelf_big: "Este libro ya está en tu Estantería de Próximas lecturas"
+  in_your_recommended_bookshelf_big: "Este libro está en tu Estantería de Recomendados"
+  in_your_read_bookshelf: "Tu Estante de Leídos"
+  in_your_reading_bookshelf: "Tu Estante de Actuales"
+  in_your_next_bookshelf: "Tu Estante de próximos"
+  in_your_recommended_bookshelf: "En tus Recomendados"

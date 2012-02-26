@@ -42,3 +42,12 @@ en:
   recommended_bookshelf: "Recommended Bookshelf"
   favorite_bookshelf: "Favorite Bookshelf"
   next_bookshelf: "Next Bookshelf"
+# Book show and book item legends
+  in_your_read_bookshelf_big: "This book is in your Read Bookshelf"
+  in_your_reading_bookshelf_big: "This book is in your Reading Bookshelf"
+  in_your_next_bookshelf_big: "This book is in your Next Bookshelf"
+  in_your_recommended_bookshelf_big: "This book is in your Recommended Bookshelf"
+  in_your_read_bookshelf: "In your Read Shelf"
+  in_your_reading_bookshelf: "In your Reading Shelf"
+  in_your_next_bookshelf: "In your Next Shelf"
+  in_your_recommended_bookshelf: "In Recommended Shelf"

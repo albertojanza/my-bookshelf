@@ -6,6 +6,9 @@
 
 
 <div class="book">
+  <div class="buy-it">
+    <%= link_to 'Buy it', @book.detail_page_url  %>
+  </div>
   <div class="book-header">
     <h1><%= @book.title %> </h1>
     <p class="authors"><%= " by #{ by_authors @book.author}"%></p>
@@ -15,14 +18,16 @@
     <%= link_to image_tag(@book.large_image,:width => 250), @book.detail_page_url %>
   </div>
   <div class="book-info">
-    <% if @friends_have_read_it %>
       <div class="friends">
         <%= render 'slider',:title => 'Readers between your friends',:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
         <script type="text/javascript" >
           var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
         </script>    
+        <% if  @friends_have_read_it.empty? %>
+          It look likes nobody of your friends have read this book. Do you want to recommend it?
+        <% end %>
+
       </div>
-    <% end %>
 
   </div>
 
@@ -30,6 +35,12 @@
 
 
     <% if @experience %>
+    <div class="slider"> 
+
+    <div class="slider-title">
+        <%= link_to "<h2>#{big_confirm_message(@experience.code)}</h2>".html_safe, shelf_path(:id => current_user.id,:code => @experience.code , :class => 'link') %>
+      </div>
+    </div>
       it is in your libroshelf
     <% else %>
     <div class="slider"> 

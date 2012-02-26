@@ -14,7 +14,7 @@
               <div class="user-name"><%= link_to book_item.user.name, bookcase_path(:id => book_item.user.id )%></div>
             </div>
           <% if @book_list[book_item.book.asin] %>
-            <div class="confirm_message"><%= confirm_message(@book_list[book_item.book.asin][1]) %></div>
+            <div class="confirm_message"><%= link_to confirm_message(@book_list[book_item.book.asin][1]), shelf_path(:id => current_user.id,:code => @book_list[book_item.book.asin][1]) %></div>
           <% else %>
             <div class="cleaner" ></div>
             <ul id="experience_options_<%= book_item.book.asin %>">
