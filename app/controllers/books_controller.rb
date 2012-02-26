@@ -14,7 +14,7 @@ class BooksController < ApplicationController
     end
     if logged_in?
       friend_ids = current_user.friends.map {|friend|  friend['id']}
-      readers = @book.cache_people_are_reading + @book.cache_people_have_read
+      readers = @book.cache_people_are_reading + @book.cache_people_have_read +  @book.cache_people_will_read + @book.cache_people_with_recommendations
       @friends_have_read_it = readers.select{ |user| friend_ids.include?(user[:uid])  }
       @experience = Experience.find_by_user_id_and_book_id(@current_user.id,@book.id)
     end

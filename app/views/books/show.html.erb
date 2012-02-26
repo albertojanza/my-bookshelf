@@ -19,7 +19,7 @@
   </div>
   <div class="book-info">
       <div class="friends">
-        <%= render 'slider',:title => 'Readers between your friends',:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
+        <%= render 'slider',:title => 'Friends with it',:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
         <script type="text/javascript" >
           var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
         </script>    

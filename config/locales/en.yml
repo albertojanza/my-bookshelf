@@ -81,7 +81,7 @@ en:
   recommend_explanation_html: "If your friends read this book then they trust you and you are a good <b>influencer</b>."
   recommend_menu_friends: "Friends"
   recommend_menu_selected: "Selected"
-  recommend_menu_who_read_it: "Who has read it?"
+  recommend_menu_who_read_it: "Friends with it"
   recommend_submit_button: "Send recommendations"
   recommend_error: "You haven\'t selected any friend."
 
