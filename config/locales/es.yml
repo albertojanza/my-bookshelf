@@ -34,6 +34,17 @@ es:
   his_recommended_bookshelf: "Estante con los libros recomendados por %{name}'"
   his_favorite_bookshelf: "Estante con los libros favoritos de %{name}"
   his_next_bookshelf: "Esta con las próximas lecturas de %{name}"
+#bookshelves, empty legends
+  his_empty_read_bookshelf_html: "<b>%{name}</b> no ha puesto ningún libro en su Estante de Leídos."
+  his_empty_reading_bookshelf_html: "Parece que <b>%{name}</b> no está leyendo ningún libro actualmente.<br> Si tienes alguna buena sugerencia puedes recomendársela.<br> Sólo tienes que clicar en el botón de Recomendar que aparece en cualquier libro en tu estantería o en cualquier búsqueda."
+  his_empty_recommended_bookshelf_html: "Parece que nadie ha recomendado ningún libro a <b>%{name}</b> últimamente. <br>Si quieres recomendarle un buen libro que tú hayas leído, puedes hacerlo clicando en el botón Recomendar button que aparece en cualquier libro de tu estantería o en cualquier búsqueda."
+  his_empty_favorite_bookshelf_html: "<b>%{name}</b>'s Favorite Bookshelf"
+  his_empty_next_bookshelf_html: "<b>%{name}</b>'s Estatería de próximas lecturas está vacía."
+  my_empty_read_bookshelf_html: "Parece que tu Estantería de Leídos está vacía.<br> Tu Estantería de Leídos es donde puedes guardar los libros que ya hayas leído. <br> Puedes usar la Búsqueda de Libros que aparece en la parte superior de esta página para encontrar libros que hayas leído."
+  my_empty_reading_bookshelf_html: "Tu Estantería de Actuales Lecturas está vacía. No estás leyendo ningún libro actualmente?<br> Esta es la estantería donde puedes poner los libros que estás leyendo actualmente. <br> Puedes buscar por libros en la parte superior de está página."
+  my_empty_recommended_bookshelf_html: "Parece que nadie te ha recomendado libros recientemente."
+  my_empty_favorite_bookshelf_html: "Your Favorite Bookshelf"
+  my_empty_next_bookshelf_html: "Puedes usar esta estantería para guardar esos libros que te gustaría leer en un futuro, así no lo olvidarás. <br> Para mover un libro a esta estantería sólo tienes que clicar en el botón de Próximo que aparece dentro de cualquier libro."
 # submenu options
   read_bookshelf: "Estante de Leídos"
   reading_bookshelf: "Estante de Actuales"
@@ -58,3 +69,10 @@ es:
   big_read: "Al Estante de Leídos"
   big_next: "Al Estante de Próximos"
   big_recommend: "Recomendar a un amigo"
+#######################################
+# Friends bookcases 
+###################################
+#bookshelves
+  read_and_reading: "En este estante puedes ver las últimas novedades en las estantetías de tus amigos."
+# Book show and book item legends
+  read_and_reading_empty_legend: "Parece que tús amigos todavía no están usando libroshelf. Invítalos a que se unan a ti y fomenta la lectura de buenos libros entre ellos."

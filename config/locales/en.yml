@@ -36,6 +36,17 @@ en:
   my_recommended_bookshelf: "Your Recommended Bookshelf"
   my_favorite_bookshelf: "Your Favorite Bookshelf"
   my_next_bookshelf: "Your Next Bookshelf"
+#bookshelves, empty legends
+  his_empty_read_bookshelf_html: "<b>%{name}</b> hasn't put any book in his Read Bookshelf yet."
+  his_empty_reading_bookshelf_html: "It looks like <b>%{name}</b> is not reading any book recently.<br> If you have any good suggestion you can recommend a book to him.<br> You only have to click on the Recommend Button that appears in every book and choose the friends that you want to recommend to."
+  his_empty_recommended_bookshelf_html: "It looks like nobody has recommended books to <b>%{name}</b> recently. <br>If you want to recommend a good book that you have read, you can do it by clicking on Recommend button in a book from your bookcase or from a book search."
+  his_empty_favorite_bookshelf_html: "<b>%{name}</b>'s Favorite Bookshelf"
+  his_empty_next_bookshelf_html: "<b>%{name}</b>'s Next Bookshelf is empty."
+  my_empty_read_bookshelf_html: "It look likes yoour Read Bookshelf is empty.<br> Your Read Bookshelf is where you can keep those books that you have read in the past. <br>Use the Book Search at the top of the page to finde those books that you have read and add them."
+  my_empty_reading_bookshelf_html: "Your Reading Bookshelf is empty. Aren't you reading any book?<br> This is the bookshelf where you keep those books that you are currently reading. <br>You can locate here the books than you are reading clicking on the Reading button on the book. You can search for books using the Search Book area at the top of this page."
+  my_empty_recommended_bookshelf_html: "It looks like there are not recommended books for you. In this bookshelf you will find recommendations from your friends."
+  my_empty_favorite_bookshelf_html: "Your Favorite Bookshelf"
+  my_empty_next_bookshelf_html: "You can use this bookshelf to store those books that you want to read in the future. In this way you won't forget about them.<br> To move a book to this bookshelf you have to click on the Next button on a Book. </br>To search for a book you can use the Search Book form at the top of this page."
 # submenu options
   read_bookshelf: "Read Bookshelf"
   reading_bookshelf: "Reading Bookshelf"
@@ -60,3 +71,10 @@ en:
   big_read: "To your Read Bookshelf"
   big_next: "To your Next Bookshelf"
   big_recommend: "Recommend it to a friend"
+#######################################
+# Friends bookcases 
+###################################
+#bookshelves
+  read_and_reading: "In this bookshelf you can see the last updates in the Bookcases of your friends."
+# Book show and book item legends
+  read_and_reading_empty_legend: "It look likes novoby of your friends is using libroshelf. Invite them to start using it and promote together good boosk."

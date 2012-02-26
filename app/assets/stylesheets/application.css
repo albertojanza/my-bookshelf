@@ -62,8 +62,8 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
     -moz-border-image: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-   /* background: url("../../images/modules/header/userbox/icons.png") no-repeat scroll -147px 5px white; */
+    -moz-border-top-colors: none; */
+    background: url("search_icon.png") no-repeat scroll  white;
     border-color: #CDCDCD #DDDDDD #DDDDDD;
     border-right: 1px solid #DDDDDD;
     border-style: solid;
@@ -71,7 +71,7 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
     box-shadow: 0 1px 0 #F1F1F1, 0 1px 1px #E0E0E0 inset;
     color: #555555;
     font-size: 12px;
-    padding: 5px 5px 5px 30px;
+    padding: 5px 5px 5px 25px;
     width: 150px;
 
 
@@ -171,6 +171,7 @@ a.modal-close-icon:hover{color: #000000;}
 .slider .menu a{color:#333333;font-size:14px;}
 .slider .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
 .slider .menu a.disabled{color:#8F8F8F;cursor:default;}
+.slider .empty-legend{color:#333333;font-size:13px;border: medium none; border-radius: 4px 4px 4px 4px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;background-color:#EBEBEB; margin:7px 7px 7px 7px;padding:6px 5px 5px 9px;}
 
 .slider-container{padding:1px  1px 3px 1px;}
 

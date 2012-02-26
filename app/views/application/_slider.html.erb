@@ -13,13 +13,19 @@
   <% end %>
     </div>
   </div>
-  <div class="slider-container" >
+  <% unless collection.empty? %>
+    <div class="slider-container" >
       <% collection.each_slice(items_slide).each_with_index do |slice,index| %>
         <div id="<%= slider_index %>-slide-<%= index %>" class=" <%= 'hidden' unless index.eql?(0) %>">
           <%= render :partial => partial, :collection => slice %>
         </div>
       <% end %>
-  </div> 
+    </div> 
+  <% else %>
+    <div class="empty-legend" >
+      <%= empty_legend.html_safe %>
+    </div> 
+  <% end %>
   <div  style="clear:left;">
   </div> 
 </div> 

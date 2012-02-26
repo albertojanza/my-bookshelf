@@ -13,6 +13,35 @@ module BooksHelper
 
   end
 
+
+  def empty_legend(type)
+    if logged_in? && @user.eql?(current_user)
+      case type
+        when 0
+          I18n.t('my_empty_read_bookshelf_html') 
+        when 1
+          I18n.t('my_empty_reading_bookshelf_html')
+        when 2
+          I18n.t('my_empty_next_bookshelf_html')
+        when 3
+          I18n.t('my_empty_recommended_bookshelf_html')
+      end
+    else
+      case type
+        when 0
+          I18n.t('his_empty_read_bookshelf_html', :name => @user.name.capitalize) 
+        when 1
+          I18n.t('his_empty_reading_bookshelf_html', :name => @user.name.capitalize)
+        when 2
+          I18n.t('his_empty_next_bookshelf_html', :name => @user.name.capitalize) 
+        when 3
+          I18n.t('his_empty_recommended_bookshelf_html', :name => @user.name.capitalize)
+      end
+
+    end
+  end
+
+
   def title(type)
     if logged_in? && @user.eql?(current_user)
       case type
