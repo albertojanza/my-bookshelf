@@ -5,7 +5,7 @@
 %>
 
 
-<div class="book">
+<div  id="book_<%= @book.id %>"class="book">
   <div class="buy-it">
     <%= link_to 'Buy it', @book.detail_page_url  %>
   </div>
@@ -29,105 +29,8 @@
       </div>
   </div>
 
-  <div class="experiences">
-    <% if @experience %>
-      <div class="slider"> 
-        <div class="slider-title">
-          <%= link_to "<h2>#{big_confirm_message(@experience.code)}</h2>".html_safe, shelf_path(:id => current_user.id,:code => @experience.code , :class => 'link') %>
-        </div>
-      </div>
-      <ul class="menu" >
-        <% case @experience.code 
-          when 0%>
-                <li>
-                  <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
-                </li>
-                
-          <% when 1 %>
-            <li>
-              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 0) %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
-            </li>
-          <% when 1 %>
-            <li>
-              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 0) %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 1) %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
-            </li>
-          <% when 2 %>
-            <li>
-              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 0) %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 1) %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to_function I18n.t('big_next'), "$('#experience_2_form_#{@experience.id}').submit();" %>
-                <%= form_for(@experience, :html => { :id => "experience_2_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 2) %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-    <% else %>
-      <div class="slider"> 
-        <div class="slider-title">
-          <h2><%= 'Sent this book to your Bookcase!!!' %></h2>
-        </div>
-      </div>
-            <ul class="menu" >
-              <li>
-                <%= link_to_function 'To your Read bookshelf', "$('#experience_0_form_#{@book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_0_form_#{@book.asin}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, @book.asin%>
-                  <%= hidden_field_tag(:code, 0) %>
-                <% end -%>
-              </li>
-
-              <li>
-                <%= link_to_function 'To Reading bookshelf', "$('#experience_1_form_#{@book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_1_form_#{@book.asin}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, @book.asin%>
-                  <%= hidden_field_tag(:code, 1) %>
-                <% end -%>
-
-              </li>
-              <li> 
-                <%= link_to_function 'To your Next bookshelf', "$('#experience_2_form_#{@book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_2_form_#{@book.asin}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, @book.asin%>
-                  <%= hidden_field_tag(:code, 2) %>
-                <% end -%>
-              </li>
-              <li> 
-                <%= link_to 'Buy it', @book.detail_page_url  %>
-              </li>
-            </ul>
-    <% end %>
-
-
-
+  <div id="experience_<%= @book.id %>" class="experiences">
+    <%= render :partial => '/experiences/experiences_book' %>
   </div>
 
   <div class="cleaner">

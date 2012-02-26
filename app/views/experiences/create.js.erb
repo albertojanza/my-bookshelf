@@ -1,3 +1,8 @@
+<% if params[:book_page] %>
+  $("#experience_<%= @experience.book_id %>").html('<%= escape_javascript(render :partial => 'experiences_book') %>');
+  $("#book_<%= @experience.book_id %>").effect("shake", { times:3 }, 300);
+
+<% else %>
 $("#experience_options_<%= @book.asin %>").html('<div class="confirm_message"><%= confirm_message(@experience.code) %></div>');
 $("#experience_<%= @book.asin %>").effect("shake", { times:3 }, 300);
-
+<% end %>

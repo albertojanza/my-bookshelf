@@ -80,7 +80,7 @@
               <div id="experience_options_<%= book_item.id%>">
               <ul >
                 <li>
-                  <%= link_to_function I18n.t('Read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
+                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
                   <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
                     <%= f.hidden_field(:code, :value => 0) %>
                   <% end %>
