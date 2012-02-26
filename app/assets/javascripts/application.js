@@ -161,9 +161,9 @@ function remove_friend_recommendation(uid){
 
 function submit_recommendations()
 {
-  if (recommendation_uid.size == 0)
+  if (recommendation_uid.length == 0)
   {
-    $('#recommendation_error_message').html('You haven\'t selected any friend.')
+    //$('#recommendation_error_message').html('You haven\'t selected any friend.')
     $('#recommendation_error_message').show();
   }
   else 

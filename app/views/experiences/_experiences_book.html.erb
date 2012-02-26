@@ -9,7 +9,7 @@
         <% case @experience.code 
           when 0%>
                 <li>
-                  <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+                  <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
                 </li>
                 
           <% when 1 %>
@@ -21,7 +21,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
             </li>
           <% when 2 %>
             <li>
@@ -39,7 +39,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
             </li>
           <% when 3 %>
             <li>

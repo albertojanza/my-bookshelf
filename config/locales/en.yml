@@ -16,7 +16,10 @@ en:
   terms_of_use: "Terms"
   privacy_policy: "Privacy"
   contact: "Contact"
-
+# Slider pagination links
+  slider_all: "All" 
+  slider_next: "Next" 
+  slider_previous: "Previous" 
 
 #######################################
 # My bookcase or his bookcase pages
@@ -71,6 +74,17 @@ en:
   big_read: "To your Read Bookshelf"
   big_next: "To your Next Bookshelf"
   big_recommend: "Recommend it to a friend"
+#######################################
+# Recommend window modal
+###################################
+  recommend_title: "Recommend this book to your friends"
+  recommend_explanation_html: "If your friends read this book then they trust you and you are a good <b>influencer</b>."
+  recommend_menu_friends: "Friends"
+  recommend_menu_selected: "Selected"
+  recommend_menu_who_read_it: "Who has read it?"
+  recommend_submit_button: "Send recommendations"
+  recommend_error: "You haven\'t selected any friend."
+
 #######################################
 # Friends bookcases 
 ###################################

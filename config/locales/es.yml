@@ -15,6 +15,10 @@ es:
   terms_of_use: "Términos de Uso"
   privacy_policy: "Privacidad"
   contact: "Contacto"
+# Slider pagination links
+  slider_all: "Todos" 
+  slider_next: "Siguiente" 
+  slider_previous: "Anterior" 
 
 #######################################
 # My bookcase or his bookcase
@@ -69,6 +73,17 @@ es:
   big_read: "Al Estante de Leídos"
   big_next: "Al Estante de Próximos"
   big_recommend: "Recomendar a un amigo"
+#######################################
+# Recommend window modal
+###################################
+  recommend_title: "Recomienda este libro a tus amigos"
+  recommend_explanation_html: "Si tus amigos leer tus recomendaciones eso significa que tu eres un buen <b>influencer</b>."
+  recommend_menu_friends: "Amigos"
+  recommend_menu_selected: "Seleccionados"
+  recommend_menu_who_read_it: "Quiénes lo han leído?"
+  recommend_submit_button: "Enviar recomendaciones"
+  recommend_error: "Todavía no has seleccionado ningún amigo."
+
 #######################################
 # Friends bookcases 
 ###################################
