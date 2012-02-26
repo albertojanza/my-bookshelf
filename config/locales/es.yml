@@ -49,3 +49,12 @@ es:
   in_your_reading_bookshelf: "Tu Estante de Actuales"
   in_your_next_bookshelf: "Tu Estante de próximos"
   in_your_recommended_bookshelf: "En tus Recomendados"
+# Book show and book item experience legends
+  reading: "Leyendo"
+  read: "Leído"
+  next: "Próximo"
+  recommend: "Recomendar"
+  big_reading: "Al Estante de Actuales"
+  big_read: "Al Estante de Leídos"
+  big_next: "Al Estante de Próximos"
+  big_recommend: "Recomendar a un amigo"

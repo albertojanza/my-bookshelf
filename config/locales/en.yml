@@ -51,3 +51,12 @@ en:
   in_your_reading_bookshelf: "In your Reading Shelf"
   in_your_next_bookshelf: "In your Next Shelf"
   in_your_recommended_bookshelf: "In Recommended Shelf"
+# Book show and book item experience legends
+  reading: "Reading"
+  read: "Read"
+  next: "Next"
+  recommend: "Recommend"
+  big_reading: "To your Reading Bookshelf"
+  big_read: "To your Read Bookshelf"
+  big_next: "To your Next Bookshelf"
+  big_recommend: "Recommend it to a friend"

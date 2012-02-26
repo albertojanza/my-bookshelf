@@ -26,28 +26,76 @@
         <% if  @friends_have_read_it.empty? %>
           It look likes nobody of your friends have read this book. Do you want to recommend it?
         <% end %>
-
       </div>
-
   </div>
 
   <div class="experiences">
-
-
     <% if @experience %>
-    <div class="slider"> 
-
-    <div class="slider-title">
-        <%= link_to "<h2>#{big_confirm_message(@experience.code)}</h2>".html_safe, shelf_path(:id => current_user.id,:code => @experience.code , :class => 'link') %>
+      <div class="slider"> 
+        <div class="slider-title">
+          <%= link_to "<h2>#{big_confirm_message(@experience.code)}</h2>".html_safe, shelf_path(:id => current_user.id,:code => @experience.code , :class => 'link') %>
+        </div>
       </div>
-    </div>
-      it is in your libroshelf
+      <ul class="menu" >
+        <% case @experience.code 
+          when 0%>
+                <li>
+                  <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+                </li>
+                
+          <% when 1 %>
+            <li>
+              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 0) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+            </li>
+          <% when 1 %>
+            <li>
+              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 0) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 1) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_function I18n.t('big_recommend'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+            </li>
+          <% when 2 %>
+            <li>
+              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 0) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 1) %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to_function I18n.t('big_next'), "$('#experience_2_form_#{@experience.id}').submit();" %>
+                <%= form_for(@experience, :html => { :id => "experience_2_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 2) %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
     <% else %>
-    <div class="slider"> 
-      <div class="slider-title">
-        <h2><%= 'Sent this book to your Bookcase!!!' %></h2>
+      <div class="slider"> 
+        <div class="slider-title">
+          <h2><%= 'Sent this book to your Bookcase!!!' %></h2>
+        </div>
       </div>
-    </div>
             <ul class="menu" >
               <li>
                 <%= link_to_function 'To your Read bookshelf', "$('#experience_0_form_#{@book.asin}').submit();" %>
