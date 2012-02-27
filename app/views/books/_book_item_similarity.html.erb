@@ -1,6 +1,15 @@
 <div class="book-item book-item-small" >
   <% image = ( book_item_similarity[0].raw.ImageSets.ImageSet.class.eql?(Array) ? book_item_similarity[0].raw.ImageSets.ImageSet[0].TinyImage.URL : book_item_similarity[0].raw.ImageSets.ImageSet.TinyImage.URL) %>
-  <%= link_to image_tag(image,:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN)%>
+
+<% if book_item_similarity[0].raw.ImageSets && !book_item_similarity[0].raw.ImageSets.ImageSet.class.eql?(Array)# TODO study these cases%>
+  <%= link_to image_tag(book_item_similarity[0].raw.ImageSets.ImageSet.TinyImage.URL,:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN )  %>
+<% elsif book_item_similarity[0].raw.ImageSets  %>
+  <%= link_to image_tag(book_item_similarity[0].raw.ImageSets.ImageSet[0].TinyImage.URL,:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN )  %>
+<% else # TODO default image%>
+  <%= link_to image_tag('book-item-default-image.png',:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN)  %>
+<% end %>
+
+  <%# link_to image_tag(image,:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN)%>
 
 
 

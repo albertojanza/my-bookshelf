@@ -82,6 +82,10 @@ en:
   friends_review_title: "Reviews from your friends"
   friends_review_empty_legend: "It look likes nobofy of your friends have writen any review"
 #######################################
+# Book search page
+###################################
+  search_emty_legend_html: "We coudn't find any books for this search. Please check that there is no typos in your search. <br>You can search by the name of an author or by the title of a book."
+#######################################
 # Recommend window modal
 ###################################
   recommend_title: "Recommend this book to your friends"

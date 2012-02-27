@@ -5,6 +5,7 @@
 <% elsif search_book_item.raw.ImageSets  %>
   <%= link_to image_tag(search_book_item.raw.ImageSets.ImageSet[0].TinyImage.URL), book_asin_path(:asin => search_book_item.raw.ASIN)  %>
 <% else # TODO default image%>
+  <%= link_to image_tag('book-item-default-image.png'), book_asin_path(:asin => search_book_item.raw.ASIN)  %>
 <% end %>
   <div class="info-container">
     <div class="info">

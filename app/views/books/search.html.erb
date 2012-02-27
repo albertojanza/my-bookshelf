@@ -1,17 +1,37 @@
-    
-<%# form_tag search_path do  %>
-<%# text_field_tag 'title', params[:title]  %>
-<%# submit_tag 'procura' %>
-  <%# end %>
 
-
-<div class="book_list"> 
- <h2><%= "Results for <span class=\"search_paramater\">#{params[:title]}</span>".html_safe %></h2>
-<div class="cleaner"></div>
+<div class="section-title"> 
+  <h2><%= "Results for <span class=\"search_paramater\">#{params[:title]}</span>".html_safe %></h2>
+</div>
 <div id="book_search_results">
- <% if @books %>
+ <% unless @books.empty? %>
     <%= render :partial => 'search_book_item', :collection => @books%>
+  <% else %>
+    <div class="empty-legend"> 
+      <%= I18n.t('search_emty_legend_html').html_safe %>
+    </div>
   <% end %>
 </div>
-</div>
 
+
+
+
+<% content_for :sidebar do %>
+
+  <div class="top_sidebar_shadow">
+  </div>
+
+  <div class="sidebar_shadow" style="clear:both;">
+    <div id="book_similarities">
+    </div>
+  </div>
+  <div class="bottom_sidebar_shadow">
+  </div>
+
+<% end %>
+
+
+ <% unless @books.empty? %>
+              <script type="text/javascript" >
+                   $("#book_similarities").load("<%= book_similarities_path(:asin => @books[0].raw.ASIN) %>"); 
+              </script>    
+  <% end %>
