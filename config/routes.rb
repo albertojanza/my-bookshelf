@@ -19,6 +19,7 @@ MyBookshelf::Application.routes.draw do
   resources :books
   get 'book_asin' => 'books#show', :as => :book_asin
   post 'books/search' => 'books#search', :as => :search
+  get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities
 
   get 'friends' => 'facebook#friends', :as => :friends
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'

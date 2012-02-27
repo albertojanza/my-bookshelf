@@ -49,6 +49,27 @@
 
   </div>
 
+<% content_for :sidebar do %>
+
+  <div class="top_sidebar_shadow">
+  </div>
+
+  <div class="sidebar_shadow" style="clear:both;">
+    <div id="book_similarities">
+    </div>
+  </div>
+  <div class="bottom_sidebar_shadow">
+  </div>
+
+<% end %>
+
+
+
+              <script type="text/javascript" >
+                   $("#book_similarities").load("<%= book_similarities_path(:asin => @book.asin) %>"); 
+              </script>    
+
+
 
   <div style="margin-top:50px;">
   <%= debug @book%>

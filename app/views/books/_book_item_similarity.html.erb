@@ -1,0 +1,13 @@
+<div class="book-item book-item-small" >
+  <% image = ( book_item_similarity[0].raw.ImageSets.ImageSet.class.eql?(Array) ? book_item_similarity[0].raw.ImageSets.ImageSet[0].TinyImage.URL : book_item_similarity[0].raw.ImageSets.ImageSet.TinyImage.URL) %>
+  <%= link_to image_tag(image,:height=> '80'), book_asin_path(:asin => book_item_similarity[0].raw.ASIN)%>
+
+
+
+  <div class="info-container">
+    <div class="info">
+      <div class="title"><%= link_to "<div>#{truncate(book_item_similarity[0].raw.ItemAttributes.Title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_asin_path(:asin => book_item_similarity[0].raw.ASIN)%></div>
+      <div class="author"><%= truncate("by #{by_authors(book_item_similarity[0].raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') %></div>
+    </div>
+  </div>
+</div>

@@ -59,6 +59,11 @@ class BooksController < ApplicationController
 
   end
 
+  def sidebar_similarities
+    @book = Book.find_by_asin params[:asin]
+    render :partial => 'book_item_similarity', :collection => @book.similarities
+  end
+
 
   #def bookcase_read_books
   #  @user = User.find params[:id]
