@@ -13,6 +13,13 @@ class Book < ActiveRecord::Base
 
   serialize :author
 
+  def similarities
+    client = ASIN::Client.instance
+    amazon_similarities = client.lookup self.asin, :ResponseGroup => [:Similarities]
+    amazon_similarities[0].raw.SimilarProducts.SimilarProduct.map! {|book| client.lookup book.ASIN}
+    #amazon_similarities[0]
+  end
+
   def create_permalink
     self.permalink = "#{self.title}-#{self.author}".parameterize
   end
