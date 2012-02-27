@@ -1,0 +1,6 @@
+<% if @review.errors.any? # it renders again the form with the errors %>
+    $("#review_form").html("<%= escape_javascript( render( :partial => 'form')) %>");  
+<% else %>
+    $("#review_form").html("festa");  
+<% end %>
+

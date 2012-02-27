@@ -78,6 +78,8 @@ es:
 ###################################
   friends_with_it_title: "Amigos con él"
   friend_with_it_empty_legend: "Parece que ninguno de tus amigos tiene este libro en sus estanterías. Puedes recomendar este libro a tus amigos usando el botón de abajo."
+  friends_review_title: "Testimonios de tus amigos"
+  friends_review_empty_legend: "Parece que ninguno de tus amigos ha dejado su opinión."
 #######################################
 # Recommend window modal
 ###################################

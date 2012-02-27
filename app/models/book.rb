@@ -2,6 +2,7 @@
 class Book < ActiveRecord::Base
   #has_one :adventure, :as => :resource
   has_many :experiences
+  has_many :reviews
 
   validates :title, :presence => true
   validates :author, :presence => true

@@ -35,6 +35,21 @@
 
 </div>
 
+  <div class="reviews">
+    <div class="section-title">
+      <h2> <%= I18n.t 'friends_review_title' %></h2>
+    </div>
+    <% if logged_in? %>
+      <div id="review_form">
+        <%= render :partial => '/reviews/form' %>
+      </div>
+    <% end %>
+
+
+
+  </div>
+
+
   <div style="margin-top:50px;">
   <%= debug @book%>
   

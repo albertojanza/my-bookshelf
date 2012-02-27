@@ -79,6 +79,8 @@ en:
 ###################################
   friends_with_it_title: "Friends with it"
   friend_with_it_empty_legend: "It look likes nobody of your friends have this book in their bookshelves. You can recommend this book to your friends using the button below."
+  friends_review_title: "Reviews from your friends"
+  friends_review_empty_legend: "It look likes nobofy of your friends have writen any review"
 #######################################
 # Recommend window modal
 ###################################
