@@ -19,13 +19,10 @@
   </div>
   <div class="book-info">
       <div class="friends">
-        <%= render 'slider',:title => 'Friends with it',:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
+        <%= render 'slider',:title => I18n.t('friends_with_it_title'),:empty_legend => I18n.t('friend_with_it_empty_legend'),:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
         <script type="text/javascript" >
           var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
         </script>    
-        <% if  @friends_have_read_it.empty? %>
-          It look likes nobody of your friends have read this book. Do you want to recommend it?
-        <% end %>
       </div>
   </div>
 

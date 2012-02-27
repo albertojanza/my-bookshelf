@@ -74,6 +74,11 @@ es:
   big_next: "Al Estante de Próximos"
   big_recommend: "Recomendar a un amigo"
 #######################################
+# Book show page 
+###################################
+  friends_with_it_title: "Amigos con él"
+  friend_with_it_empty_legend: "Parece que ninguno de tus amigos tiene este libro en sus estanterías. Puedes recomendar este libro a tus amigos usando el botón de abajo."
+#######################################
 # Recommend window modal
 ###################################
   recommend_title: "Recomienda este libro a tus amigos"

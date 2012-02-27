@@ -75,6 +75,11 @@ en:
   big_next: "To your Next Bookshelf"
   big_recommend: "Recommend it to a friend"
 #######################################
+# Book show page 
+###################################
+  friends_with_it_title: "Friends with it"
+  friend_with_it_empty_legend: "It look likes nobody of your friends have this book in their bookshelves. You can recommend this book to your friends using the button below."
+#######################################
 # Recommend window modal
 ###################################
   recommend_title: "Recommend this book to your friends"
@@ -91,4 +96,4 @@ en:
 #bookshelves
   read_and_reading: "In this bookshelf you can see the last updates in the Bookcases of your friends."
 # Book show and book item legends
-  read_and_reading_empty_legend: "It look likes novoby of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
+  read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
