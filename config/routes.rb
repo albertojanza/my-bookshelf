@@ -32,6 +32,9 @@ MyBookshelf::Application.routes.draw do
   get 'welcome/timeline' => 'welcome#timeline', :as => :timeline
   post 'canvas' => 'welcome#canvas', :as => :canvas
 
+
+  get 'welcome/privacy' => 'welcome#privacy', :as => :privacy
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
