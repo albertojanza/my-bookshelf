@@ -9,7 +9,7 @@
   <div class="info-container">
     <div class="info">
       <div class="title"><%= link_to("<div>#{truncate(search_book_item.raw.ItemAttributes.Title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_asin_path(:asin => search_book_item.raw.ASIN)) %></div>
-      <div class="author"><%= truncate("by #{by_authors(search_book_item.raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') %></div>
+      <div class="author"><%= truncate("by #{by_authors(search_book_item.raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') if search_book_item.raw.ItemAttributes.Author%></div>
       <div class="experiences">
 
           <% if @book_list[search_book_item.raw.ASIN] %>

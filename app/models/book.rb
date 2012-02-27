@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
   has_many :reviews
 
   validates :title, :presence => true
-  validates :author, :presence => true
+  #validates :author, :presence => true there are books without author
   validates :asin, :presence => true
 
 #  after_create :create_adventure
