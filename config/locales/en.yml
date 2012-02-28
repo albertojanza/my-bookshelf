@@ -81,6 +81,8 @@ en:
   friend_with_it_empty_legend: "It look likes nobody of your friends have this book in their bookshelves. You can recommend this book to your friends using the button below."
   friends_review_title: "Reviews from your friends"
   friends_review_empty_legend: "It look likes nobofy of your friends have writen any review"
+  other_review_title: "Reviews "
+  other_review_empty_legend: "It look like there are no reviews for this book. Do you want to write one?"
 #######################################
 # Book search page
 ###################################

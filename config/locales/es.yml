@@ -80,6 +80,8 @@ es:
   friend_with_it_empty_legend: "Parece que ninguno de tus amigos tiene este libro en sus estanterías. Puedes recomendar este libro a tus amigos usando el botón de abajo."
   friends_review_title: "Testimonios de tus amigos"
   friends_review_empty_legend: "Parece que ninguno de tus amigos ha dejado su opinión."
+  other_review_title: "Testimonios"
+  other_review_empty_legend: "Parece que nadie ha escrito su opinión sobre este libro. Quieres dar la tuya?"
 #######################################
 # Book search page
 ###################################

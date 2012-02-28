@@ -12,11 +12,14 @@ class BooksController < ApplicationController
       @book = Book.find_by_permalink params[:id]
       #@friends_have_read_it = User.find_all_by_uid((@book.cache_people_have_read & current_user.friends)) if logged_in?
     end
+    @reviews = @book.reviews.order('updated_at DESC').includes(:user)
     if logged_in?
       friend_ids = current_user.friends.map {|friend|  friend['id']}
       readers = @book.cache_people_are_reading + @book.cache_people_have_read +  @book.cache_people_will_read + @book.cache_people_with_recommendations
       @friends_have_read_it = readers.select{ |user| friend_ids.include?(user[:uid])  }
       @experience = Experience.find_by_user_id_and_book_id(@current_user.id,@book.id)
+      @friends_reviews = @reviews.select{ |review| friend_ids.include?(review.user.uid) ||  review.user.uid.eql?(current_user.uid)}
+      @reviews = @reviews - @friends_reviews
     end
     #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end

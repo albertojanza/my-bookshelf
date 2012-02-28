@@ -18,12 +18,14 @@
     <%= link_to image_tag(@book.large_image,:width => 250), @book.detail_page_url %>
   </div>
   <div class="book-info">
+    <% if logged_in? %>
       <div class="friends">
         <%= render 'slider',:title => I18n.t('friends_with_it_title'),:empty_legend => I18n.t('friend_with_it_empty_legend'),:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
         <script type="text/javascript" >
           var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
         </script>    
       </div>
+    <% end %>
   </div>
 
   <div id="experience_<%= @book.id %>" class="experiences">
@@ -36,13 +38,28 @@
 </div>
 
   <div class="reviews">
-    <div class="section-title">
-      <h2> <%= I18n.t 'friends_review_title' %></h2>
-    </div>
-    <% if logged_in? %>
-      <div id="review_form">
-        <%= render :partial => '/reviews/form' %>
+    <% if logged_in? && !@friends_reviews.empty? %>
+      <div class="section-title">
+        <h2> <%= I18n.t 'friends_review_title' %></h2>
       </div>
+      <%= render :partial => 'reviews/review_item', :collection => @friends_reviews %>
+      <% if logged_in? %>
+        <div id="review_form">
+          <%= render :partial => '/reviews/form' %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if (!logged_in? || @friends_reviews.empty?) || !@reviews.empty? %>
+      <div class="section-title">
+        <h2> <%= I18n.t 'other_review_title' %></h2>
+      </div>
+      <%= render :partial => 'reviews/review_item', :collection => @reviews %>
+      <% if logged_in? && @friends_reviews.empty? %>
+        <div id="review_form">
+          <%= render :partial => '/reviews/form' %>
+        </div>
+      <% end %>
     <% end %>
 
 
@@ -71,7 +88,3 @@
 
 
 
-  <div style="margin-top:50px;">
-  <%= debug @book%>
-  
-  </div >

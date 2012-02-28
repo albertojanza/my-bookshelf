@@ -13,8 +13,8 @@
   <%= f.hidden_field(:book_id, :value => @book.id) %>
   <%= f.hidden_field(:user_id, :value => current_user.id) %>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label 'write a review' %><br />
+    <%= f.text_area :content, :size => "90x10" %>
   </div>
   <div class="actions">
     <%= f.submit %>
