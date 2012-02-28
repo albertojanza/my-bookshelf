@@ -11,11 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224190456) do
+ActiveRecord::Schema.define(:version => 20120226225103) do
 
   create_table "books", :force => true do |t|
     t.string   "asin"
-    t.integer  "experience_id"
     t.string   "permalink"
     t.string   "title"
     t.string   "author"
@@ -62,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120224190456) do
 
   add_index "experiences", ["book_id"], :name => "index_experiences_on_book_id"
   add_index "experiences", ["recommender_id"], :name => "index_experiences_on_recommender_id"
+  add_index "experiences", ["user_id", "book_id"], :name => "index_experiences_on_user_id_and_book_id"
   add_index "experiences", ["user_id", "code"], :name => "index_experiences_on_user_id_and_code"
 
   create_table "reviews", :force => true do |t|
@@ -72,10 +72,11 @@ ActiveRecord::Schema.define(:version => 20120224190456) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "reviews", ["book_id"], :name => "index_reviews_on_book_id"
+
   create_table "users", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
-    t.integer  "user_id"
     t.integer  "read_count",     :default => 0
     t.integer  "reading_count",  :default => 0
     t.integer  "influence_rate", :default => 0
