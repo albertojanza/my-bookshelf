@@ -182,11 +182,12 @@ h2:hover,.slider h2:hover {color:#333333;}
 
 .bottom_sidebar_shadow{ background:url('bottom_sidebar_shadow.png'); height:48px; width:11px;}
 .top_sidebar_shadow{ background:url('top_sidebar_shadow.png'); height:48px; width:11px;}
-.sidebar_shadow{ background:url('sidebar_shadow.png') repeat-y;  padding-left:20px;}
-#main-content{width:718px;margin-right:240px;}
+.sidebar_shadow{ background:url('sidebar_shadow.png') repeat-y;  padding-left:20px;min-height:300px;position:relative;}
+.sidebar_shadow_container{margin-top:-30px;position:absolute;}
+#main-content{float:left;width:718px;margin-top:5px;}
 #main-header{}
 .title h1{margin:0 0 5px 0;font-size:25px; color:#333333; }
-#main-header .menu{height:20px;float:right;padding-right:20px;margin-bottom:5px; }
+#main-header .menu{height:20px;float:right;padding-right:20px; }
 #main-header .menu a{color:#2160BA;font-size: 15px;height:20px;float:right;text-decoration:none; }
 #main-header .menu a:hover{text-decoration:underline; } 
 #main-header .menu .separator{color:#2160BA;font-size: 14px; }

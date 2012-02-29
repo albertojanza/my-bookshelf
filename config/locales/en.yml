@@ -105,3 +105,7 @@ en:
   read_and_reading: "In this bookshelf you can see the last updates in the Bookcases of your friends."
 # Book show and book item legends
   read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
+#######################################
+# Sidebar and widgets
+###################################
+  similar_books: "Similar books"

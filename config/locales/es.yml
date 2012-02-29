@@ -104,3 +104,7 @@ es:
   read_and_reading: "En este estante puedes ver las últimas novedades en las estantetías de tus amigos."
 # Book show and book item legends
   read_and_reading_empty_legend: "Parece que tús amigos todavía no están usando libroshelf. Invítalos a que se unan a ti y fomenta la lectura de buenos libros entre ellos."
+#######################################
+# Sidebar and widgets
+###################################
+  similar_books: "Libros similares"

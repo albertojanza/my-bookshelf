@@ -64,7 +64,8 @@ class BooksController < ApplicationController
 
   def sidebar_similarities
     @book = Book.find_by_asin params[:asin]
-    render :partial => 'book_item_similarity', :collection => @book.similarities
+    @similarities = @book.similarities
+    render :partial => 'widget_similarities'
   end
 
 

@@ -1,4 +1,4 @@
-<div class="book-item book-item-small" >
+<div class="book-item book-item-small" style="margin-left:15px;" >
   <% image = ( book_item_similarity[0].raw.ImageSets.ImageSet.class.eql?(Array) ? book_item_similarity[0].raw.ImageSets.ImageSet[0].TinyImage.URL : book_item_similarity[0].raw.ImageSets.ImageSet.TinyImage.URL) %>
 
 <% if book_item_similarity[0].raw.ImageSets && !book_item_similarity[0].raw.ImageSets.ImageSet.class.eql?(Array)# TODO study these cases%>
