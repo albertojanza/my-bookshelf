@@ -4,6 +4,22 @@
     - The user is logged_in and we want to show him friends that are reading it
 %>
 
+<% content_for :open_graph do %>
+  <meta property="og:title" content="<%= @book.title %>" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="<%= book_path @book%>" />
+  <meta property="og:image" content="<%= @book.tiny_image %>" />
+  <meta property="og:image:height" content="110" />
+
+  <% if @book.author %>
+    <meta property="og:description" content="Book writen by <%= @book.author%>" />
+  <% end %>
+  <meta property="og:determiner" content="blank" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:site_name" content="Libroshelf" />
+
+<% end %>
 
 <div  id="book_<%= @book.id %>"class="book">
   <div class="buy-it">
