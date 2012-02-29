@@ -78,23 +78,21 @@ background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 
 }
 
- #header .dropdown  {
-position:relative;
-}
 
-#header  .dropdown ul{ position:absolute;list-style: none; margin:0; padding:0; top:32px;
+#header  .dropdown ul{ position:absolute;list-style: none; margin:0; padding:0; top:42px; margin-left:-60px;
     box-shadow: 1 1px 1px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
     -webkit-box-shadow: 1 1px 1px rgba(0,0,0,0.5);
+    
 }
 
 #header .dropdown ul li a{
 text-decoration: none;
+color:white;
 }
 #header .dropdown ul li{
-color:black;
-background-color: #EAEAEA;
-width:80px;
+background-color: #2160BA;
+width:100px;
 padding: 2px;
 }
 #dropdown_image{

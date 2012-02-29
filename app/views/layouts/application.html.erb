@@ -30,7 +30,7 @@
           <% else %>
         <div class="right_float">
             <div  id="header_dropdown" class="dropdown hidden">
-            <ul class="menu">
+            <ul >
               <li><%= link_to "Logout", logout_path, :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '')  %></li>
               <li><%= link_to "My account", logout_path, :class => ((params[:controller].eql?('welcome') && params[:action].eql?('index')) ? 'selected' : '')  %></li>
             </ul>
@@ -39,9 +39,10 @@
             <div  id="dropdown_image">
               <%= link_to_function image_tag("http://graph.facebook.com/#{current_user.uid}/picture",:width => 25),  "$('#header_dropdown').toggle();", :class => "nav_link" %>
             </div>
-            <div  class="overlayer">
+<!--            <div  class="overlayer">
 &nbsp
             </div>
+-->
       
         </div>
             <ul class="menu right_float">
