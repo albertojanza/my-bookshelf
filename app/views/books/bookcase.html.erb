@@ -1,14 +1,14 @@
 <% content_for :mainheader do %>
 
   <%= render 'submenu_my_bookshelf' %>
+<div class="title">
+<h1><%= (logged_in? && @user.eql?(current_user)) ? I18n.t('my_bookcase') : I18n.t('his_bookcase', :name => @user.name.capitalize)%></h1>
+</div>
 
 <div class="cleaner"></div>
 
 <% end %>
 
-<div class="title">
-<h1><%= (logged_in? && @user.eql?(current_user)) ? I18n.t('my_bookcase') : I18n.t('his_bookcase', :name => @user.name.capitalize)%></h1>
-</div>
 
 
 <%= render 'slider',:title => title(3),:empty_legend => empty_legend(3), :path => shelf_path(:id => @user, :code => 3), :partial => 'book_item', :collection => @recommended_books,  :items_slide => 3,:slider_index => 0 %>

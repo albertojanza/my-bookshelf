@@ -3,12 +3,12 @@
 
   <%= render 'submenu_my_bookshelf' %>
 
-<div class="cleaner"></div>
-<% end %>
-
 <div class="title">
 <h1><%= title(0) %></h1>
 </div>
+<div class="cleaner"></div>
+<% end %>
+
 
 <div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">
           <%= render :partial => 'book_item', :collection => @books %>

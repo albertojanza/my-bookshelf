@@ -6,6 +6,4 @@
   <li><%= link_to I18n.t('reading_bookshelf'), shelf_path(:id => @user.id,:code => 0)  %></li>
               <li class="separator">|</li>
   <li><%= link_to I18n.t('read_bookshelf'), shelf_path(:id => @user.id,:code => 1)  %></li>
-              <li class="separator">|</li>
-  <li><%= link_to 'Bookcase', bookcase_path(:id => @user.id) %></li>
 </ul>

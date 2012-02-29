@@ -25,8 +25,8 @@ en:
 # My bookcase or his bookcase pages
 ###################################
 #page title
-  my_bookcase: "Your Bookcase at Libroshelf"
-  his_bookcase: "%{name}'s Bookcase at Libroshelf" 
+  my_bookcase: "Your Bookcase"
+  his_bookcase: "%{name}'s Bookcase" 
   friends_bookcase: "Last updates from your friends' Bookcases"
 #bookshelves, section titles
   his_read_bookshelf: "%{name}'s Read Bookshelf"
@@ -83,6 +83,7 @@ en:
   friends_review_empty_legend: "It look likes nobofy of your friends have writen any review"
   other_review_title: "Reviews "
   other_review_empty_legend: "It look like there are no reviews for this book. Do you want to write one?"
+  write_review: "Submit review"
 #######################################
 # Book search page
 ###################################

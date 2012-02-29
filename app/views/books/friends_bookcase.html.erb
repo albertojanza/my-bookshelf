@@ -2,14 +2,14 @@
 
   <%= render 'submenu_friends' %>
 
+<div class="title">
+<h1><%= I18n.t 'friends_bookcase'%></h1>
+</div>
 <div class="cleaner"></div>
 
 <% end %>
 
 
-<div class="title">
-<h1><%= I18n.t 'friends_bookcase'%></h1>
-</div>
 
 <%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => shelf_path(:id => @user, :code => 1),:partial => 'book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
 

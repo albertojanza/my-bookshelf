@@ -1,5 +1,5 @@
 <% @review = Review.new unless @review%>
-<%= form_for(@review,:remote => true) do |f| %>
+<%= form_for(@review,:remote => true,:id => :review_form) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -17,6 +17,6 @@
     <%= f.text_area :content, :size => "90x10" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+            <%= link_to_function I18n.t('write_review'), "$('#review_form').submit();",:class => "submit_button" %>
   </div>
 <% end %>

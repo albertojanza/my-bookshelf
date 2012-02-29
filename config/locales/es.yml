@@ -24,8 +24,8 @@ es:
 # My bookcase or his bookcase
 ###################################
 #page title
-  my_bookcase: "Tu Estantería en Libroshelf"
-  his_bookcase: "La Estantería de %{name} en Libroshelf"
+  my_bookcase: "Tu Estantería"
+  his_bookcase: "La Estantería de %{name}"
   friends_bookcase: "Novedades en las Estanterías de tus amigos"
 #bookshelves, section titles
   my_read_bookshelf: "Estante con libros que ya has leido"
@@ -82,6 +82,7 @@ es:
   friends_review_empty_legend: "Parece que ninguno de tus amigos ha dejado su opinión."
   other_review_title: "Testimonios"
   other_review_empty_legend: "Parece que nadie ha escrito su opinión sobre este libro. Quieres dar la tuya?"
+  write_review: "Enviar testimonio"
 #######################################
 # Book search page
 ###################################

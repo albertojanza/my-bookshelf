@@ -186,7 +186,7 @@ h2:hover,.slider h2:hover {color:#333333;}
 .sidebar_shadow_container{margin-top:-30px;position:absolute;}
 #main-content{float:left;width:718px;margin-top:5px;}
 #main-header{}
-.title h1{margin:0 0 5px 0;font-size:25px; color:#333333; }
+.title h1{margin:0 0 5px 0;font-size:23px; color:#333333; }
 #main-header .menu{height:20px;float:right;padding-right:20px; }
 #main-header .menu a{color:#2160BA;font-size: 15px;height:20px;float:right;text-decoration:none; }
 #main-header .menu a:hover{text-decoration:underline; } 
@@ -206,6 +206,15 @@ h2:hover,.slider h2:hover {color:#333333;}
 .user-widget .user-info{ margin-right:60px;}
 .user-widget .user-influencer{ float:right;width:60px;}
 .user-widget .user-influencer .count{ background-color:#2160BA; color:#ffffff;text-align:center;font-size:40px;padding:3px;box-shadow: 0 1px 0 #F1F1F1, 0 1px 1px #E0E0E0 ;border-radius: 2px;}
+
+
+
+/* Forms, submit buutons */
+.actions{margin: 5px 20px 0 0;}
+.actions a{float:right}
+a.submit_button{font-size:13px;background-color: #555555;color:#ffffff;font-weight:bold;text-decoration:none;padding:5px;border-radius: 3px;}
+a.submit_button:hover{background-color: #2160BA;color:white;}
+
 
 
 
