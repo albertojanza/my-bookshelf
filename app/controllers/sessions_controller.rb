@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  http_basic_authenticate_with :name => ENV['HTTP_USER'], :password => ENV['HTTP_PASSWORD']
+
   def facebook_callback
     # Remove me
     #http = Net::HTTP.new "graph.facebook.com", 443

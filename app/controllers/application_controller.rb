@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
 
-  http_basic_authenticate_with :name => ENV['HTTP_USER'], :password => ENV['HTTP_PASSWORD']
 
   def set_locale
 
