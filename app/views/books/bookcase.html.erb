@@ -28,9 +28,11 @@
   <div class="top_sidebar_shadow">
   </div>
 
-  <div class="sidebar_shadow" style="clear:both;">
-    <div style="padding:0 0px 5px 0;">
+  <div id="sidebar_shadow" class="sidebar_shadow" style="clear:both;">
+    <div id="sidebar_shadow_container" class="sidebar_shadow_container">
       <%= render 'widget_user' %>
+      <div id="book_similarities">
+      </div>
     </div>
   </div>
   <div class="bottom_sidebar_shadow">
@@ -38,3 +40,8 @@
 
 <% end %>
 
+          <% if @last_book %>
+              <script type="text/javascript" >
+                   $("#book_similarities").load("<%= book_similarities_path(:asin => @last_book.book.asin) %>"); 
+              </script>    
+          <% end %>

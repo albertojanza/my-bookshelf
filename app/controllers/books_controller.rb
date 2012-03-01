@@ -40,6 +40,7 @@ class BooksController < ApplicationController
     @friends = current_user.friends
     @reading = current_user.friends_reading
     @book_list = current_user.experiences_and_books_cache
+    @last_book = last_book([@reading])
   end
 
   def bookcase
@@ -49,6 +50,7 @@ class BooksController < ApplicationController
     @next_books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
     @recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
     @book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
+    @last_book = last_book([@recommended_books, @read_books, @next_books, @reading])
   end
 
   def shelf
@@ -58,6 +60,7 @@ class BooksController < ApplicationController
     else
       @books = @user.experiences.where('code = ?',params[:code]).order('updated_at DESC').includes(:book)
     end
+    @last_book = last_book([@books])
     @book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
 
   end
@@ -92,6 +95,16 @@ class BooksController < ApplicationController
   #  @books = @user.experiences.where('code = 3').includes(:book).includes(:recommender)
   #  render 'bookcase'
   #end
+private
+
+# Array with a list of bookshelves, the method returns the book in the last bookshelf that is not empty
+  def last_book(bookshelves)
+    book = nil
+    bookshelves.each do |bookshelf|
+      book = bookshelf.first unless bookshelf.empty?
+    end
+    book
+  end
   
 
 end
