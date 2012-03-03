@@ -20,6 +20,19 @@ class Experience < ActiveRecord::Base
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
+  after_save :facebook_action
+
+  def facebook_action
+    
+    http = Net::HTTP.new "graph.facebook.com", 443
+    request = Net::HTTP::Get.new  "https://graph.facebook.com/me/book:reading?book=#{Rails.application.routes.url_helpers.book_url(self.book,:host => 'libroshelf')}&access_token=#{self.user.token}" if code.eql?(1)
+    request = Net::HTTP::Get.new  "https://graph.facebook.com/me/book:read?book=#{Rails.application.routes.url_helpers.book_url(self.book,:host => 'libroshelf')}&access_token=#{self.user.token}" if code.eql?(0)
+    http.use_ssl = true
+    response = http.request request
+
+  end
+
+
 
   def remove_book_cache
     self.book.remove_cache_users_with_this_experience(self.code_was)

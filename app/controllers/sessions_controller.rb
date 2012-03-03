@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   def facebook_permission
     #redirect_to "https://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream" #&scope=offline_access%2Cread_stream"
 
-    render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream'</script>"
+    render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&scope=publish_actions'</script>"
   end
 
 
@@ -79,8 +79,8 @@ private
 
     end 
 
-      if I18n.available_locales.include? current_user.locale.scan(/^[a-z]{2}/).first.to_sym
-        I18n.locale =  current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+      if I18n.available_locales.include? user.locale.scan(/^[a-z]{2}/).first.to_sym
+        I18n.locale =  user.locale.scan(/^[a-z]{2}/).first.to_sym
       else
         I18n.locale =   I18n.default_locale
       end
