@@ -21,7 +21,7 @@ class Book < ActiveRecord::Base
   end
 
   def create_permalink
-    self.permalink = "#{self.title}-#{self.author}".parameterize
+    self.permalink = "#{self.title}-#{self.author}.html".parameterize
   end
 
 #  def create_adventure
