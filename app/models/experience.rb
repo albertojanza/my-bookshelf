@@ -25,9 +25,11 @@ class Experience < ActiveRecord::Base
   def facebook_action
     
     http = Net::HTTP.new "graph.facebook.com", 443
-    request = Net::HTTP::Get.new  "https://graph.facebook.com/me/book:reading?book=#{Rails.application.routes.url_helpers.book_url(self.book,:host => 'libroshelf')}&access_token=#{self.user.token}" if code.eql?(1)
-    request = Net::HTTP::Get.new  "https://graph.facebook.com/me/book:read?book=#{Rails.application.routes.url_helpers.book_url(self.book,:host => 'libroshelf')}&access_token=#{self.user.token}" if code.eql?(0)
     http.use_ssl = true
+    post =  "/me/libroshelf:reading?" if code.eql?(1)
+    post = "/me/libroshelf:read?" if code.eql?(0)
+    request = Net::HTTP::Post.new post
+    request.set_form_data({'method' => 'post', 'book' => Rails.application.routes.url_helpers.book_url(self.book,:host => 'localhost'),'access_token' => self.user.token})
     response = http.request request
 
   end

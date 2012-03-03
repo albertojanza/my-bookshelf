@@ -5,9 +5,18 @@
 %>
 
 <% content_for :open_graph do %>
+
+
+
+
+  <meta property="fb:app_id"      content="216683321695985" /> 
+
+
+
+
   <meta property="og:title" content="<%= @book.title %>" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="<%= book_path @book%>" />
+  <meta property="og:url" content="<%= book_url(@book, :host => 'libroshelf')%>" />
   <meta property="og:image" content="<%= @book.tiny_image %>" />
   <meta property="og:image:height" content="110" />
 
