@@ -1,24 +1,42 @@
 require 'active_record'
 require 'cgi'
 
+
+desc "This tasks shows test user"
+task :show_users => :environment do
+    http = Net::HTTP.new "graph.facebook.com", 443
+    http.use_ssl = true
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    app_token = CGI.parse(response.body)["access_token"][0]
+    # Asking for the users associated to this app. If there are no users we will create them
+    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
+    app_users = MultiJson.decode response.body
+    puts "Using these urls you can log in Facebook"
+    puts "Test users of the app #{ENV['FACEBOOK_KEY']}:"
+    app_users["data"].each do |user| 
+      puts "Test user id: #{user['id']}  login_url: #{user['login_url']}"
+    end
+
+end
+
 desc "This tasks grab the test users from other app"
 task :import_users => :environment do
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
 
     # Asking for the token of the app owner
-    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_OWNER_KEY']}&&client_secret=#{ENV['FACEBOOK_OWNER_SECRET']}&grant_type=client_credentials"))
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
     app_owner_token = CGI.parse(response.body)["access_token"][0]
 
     # Asking for the token of the app 
-    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['OTHER_FACEBOOK_KEY']}&&client_secret=#{ENV['OTHER_FACEBOOK_SECRET']}&grant_type=client_credentials"))
     app_token = CGI.parse(response.body)["access_token"][0]
 
-    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_OWNER_KEY']}/accounts/test-users?access_token=#{app_owner_token}"))
+    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_owner_token}"))
     app_users = MultiJson.decode response.body
 
     app_users["data"].each do |user|
-      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=read_stream&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
+      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['OTHER_FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=read_stream&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
       MultiJson.decode response.body
     end
 end
@@ -36,8 +54,8 @@ task :create_users => :environment do
     # Asking for the users associated to this app. If there are no users we will create them
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
     app_users = MultiJson.decode response.body
-    if app_users["data"].size < 9
-      (9 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
+    if app_users["data"].size < 20
+      (20 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
       response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
       app_users = MultiJson.decode response.body
     end
@@ -158,6 +176,7 @@ end
 
 desc "This tasks deletes every test facebook user associated with this app."
 task :delete_users => :environment do
+    other_app_keys = {'176942332409589' => '2eef538571773947889a8513cc564360','216683321695985' => '6214174b68718c5146a6ab2b74b042bf','272512669482455' => '5a096c006ad0a0139a8187abeaebe455'}
 
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -169,17 +188,90 @@ task :delete_users => :environment do
     # Asking for the users associated to this app. If there are no users we will create them
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
     app_users = MultiJson.decode response.body
-    if app_users["data"].size < 3
-      (3 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
-      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
-      app_users = MultiJson.decode response.body
+
+    puts "Removing test users of the app #{ENV['FACEBOOK_KEY']}:"
+    app_users['data'].each do |user| 
+      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{user['id']}?method=delete&access_token=#{app_token}"))
+      message = MultiJson.decode response.body
+      if message['error'] && message['error']['code'].eql?(2903)
+        response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?uid=#{user['id']}&method=delete&access_token=#{app_token}"))
+        puts "The user #{user['id']} was deleted from this app, but he still exists because it is associated to another app"
+      end
     end
-    puts "Using these urls you can log in Facebook"
-    app_users["data"].each do |user| 
-      puts "login_url: #{user['login_url']}"
+
+
+end
+
+
+desc "This task destroy a test user. To destroy an user, we have to remove it first for every app in which it is associated. We need the API keys of the apps."
+# Expeted parameter user_id
+# rake user_apps user_id=100003576790676 --trace
+task :destroy_user => :environment do
+    other_app_keys = {'176942332409589' => '2eef538571773947889a8513cc564360','216683321695985' => '6214174b68718c5146a6ab2b74b042bf','272512669482455' => '5a096c006ad0a0139a8187abeaebe455'}
+
+    user_id = ENV['user_id']
+
+    http = Net::HTTP.new "graph.facebook.com", 443
+    http.use_ssl = true
+
+    # Asking for the app token
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    app_token = CGI.parse(response.body)["access_token"][0]
+
+    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{user_id}?method=delete&access_token=#{app_token}"))
+    unless response.class.eql? Net::HTTPOK
+
+      message = MultiJson.decode response.body 
+      if message['error'] && message['error']['code'].eql?(2903)
+        response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{user_id}/ownerapps?access_token=#{app_token}"))
+        apps = MultiJson.decode response.body
+        apps['data'].each do |app| 
+          unless app['id'].eql?(ENV['FACEBOOK_KEY'])
+            if other_app_keys[app['id']]
+                puts "Removing the user  #{user_id} from the app #{app['id']}"
+                response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{app['id']}&&client_secret=#{other_app_keys[app['id']]}&grant_type=client_credentials"))
+                other_app_token = CGI.parse(response.body)["access_token"][0]
+                response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{app['id']}/accounts/test-users?uid=#{user_id}&method=delete&access_token=#{other_app_token}"))
+            else
+                puts "The user with the id #{user_id} is associated with other apps, to remove it"
+            end
+          end
+        end
+        response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{user_id}?method=delete&access_token=#{app_token}"))
+      end
+    end
+#"https://graph.facebook.com/APP_ID/accounts/test-users?uid=TEST_ACCOUNT_ID&access_token=APPLICATION_ACCESS_TOKEN&method=delete"
+#When only one app remains you can delete the test account using :
+#"https://graph.facebook.com/TEST_ACCOUNT_ID?method=delete&access_token=TEST_ACCOUNT_ACCESS_TOKEN"
+# THE one
+#response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/216683321695985/accounts/test-users?uid=100003576790676&method=delete&access_token=#{app_token}"))
+
+
+end
+
+
+
+
+
+desc "Apps associated to a test user"
+# Expeted parameter user_id
+# rake user_apps user_id=100003576790676 --trace
+task :user_apps => :environment do
+    http = Net::HTTP.new "graph.facebook.com", 443
+    http.use_ssl = true
+    
+    # Asking for the app token
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    app_token = CGI.parse(response.body)["access_token"][0]
+    response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['user_id']}/ownerapps?access_token=#{app_token}"))
+    apps = MultiJson.decode response.body
+    apps['data'].each do |app| 
+      puts "canvas_name: #{app['canvas_name']} app_id #{app['id']}"
     end
 
 end
+
+
 #ironmaiden_mnlkupo_ironmaiden@tfbnw.net
 #bunbury_ieacrok_bunbury@tfbnw.net
 #heroes_cuanicy_heroes@tfbnw.net
@@ -189,3 +281,5 @@ end
 # sober_pyebrnk_sober@tfbnw.net
 # seether_yksbvkq_seether@tfbnw.net
 #aerosmith_hmwyfrh_aerosmith@tfbnw.net
+
+# bunbury_fajgsrx_bunbury@tfbnw.net
