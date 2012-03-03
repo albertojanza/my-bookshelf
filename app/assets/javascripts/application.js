@@ -9,6 +9,18 @@
 //= require jquery-ui
 //= require_tree .
 
+function size(obj){
+
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+
+
+}
+
+
 function search_input(id_location)
 {
   var search_input =document.getElementById('book-search'); 
@@ -123,7 +135,8 @@ function recommend_read_friends(){
 }
 
 function add_friend_recommendation(uid){
-  if (recommendation_uid.size == 20)
+
+  if (size(recommendation_uid) == 20)
   {
   $('#recommendation_error_message').html('You can not send more than 20 recommendations at once.')
   $('#recommendation_error_message').show();
@@ -161,7 +174,7 @@ function remove_friend_recommendation(uid){
 
 function submit_recommendations()
 {
-  if (recommendation_uid.length == 0)
+  if (size(recommendation_uid)== 0)
   {
     //$('#recommendation_error_message').html('You haven\'t selected any friend.')
     $('#recommendation_error_message').show();

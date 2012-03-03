@@ -74,7 +74,7 @@ class ExperiencesController < ApplicationController
 
   def recommend
     @book = Book.find params[:id]
-    @experience = Experience.find(params[:id])
+    #@experience = Experience.find(params[:id])
     @friends = []
     @friends_with_experience = []
     uid_people_have_read = @book.cache_people_have_read.map{|user| user[:uid]}

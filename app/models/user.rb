@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
 
   #has_many :authentications
-  has_many :experiences 
-  has_many :reviews
+  has_many :experiences , :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   #has_many :adventures, :through => :experiences
   has_many :books, :through => :experiences
-  has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id'
+  has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id', :dependent => :destroy
 
   validates :uid, :uniqueness => true
   validate :communications

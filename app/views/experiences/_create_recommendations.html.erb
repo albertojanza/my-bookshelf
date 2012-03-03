@@ -52,5 +52,15 @@
   </div>
 
 <script type="text/javascript" >
-    var  recommendation_uid = new Array();
+  Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+  var  recommendation_uid = new Object();
+
+
 </script>    
