@@ -1,12 +1,6 @@
 
-<h2>Your virtual bookcase if formed by five shelfs </h2>
-  Recommended bookshelf: this shelf contains the books that your friends have recommended you<br>
-  Next bookshelf: in this shelf you can locate those books that you want to read in the future<br>
-  Reading bookshelf: This is the shelf that contains the book that you are reading <br>
-  Read bookshelf: This is the shelf your friends can find all the books that you have read<br>
-  Favorite bookshelf: This is the shelf where your friends can see what are your favorite books<br>
-
         <div class="white-box">
+          <h1>Libroshelf is a Virtual Bookshelf to share with friends</h1>
           <div id="login-message">
             <div class="title">
               Login
@@ -16,15 +10,21 @@
           </p>
           </div>
           <div id="welcome-message">
-          <h1>Welcome to MyeBookshelf </h1>
+          <p> Libroshelf is organized in four bookshelves </p>
+            <p>Recommended bookshelf: this shelf contains the books that your friends have recommended you</p>
+            <p> Reading bookshelf: This is the shelf that contains the book that you are reading </p>
+             <p> Read bookshelf: This is the shelf your friends can find all the books that you have read</p>
+             <p> Favorite bookshelf: This is the shelf where your friends can see what are your favorite books</p>
           <p>
             Are you a reader? try us. You will find out what your friends are reading or have read in the past. Share your readings.
           </p>
           </div>
         </div>
 
-<h2>Don't read alone anymore, share your readings  </h2>
-<h2>Don't be selfish, share your adventures with your friends </h2>
-<h2>looking for your next book? see what your friends are reading and their opinions </h2>
-<h2>See and create reviews, comment your friends reviews and much more</h2>
+      <div class="section-title">
+        <h2> <%=  'Last books that have entered in Libroshelf' %></h2>
+      </div>
+        <div>
+          <%= render :partial => '/books/book_item_small', :collection => Book.last(20) %>
+        </div>
 

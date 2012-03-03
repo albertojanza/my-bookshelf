@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
     unless logged_in?
       # TODO take a look at the landing layout, if it is not useful remove it
       #render :landing, :layout => 'landing'
-      render :landing #, :layout => 'landing'
+      render :landing, :layout => 'landing'
 
     end
 

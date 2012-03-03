@@ -5,25 +5,71 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield :open_graph %>
+
 </head>
 <body>
 
-<div class="wrapper">
-    <div id="header">
-header landing page
+
+<div id="fixed-header">
+  <div class="wrapper_with_wings">
+      <div id="header" class="wrapper">
+        <div id="logo" class="left_float" style="margin-top:5px">
+            <%= link_to image_tag('logo.png'), root_path %>
+        </div>
+
+        
+         <% unless logged_in? %> 
+        <div class="right_float">
+            <%= link_to "<div class=\"green-button3-small\">Join us through <div class=\"facebook-small-icon\"></div></div>".html_safe, facebook_permission_path, :class => 'link' %>
+        </div>
+          <% else %>
+            <ul class="menu right_float">
+              <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && !params[:action].eql?('friends_bookcase') ) ? 'selected' : '')  %></li>
+              <li class="separator">|</li>
+              <li><%= link_to I18n.t('friends_bookcase_option'), friends_bookcase_path(:id => current_user.id), :class => ((!current_user.eql?(@user) || params[:action].eql?('friends_bookcase'))   ? 'selected' : '') %></li>
+              <li class="separator">|</li>
+              <li><%= link_to I18n.t('my_account'), account_path, :class => (params[:controller].eql?('users') )  %></li>
+
+            </ul>
+          <% end %>
+
+        <div class="right_float">
+          <%= form_tag search_path  do  %>
+            <%= text_field_tag 'title',(params[:title] ? params[:title] : I18n.t('input_search_field')),  {:id => 'book-search', :autocomplete =>'off',:onclick => "search_input();"} %>
+          <% end %>
+
+
+        </div>
+
     </div>
-    <%= yield %>
-    <div id="footer">
-        <ul class="menu left_float">
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Learn more", root_path %></li>
-            <li><%= link_to "Contact", root_path %></li>
-        </ul>
-        <ul class="menu right_float">
+    </div>
+</div>
+<div id="main" class="wrapper_with_wings" >
+  <div class="wrapper">
+
+  <div id="main-header">
+      <%= yield :mainheader %>
+  </div>
+
+  <div >
+      <%= yield %>
+  </div>
+  </div>
+  <div class="cleaner">
+  </div>
+</div>
+
+  <div id="footer" class="wrapper_with_wings">
+    <div  class="wrapper">
+        <ul class="menu">
+            <li><%= link_to I18n.t("contact"), root_path %></li>
             <li><%= link_to "help", root_path %></li>
             <li><%= link_to "fake", fake_path %></li>
-            <li><%= link_to "privacy policy", root_path %></li>
-            <li><%= link_to "copyright info", root_path %></li>
+            <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>
+            <li><%= link_to I18n.t("terms_of_use") , root_path %></li>
+            <li><%= link_to 'logout', logout_path  %></li>
+            <li><%= link_to 'canvas', canvas_path, :method => :post  %></li>
         </ul>
 
     </div>
