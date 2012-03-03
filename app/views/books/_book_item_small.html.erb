@@ -1,5 +1,5 @@
 <div class="book-item book-item-small" >
-  <%= link_to image_tag((book_item_small.book.tiny_image ? book_item_small.book.tiny_image : 'book-item-default-image.png') ,:height=> '80'), book_item_small %>
+  <%= link_to image_tag((book_item_small.tiny_image ? book_item_small.tiny_image : 'book-item-default-image.png') ,:height=> '80'), book_item_small %>
   <div class="info-container">
     <div class="info">
       <div class="title"><%= link_to "<div>#{truncate(book_item_small.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item_small %></div>

@@ -14,6 +14,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :token
       t.string    :expires
       t.string    :locale
+      t.boolean   :fb_read_communication, :default => false
+      t.boolean   :fb_reading_communication, :default => true 
+      t.boolean   :fb_next_communication, :default => true
       t.timestamps
     end
 

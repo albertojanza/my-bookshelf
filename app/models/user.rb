@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   has_many :recommendations,  :class_name => 'Experience',:foreign_key  => 'recommender_id'
 
   validates :uid, :uniqueness => true
+  validate :communications
+
+  def communications
+    self.errors.add('communication',I18n.t('At least one communication is')) if (!self.fb_read_communication) && (!self.fb_next_communication) && (!self.fb_reading_communication)   
+
+  end
 
   def experiences_and_books_cache
     books = Rails.cache.fetch "user_book_list_#{self.id}"

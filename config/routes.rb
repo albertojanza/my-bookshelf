@@ -16,6 +16,9 @@ MyBookshelf::Application.routes.draw do
   #get "/bookcase/next_books" => 'books#bookcase_next_books', :as => 'next_books'
   #get "/bookcase/reading_books" => 'books#bookcase_reading_books', :as => 'reading_books'
 
+  get "/account" => 'users#account', :as => 'account'
+  post 'communication_form' => 'users#communication_form'
+
   resources :books
   get 'book_asin' => 'books#show', :as => :book_asin
   post 'books/search' => 'books#search', :as => :search

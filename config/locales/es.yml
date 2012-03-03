@@ -10,6 +10,8 @@ es:
 #Header menu options
   my_bookcase_option: "Mi Estantería"
   friends_bookcase_option: "Estanterías de amigos" 
+  my_account: "Tu cuenta" 
+# Search for books form
   input_search_field: "Buscador de libros"
 #Footer menu options
   terms_of_use: "Términos de Uso"
@@ -109,3 +111,20 @@ es:
 # Sidebar and widgets
 ###################################
   similar_books: "Libros similares"
+
+#######################################
+# User account 
+###################################
+#submenu options
+  settings: 'Settings'
+#title page
+  account_setting: 'Opciones de configuración'
+  facebook_communications: 'Comunicaciones en Facebook'
+# communications
+  read_book_communication: 'Publicar en Facebook cada libro que marcas como leído.'
+  reading_book_communication: 'Publicar en Facebook cada libro que marcas como actual lectura.'
+  next_book_communication: 'Publicar en Facebook cada libro que marcas como futura lectura.'
+# form_button
+  change_button: 'Cambiar'
+  message: 'Tus cambios han sido actualizados.'
+  communication_error_message: 'Al menos un canal de comunicación tiene que estar abierto.'

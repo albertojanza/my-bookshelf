@@ -213,7 +213,8 @@ h2:hover,.slider h2:hover {color:#333333;}
 a.submit_button{font-size:13px;background-color: #555555;color:#ffffff;font-weight:bold;text-decoration:none;padding:5px;border-radius: 3px;}
 a.submit_button:hover{background-color: #2160BA;color:white;}
 
-
+.error {font-size 14px; color:red;}
+.sucess{font-size 14px; color:#2160BA;}
 
 
 .white-box{
