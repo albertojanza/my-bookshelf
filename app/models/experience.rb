@@ -26,10 +26,15 @@ class Experience < ActiveRecord::Base
     
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
-    post =  "/me/libroshelf:reading?" if code.eql?(1)
-    post = "/me/libroshelf:read?" if code.eql?(0)
+    if   Rails.env.eql?('development')
+      post =  "/me/teachingandsurfing:reading?" if code.eql?(1)
+      post = "/me/teachingandsurfing:read?" if code.eql?(0)
+    else
+      post =  "/me/libroshelf:reading?" if code.eql?(1)
+      post = "/me/libroshelf:read?" if code.eql?(0)
+    end
     request = Net::HTTP::Post.new post
-    request.set_form_data({ 'book' => Rails.application.routes.url_helpers.book_url(self.book,:host => 'libroshelf.com'),'access_token' => self.user.token})
+    request.set_form_data({ 'book' => Rails.application.routes.url_helpers.book_url(self.book,:host => (Rails.env.eql?('development') ? 'localhost' : 'libroshelf.com')),'access_token' => self.user.token})
     response = http.request request
 
   end
