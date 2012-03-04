@@ -35,7 +35,8 @@ task :import_users => :environment do
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_owner_token}"))
     app_users = MultiJson.decode response.body
 
-    app_users["data"].each do |user|
+    # we rotate them to obtain them later in the same order
+    app_users["data"].rotate.each do |user|
       response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['OTHER_FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=read_stream&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
       MultiJson.decode response.body
     end
@@ -55,7 +56,7 @@ task :create_users => :environment do
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
     app_users = MultiJson.decode response.body
     if app_users["data"].size < 20
-      (20 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=read_stream&method=post&access_token=#{app_token}")) }
+      (20 - app_users["data"].size).times { http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?installed=true&name=messireads&permissions=publish_actions&method=post&access_token=#{app_token}")) }
       response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
       app_users = MultiJson.decode response.body
     end
@@ -68,7 +69,7 @@ end
 
 desc "This task changes the password of the facebook test users associated to this app"
 task :change_names => :environment do
-    names = ['ironmaiden','bunbury','heroes','helloween','acdc','celtascortos','sober','seether','aerosmith','elcantodeloco']
+    names = ['scorpions','aerosmith','ironmaiden','helloween','acdc','bon jovi','metallica','seether','sober', 'bunbury','la oreja de van gogh','celtascortos','elcantodeloco','losrodriguez','lospiratas','melendi','luzcasal','amistades peligrosas']
 
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -111,62 +112,28 @@ task :make_friends => :environment do
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_token}"))
     app_users = MultiJson.decode response.body
 
+    # scorpions is friend of every heavy and bunbury
+    app_users['data'][1..9].each_with_index do |user,i| 
+      request = Net::HTTP::Post.new "/#{user['id']}/friends/#{app_users['data'][0]['id']}"
+      request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
+      http.request(request)
+      request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{user['id']}"
+      request.set_form_data({'method' => 'post', 'access_token' => user['access_token']})
+      http.request(request)
+    end
 
-    # Ironmaiden is friend of heroes
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][2]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][2]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][2]['access_token']})
-     http.request(request)
+    # aeromisth is friend of every heavy and bunbury
+    app_users['data'][2..9].each_with_index do |user,i| 
+      request = Net::HTTP::Post.new "/#{user['id']}/friends/#{app_users['data'][1]['id']}"
+      request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][1]['access_token']})
+      http.request(request)
+      request = Net::HTTP::Post.new "/#{app_users['data'][1]['id']}/friends/#{user['id']}"
+      request.set_form_data({'method' => 'post', 'access_token' => user['access_token']})
+      http.request(request)
+    end
 
-    # Ironmaiden is friend of helloween
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][3]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][3]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][3]['access_token']})
-     http.request(request)
 
-    # Ironmaiden is friend of acdc
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][4]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][4]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][4]['access_token']})
-     http.request(request)
 
-    # Ironmaiden is friend of sober
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][6]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][6]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][6]['access_token']})
-     http.request(request)
-
-    # Ironmaiden is friend of seether
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][7]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][7]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][7]['access_token']})
-     http.request(request)
-
-    # Ironmaiden is friend of aerosmith
-    request = Net::HTTP::Post.new "/#{app_users['data'][0]['id']}/friends/#{app_users['data'][8]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][0]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][8]['id']}/friends/#{app_users['data'][0]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][8]['access_token']})
-     http.request(request)
-
-    # Bunbury is friend of heroes
-    request = Net::HTTP::Post.new "/#{app_users['data'][1]['id']}/friends/#{app_users['data'][2]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][1]['access_token']})
-    http.request(request)
-    request = Net::HTTP::Post.new "/#{app_users['data'][2]['id']}/friends/#{app_users['data'][1]['id']}"
-    request.set_form_data({'method' => 'post', 'access_token' => app_users['data'][2]['access_token']})
-    http.request(request)
 
 end
 
@@ -270,6 +237,31 @@ task :user_apps => :environment do
     end
 
 end
+
+
+#Test user id: 100003593065982 scorpions_acbbcko_scorpions@tfbnw.net
+#Test user id: 100003533216061 aerosmith_ddtzqmc_aerosmith@tfbnw.net
+#Test user id: 100003571136068 
+#Test user id: 100003568525827 
+#Test user id: 100003544705905 
+#Test user id: 100003605762907 
+#Test user id: 100003612872856 
+#Test user id: 100003577706094 
+#Test user id: 100003611102868 sober_onqyfsq_sober@tfbnw.net 
+#Test user id: 100003529976191  
+#Test user id: 100003618332848 bunbury_qukrucn_bunbury@tfbnw.net 
+#Test user id: 100003600212912  
+#Test user id: 100003646681574 
+#Test user id: 100003530845925 
+#Test user id: 100003569725802  
+#Test user id: 100003614912874 
+#Test user id: 100003543055764  
+#Test user id: 100003542425815  
+#Test user id: 100003569755950  
+#Test user id: 100003613982751
+
+
+
 
 
 #ironmaiden_mnlkupo_ironmaiden@tfbnw.net
