@@ -34,12 +34,12 @@
 
 
 // Book item
-.book-item{ margin:0 7px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3); //rgba(0,0,0,.2) 0 1px 2px;
-    width: 225px; height: 110px;float:left;}
+.book-item{ margin:0 10px 7px 0;padding:5px 2px 4px 4px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3); //rgba(0,0,0,.2) 0 1px 2px;
+    width: 230px; height: 110px;float:left;}
 .book-item-small{width: 165px; height: 80px;}
 //.book-item-search{width:335px}
 .book-item img{float:left; border:1px solid; color:#e7e7e7;}
-.book-item .info-container{padding-left:5px; word-wrap: break-word; display: table-cell; vertical-align: top;min-width:120px;}
+.book-item .info-container{padding-left:5px; word-wrap: break-word; display: table-cell; vertical-align: top;min-width:80px;}
 .book-item-small .info-container{min-width:70px;}
 .book-item .info{ height: 110px;position:relative;}
 
