@@ -108,6 +108,11 @@ en:
 # Book show and book item legends
   read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
 #######################################
+# Friends page
+###################################
+  my_friends_in: "Friends using Libroshelf" 
+  my_friends_out: "Friends without Libroshelf" 
+#######################################
 # Sidebar and widgets
 ###################################
   similar_books: "Similar books"

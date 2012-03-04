@@ -1,0 +1,26 @@
+<% content_for :mainheader do %>
+
+  <%= render 'submenu_friends' %>
+  <div class="title">
+    <h1>My friends</h1>
+  </div>
+
+<% end %>
+
+
+<div class="section-title">
+    <h2> <%= I18n.t 'my_friends_in' %></h2>
+</div>
+
+<%= render :partial => 'friend', :collection => @friends_in %>
+<div class="cleaner">
+</div>
+<div class="section-title">
+    <h2> <%= I18n.t 'my_friends_out' %></h2>
+</div>
+
+<div>
+<%= render :partial => 'friend_out', :collection => @friends_out %>
+
+</div>
+

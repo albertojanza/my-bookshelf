@@ -1,6 +1,6 @@
 class FacebookController < ApplicationController
 
-  def friends
+  def friend_list
     user = User.find params[:id]
     @friends = user.friends
     @friends_in = User.where(' token is not NULL').find_all_by_uid user.friends.map{|friend| friend['id']}
