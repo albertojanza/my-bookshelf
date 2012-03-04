@@ -5,6 +5,10 @@
 
 <script type="text/javascript" >
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
-      alert('recommend');
+
+jQuery("#modal-recommend").show();
+jQuery("#facebook-frame-container").show();
+document.getElementById('facebookframe').src = 'http://www.facebook.com/dialog/send?app_id=<%= ENV['FACEBOOK_KEY'] %>&display=iframe&to=<%= friend_out['id']%>&name=Libroshelf&link=http://www.libroshelf.com/&redirect_uri=http://www.libroshelf.com/response&access_token<%= current_user.token %>';
+
     });
 </script>    
