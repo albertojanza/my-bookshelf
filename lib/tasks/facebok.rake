@@ -35,9 +35,8 @@ task :import_users => :environment do
     response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['FACEBOOK_KEY']}/accounts/test-users?access_token=#{app_owner_token}"))
     app_users = MultiJson.decode response.body
 
-    # we rotate them to obtain them later in the same order
-    app_users["data"].rotate.each do |user|
-      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['OTHER_FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=read_stream&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
+    app_users["data"].each do |user|
+      response = http.request(Net::HTTP::Get.new("https://graph.facebook.com/#{ENV['OTHER_FACEBOOK_KEY']}/accounts/test-users?installed=true&permissions=publish_actions&uid=#{user['id']}&owner_access_token=#{app_owner_token}&access_token=#{app_token}&method=post"))
       MultiJson.decode response.body
     end
 end
@@ -262,16 +261,3 @@ end
 
 
 
-
-
-#ironmaiden_mnlkupo_ironmaiden@tfbnw.net
-#bunbury_ieacrok_bunbury@tfbnw.net
-#heroes_cuanicy_heroes@tfbnw.net
-#helloween_jmfqzgu_helloween@tfbnw.net
-# acdc_xhwduuf_acdc@tfbnw.net
-# celtascortos_sxexqkn_celtascortos@tfbnw.net
-# sober_pyebrnk_sober@tfbnw.net
-# seether_yksbvkq_seether@tfbnw.net
-#aerosmith_hmwyfrh_aerosmith@tfbnw.net
-
-# bunbury_fajgsrx_bunbury@tfbnw.net

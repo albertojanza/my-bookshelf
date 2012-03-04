@@ -111,6 +111,7 @@ require 'cgi'
 
   # The first user reads science_fiction
   science_fiction[0..(science_fiction.size - 2)].each do |book|
+   puts "AAAAAAAAAAAAAAAAAAAAAA             #{book}"
      Experience.create do |experience|
         experience.book_id = book.id
         experience.user_id = users[0].id
@@ -165,10 +166,12 @@ require 'cgi'
   end 
   #Everyone reads ingeneering books
   ingeneering.each do |book|
+    if book
      Experience.create do |experience|
         experience.book_id = book.id
         experience.user_id = users[0].id
       end
+    end
   end 
   ingeneering.each do |book|
      Experience.create do |experience|
