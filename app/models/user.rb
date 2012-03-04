@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
       my_friends[0..(my_friends.size - 2)].each do |friend|
         select << "uid = '#{friend['id']}' OR "
       end
-      select << "' uid = #{my_friends[my_friends.size - 1]['id']}')"
+      select << " uid = '#{my_friends[my_friends.size - 1]['id']}')"
     else
       " uid = '#{my_friend[my_friends.size - 1]['id']}')" 
     end
