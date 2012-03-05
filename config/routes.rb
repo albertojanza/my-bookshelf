@@ -24,6 +24,7 @@ MyBookshelf::Application.routes.draw do
   post 'books/search' => 'books#search', :as => :search
   get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities
 
+  get 'facebook_dialog' => 'facebook#send_dialog', :as => :facebook_dialog
   get 'friends' => 'facebook#friend_list', :as => :friends
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
   get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'
