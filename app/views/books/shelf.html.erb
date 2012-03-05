@@ -4,15 +4,22 @@
   <%= render 'submenu_my_bookshelf' %>
 
 <div class="title">
-<h1><%= title(0) %></h1>
+<h1><%= title(params[:code].to_i) %></h1>
 </div>
 <div class="cleaner"></div>
 <% end %>
 
 
-<div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">
+  <% unless @books.empty? %>
+      <div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">
           <%= render :partial => 'book_item', :collection => @books %>
-</div>
+      </div>
+
+  <% else %>
+    <div class="empty-legend" >
+      <%= empty_legend(params[:code].to_i).html_safe %>
+    </div> 
+  <% end %>
 
 <% content_for :sidebar do %>
 
