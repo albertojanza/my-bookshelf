@@ -137,3 +137,11 @@ es:
   change_button: 'Cambiar'
   message: 'Tus cambios han sido actualizados.'
   communication_error_message: 'Al menos un canal de comunicación tiene que estar abierto.'
+#######################################
+# User account 
+###################################
+  contact_us: 'Contacta con nosotros'
+  name: 'Nombre'
+  email: 'Email'
+  content: 'Contenido'
+  send: 'Enviar'

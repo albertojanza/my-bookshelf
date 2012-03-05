@@ -137,3 +137,12 @@ en:
   change_button: 'Change'
   message: 'Your changes have been updated.'
   communication_error_message: 'At least one communication has to be open.'
+
+#######################################
+# User account 
+###################################
+  contact_us: 'Contact us'
+  name: 'Name'
+  email: 'Email'
+  content: 'Content'
+  send: 'Send'

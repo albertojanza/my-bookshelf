@@ -1,5 +1,7 @@
 MyBookshelf::Application.routes.draw do
 
+  resources :contacts
+
   resources :comments
 
   resources :experiences
