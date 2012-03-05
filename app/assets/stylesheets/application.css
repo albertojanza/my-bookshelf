@@ -159,7 +159,7 @@ a.modal-close-icon:hover{color: #000000;}
 }
 
 /* slider*/
-
+.slider a{text-decoration:none;}
 h2, .slider h2{float:left;color:#8F8F8F;margin:0px;font-size:17px;margin-bottom:2px;margin-top:3px;padding-left:10px;}
 h2:hover,.slider h2:hover {color:#333333;}
 .section-title, .slider-title{border-bottom:2px solid #CCCCCC;margin-bottom:7px;height:25px;}

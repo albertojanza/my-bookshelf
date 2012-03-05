@@ -52,14 +52,14 @@ private
     response = http.request request
     user_data = MultiJson.decode response.body
 
-    user = User.find_by_provider_and_uid('facebook', user_data['id'])
+    user = User.find_by_uid( user_data['id'])
     if user && session[:user_id]  && user.id.eql?(session[:user_id])
       #token has expired
       user.update_attributes(:token => token, :expires => expires)
     elsif session[:user_id].nil?  && user
       # We have the user but his session has expired or he logged out previously
       session[:user_id] = user.id
-      user.update_attributes(:token => token, :expires => expires, :name => user_data['name'])
+      user.update_attributes(:token => token, :expires => expires, :name => user_data['name'], :locale => user_data['locale'])
     else # NEW USER
 
       user = User.create do |user|
