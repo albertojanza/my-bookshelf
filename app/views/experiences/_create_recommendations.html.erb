@@ -12,7 +12,7 @@
           </ul>
         <% else  %>
           <p> Some of those friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app.  </p>
-        <%= link_to "Send invitations through Facebook".html_safe, facebook_dialog_path(:uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
+        <%= link_to "Send invitations through Facebook".html_safe, facebook_dialog_path(:link => book_url(@book), :name => @book.title, :uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
         <% end %>
 
     </div>

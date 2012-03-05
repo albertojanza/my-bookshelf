@@ -10,7 +10,7 @@ class FacebookController < ApplicationController
   end
 
   def send_dialog
-    redirect_to "http://www.facebook.com/dialog/send?app_id=#{ENV['FACEBOOK_KEY']}&to=#{params[:uid]}&display=page&name=Libroshelf&link=http://www.libroshelf.com/&redirect_uri=http://localhost:3000/response"
+    redirect_to "http://www.facebook.com/dialog/send?app_id=#{ENV['FACEBOOK_KEY']}&to=#{params[:uid]}&display=page&name=#{params[:name]}&link=#{params[:link]}&redirect_uri=#{facebook_dialog_response_url}"
 
   end
 
