@@ -206,6 +206,21 @@ h2:hover,.slider h2:hover {color:#333333;}
 .user-widget .user-influencer .count{ background-color:#2160BA; color:#ffffff;text-align:center;font-size:40px;padding:3px;box-shadow: 0 1px 0 #F1F1F1, 0 1px 1px #E0E0E0 ;border-radius: 2px;}
 
 
+/* Guidelines */
+.guideline, .guideline-small{
+ background: -moz-linear-gradient(#FF9020, #FF6500) repeat scroll 0 0 transparent;
+background: -webkit-linear-gradient(#FF9020,#FF6500);
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9020',endColorstr='#FF6500')";
+  background: linear-gradient(#FF9020,#FF6500);
+box-shadow:  0 0px 1px 0px rgba(0, 0, 0, 0.3);
+  color:white;
+  font-size:18px;
+  padding:5px;
+  margin-bottom:10px;
+border-radius: 3px;
+}
+.guideline-small{font-size:15px;}
+.guideline a,.guideline-small a{text-decoration:none;color:white;font-size:18px;font-weight:bold;margin-right:5px;}
 
 /* Forms, submit buutons */
 .actions{margin: 5px 20px 0 0;}

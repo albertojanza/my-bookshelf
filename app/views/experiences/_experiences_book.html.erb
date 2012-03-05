@@ -71,6 +71,7 @@
           <h2><%= 'Sent this book to your Bookcase!!!' %></h2>
         </div>
       </div>
+      <% if logged_in? %>
             <ul class="menu" >
               <li>
                 <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@book.asin}').submit();" %>
@@ -100,6 +101,26 @@
               </li>
 
             </ul>
+
+
+      <% else %>
+        <div id="book-experience-guideline" class="guideline-small hidden">
+          <%= link_to_function "X", "jQuery('#book-experience-guideline').hide();", :class => 'right_float'%>
+          <%= I18n.t('gd_book_experience')%>
+        </div>
+            <ul class="menu" >
+              <li>
+                <%= link_to_function I18n.t('big_read'), "jQuery('#book-experience-guideline').show();" %>
+              </li>
+              <li>
+                <%= link_to_function I18n.t('big_reading'), "jQuery('#book-experience-guideline').show();" %>
+              </li>
+              <li> 
+                <%= link_to_function I18n.t('big_next'), "jQuery('#book-experience-guideline').show();" %>
+              </li>
+
+            </ul>
+      <% end %>
     <% end %>
 
 

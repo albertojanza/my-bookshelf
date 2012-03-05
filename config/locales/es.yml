@@ -85,6 +85,8 @@ es:
   other_review_title: "Testimonios"
   other_review_empty_legend: "Parece que nadie ha escrito su opinión sobre este libro. Quieres dar la tuya?"
   write_review: "Enviar testimonio"
+  gd_book_not_logged_in_html: "Lógate para ver cual de tus amigos ha leído este libro. Usa en el botón verde.<br> Libroshelf es una estantería online, podrás compartir tus estanterías con las de tus amigos."
+  gd_book_experience: "Para añadir este libro a tu estantería necesitas estar logado. Usa el botón verde para logarte. "
 #######################################
 # Book search page
 ###################################

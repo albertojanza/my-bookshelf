@@ -5,21 +5,12 @@
 %>
 
 <% content_for :open_graph do %>
-
-
-
-
   <meta property="fb:app_id"      content="<%= ENV['FACEBOOK_KEY'] %>" /> 
-
-
-
-
   <meta property="og:title" content="<%= @book.title %>" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="<%= book_url(@book, :host => 'libroshelf.com')%>" />
   <meta property="og:image" content="<%= @book.tiny_image %>" />
   <meta property="og:image:height" content="110" />
-
   <% if @book.author %>
     <meta property="og:description" content="Book writen by <%= @book.author%>" />
   <% end %>
@@ -28,7 +19,12 @@
   <meta property="og:site_name" content="Libroshelf" />
 
 <% end %>
-
+<% unless logged_in? %>
+  <div id="book-guideline" class="guideline">
+    <%= link_to_function "X", "jQuery('#book-guideline').hide();", :class => 'right_float'%>
+    <%= I18n.t('gd_book_not_logged_in_html').html_safe %>
+  </div>
+<% end %>
 <div  id="book_<%= @book.id %>"class="book">
   <div class="buy-it">
     <%= link_to 'Buy it', @book.detail_page_url  %>

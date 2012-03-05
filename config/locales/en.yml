@@ -85,6 +85,8 @@ en:
   other_review_title: "Reviews "
   other_review_empty_legend: "It look like there are no reviews for this book. Do you want to write one?"
   write_review: "Submit review"
+  gd_book_not_logged_in_html: "Log in to see who of your friends has read this book. Click on the green button to log in.<br> Libroshelf is an online Bookshelf, where friends can recommend books."
+  gd_book_experience: "To add this book to your Bookcase you need to be logged in. Click on the green button to log in. "
 #######################################
 # Book search page
 ###################################
