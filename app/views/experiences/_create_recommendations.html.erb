@@ -11,46 +11,22 @@
               <li><%= link_to_function "Recommendations", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
           </ul>
         <% else  %>
-          <p> These friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app.  </p>
-          <ul class="menu">
-              <li ><%= link_to_function "Friends not using our app", "recommend_friends();", :class => 'selected',:id => 'link-recommend-friends'%></li>
-              <li><%= link_to_function "Recommendations", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
-          </ul>
+          <p> Some of those friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app.  </p>
+        <%= link_to "Send invitations through Facebook".html_safe, facebook_dialog_path(:uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
         <% end %>
 
     </div>
  </div>
-  <div  class="modal-recommend-friends-box">
 
-  <% unless @friends_out.empty? %>
-    <div id="recommend-friends" class="">
-      <%= render :partial => 'friend', :collection => @friends_out  %>
-    </div>
-    <div id="recommend-selected-friends" class="hidden">
-      <%= render :partial => 'friend', :collection => @friends_in  %>
-    </div>
-  <% else  %>
+  <% if @friends_out.empty? %>
+  <div  class="modal-recommend-friends-box">
     <div id="recommend-selected-friends" class="">
       <%= render :partial => 'friend', :collection => @friends_in  %>
     </div>
+ </div>
+  <% else  %>
 
   <% end %>
+<div class="cleaner">
+</div>
 
-
- </div>
-  <div class="recommend_form">
-    <%= form_tag(create_recommendations_path,:id => 'create_recommendations',:remote => true) do -%>
-        <%= hidden_field_tag :id, @book%>
-
-
-    <% end -%>
-
-
-        <%= link_to_function "Send invitations".html_safe, "submit_recommendations();",:class => 'submit'   %>
-      <div class="left_float">
-  </div>
-  </div>
-
-<script type="text/javascript" >
-    var  recommendation_uid = new Array();
-</script>    

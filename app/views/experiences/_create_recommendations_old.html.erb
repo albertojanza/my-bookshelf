@@ -1,0 +1,56 @@
+
+      <%= link_to_function "X", "jQuery('#modal-recommend').hide();", :class => 'modal-close-icon'%>
+
+  <div>
+    <%= render :partial => '/books/book_item_small', :object => @book %>
+    <div class="recommend-header"> 
+        <h2>The recommendations were created.</h2>
+        <% if @friends_out.empty? %>
+          <p> You will notice as your level <b>influencer</b> goes high when your friends read this book. </p>
+          <ul class="menu">
+              <li><%= link_to_function "Recommendations", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
+          </ul>
+        <% else  %>
+          <p> These friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app.  </p>
+          <ul class="menu">
+              <li ><%= link_to_function "Friends not using our app", "recommend_friends();", :class => 'selected',:id => 'link-recommend-friends'%></li>
+              <li><%= link_to_function "Recommendations", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
+          </ul>
+        <% end %>
+
+    </div>
+ </div>
+  <div  class="modal-recommend-friends-box">
+
+  <% unless @friends_out.empty? %>
+    <div id="recommend-friends" class="">
+      <%= render :partial => 'friend', :collection => @friends_out  %>
+    </div>
+    <div id="recommend-selected-friends" class="hidden">
+      <%= render :partial => 'friend', :collection => @friends_in  %>
+    </div>
+  <% else  %>
+    <div id="recommend-selected-friends" class="">
+      <%= render :partial => 'friend', :collection => @friends_in  %>
+    </div>
+
+  <% end %>
+
+
+ </div>
+  <div class="recommend_form">
+    <%= form_tag(create_recommendations_path,:id => 'create_recommendations',:remote => true) do -%>
+        <%= hidden_field_tag :id, @book%>
+
+
+    <% end -%>
+
+
+        <%= link_to_function "Send invitations".html_safe, "submit_recommendations();",:class => 'submit'   %>
+      <div class="left_float">
+  </div>
+  </div>
+
+<script type="text/javascript" >
+    var  recommendation_uid = new Array();
+</script>    
