@@ -15,7 +15,7 @@ class FacebookController < ApplicationController
 
   end
 
-  def responsee
+  def dialog_response
     redirect_to session[:return_to]
   end
 
