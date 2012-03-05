@@ -77,9 +77,9 @@ ActiveRecord::Schema.define(:version => 20120226225103) do
   create_table "users", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
-    t.integer  "read_count",               :default => 0
-    t.integer  "reading_count",            :default => 0
-    t.integer  "influence_rate",           :default => 0
+    t.integer  "read_count",                :default => 0
+    t.integer  "reading_count",             :default => 0
+    t.integer  "influence_rate",            :default => 0
     t.string   "link"
     t.string   "name"
     t.string   "username"
@@ -88,11 +88,12 @@ ActiveRecord::Schema.define(:version => 20120226225103) do
     t.string   "token"
     t.string   "expires"
     t.string   "locale"
-    t.boolean  "fb_read_communication",    :default => false
-    t.boolean  "fb_reading_communication", :default => true
-    t.boolean  "fb_next_communication",    :default => true
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.boolean  "fb_read_communication",     :default => false
+    t.boolean  "fb_reading_communication",  :default => true
+    t.boolean  "fb_next_communication",     :default => true
+    t.boolean  "libroshelf_communications", :default => true
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   add_index "users", ["uid"], :name => "index_users_on_uid"

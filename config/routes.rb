@@ -18,6 +18,7 @@ MyBookshelf::Application.routes.draw do
 
   get "/account" => 'users#account', :as => 'account'
   post 'communication_form' => 'users#communication_form'
+  post 'libroshelf_communication_form' => 'users#libroshelf_communication_form'
 
   resources :books
   get 'book_asin' => 'books#show', :as => :book_asin

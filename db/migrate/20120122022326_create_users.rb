@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean   :fb_read_communication, :default => false
       t.boolean   :fb_reading_communication, :default => true 
       t.boolean   :fb_next_communication, :default => true
+      t.boolean   :libroshelf_communications, :default => true
       t.timestamps
     end
 

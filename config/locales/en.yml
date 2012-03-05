@@ -127,7 +127,9 @@ en:
 #title page
   account_setting: 'Account settings'
   facebook_communications: 'Facebook communications'
+  libroshelf_communications: 'Communications between Libroshelf and you'
 # communications
+  libroshelf_communication: 'Emails with news about books.'
   read_book_communication: 'Post on Facebook every that you mark as read'
   reading_book_communication: 'Post on Facebook every that you mark as reading'
   next_book_communication: 'Post on Facebook every that you mark as next reading'

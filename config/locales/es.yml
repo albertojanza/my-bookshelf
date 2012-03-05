@@ -127,7 +127,9 @@ es:
 #title page
   account_setting: 'Opciones de configuración'
   facebook_communications: 'Comunicaciones en Facebook'
+  libroshelf_communications: 'Comunicaciones entre Libroshelf y tú'
 # communications
+  libroshelf_communication: 'Emails con novedades.'
   read_book_communication: 'Publicar en Facebook cada libro que marcas como leído.'
   reading_book_communication: 'Publicar en Facebook cada libro que marcas como actual lectura.'
   next_book_communication: 'Publicar en Facebook cada libro que marcas como futura lectura.'

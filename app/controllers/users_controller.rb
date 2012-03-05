@@ -16,4 +16,11 @@ class UsersController < ApplicationController
     render 'communication_settings'
   end
 
+  def libroshelf_communication_form
+    @user = current_user
+    @user.libroshelf_communications = ( params[:libroshelf_communications] ? true : false)
+    @user.save
+    @libroshelf_message = (@user.errors.any? ? I18n.t('communication_error_message') : I18n.t('message'))
+    render 'communication_settings'
+  end
 end

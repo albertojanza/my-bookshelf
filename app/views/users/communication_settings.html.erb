@@ -1,44 +1,59 @@
-
 <% content_for :mainheader do %>
 
   <%= render 'submenu_account' %>
-<div class="title">
-<h1><%= I18n.t('account_setting')%></h1>
-</div>
-
-<div class="cleaner"></div>
+  <div class="title">
+    <h1><%= I18n.t('account_setting')%></h1>
+  </div>
+  <div class="cleaner"></div>
 
 <% end %>
 
-      <div class="section-title">
-        <h2> <%= I18n.t 'facebook_communications' %></h2>
-      </div>
+<div class="section-title">
+  <h2> <%= I18n.t 'facebook_communications' %></h2>
+</div>
 
 <div id="communication_form">
   <%= form_tag('/communication_form', :id => 'my_communication_form') do -%>
-
-
-  <% if @message && @user.errors.any? %>
-    <div class="error">
-      <%= I18n.t 'communication_error_message' %>
-      </ul>
-    </div>
+    <% if @message && @user.errors.any? %>
+      <div class="error">
+        <%= I18n.t 'communication_error_message' %>
+      </div>
     <% elsif @message %>
-    <div class="sucess">
-      <%= I18n.t 'message' %>
-    </div>
-  <% end %>
+      <div class="sucess">
+        <%= I18n.t 'message' %>
+      </div>
+    <% end %>
 
+    <p><%= check_box_tag 'read', 'yes', @user.fb_read_communication %> <%= I18n.t 'read_book_communication' %></p>
+    <p><%= check_box_tag 'reading', 'yes', @user.fb_reading_communication%> <%= I18n.t 'reading_book_communication' %></p>
+    <p><%= check_box_tag 'next', 'yes', @user.fb_next_communication%> <%= I18n.t 'next_book_communication' %></p>
 
-
-  <p><%= check_box_tag 'read', 'yes', @user.fb_read_communication %> <%= I18n.t 'read_book_communication' %></p>
-  <p><%= check_box_tag 'reading', 'yes', @user.fb_reading_communication%> <%= I18n.t 'reading_book_communication' %></p>
-  <p><%= check_box_tag 'next', 'yes', @user.fb_next_communication%> <%= I18n.t 'next_book_communication' %></p>
-
-  <div class="actions">
+    <div class="actions">
             <%= link_to_function I18n.t('change_button'), "$('#my_communication_form').submit();",:class => "submit_button" %>
-  </div>
+    </div>
 
 </div>
+
+<% end -%>
+
+<div class="section-title">
+  <h2> <%= I18n.t 'libroshelf_communications' %></h2>
+</div>
+
+<div id="libroshelf_communication_form">
+  <%= form_tag('/libroshelf_communication_form', :id => 'libroshelf_my_communication_form') do -%>
+    <% if @libroshelf_message  %>
+      <div class="sucess">
+        <%= I18n.t 'message' %>
+      </div>
+    <% end %>
+    <p><%= check_box_tag 'libroshelf_communications', 'yes', @user.libroshelf_communications %> <%= I18n.t 'libroshelf_communication' %></p>
+
+    <div class="actions">
+            <%= link_to_function I18n.t('change_button'), "$('#libroshelf_my_communication_form').submit();",:class => "submit_button" %>
+    </div>
+
+</div>
+
 <% end -%>
 
