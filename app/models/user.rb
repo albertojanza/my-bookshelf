@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     else
       " uid = '#{my_friend[my_friends.size - 1]['id']}')" 
     end
-    select << ' AND code = 1 '
+    select << ' AND (code = 1 || code = 0) '
 
     Experience.joins(:user).where(select).order('experiences.updated_at DESC').limit(100).includes(:book).includes(:user)
 

@@ -11,7 +11,7 @@
 
 
 
-<%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => shelf_path(:id => @user, :code => 1),:partial => 'book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
+<%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => 'book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
 
 <script type="text/javascript" >
     var sliders = [[0,<%= (@reading.size + 11) / 12 %>]];

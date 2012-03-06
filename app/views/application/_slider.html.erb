@@ -3,7 +3,11 @@
 <div class="slider"> 
   <div>
     <div class="slider-title">
-    <%= link_to "<h2>#{title}</h2>".html_safe, path, :class => 'link' %>
+    <% if path %>
+      <%= link_to "<h2>#{title}</h2>".html_safe, path, :class => 'link' %>
+    <% else %>
+      <%=  "<h2>#{title}</h2>".html_safe %>
+    <% end %>
   <% if items_slide < collection.size %>    
     <ul class="menu">
       <li><%= link_to "#{ I18n.t('slider_all')} - #{collection.size}", path, :class => 'link' %></li>
