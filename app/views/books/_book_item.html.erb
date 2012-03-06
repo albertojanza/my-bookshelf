@@ -52,7 +52,7 @@
           <% case book_item.code 
             when 0 %>
               <ul >
-                <li> <%= link_to "Your influence rate is 80", book_item.book %></li>
+                <li> <%# link_to "Your influence rate is 80", book_item.book %></li>
               </ul>
               <ul>
                 <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
