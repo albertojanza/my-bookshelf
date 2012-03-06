@@ -59,7 +59,7 @@ asdfsd
               <li class="separator">|</li>
               <li><%= link_to I18n.t('friends_bookcase_option'), friends_bookcase_path(:id => current_user.id), :class => ((!current_user.eql?(@user) || params[:action].eql?('friends_bookcase'))   ? 'selected' : '') %></li>
               <li class="separator">|</li>
-              <li><%= link_to I18n.t('my_account'), account_path, :class => (params[:controller].eql?('users') )  %></li>
+              <li><%= link_to "Logout", logout_path %></li>
 
             </ul>
           <% end %>
@@ -99,6 +99,7 @@ asdfsd
             <li><%= link_to I18n.t("contact"), new_contact_path %></li>
             <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>
             <li><%= link_to I18n.t("terms_of_use") , root_path %></li>
+            <li><%= link_to I18n.t('settings'), account_path  %></li>
         </ul>
 
     </div>

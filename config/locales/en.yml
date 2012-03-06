@@ -10,13 +10,14 @@ en:
 #Header menu options
   my_bookcase_option: "My Bookcase"
   friends_bookcase_option: "Friends' Bookcases" 
-  my_account: "Your account" 
 # Search for books form
   input_search_field: "Search for books"
 #Footer menu options
   terms_of_use: "Terms"
   privacy_policy: "Privacy"
   contact: "Contact"
+  my_account: "Your account" 
+  settings: "Settings"
 # Slider pagination links
   slider_all: "All" 
   slider_next: "Next" 
