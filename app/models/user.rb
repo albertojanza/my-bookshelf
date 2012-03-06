@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
       response = http.request request
       friends_data = MultiJson.decode(response.body)
       raise(User::TokenExpiration.new(self,friends_data['error']['message'])) if friends_data['error'] && friends_data['error']['type'].eql?('OAuthException')
-      Rails.cache.write "friend_#{self.id}", friends_data['data'] #(friends_data['data'].map! {|value| value['id']})
+      Rails.cache.write("friend_#{self.id}", friends_data['data'].sort {|friend,other| friend['name'] <=> other['name']}) #(friends_data['data'].map! {|value| value['id']})
       friends_data['data']
     else
       friends
