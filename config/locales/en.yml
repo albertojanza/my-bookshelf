@@ -24,6 +24,12 @@ en:
   slider_previous: "Previous" 
 
 #######################################
+# Landing page
+###################################
+  meta_desc_landing: "Libroshelf is a social sharing network for books, where you can organize your books in different bookshelves and share them with your friends. "
+  meta_key_landing: "Book, Books, Reading, Bookshelf, Read, Bookshelves, to read."
+
+#######################################
 # My bookcase or his bookcase pages
 ###################################
 #page title

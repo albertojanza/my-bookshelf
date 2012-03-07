@@ -9,6 +9,15 @@
 <div class="cleaner"></div>
 <% end %>
 
+<% content_for :page_title do %>
+  Libroshelf
+<% end %>
+<% content_for :meta_seo do %>
+  <meta name="description" content="Your bookcase" />
+  <meta name="keywords" content="  book, books, reading " />
+    
+<% end %>
+
 
   <% unless @books.empty? %>
       <div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">

@@ -24,6 +24,12 @@ es:
   slider_previous: "Anterior" 
 
 #######################################
+# Landing page
+###################################
+  meta_desc_landing: "Libroshelf es una red social para compartir libros, donde puedes organizar tus libros en estanterías y compártilos con tus amigos."
+  meta_key_landing: "Libro, Libros, Lectura, Lecturas, Leer, Leído, Leyendo, Para leer."
+
+#######################################
 # My bookcase or his bookcase
 ###################################
 #page title

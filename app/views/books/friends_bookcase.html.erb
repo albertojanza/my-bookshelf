@@ -9,6 +9,14 @@
 
 <% end %>
 
+<% content_for :page_title do %>
+  Libroshelf
+<% end %>
+<% content_for :meta_seo do %>
+  <meta name="description" content="Friend's bookcases" />
+  <meta name="keywords" content="  book, books, reading " />
+    
+<% end %>
 
 
 <%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => 'book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>

@@ -19,6 +19,20 @@
   <meta property="og:site_name" content="Libroshelf" />
 
 <% end %>
+
+<% content_for :page_title do %>
+  <%= "#{@book.title}" %> 
+    <%= " by #{ by_authors @book.author}" if @book.author %>
+<% end %>
+
+<% content_for :meta_seo do %>
+  <meta name="description" content="<%= "#{@book.title}" %><%= " by #{ by_authors @book.author}" if @book.author %> " />
+  <meta name="keywords" content=" <%= "#{@book.title}" %>,<%= " #{ by_authors @book.author}" if @book.author %>, book, books, reading " />
+    
+<% end %>
+
+
+
 <% unless logged_in? %>
   <div id="book-guideline" class="guideline">
     <%= link_to_function "X", "jQuery('#book-guideline').hide();", :class => 'right_float'%>

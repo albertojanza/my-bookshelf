@@ -3,11 +3,12 @@
 
  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# book: http://ogp.me/ns/book#">
 
-  <title>Libroshelf</title>
+  <title><%= yield :page_title%></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :open_graph %>
+  <%= yield :meta_seo%>
 
 <% if Rails.env.eql?('production') %>
 <script type="text/javascript">
