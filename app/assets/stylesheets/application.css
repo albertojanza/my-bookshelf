@@ -396,15 +396,16 @@ font-weight:bold;
     background-color:white;
     margin-left:5px;
 }
-
+.button-text{margin-right:30px;margin-top:10px;}
 .facebook-small-icon {
+    float:right;
     background-image: url("https://s-static.ak.facebook.com/rsrc.php/v1/yL/r/FGFbc80dUKj.png");
     background-position: 0 -188px;
-    display: inline-block;
     line-height: 22px;
     height: 22px;
     width: 22px;
     background-color:white;
     margin-left:5px;
+    margin-top:5px;
 }
 

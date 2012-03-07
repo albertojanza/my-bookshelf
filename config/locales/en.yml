@@ -22,12 +22,15 @@ en:
   slider_all: "All" 
   slider_next: "Next" 
   slider_previous: "Previous" 
+#login button
+  login_button: "Login with "
 
 #######################################
 # Landing page
 ###################################
   meta_desc_landing: "Libroshelf is a social sharing network for books, where you can organize your books in different bookshelves and share them with your friends. "
   meta_key_landing: "Book, Books, Reading, Bookshelf, Read, Bookshelves, to read."
+  landing_h1: "Libroshelf is a virtual bookshelf to share with friends"
 
 #######################################
 # My bookcase or his bookcase pages
