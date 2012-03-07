@@ -28,6 +28,7 @@
 <% content_for :meta_seo do %>
   <meta name="description" content="<%= "#{@book.title}" %><%= " by #{ by_authors @book.author}" if @book.author %> " />
   <meta name="keywords" content=" <%= "#{@book.title}" %>,<%= " #{ by_authors @book.author}" if @book.author %>, book, books, reading " />
+  <link rel="image_src" type="image/jpeg" href="<%= @book.tiny_image %>"/> 
     
 <% end %>
 
