@@ -31,6 +31,8 @@ es:
   meta_desc_landing: "Libroshelf es una red social para compartir libros, donde puedes organizar tus libros en estanterías y compártilos con tus amigos."
   meta_key_landing: "Libro, Libros, Lectura, Lecturas, Leer, Leído, Leyendo, Para leer."
   landing_h1: "Libroshelf es una estantería online para compartir con tus amigos."
+  welcome_message: "Te gusta leer? Pruébanos. Encontrarás todo lo que tus amigos están leyendo o han leído en el pasado. Comparte tus lecturas."
+  login_message: "A qué esperas? Usan el botón verde para empezar."
 
 #######################################
 # My bookcase or his bookcase

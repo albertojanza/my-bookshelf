@@ -5,25 +5,20 @@
 
         <div class="white-box">
           <h1><%= I18n.t 'landing_h1' %></h1>
-          <div id="login-message">
-            <div class="title">
-              Login
-            </div>
-          <p>
-            What are you waiting for? Click on the green button above to start.
-          </p>
-          </div>
+          <div>
           <div id="welcome-message">
-          <p>
-            Are you a reader? try us. You will find out what your friends are reading or have read in the past. Share your readings.
-          </p>
+              <%= I18n.t 'welcome_message'%>
+                      </div>
+          <div id="login-message">
+              <%= I18n.t 'login_message'%>
+          </div>
           </div>
           <div class="cleaner">
           </div>
         </div>
 
       <div class="section-title">
-        <h2> <%=  'Last books that have entered in Libroshelf' %></h2>
+        <h2> <%=  'The last books that have shared on Libroshelf' %></h2>
       </div>
         <div>
           <%= render :partial => '/books/book_item_small', :collection => Book.last(20) %>
