@@ -12,14 +12,21 @@ class WelcomeController < ApplicationController
 
     else 
 
-    @user = User.find_by_id(current_user.id) 
-    @read_books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
-    @reading = @user.experiences.where('code = 1').order('updated_at DESC').includes(:book)
-    @next_books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
-    @recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
-    @book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
-    @last_book = last_book([@recommended_books, @read_books, @next_books, @reading])
-    render 'books/bookcase'
+    @user = current_user
+    @friends = current_user.friends
+    @reading = current_user.friends_reading
+    @book_list = current_user.experiences_and_books_cache
+    @last_book = last_book([@reading])
+    render 'books/friends_bookcase'
+
+    #@user = User.find_by_id(current_user.id) 
+    #@read_books = @user.experiences.where('code = 0').order('updated_at DESC').includes(:book)
+    #@reading = @user.experiences.where('code = 1').order('updated_at DESC').includes(:book)
+    #@next_books = @user.experiences.where('code = 2').order('updated_at DESC').includes(:book)
+    #@recommended_books = @user.experiences.where('code = 3').order('updated_at DESC').includes(:book).includes(:recommender)
+    #@book_list = current_user.experiences_and_books_cache unless @user.eql? current_user
+    #@last_book = last_book([@recommended_books, @read_books, @next_books, @reading])
+    #render 'books/bookcase'
 
     end
 

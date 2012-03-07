@@ -40,7 +40,7 @@ en:
 #page title
   my_bookcase: "Your Bookcase"
   his_bookcase: "%{name}'s Bookcase" 
-  friends_bookcase: "Last updates from your friends' Bookcases"
+  friends_bookcase: "Friends' Bookcases"
 #bookshelves, section titles
   his_read_bookshelf: "%{name}'s Read Bookshelf"
   his_reading_bookshelf: "%{name}'s Reading Bookshelf"
@@ -118,7 +118,7 @@ en:
 # Friends bookcases 
 ###################################
 #bookshelves
-  read_and_reading: "In this bookshelf you can see the last updates in the Bookcases of your friends."
+  read_and_reading: "Last updates in the Bookcases of your friends."
 # Book show and book item legends
   read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
 #######################################

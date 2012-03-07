@@ -40,7 +40,7 @@ es:
 #page title
   my_bookcase: "Tu Estantería"
   his_bookcase: "La Estantería de %{name}"
-  friends_bookcase: "Novedades en las Estanterías de tus amigos"
+  friends_bookcase: "Estanterías de mis amigos"
 #bookshelves, section titles
   my_read_bookshelf: "Estante con libros que ya has leido"
   my_reading_bookshelf: "Estante con tus actuales libros"
@@ -118,7 +118,7 @@ es:
 # Friends bookcases 
 ###################################
 #bookshelves
-  read_and_reading: "En este estante puedes ver las últimas novedades en las estantetías de tus amigos."
+  read_and_reading: "Novedades en las estantetías de tus amigos."
 # Book show and book item legends
   read_and_reading_empty_legend: "Parece que tús amigos todavía no están usando libroshelf. Invítalos a que se unan a ti y fomenta la lectura de buenos libros entre ellos."
 #######################################
