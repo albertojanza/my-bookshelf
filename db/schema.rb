@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305230556) do
+ActiveRecord::Schema.define(:version => 20120307221747) do
 
   create_table "books", :force => true do |t|
     t.string   "asin"
@@ -62,9 +62,10 @@ ActiveRecord::Schema.define(:version => 20120305230556) do
     t.integer  "evangelist_id"
     t.integer  "influencer_id"
     t.integer  "book_id"
-    t.integer  "code",           :default => 0
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "code",               :default => 0
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "facebook_action_id"
   end
 
   add_index "experiences", ["book_id"], :name => "index_experiences_on_book_id"

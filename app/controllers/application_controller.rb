@@ -5,23 +5,15 @@ class ApplicationController < ActionController::Base
   rescue_from User::TokenExpiration, :with => :ouath_process
   protect_from_forgery
   before_filter :set_locale
-  before_filter :ensure_domain
-
 
 
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
-
-  def ensure_domain
-    if request.env['HTTP_HOST'] != 'libroshelf.com' && Rails.env.production? 
-      # HTTP 301 is a "permanent" redirect
-      redirect_to "http://libroshelf.com", :status => 301
-    end
-  end
 
 
 
   def set_locale
 
+    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     if !session[:locale].nil? 
       # User has a current session.
       I18n.locale = session[:locale]

@@ -20,10 +20,10 @@ class Experience < ActiveRecord::Base
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
-  after_save :facebook_action
+  before_save :facebook_action
 
   def facebook_action
-   if code.eql?(1) || code.eql?(0)
+   if code.eql?(0)
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
     if   Rails.env.eql?('development')
@@ -36,6 +36,9 @@ class Experience < ActiveRecord::Base
     request = Net::HTTP::Post.new post
     request.set_form_data({ 'book' => Rails.application.routes.url_helpers.book_url(self.book,:host => (Rails.env.eql?('development') ? 'localhost' : 'libroshelf.com')),'access_token' => self.user.token})
     response = http.request request
+    data = MultiJson.decode(response.body)
+    raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException')
+    self.facebook_action_id = response.body
     end
   end
 
