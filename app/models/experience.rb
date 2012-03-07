@@ -36,9 +36,9 @@ class Experience < ActiveRecord::Base
     request = Net::HTTP::Post.new post
     request.set_form_data({ 'book' => Rails.application.routes.url_helpers.book_url(self.book,:host => (Rails.env.eql?('development') ? 'localhost' : 'libroshelf.com')),'access_token' => self.user.token})
     response = http.request request
-    data = MultiJson.decode(response.body)
-    raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException')
-    self.facebook_action_id = response.body
+    #data = MultiJson.decode(response.body)
+    #raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException')
+    #self.facebook_action_id = response.body
     end
   end
 
