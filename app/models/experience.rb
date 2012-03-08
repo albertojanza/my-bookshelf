@@ -20,7 +20,7 @@ class Experience < ActiveRecord::Base
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
-  after_save :facebook_action
+  before_save :facebook_action
 
   def facebook_action
    if code.eql?(0)
