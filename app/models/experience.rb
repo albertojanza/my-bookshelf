@@ -40,7 +40,8 @@ class Experience < ActiveRecord::Base
     data = MultiJson.decode(response.body)
     raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException') && data['error']['code'].eql?(190)
     i=0
-    while (data['error'].eql?(3502) && (i <10))
+    while (data['error'].eql?(3502) && (i < 10)) do
+      puts "party"
       i = i + 1
       response = http.request request 
       data = MultiJson.decode(response.body)
