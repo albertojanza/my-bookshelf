@@ -39,8 +39,12 @@ class Experience < ActiveRecord::Base
     response = http.request request
     data = MultiJson.decode(response.body)
     raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException') && data['error']['code'].eql?(190)
-    self.facebook_action_id = data 
+    if data['error']
+      self.facebook_action_id = data
+    else
+      self.facebook_action_id = data['id']
     end
+  end
   end
 
 
