@@ -42,7 +42,7 @@ class Experience < ActiveRecord::Base
     response = http.request request if data['error']
     data = MultiJson.decode(response.body)
     if data['error']
-      self.facebook_action_id = data
+      self.facebook_action_id = data['error']['message']
     else
       self.facebook_action_id = data['id']
     end
