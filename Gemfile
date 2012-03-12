@@ -10,7 +10,7 @@ gem 'dalli'
 
 gem 'mysql2'
 
-gem 'pg' #HEROKU
+#gem 'pg' #HEROKU
 gem 'thin'
 
 
