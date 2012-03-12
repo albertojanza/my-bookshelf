@@ -6,7 +6,7 @@
 
 <script type="text/javascript" >
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
-top.location.href="<%= facebook_dialog_path(:uid => friend_out['id']) %>";
+top.location.href="<%= facebook_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
     });
 </script>    
 <!--script type="text/javascript" >
