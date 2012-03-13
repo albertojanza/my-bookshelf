@@ -175,7 +175,7 @@ h2:hover,.slider h2:hover {color:#333333;}
 
 
 /* MAIN CONTENT */
-#main{padding-top:45px;min-height:550px;background-color:#ffffff;padding-bottom:10px;}
+#main{padding-top:45px;min-height:550px;background-color:#ffffff;padding-bottom:80px;}
 #main-sidebar{overflow:hidden;float:right;width:215px;}
 
 .bottom_sidebar_shadow{ background:url('bottom_sidebar_shadow.png'); height:48px; width:11px;}
@@ -352,7 +352,7 @@ font-weight:bold;
     border-style: solid;
     border-width: 1px;
 
-    padding: 3px;
+    padding: 0 3px 3px 3px;
     margin-top:3px;
 
 }

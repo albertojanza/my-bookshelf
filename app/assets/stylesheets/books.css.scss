@@ -44,6 +44,7 @@
 .book-item .info{ height: 110px;position:relative;}
 
 .book-item .title a {text-decoration:none; }
+.book-item .title a:hover {text-decoration:underline;color:black; }
 .book-item .title a div{font-size:13px;color:black; line-height: 1.1;max-height: 47px;overflow: hidden; }
 .book-item-small .title a div{font-size:11px;}
 .book-item .author{font-size:11px;color:#8f8f8f;  line-height: 1.2;max-height: 14px;overflow: hidden; }
