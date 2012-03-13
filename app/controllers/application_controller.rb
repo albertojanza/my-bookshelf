@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   rescue_from User::TokenExpiration, :with => :ouath_process
+  rescue_from Exception, :with => :process_exception
   protect_from_forgery
   before_filter :set_locale
 
@@ -10,10 +11,14 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
 
+  def process_exception(exception)
+
+    ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, current_user).deliver
+  end
+
 
   def set_locale
 
-    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     if !session[:locale].nil? 
       # User has a current session.
       I18n.locale = session[:locale]
