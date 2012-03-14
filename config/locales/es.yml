@@ -10,6 +10,7 @@ es:
 #Header menu options
   my_bookcase_option: "Mi Estantería"
   friends_bookcase_option: "Estanterías de amigos" 
+  my_friends_option: "Mis amigos"
 # Search for books form
   input_search_field: "Buscador de libros"
 #Footer menu options
@@ -107,12 +108,16 @@ es:
 # Recommend window modal
 ###################################
   recommend_title: "Recomienda este libro a tus amigos"
+  created_recommend_title: "Tu recomendación fue enviada."
   recommend_explanation_html: "Si tus amigos leer tus recomendaciones eso significa que tu eres un buen <b>influencer</b>."
+  created_recommend_explanation_html: "Notarás como tu puntuación como <b>influencer</b> crece cuando tus amigos lean este libro."
   recommend_menu_friends: "Amigos"
   recommend_menu_selected: "Seleccionados"
   recommend_menu_who_read_it: "Amigos con este libro"
   recommend_submit_button: "Enviar recomendaciones"
   recommend_error: "Todavía no has seleccionado ningún amigo."
+  friends_not_using_message: "Algunos de tus amigos todavía no están usando Libroshelf. Invítalos a usar Libroshelf para que vean tu recomendación."
+  invite_your_friends: "Invita tus amigos"
 
 #######################################
 # Friends bookcases 
@@ -124,6 +129,7 @@ es:
 #######################################
 # Friends page
 ###################################
+  my_friends_title: "Mis Amigos"
   my_friends_in: "Amigos con Libroshelf" 
   my_friends_out: "Amigos sin Libroshelf" 
 #######################################

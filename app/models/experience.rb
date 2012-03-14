@@ -23,6 +23,7 @@ class Experience < ActiveRecord::Base
   before_save :facebook_action
 
   def facebook_action
+  unless Rails.env.eql?('development')
    if code.eql?(0)
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -52,6 +53,7 @@ class Experience < ActiveRecord::Base
     else
       self.facebook_action_id = data['id']
     end
+  end
   end
   end
 

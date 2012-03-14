@@ -18,14 +18,14 @@
           <% else %>
             <div class="cleaner" ></div>
             <ul id="experience_options_<%= book_item.book.asin %>">
-              <li>
-                <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_0_form_#{book_item.book.asin}",:remote => true) do -%>
+              <li> 
+
+                <%= link_to_function I18n.t('next'), "$('#experience_2_form_#{book_item.book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_2_form_#{book_item.book.asin}",:remote => true) do -%>
                   <%= hidden_field_tag :asin, book_item.book.asin%>
-                  <%= hidden_field_tag(:code, 0) %>
+                  <%= hidden_field_tag(:code, 2) %>
                 <% end -%>
               </li>
-
               <li class="separator">|</li>
               <li>
                 <%= link_to_function I18n.t('reading'), "$('#experience_1_form_#{book_item.book.asin}').submit();" %>
@@ -36,14 +36,14 @@
 
               </li>
               <li class="separator">|</li>
-              <li> 
-
-                <%= link_to_function I18n.t('next'), "$('#experience_2_form_#{book_item.book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_2_form_#{book_item.book.asin}",:remote => true) do -%>
+              <li>
+                <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_0_form_#{book_item.book.asin}",:remote => true) do -%>
                   <%= hidden_field_tag :asin, book_item.book.asin%>
-                  <%= hidden_field_tag(:code, 2) %>
+                  <%= hidden_field_tag(:code, 0) %>
                 <% end -%>
               </li>
+
             </ul>
           <% end %>
 
@@ -80,16 +80,16 @@
               <div id="experience_options_<%= book_item.id%>">
               <ul >
                 <li>
-                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
-                  <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
-                    <%= f.hidden_field(:code, :value => 0) %>
+                  <%= link_to_function I18n.t('reading'), "$('#experience_1_form_#{book_item.id}').submit();" %>
+                  <%= form_for(book_item, :html => { :id => "experience_1_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 1) %>
                   <% end %>
                 </li>
                 <li class="separator">|</li>
                 <li>
-                  <%= link_to_function I18n.t('reading'), "$('#experience_1_form_#{book_item.id}').submit();" %>
-                  <%= form_for(book_item, :html => { :id => "experience_1_form_#{book_item.id}",:remote => true }) do |f| %>
-                    <%= f.hidden_field(:code, :value => 1) %>
+                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
+                  <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 0) %>
                   <% end %>
                 </li>
               </ul>
@@ -111,9 +111,9 @@
             </div>
               <ul >
                 <li>
-                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
-                  <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
-                    <%= f.hidden_field(:code, :value => 0) %>
+                  <%= link_to_function I18n.t('next'), "$('#experience_2_form_#{book_item.id}').submit();" %>
+                  <%= form_for(book_item, :html => { :id => "experience_2_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 2) %>
                   <% end %>
                 </li>
                 <li class="separator">|</li>
@@ -125,9 +125,9 @@
                 </li>
                 <li class="separator">|</li>
                 <li>
-                  <%= link_to_function I18n.t('next'), "$('#experience_2_form_#{book_item.id}').submit();" %>
-                  <%= form_for(book_item, :html => { :id => "experience_2_form_#{book_item.id}",:remote => true }) do |f| %>
-                    <%= f.hidden_field(:code, :value => 2) %>
+                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
+                  <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
+                    <%= f.hidden_field(:code, :value => 0) %>
                   <% end %>
                 </li>
               </ul>
