@@ -23,6 +23,7 @@ MyBookshelf::Application.routes.draw do
   post 'libroshelf_communication_form' => 'users#libroshelf_communication_form'
 
   resources :books
+  get 'book_show_friends' => 'books#show_friends', :as => :book_show_friends
   get 'book_asin' => 'books#show', :as => :book_asin
   post 'books/search' => 'books#search', :as => :search
   get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities

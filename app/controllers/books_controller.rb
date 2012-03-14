@@ -24,6 +24,24 @@ class BooksController < ApplicationController
     #@friends_have_read_it = ((@book.people_have_read & current_user.friends)) if logged_in?
   end
 
+  def show_friends
+    @book = Book.find params[:id]
+    @friends = []
+    @friends_with_experience = []
+    uid_people_have_read = @book.cache_people_have_read.map{|user| user[:uid]}
+    uid_people_are_reading = @book.cache_people_are_reading.map{|user| user[:uid]}
+    uid_people_will_read = @book.cache_people_will_read.map{|user| user[:uid]}
+    uid_people_with_recommendations = @book.cache_people_with_recommendations.map{|user| user[:uid]}
+    current_user.friends.each do |friend| 
+      if uid_people_have_read.include?(friend['id']) || uid_people_are_reading.include?(friend['id'])  || uid_people_will_read.include?(friend['id']) || uid_people_with_recommendations.include?(friend['id']) 
+        @friends_with_experience << friend
+      else
+        @friends << friend
+      end
+    end
+  end
+
+
   def search
     client = ASIN::Client.instance
     @books = client.search(:Keywords => params[:title], :SearchIndex => :Books,:ResponseGroup => [:Images,:ItemAttributes])

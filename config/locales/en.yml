@@ -79,6 +79,9 @@ en:
   in_your_reading_bookshelf: "In your Reading Bookshelf"
   in_your_next_bookshelf: "In your To-read Bookshelf"
   in_your_recommended_bookshelf: "In Recommended Bookshelf"
+  book_show_friends_link: "Friends"
+  book_show_friends_title: "Your friends"
+  book_show_friends_description: "These are friends of you that have this book in their bookcases."
 # Book show and book item experience legends
   reading: "Reading"
   read: "Read"
