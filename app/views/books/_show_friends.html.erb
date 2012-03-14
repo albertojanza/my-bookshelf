@@ -1,0 +1,19 @@
+
+      <%= link_to_function "X", "jQuery('#modal-recommend').hide();", :class => 'modal-close-icon'%>
+
+  <div>
+    <%= render :partial => '/books/book_item_small', :object => @book %>
+    <div class="recommend-header"> 
+        <h2> <%= I18n.t 'book_show_friends_title'%></h2>
+          <p> <%= I18n.t('book_show_friends_description').html_safe %> </p>
+
+    </div>
+ </div>
+  <div  class="modal-recommend-friends-box">
+
+  <div id="recommend-read-friends" >
+    <%= render :partial => '/experiences/friend', :collection => @friends_with_experience  %>
+  </div>
+
+
+ </div>
