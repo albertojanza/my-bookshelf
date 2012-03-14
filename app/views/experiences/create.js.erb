@@ -3,6 +3,6 @@
   $("#book_<%= @experience.book_id %>").effect("shake", { times:3 }, 300);
 
 <% else %>
-$("#experience_options_<%= @book.asin %>").html('<div class="confirm_message"><%= link_to confirm_message(@experience.code), shelf_path(:code => @experience.code) %></div>');
+$("#experience_options_<%= @book.asin %>").html('<div class="confirm_message"><%= link_to confirm_message(@experience.code), shelf_path(:code => @experience.code,:id => current_user.id) %></div>');
 $("#experience_<%= @book.asin %>").effect("shake", { times:3 }, 300);
 <% end %>

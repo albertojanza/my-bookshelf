@@ -14,7 +14,7 @@
       <div class="experiences">
 
           <% if @book_list && @book_list[search_book_item.raw.ASIN] %>
-            <div class="confirm_message"><%= confirm_message(@book_list[search_book_item.raw.ASIN][1]) %></div>
+            <div class="confirm_message"><%= link_to confirm_message(@book_list[search_book_item.raw.ASIN][1]), shelf_path(:id => current_user.id,:code => search_book_item.raw.ASIN[1]) %></div>
           <% elsif logged_in? %>
             <div class="cleaner" ></div>
             <ul id="experience_options_<%= search_book_item.raw.ASIN%>">
