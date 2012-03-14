@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def process_exception(exception)
 
-    ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, current_user).deliver
+    ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, current_user).deliver unless Rails.env.eql?('development')
   end
 
 
