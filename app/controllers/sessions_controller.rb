@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   def facebook_permission
     #redirect_to "https://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream" #&scope=offline_access%2Cread_stream"
 
-    render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&scope=publish_actions'</script>"
+    render :inline =>  "<script> top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&scope=publish_actions,email'</script>"
   end
 
 
@@ -59,7 +59,7 @@ private
     elsif session[:user_id].nil?  && user
       # We have the user but his session has expired or he logged out previously
       session[:user_id] = user.id
-      user.update_attributes(:token => token, :expires => expires, :name => user_data['name'], :locale => user_data['locale'])
+      user.update_attributes(:email => user_data['email'],:token => token, :expires => expires, :name => user_data['name'], :locale => user_data['locale'])
     else # NEW USER
 
       user = User.create do |user|
@@ -73,6 +73,7 @@ private
         user.locale = user_data['locale']
         user.token = token
         user.expires = expires
+        user.email = user_data['email']
       end
         session[:user_id] = user.id
 
