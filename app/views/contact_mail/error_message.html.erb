@@ -1,19 +1,19 @@
 <html>
   <head>
-    <title>Libroshelf </title>
+    <title>Libroshelf error</title>
   </head>
 <body style="font-family:Arial, Helvetica, Sans-Serif; font-size:9pt">
-User name:
+User:
 <p>
- <%= @name%>
+ <%= @user.id if @user%>
 </p>
-User email:
+Exception message:
 <p>
- <%= @email %>
+ <%= @message%>
 </p>
-Feedback:
+Backtrace:
 <p>
-<%= @message %>
+<%= @error %>
 </p>
 </body>
 </html>

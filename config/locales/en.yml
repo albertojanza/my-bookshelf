@@ -10,6 +10,7 @@ en:
 #Header menu options
   my_bookcase_option: "My Bookcase"
   friends_bookcase_option: "Friends' Bookcases" 
+  my_friends_option: "My Friends"
 # Search for books form
   input_search_field: "Search for books"
 #Footer menu options
@@ -46,47 +47,47 @@ en:
   his_reading_bookshelf: "%{name}'s Reading Bookshelf"
   his_recommended_bookshelf: "%{name}'s Recommended Bookshelf"
   his_favorite_bookshelf: "%{name}'s Favorite Bookshelf"
-  his_next_bookshelf: "%{name}'s Next Bookshelf"
+  his_next_bookshelf: "%{name}'s To-read Bookshelf"
   my_read_bookshelf: "Your Read Bookshelf"
   my_reading_bookshelf: "Your Reading Bookshelf"
   my_recommended_bookshelf: "Your Recommended Bookshelf"
   my_favorite_bookshelf: "Your Favorite Bookshelf"
-  my_next_bookshelf: "Your Next Bookshelf"
+  my_next_bookshelf: "Your To-read Bookshelf"
 #bookshelves, empty legends
-  his_empty_read_bookshelf_html: "<b>%{name}</b> hasn't put any book in his Read Bookshelf yet."
-  his_empty_reading_bookshelf_html: "It looks like <b>%{name}</b> is not reading any book recently.<br> If you have any good suggestion you can recommend a book to him.<br> You only have to click on the Recommend Button that appears in every book and choose the friends that you want to recommend to."
-  his_empty_recommended_bookshelf_html: "It looks like nobody has recommended books to <b>%{name}</b> recently. <br>If you want to recommend a good book that you have read, you can do it by clicking on Recommend button in a book from your bookcase or from a book search."
+  his_empty_read_bookshelf_html: "<b>%{name}</b> hasn't put any books in his Read Bookshelf yet."
+  his_empty_reading_bookshelf_html: "It looks like <b>%{name}</b> is not reading any books right now.<br> If you have a good suggestion, you can recommend a book to them.<br> You only have to click on the Recommend button that appears on every book and choose the friends that you want to recommend it to."
+  his_empty_recommended_bookshelf_html: "It looks like no one has recommended books to <b>%{name}</b> recently. <br>If you want to recommend a good book that you have read, you can do it by clicking on the Recommend button on a book from your bookcase or from a book search."
   his_empty_favorite_bookshelf_html: "<b>%{name}</b>'s Favorite Bookshelf"
-  his_empty_next_bookshelf_html: "<b>%{name}</b>'s Next Bookshelf is empty."
-  my_empty_read_bookshelf_html: "It look likes yoour Read Bookshelf is empty.<br> Your Read Bookshelf is where you can keep those books that you have read in the past. <br>Use the Book Search at the top of the page to finde those books that you have read and add them."
-  my_empty_reading_bookshelf_html: "Your Reading Bookshelf is empty. Aren't you reading any book?<br> This is the bookshelf where you keep those books that you are currently reading. <br>You can locate here the books than you are reading clicking on the Reading button on the book. You can search for books using the Search Book area at the top of this page."
-  my_empty_recommended_bookshelf_html: "It looks like there are not recommended books for you. In this bookshelf you will find recommendations from your friends."
+  his_empty_next_bookshelf_html: "<b>%{name}</b>'s To-read Bookshelf is empty."
+  my_empty_read_bookshelf_html: "It look likes your Read Bookshelf is empty.<br> Your Read Bookshelf is where you can keep the books that you have read in the past. <br>Use the Book Search Box at the top of the page to find the books that you have read and add them."
+  my_empty_reading_bookshelf_html: "Your Reading Bookshelf is empty. Aren't you reading any books?<br> This is the bookshelf where you keep the books that you are currently reading. <br>You can locate the books that you are reading by clicking on the Reading button on the book. You can search for books using the Book Search Box at the top of this page."
+  my_empty_recommended_bookshelf_html: "It looks like there aren't any recommended books for you. In this bookshelf, you will find recommendations from your friends."
   my_empty_favorite_bookshelf_html: "Your Favorite Bookshelf"
-  my_empty_next_bookshelf_html: "You can use this bookshelf to store those books that you want to read in the future. In this way you won't forget about them.<br> To move a book to this bookshelf you have to click on the Next button on a Book. </br>To search for a book you can use the Search Book form at the top of this page."
+  my_empty_next_bookshelf_html: "You can use this bookshelf to store the books that you want to read in the future. In this way you won't forget about them.<br> To move a book to this bookshelf you have to click on the Next button on a Book. </br>To search for a book you can use the Book Search Box at the top of this page."
 # submenu options
   read_bookshelf: "Read Bookshelf"
   reading_bookshelf: "Reading Bookshelf"
   recommended_bookshelf: "Recommended Bookshelf"
   favorite_bookshelf: "Favorite Bookshelf"
-  next_bookshelf: "Next Bookshelf"
+  next_bookshelf: "To-read Bookshelf"
 # Book show and book item legends
   in_your_read_bookshelf_big: "This book is in your Read Bookshelf"
   in_your_reading_bookshelf_big: "This book is in your Reading Bookshelf"
-  in_your_next_bookshelf_big: "This book is in your Next Bookshelf"
+  in_your_next_bookshelf_big: "This book is in your To-read Bookshelf"
   in_your_recommended_bookshelf_big: "This book is in your Recommended Bookshelf"
-  in_your_read_bookshelf: "In your Read Shelf"
-  in_your_reading_bookshelf: "In your Reading Shelf"
-  in_your_next_bookshelf: "In your Next Shelf"
-  in_your_recommended_bookshelf: "In Recommended Shelf"
+  in_your_read_bookshelf: "In your Read Bookshelf"
+  in_your_reading_bookshelf: "In your Reading Bookshelf"
+  in_your_next_bookshelf: "In your To-read Bookshelf"
+  in_your_recommended_bookshelf: "In Recommended Bookshelf"
 # Book show and book item experience legends
   reading: "Reading"
   read: "Read"
-  next: "Next"
+  next: "To-read"
   recommend: "Recommend"
-  big_reading: "To your Reading Bookshelf"
-  big_read: "To your Read Bookshelf"
-  big_next: "To your Next Bookshelf"
-  big_recommend: "Recommend it to a friend"
+  big_reading: "Move To your Reading Bookshelf"
+  big_read: "Move To your Read Bookshelf"
+  big_next: "Move To your To-read Bookshelf"
+  big_recommend: "Recommend it to a Friend"
 #######################################
 # Book show page 
 ###################################
@@ -107,25 +108,30 @@ en:
 # Recommend window modal
 ###################################
   recommend_title: "Recommend this book to your friends"
+  created_recommend_title: "Your recommendation was sent."
   recommend_explanation_html: "If your friends read this book then they trust you and you are a good <b>influencer</b>."
+  created_recommend_explanation_html: "You will notice as your level <b>influencer</b> goes high when your friends read this book."
   recommend_menu_friends: "Friends"
   recommend_menu_selected: "Selected"
   recommend_menu_who_read_it: "Friends with it"
   recommend_submit_button: "Send recommendations"
   recommend_error: "You haven\'t selected any friend."
+  friends_not_using_message: "Some of those friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app."
+  invite_your_friends: "Invite your Friends"
 
 #######################################
 # Friends bookcases 
 ###################################
 #bookshelves
-  read_and_reading: "Last updates in the Bookcases of your friends."
+  read_and_reading: "Latest updates in your Friends' Bookcases"
 # Book show and book item legends
   read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
 #######################################
 # Friends page
 ###################################
+  my_friends_title: "My Friends"
   my_friends_in: "Friends using Libroshelf" 
-  my_friends_out: "Friends without Libroshelf" 
+  my_friends_out: "Friends not using Libroshelf - Recommend Libroshelf to them" 
 #######################################
 # Sidebar and widgets
 ###################################

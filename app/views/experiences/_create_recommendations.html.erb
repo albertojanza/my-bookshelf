@@ -4,15 +4,15 @@
   <div>
     <%= render :partial => '/books/book_item_small', :object => @book %>
     <div class="recommend-header"> 
-        <h2>The recommendations were created.</h2>
+        <h2><%= I18n.t 'created_recommend_title' %></h2>
         <% if @friends_out.empty? %>
-          <p> You will notice as your level <b>influencer</b> goes high when your friends read this book. </p>
+          <p> <%= I18n.t 'created_recommend_explanation_html' %> </p>
           <ul class="menu">
               <li><%= link_to_function "Recommendations", "recommend_selected_friends();",:id => 'link-recommend-selected-friends'  %></li>
           </ul>
         <% else  %>
-          <p> Some of those friends are still not using Book. Send an invitation to our app and they will see your recommendations as soon as they start using our app.  </p>
-        <%= link_to "Send invitations through Facebook".html_safe, facebook_dialog_path(:link => book_url(@book), :name => @book.title, :uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
+          <p> <%= I18n.t 'friends_not_using_message' %>  </p>
+        <%= link_to I18n.t 'invite_your_friends' , facebook_dialog_path(:link => book_url(@book), :name => @book.title, :uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
         <% end %>
 
     </div>

@@ -65,7 +65,19 @@ class User < ActiveRecord::Base
     end
     select << ' AND (code = 1 OR code = 0) '
 
-    Experience.joins(:user).where(select).order('experiences.updated_at DESC').limit(100).includes(:book).includes(:user)
+    result = Experience.joins(:user).where(select).order('experiences.updated_at DESC').limit(100).includes(:book).includes(:user)
+    # This code sorts the experiences to give priority to those ones that belongs to different users.
+    # In essence to avoid that an only user fills the first page of updates
+    experiences = []
+    user_ids = []
+    result.each do |experience|
+      unless user_ids.include? experience.user_id 
+        user_ids << experience.user_id
+        experiences << experience
+      end
+    end
+    other = result - experiences
+    experiences = experiences + other
 
   end
 
