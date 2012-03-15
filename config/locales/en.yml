@@ -128,7 +128,7 @@ en:
 #bookshelves
   read_and_reading: "Latest updates in your Friends' Bookcases"
 # Book show and book item legends
-  read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good boosk."
+  read_and_reading_empty_legend: "It look likes nobody of your friends is using libroshelf. Invite them to start using it and promote together good books."
 #######################################
 # Friends page
 ###################################
