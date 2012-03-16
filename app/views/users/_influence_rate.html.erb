@@ -1,0 +1,18 @@
+
+      <%= link_to_function "X", "jQuery('#modal-recommend').hide();", :class => 'modal-close-icon'%>
+
+  <div>
+    <div class="influence-rate"> 
+        <h2> <%= "#{I18n.t('your_libroshelf_rate')}#{current_user.influence_rate}"%></h2>
+          <p> <%= I18n.t('libroshelf_rate_explanation').html_safe %> </p>
+
+    </div>
+
+ </div>
+  <div  class="modal-recommend-friends-box">
+
+  <div id="recommend-friends" class="">
+    <%= render :partial => '/application/widget_user', :collection => @friends_in %>
+  </div>
+  </div>
+
