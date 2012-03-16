@@ -18,6 +18,7 @@ MyBookshelf::Application.routes.draw do
   #get "/bookcase/next_books" => 'books#bookcase_next_books', :as => 'next_books'
   #get "/bookcase/reading_books" => 'books#bookcase_reading_books', :as => 'reading_books'
 
+  get "/libroshefl_rate" => 'users#influence_rate', :as => 'influence_rate'
   get "/account" => 'users#account', :as => 'account'
   post 'communication_form' => 'users#communication_form'
   post 'libroshelf_communication_form' => 'users#libroshelf_communication_form'

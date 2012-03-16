@@ -2,7 +2,7 @@
   <%= link_to image_tag(book_item.book.tiny_image ? book_item.book.tiny_image : 'book-item-default-image.png'), book_item.book %>
   <div class="info-container">
     <div class="info">
-      <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item.book %></div>
+      <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 40, :separator => ' ', :omission => '..')}</div>".html_safe, book_item.book %></div>
       <div class="author"><%= truncate("by #{by_authors(book_item.book.author)}", :length => 20,  :omission => '..')  if book_item.book.author %></div>
       <div class="experiences">
 

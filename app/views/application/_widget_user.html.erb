@@ -1,13 +1,14 @@
-<div id="user-widget-<%= @user.id %>" class="user-widget">
-      <div> <%= image_tag("http://graph.facebook.com/#{@user.uid}/picture",:width => 45  )%>
-      <div class="user-name"><%= @user.name %></div>
+<div id="user-widget-<%= widget_user.id %>" class="user-widget">
+      <div> <%= image_tag("http://graph.facebook.com/#{widget_user.uid}/picture",:width => 45  )%>
+      <div class="user-name"><%= widget_user.name %></div>
       </div>
-    <!--div class="user-influencer">
-      <div class="count" >24</div>
-    </div-->
+    <div class="user-influencer">
+      <div class="count" ><%= link_to widget_user.influence_rate, influence_rate_path,:remote =>true  %></div>
+    </div>
     <div class="user-info">
-      <div class="user-readings"><%= link_to "Reading #{@user.reading_count} books",shelf_path(:id => @user.id,:code => 1) %></div>
-      <div class="user-readings"><%= link_to "Read #{@user.read_count} books",shelf_path(:id => @user.id,:code => 0) %></div>
+      <div class="user-readings"><%= link_to "Reading #{widget_user.reading_count} books",shelf_path(:id => widget_user.id,:code => 1) %></div>
+      <div class="user-readings"><%= link_to "Read #{widget_user.read_count} books",shelf_path(:id => widget_user.id,:code => 0) %></div>
+      <div class="user-readings"><%= link_to 'Libroshelf Karma', influence_rate_path,:remote =>true %></div>
     </div>
 </div>
 

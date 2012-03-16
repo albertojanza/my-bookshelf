@@ -23,4 +23,11 @@ class UsersController < ApplicationController
     @libroshelf_message = (@user.errors.any? ? I18n.t('communication_error_message') : I18n.t('message'))
     render 'communication_settings'
   end
+
+  def  influence_rate
+    @friends = current_user.friends
+    @friends_in = User.find( :all, :conditions => ['uid  IN (?)', @friends.map { |friend| friend['id']}])
+    logger.info('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+ 
+  end
 end

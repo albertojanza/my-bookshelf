@@ -78,10 +78,10 @@ en:
   in_your_read_bookshelf: "In your Read Bookshelf"
   in_your_reading_bookshelf: "In your Reading Bookshelf"
   in_your_next_bookshelf: "In your To-read Bookshelf"
-  in_your_recommended_bookshelf: "In Recommended Bookshelf"
+  in_your_recommended_bookshelf: "In your Recommended Bookshelf"
   book_show_friends_link: "Friends"
   book_show_friends_title: "Your friends"
-  book_show_friends_description: "These are friends of you that have this book in their bookcases."
+  book_show_friends_description: "These are your friends that have this book in their bookcases."
 # Book show and book item experience legends
   reading: "Reading"
   read: "Read"
@@ -95,25 +95,28 @@ en:
 # Book show page 
 ###################################
   friends_with_it_title: "Friends with it"
-  friend_with_it_empty_legend: "It look likes nobody of your friends have this book in their bookshelves. You can recommend this book to your friends using the button below."
+  friend_with_it_empty_legend: "It looks like none of your friends have this book in their bookcase. You can recommend this book to your friends using the button below."
   friends_review_title: "Reviews from your friends"
-  friends_review_empty_legend: "It look likes nobofy of your friends have writen any review"
+  friends_review_empty_legend: "It looks like none of your friends have writen a review"
   other_review_title: "Reviews "
-  other_review_empty_legend: "It look like there are no reviews for this book. Do you want to write one?"
+  other_review_empty_legend: "It looks like there are no reviews for this book. Do you want to write one?"
   write_review: "Submit review"
   gd_book_not_logged_in_html: "Log in to see who of your friends has read this book. Click on the green button to log in.<br> Libroshelf is an online Bookshelf, where friends can recommend books."
   gd_book_experience: "To add this book to your Bookcase you need to be logged in. Click on the green button to log in. "
+  send_to_bookcase: "Send this book to your bookcase"
 #######################################
 # Book search page
 ###################################
-  search_emty_legend_html: "We coudn't find any books for this search. Please check that there is no typos in your search. <br>You can search by the name of an author or by the title of a book."
+  search_emty_legend_html: "We coudn't find any books for this search. Please check that there are no typos in your search. <br>You can search by the name of an author or by the title of a book."
 #######################################
 # Recommend window modal
 ###################################
+  your_libroshelf_rate: "Your Libroshelf Karma is"
+  libroshelf_rate_explanation: "Any time that a friend reads your recommendation your Karma will grow."
   recommend_title: "Recommend this book to your friends"
   created_recommend_title: "Your recommendation was sent."
-  recommend_explanation_html: "If your friends read this book then they trust you and you are a good <b>influencer</b>."
-  created_recommend_explanation_html: "You will notice as your level <b>influencer</b> goes high when your friends read this book."
+  recommend_explanation_html: "If your friends read this book then they trust you and you are a good reader and you will have a good<b>Libroshelf karma</b>."
+  created_recommend_explanation_html: "You will notice as your <b>Libroshelf Karma</b> goes high when your friends read this book."
   recommend_menu_friends: "Friends"
   recommend_menu_selected: "Selected"
   recommend_menu_who_read_it: "Friends with it"

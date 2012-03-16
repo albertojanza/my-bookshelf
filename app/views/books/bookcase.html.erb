@@ -38,7 +38,8 @@
 
   <div id="sidebar_shadow" class="sidebar_shadow" style="clear:both;">
     <div id="sidebar_shadow_container" class="sidebar_shadow_container">
-      <%= render 'widget_user' %>
+      <%= render :partial => '/application/widget_user',:object => @user %>
+      <div class="cleaner"></div>
       <div id="book_similarities">
       </div>
     </div>
