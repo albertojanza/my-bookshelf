@@ -18,8 +18,25 @@
           <% elsif logged_in? %>
             <div class="cleaner" ></div>
             <ul id="experience_options_<%= search_book_item.raw.ASIN%>">
+              <li> <%= link_to_function I18n.t('next'),  "$('#experience_2_form_#{search_book_item.raw.ASIN}').submit();" %>
+
+                <%= form_tag(experiences_path,:id => "experience_2_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
+                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
+                  <%= hidden_field_tag(:code,  2) %>
+                <% end -%>
+              </li>
+              <li class="separator">|</li>
               <li>
-                <%= link_to_function "Read", "$('#experience_0_form_#{search_book_item.raw.ASIN}').submit();" %>
+
+                <%= link_to_function I18n.t('reading'),  "$('#experience_1_form_#{search_book_item.raw.ASIN}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_1_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
+                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
+                  <%= hidden_field_tag(:code, 1) %>
+                <% end -%>
+              </li>
+              <li class="separator">|</li>
+              <li>
+                <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{search_book_item.raw.ASIN}').submit();" %>
 
                 <%= form_tag(experiences_path,:id => "experience_0_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
                   <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
@@ -28,23 +45,6 @@
 
               </li>
 
-              <li class="separator">|</li>
-              <li>
-
-                <%= link_to_function "Reading",  "$('#experience_1_form_#{search_book_item.raw.ASIN}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_1_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
-                  <%= hidden_field_tag(:code, 1) %>
-                <% end -%>
-              </li>
-              <li class="separator">|</li>
-              <li> <%= link_to_function "Next",  "$('#experience_2_form_#{search_book_item.raw.ASIN}').submit();" %>
-
-                <%= form_tag(experiences_path,:id => "experience_2_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
-                  <%= hidden_field_tag(:code,  2) %>
-                <% end -%>
-              </li>
             </ul>
           <% end %>
       </div>
