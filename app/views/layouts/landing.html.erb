@@ -31,6 +31,14 @@
 </head>
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=272512669482455";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="fixed-header">
   <div class="wrapper_with_wings">
@@ -69,15 +77,17 @@
 <div id="main" class="wrapper_with_wings" >
   <div class="wrapper">
 
-  <div id="main-header">
-      <%= yield :mainheader %>
-  </div>
+    <div id="main-header">
+        <%= yield :mainheader %>
+    </div>
 
-  <div >
-      <%= yield %>
-  </div>
-  </div>
-  <div class="cleaner">
+    <div >
+        <%= yield %>
+    </div>
+
+    <div class="cleaner">
+    </div>
+    <div class="fb-like" data-send="true" data-width="740" data-show-faces="true"></div>
   </div>
 </div>
 
