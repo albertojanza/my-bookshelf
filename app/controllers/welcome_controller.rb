@@ -40,7 +40,7 @@ class WelcomeController < ApplicationController
     #Facebook sends a parameter to the canvas url every time that they invoke this url. Two different cases
     # If the user has allowed access to the app then Facebook sends the user_id
     # If the user is a new user for the app, Facebook sends a little information about the user: country and language
-    if params[:signed_request]
+    if false # params[:signed_request]
       encoded_sig, payload = params[:signed_request].split('.')
       user_data =ActiveSupport::JSON.decode base64_url_decode(payload)
       if user_data['user_id']
@@ -52,6 +52,9 @@ class WelcomeController < ApplicationController
         render :text =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,publish_stream'</script>"
       end
     end
+
+      render :landing, :layout => 'landing'
+  
 
   end
 
