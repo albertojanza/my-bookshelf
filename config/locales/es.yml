@@ -79,7 +79,9 @@ es:
   in_your_reading_bookshelf: "Tu Estante de Actuales"
   in_your_next_bookshelf: "Tu Estante de próximos"
   in_your_recommended_bookshelf: "En tus Recomendados"
+  dicarded_message: "Recomendación descartada"
 # Book show and book item experience legends
+  discard: "Descartar"
   reading: "Leyendo"
   read: "Leído"
   next: "Próximo"

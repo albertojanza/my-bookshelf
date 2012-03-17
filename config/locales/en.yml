@@ -82,7 +82,9 @@ en:
   book_show_friends_link: "Friends"
   book_show_friends_title: "Your friends"
   book_show_friends_description: "These are your friends that have this book in their bookcases."
+  dicarded_message: "Recommendation discarded"
 # Book show and book item experience legends
+  discard: "Discard"
   reading: "Reading"
   read: "Read"
   next: "To-read"
