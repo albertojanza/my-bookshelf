@@ -1,36 +1,36 @@
 class ExperiencesController < ApplicationController
   # GET /experiences
   # GET /experiences.json
-  def index
-    @experiences = Experience.all
+  #def index
+  #  @experiences = Experience.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @experiences }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.json { render json: @experiences }
+  #  end
+  #end
 
   # GET /experiences/1
   # GET /experiences/1.json
-  def show
-    @experience = Experience.find(params[:id])
+  #def show
+  #  @experience = Experience.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @experience }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # show.html.erb
+  #    format.json { render json: @experience }
+  #  end
+  #end
 
   # GET /experiences/new
   # GET /experiences/new.json
-  def new
-    @experience = Experience.new
+  #def new
+  #  @experience = Experience.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @experience }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # new.html.erb
+  #    format.json { render json: @experience }
+  #  end
+  #end
 
   # GET /experiences/1/edit
   def edit
@@ -64,12 +64,8 @@ class ExperiencesController < ApplicationController
   # DELETE /experiences/1.json
   def destroy
     @experience = Experience.find(params[:id])
-    @experience.destroy
-
-    respond_to do |format|
-      format.html { redirect_to experiences_url }
-      format.json { head :ok }
-    end
+    @experience.destroy if @experience.user.eql? current_user
+    render :destroy
   end
 
   def recommend

@@ -38,6 +38,7 @@
 
               </li>
             </ul>
+            <div class="cleaner"></div>
             <ul >
               <li>
                 <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.book.asin}').submit();" %>
@@ -77,9 +78,9 @@
                 <li class="separator">|</li>
                 <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
               </ul>
+            <div class="cleaner"></div>
               <ul id="experience_options_<%= book_item.id%>">
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
-                </li>
               </ul>
               </div>
             <% when 2 %>
@@ -99,6 +100,7 @@
                   <% end %>
                 </li>
               </ul>
+            <div class="cleaner"></div>
               <ul id="experience_options_<%= book_item.id%>">
                 <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
                 <li class="separator">|</li>
@@ -128,12 +130,19 @@
                     <%= f.hidden_field(:code, :value => 1) %>
                   <% end %>
                 </li>
-                <li class="separator">|</li>
+              </ul>
+              <div class="cleaner"></div>
+              <ul>
                 <li>
                   <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{book_item.id}').submit();" %>
                   <%= form_for(book_item, :html => { :id => "experience_0_form_#{book_item.id}",:remote => true }) do |f| %>
                     <%= f.hidden_field(:code, :value => 0) %>
                   <% end %>
+                </li>
+
+                <li class="separator">|</li>
+                <li>
+                  <%= link_to I18n.t('discard'), experience_path(book_item),:method => 'delete',:remote => true %>
                 </li>
               </ul>
               </div>

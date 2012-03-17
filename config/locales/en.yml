@@ -82,7 +82,9 @@ en:
   book_show_friends_link: "Friends"
   book_show_friends_title: "Your friends"
   book_show_friends_description: "These are your friends that have this book in their bookcases."
+  dicarded_message: "Recommendation discarded"
 # Book show and book item experience legends
+  discard: "Discard"
   reading: "Reading"
   read: "Read"
   next: "To-read"
@@ -111,11 +113,11 @@ en:
 #######################################
 # Recommend window modal
 ###################################
-  your_libroshelf_rate: "Your Libroshelf Karma is"
+  your_libroshelf_rate: "Your Libroshelf Karma is "
   libroshelf_rate_explanation: "Any time that a friend reads your recommendation your Karma will grow."
   recommend_title: "Recommend this book to your friends"
   created_recommend_title: "Your recommendation was sent."
-  recommend_explanation_html: "If your friends read this book then they trust you and you are a good reader and you will have a good<b>Libroshelf karma</b>."
+  recommend_explanation_html: "If your friends read this book then they trust you and you are a good reader and you will have a good <b>Libroshelf Karma</b>."
   created_recommend_explanation_html: "You will notice as your <b>Libroshelf Karma</b> goes high when your friends read this book."
   recommend_menu_friends: "Friends"
   recommend_menu_selected: "Selected"
