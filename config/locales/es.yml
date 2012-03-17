@@ -113,12 +113,12 @@ es:
 #######################################
 # Recommend window modal
 ###################################
-  your_libroshelf_rate: "Tu Karma en Libroshelf es"
+  your_libroshelf_rate: "Tu Karma en Libroshelf es "
   libroshelf_rate_explanation: "Tu Karma crece cada vez que un amigo lee un libro que tú le has recomendado."
   recommend_title: "Recomienda este libro a tus amigos"
   created_recommend_title: "Tu recomendación fue enviada."
-  recommend_explanation_html: "Si tus amigos leer tus recomendaciones eso significa que eres un buen lector y tendrás un buen <b>karma en Libroshelf</b>."
-  created_recommend_explanation_html: "Notarás como tu <b>Karma en Libroshelf </b> crece cuando tus amigos lean este libro."
+  recommend_explanation_html: "<b>Un pequeño truco</b> que debes sabes es que tu <b>Karma en Libroshelf</b> crece cada vez que un amigo lee un libro que tu recomiendas."
+  created_recommend_explanation_html: "Notarás como tu <b>Karma en Libroshelf</b> crece cuando tus amigos lean este libro."
   recommend_menu_friends: "Amigos"
   recommend_menu_selected: "Seleccionados"
   recommend_menu_who_read_it: "Amigos con este libro"
