@@ -46,7 +46,7 @@
   </div>
   <div class="book-header">
     <h1><%= @book.title %> </h1>
-    <p class="authors"><%= " by #{ by_authors @book.author}" if @book.author%></p>
+    <p class="authors"><%= " #{I18n.t('by')} #{ by_authors @book.author}" if @book.author%></p>
   </div>
   
   <div class="book-image">

@@ -9,7 +9,7 @@
         <% case @experience.code 
           when 0%>
                 <li>
-                  <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
+                  <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @experience.book.id), :remote => true  %>
                 </li>
                 
           <% when 1 %>
@@ -21,7 +21,7 @@
               <% end %>
             </li>
             <li>
-                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
+                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @experience.book.id), :remote => true  %>
             </li>
           <% when 2 %>
             <li>
@@ -39,7 +39,7 @@
               <% end %>
             </li>
             <li>
-                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @book.id), :remote => true  %>
+                <%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @experience.book.id), :remote => true  %>
             </li>
           <% when 3 %>
             <li>
@@ -73,11 +73,12 @@
       </div>
       <% if logged_in? %>
             <ul class="menu" >
-              <li>
-                <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_0_form_#{@book.asin}",:remote => true) do -%>
+              <li> 
+
+                <%= link_to_function I18n.t('big_next'), "$('#experience_2_form_#{@book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_2_form_#{@book.asin}",:remote => true) do -%>
                   <%= hidden_field_tag :asin, @book.asin%>
-                  <%= hidden_field_tag(:code, 0) %>
+                  <%= hidden_field_tag(:code, 2) %>
                   <%= hidden_field_tag(:book_page, true) %>
                 <% end -%>
               </li>
@@ -90,12 +91,11 @@
                 <% end -%>
 
               </li>
-              <li> 
-
-                <%= link_to_function I18n.t('big_next'), "$('#experience_2_form_#{@book.asin}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_2_form_#{@book.asin}",:remote => true) do -%>
+              <li>
+                <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@book.asin}').submit();" %>
+                <%= form_tag(experiences_path,:id => "experience_0_form_#{@book.asin}",:remote => true) do -%>
                   <%= hidden_field_tag :asin, @book.asin%>
-                  <%= hidden_field_tag(:code, 2) %>
+                  <%= hidden_field_tag(:code, 0) %>
                   <%= hidden_field_tag(:book_page, true) %>
                 <% end -%>
               </li>
