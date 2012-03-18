@@ -42,7 +42,7 @@
 <% end %>
 <div  id="book_<%= @book.id %>"class="book">
   <div class="buy-it">
-    <%= link_to 'Buy it', @book.detail_page_url  %>
+    <%= link_to I18n.t('buy_it'), @book.detail_page_url  %>
   </div>
   <div class="book-header">
     <h1><%= @book.title %> </h1>
