@@ -111,6 +111,7 @@ es:
 # Book search page
 ###################################
   search_emty_legend_html: "No hemos podido encontrar ningún libro para la búsqueda que acabas de realizar. Por favor revisa tu búsqueda en busca de cualquier error. <br> Puedes buscar por nombre de autor o por título de libros."
+  search_title: "Resultados para "
 #######################################
 # Recommend window modal
 ###################################
