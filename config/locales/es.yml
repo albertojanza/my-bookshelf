@@ -11,6 +11,7 @@ es:
   my_bookcase_option: "Mi Estantería"
   friends_bookcase_option: "Estanterías de amigos" 
   my_friends_option: "Mis amigos"
+  logout: "Salir"
 # Search for books form
   input_search_field: "Buscador de libros"
 #Footer menu options
@@ -149,7 +150,6 @@ es:
 # User account 
 ###################################
 #submenu options
-  settings: 'Settings'
 #title page
   account_setting: 'Opciones de configuración'
   facebook_communications: 'Comunicaciones en Facebook'

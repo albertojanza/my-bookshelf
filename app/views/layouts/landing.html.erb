@@ -63,12 +63,13 @@
             </ul>
           <% end %>
 
-        <div class="right_float">
-          <%= form_tag search_path  do  %>
-            <%= text_field_tag 'title',(params[:title] ? params[:title] : I18n.t('input_search_field')),  {:id => 'book-search', :autocomplete =>'off',:onclick => "search_input();"} %>
+        <div class="book-search-box" style="margin-right:100px;">
+          <%= form_tag search_path, :id => 'book_search_box'  do  %>
+            <%= text_field_tag 'title',(params[:title] ? params[:title] : I18n.t('input_search_field')),  { :id => 'book-search',:autocomplete =>'off',:onclick => "search_input();"} %>
+            <button title="Search" onclick="$('book_search_box').submit();" type="submit">
+                <span class="hidden">Search</span>
+            </button>
           <% end %>
-
-
         </div>
 
     </div>
