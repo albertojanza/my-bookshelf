@@ -42,11 +42,11 @@
 <% end %>
 <div  id="book_<%= @book.id %>"class="book">
   <div class="buy-it">
-    <%= link_to 'Buy it', @book.detail_page_url  %>
+    <%= link_to I18n.t('buy_it'), @book.detail_page_url  %>
   </div>
   <div class="book-header">
     <h1><%= @book.title %> </h1>
-    <p class="authors"><%= " by #{ by_authors @book.author}" if @book.author%></p>
+    <p class="authors"><%= " #{I18n.t('by')} #{ by_authors @book.author}" if @book.author%></p>
   </div>
   
   <div class="book-image">

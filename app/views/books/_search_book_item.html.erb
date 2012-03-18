@@ -9,43 +9,46 @@
 <% end %>
   <div class="info-container">
     <div class="info">
-      <div class="title"><%= link_to("<div>#{truncate(search_book_item.raw.ItemAttributes.Title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_asin_path(:asin => search_book_item.raw.ASIN)) %></div>
-      <div class="author"><%= truncate("by #{by_authors(search_book_item.raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') if search_book_item.raw.ItemAttributes.Author%></div>
+      <div class="title"><%= link_to("<div>#{truncate(search_book_item.raw.ItemAttributes.Title, :length => 40, :separator => ' ', :omission => '..')}</div>".html_safe, book_asin_path(:asin => search_book_item.raw.ASIN)) %></div>
+      <div class="author"><%= truncate("#{I18n.t('by')} #{by_authors(search_book_item.raw.ItemAttributes.Author)}", :length => 20,  :omission => '..') if search_book_item.raw.ItemAttributes.Author%></div>
       <div class="experiences">
 
           <% if @book_list && @book_list[search_book_item.raw.ASIN] %>
             <div class="confirm_message"><%= link_to confirm_message(@book_list[search_book_item.raw.ASIN][1]), shelf_path(:id => current_user.id,:code => search_book_item.raw.ASIN[1]) %></div>
           <% elsif logged_in? %>
             <div class="cleaner" ></div>
-            <ul id="experience_options_<%= search_book_item.raw.ASIN%>">
-              <li> <%= link_to_function I18n.t('next'),  "$('#experience_2_form_#{search_book_item.raw.ASIN}').submit();" %>
+            <div id="experience_options_<%= search_book_item.raw.ASIN %>">
+              <ul>
+                <li> <%= link_to_function I18n.t('next'),  "$('#experience_2_form_#{search_book_item.raw.ASIN}').submit();" %>
 
-                <%= form_tag(experiences_path,:id => "experience_2_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
-                  <%= hidden_field_tag(:code,  2) %>
-                <% end -%>
-              </li>
-              <li class="separator">|</li>
-              <li>
+                  <%= form_tag(experiences_path,:id => "experience_2_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
+                    <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
+                    <%= hidden_field_tag(:code,  2) %>
+                  <% end -%>
+                </li>
+                <li class="separator">|</li>
+                <li>
 
-                <%= link_to_function I18n.t('reading'),  "$('#experience_1_form_#{search_book_item.raw.ASIN}').submit();" %>
-                <%= form_tag(experiences_path,:id => "experience_1_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
-                  <%= hidden_field_tag(:code, 1) %>
-                <% end -%>
-              </li>
-              <li class="separator">|</li>
-              <li>
-                <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{search_book_item.raw.ASIN}').submit();" %>
+                  <%= link_to_function I18n.t('reading'),  "$('#experience_1_form_#{search_book_item.raw.ASIN}').submit();" %>
+                  <%= form_tag(experiences_path,:id => "experience_1_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
+                    <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
+                    <%= hidden_field_tag(:code, 1) %>
+                  <% end -%>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <%= link_to_function I18n.t('read'), "$('#experience_0_form_#{search_book_item.raw.ASIN}').submit();" %>
 
-                <%= form_tag(experiences_path,:id => "experience_0_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
-                  <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
-                  <%= hidden_field_tag(:code, 0) %>
-                <% end -%>
+                  <%= form_tag(experiences_path,:id => "experience_0_form_#{search_book_item.raw.ASIN}",:remote => true) do -%>
+                    <%= hidden_field_tag :asin, search_book_item.raw.ASIN%>
+                    <%= hidden_field_tag(:code, 0) %>
+                  <% end -%>
 
-              </li>
+                </li>
 
-            </ul>
+              </ul>
+            </div>
           <% end %>
       </div>
     </div>

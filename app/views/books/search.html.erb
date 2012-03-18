@@ -1,6 +1,6 @@
 
 <div class="section-title"> 
-  <h2><%= "Results for <span class=\"search_paramater\">#{params[:title]}</span>".html_safe %></h2>
+  <h2><%= "#{I18n.t('search_title')}<span class=\"search_paramater\">#{params[:title]}</span>".html_safe %></h2>
 </div>
 <div id="book_search_results">
  <% unless @books.empty? %>

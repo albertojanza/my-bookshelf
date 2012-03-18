@@ -97,6 +97,9 @@ en:
 #######################################
 # Book show page 
 ###################################
+  buy_it: "Buy it"
+  by: "by"
+  and: "and"
   friends_with_it_title: "Friends with it"
   friend_with_it_empty_legend: "It looks like none of your friends have this book in their bookcase. You can recommend this book to your friends using the button below."
   friends_review_title: "Reviews from your friends"
@@ -111,12 +114,14 @@ en:
 # Book search page
 ###################################
   search_emty_legend_html: "We coudn't find any books for this search. Please check that there are no typos in your search. <br>You can search by the name of an author or by the title of a book."
+  search_title: "Results for "
 #######################################
 # Recommend window modal
 ###################################
   your_libroshelf_rate: "Your Libroshelf Karma is "
   libroshelf_rate_explanation: "Any time that a friend reads your recommendation your Karma will grow."
   recommend_title: "Recommend this book to your friends"
+  sent_recommendations: "Recommendation sent to"
   created_recommend_title: "Your recommendation was sent."
   recommend_explanation_html: "If your friends read this book then they trust you and you are a good reader and you will have a good <b>Libroshelf Karma</b>."
   created_recommend_explanation_html: "You will notice as your <b>Libroshelf Karma</b> goes high when your friends read this book."

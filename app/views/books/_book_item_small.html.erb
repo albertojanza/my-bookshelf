@@ -3,7 +3,7 @@
   <div class="info-container">
     <div class="info">
       <div class="title"><%= link_to "<div>#{truncate(book_item_small.title, :length => 50, :separator => ' ', :omission => '..')}</div>".html_safe, book_item_small %></div>
-      <div class="author"><%= truncate("by #{by_authors(book_item_small.author)}", :length => 20,  :omission => '..') if book_item_small.author %></div>
+      <div class="author"><%= truncate("#{I18n.t('by')} #{by_authors(book_item_small.author)}", :length => 20,  :omission => '..') if book_item_small.author %></div>
     </div>
   </div>
 </div>
