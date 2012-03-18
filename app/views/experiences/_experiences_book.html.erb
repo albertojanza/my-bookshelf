@@ -25,16 +25,16 @@
             </li>
           <% when 2 %>
             <li>
-              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 0) %>
+              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 1) %>
                 <%= hidden_field_tag(:book_page, true) %>
               <% end %>
             </li>
             <li>
-              <%= link_to_function I18n.t('big_reading'), "$('#experience_1_form_#{@experience.id}').submit();" %>
-              <%= form_for(@experience, :html => { :id => "experience_1_form_#{@experience.id}",:remote => true }) do |f| %>
-                <%= f.hidden_field(:code, :value => 1) %>
+              <%= link_to_function I18n.t('big_read'), "$('#experience_0_form_#{@experience.id}').submit();" %>
+              <%= form_for(@experience, :html => { :id => "experience_0_form_#{@experience.id}",:remote => true }) do |f| %>
+                <%= f.hidden_field(:code, :value => 0) %>
                 <%= hidden_field_tag(:book_page, true) %>
               <% end %>
             </li>
