@@ -16,8 +16,12 @@ class Book < ActiveRecord::Base
   def similarities
     client = ASIN::Client.instance
     amazon_similarities = client.lookup self.asin, :ResponseGroup => [:Similarities]
-    items = amazon_similarities[0].raw.SimilarProducts.SimilarProduct.map! {|book| client.lookup book.ASIN}
-    items.select { |item|  ['eBooks','Book'].include? item[0].raw.ItemAttributes.ProductGroup  }
+    items = []
+    if amazon_similarities[0].raw.SimilarProducts 
+      items = amazon_similarities[0].raw.SimilarProducts.SimilarProduct.map! {|book| client.lookup book.ASIN} 
+      items.select { |item|  ['eBooks','Book'].include? item[0].raw.ItemAttributes.ProductGroup  }
+    end
+    items
   end
 
   def create_permalink
