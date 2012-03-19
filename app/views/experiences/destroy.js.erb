@@ -3,7 +3,9 @@
   $("#book_<%= @experience.book_id %>").effect("shake", { times:3 }, 300);
 
 <% else %>
-$("#experience_options_<%= @experience.id %>").html('<div class="destroy_message"><%= I18n.t('dicarded_message') %></div>');
+jQuery("#modal-recommend").hide();
+jQuery("#modal-recommend-container").hide();
+$("#experience_options_<%= @experience.id %>").html('<div class="destroy_message"><%= remove_confirm_message(@experience.code) %></div>');
 $("#experience_<%= @experience.id %>").effect("shake", { times:3 }, 300);
 <% end %>
 

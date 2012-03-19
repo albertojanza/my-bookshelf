@@ -1,0 +1,22 @@
+
+      <%= link_to_function "X", "jQuery('#modal-recommend').hide();", :class => 'modal-close-icon'%>
+
+  <div>
+    <%= render :partial => '/books/book_item_small', :object => @book %>
+    <div class="recommend-header"> 
+        <h2><%= assure_remove_warm(@experience.code) %></h2>
+
+
+      <ul class="menu confirm_destroy" >
+        <li>
+          <%= link_to_function I18n.t('cancel'), 'jQuery("#modal-recommend").hide();jQuery("#modal-recommend-container").hide();' %>
+        </li>
+        <li>
+          <%= link_to I18n.t('remove'), experience_path(@experience),:method => 'delete',:remote => true %>
+        </li>
+      </ul>
+
+    </div>
+            <div class="cleaner"></div>
+ </div>
+

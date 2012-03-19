@@ -19,3 +19,12 @@
 a.submit{font-weight:bold;float:right;background-color:#2160BA;padding:5px;color:#ffffff;text-decoration:none;border-radius: 3px; 
     box-shadow: 0 1px 0 #F1F1F1, 0 1px 1px #E0E0E0 ;}
 #recommendation_error_message{margin-left:40px;margin-top:10px;}
+
+ul.confirm_destroy {list-style: none; margin:0; padding:0; }
+//.book .experiences ul li{padding:0;font-size:20px;color:#8f8f8f;float:left;}
+//.book .experiences ul li.separator{padding:0 5px;}
+//.book .experiences ul a{font-size:20px;color:#8f8f8f;text-decoration:none;}
+//.book .experiences ul a:hover{color:#333333;font-size:20px;text-decoration:underline;}
+ul.confirm_destroy li a{font-size:15px;background-color: #555555;color:#ffffff;font-weight:bold;text-decoration:none;padding:5px;border-radius: 3px;}
+ul.confirm_destroy li a:hover{background-color: #2160BA;color:white;}
+ul.confirm_destroy li{margin-bottom:10px;}
