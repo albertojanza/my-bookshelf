@@ -80,9 +80,10 @@ es:
   in_your_reading_bookshelf: "Tu Estante de Leyendo"
   in_your_next_bookshelf: "Tu Estante de próximos"
   in_your_recommended_bookshelf: "En tus Recomendados"
-  dicarded_message: "Recomendación descartada"
 # Book show and book item experience legends
   discard: "Descartar"
+  remove: "Borrar"
+  cancel: "Cancelar"
   reading: "Leyendo"
   read: "Leído"
   next: "Próximo"
@@ -115,6 +116,17 @@ es:
 ###################################
   search_emty_legend_html: "No hemos podido encontrar ningún libro para la búsqueda que acabas de realizar. Por favor revisa tu búsqueda en busca de cualquier error. <br> Puedes buscar por nombre de autor o por título de libros."
   search_title: "Resultados para "
+#######################################
+# Remove window modal
+###################################
+  remove_warm_from_your_read_bookshelf: "Estás seguro de que quieres quitar este libro de tu Estantería de Leídos?"
+  remove_warm_from_your_reading_bookshelf: "Estás seguro de que quieres quitar este libro de tu Estantería de Leyendo?"
+  remove_warm_from_your_next_bookshelf: "Estás seguro de que quieres quitar este libro de tu Estantería de Próximas lecturas?"
+  remove_warm_from_your_recommended_bookshelf: "Estás seguro de que quieres descartar esta recomendación?"
+  remove_confirm_from_your_read_bookshelf: "Libro borrado"
+  remove_confirm_from_your_reading_bookshelf: "Libro borrado"
+  remove_confirm_from_your_next_bookshelf: "Libro borrado"
+  remove_confirm_from_your_recommended_bookshelf: "Recomendación descartada"
 #######################################
 # Recommend window modal
 ###################################

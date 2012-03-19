@@ -58,13 +58,16 @@
         <% else #if @user.eql? current_user # Bookshelf of the logged user %>
           <% case book_item.code 
             when 0 %>
-              <ul >
-                <li> <%# link_to "Your influence rate is 80", book_item.book %></li>
-              </ul>
               <ul>
                 <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
                 <li class="separator">|</li>
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
+              </ul>
+              <ul>
+                <li class="separator">|</li>
+                <li>
+                  <%= link_to I18n.t('remove'), assure_experience_destroy_path(:id => book_item.id),:remote => true %>
+                </li>
               </ul>
             <% when 1 %>
               <div id="experience_options_<%= book_item.id%>">
@@ -81,6 +84,10 @@
             <div class="cleaner"></div>
               <ul id="experience_options_<%= book_item.id%>">
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
+                <li class="separator">|</li>
+                <li>
+                  <%= link_to I18n.t('remove'), assure_experience_destroy_path(:id => book_item.id),:remote => true %>
+                </li>
               </ul>
               </div>
             <% when 2 %>
@@ -102,9 +109,11 @@
               </ul>
             <div class="cleaner"></div>
               <ul id="experience_options_<%= book_item.id%>">
-                <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
-                <li class="separator">|</li>
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
+                </li>
+                <li class="separator">|</li>
+                <li>
+                  <%= link_to I18n.t('remove'), assure_experience_destroy_path(:id => book_item.id),:remote => true %>
                 </li>
               </ul>
               </div>

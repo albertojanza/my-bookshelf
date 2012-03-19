@@ -60,6 +60,16 @@ class ExperiencesController < ApplicationController
     render :update
   end
 
+  def confirm_destroy
+    @experience = Experience.find(params[:id])
+  end
+
+  def assure_destroy
+    @experience = Experience.find(params[:id])
+    @book = @experience.book
+
+  end
+
   # DELETE /experiences/1
   # DELETE /experiences/1.json
   def destroy
