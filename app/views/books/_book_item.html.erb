@@ -64,7 +64,6 @@
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
               </ul>
               <ul>
-                <li class="separator">|</li>
                 <li>
                   <%= link_to I18n.t('remove'), assure_experience_destroy_path(:id => book_item.id),:remote => true %>
                 </li>
