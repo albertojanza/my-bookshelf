@@ -43,7 +43,7 @@ MyBookshelf::Application.routes.draw do
 
   get 'welcome/fake' => 'welcome#fake', :as => :fake
   get 'welcome/timeline' => 'welcome#timeline', :as => :timeline
-  post 'canvas' => 'welcome#canvas', :as => :canvas
+  match 'canvas' => 'welcome#canvas', :as => :canvas # Facebook sends a post 
 
 
   get 'welcome/privacy' => 'welcome#privacy', :as => :privacy

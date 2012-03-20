@@ -59,6 +59,8 @@ class WelcomeController < ApplicationController
           render :landing, :layout => 'landing'
           #render :text =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,publish_stream'</script>"
         end
+      else
+        render :landing, :layout => 'landing'
       end
 
 
