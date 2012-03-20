@@ -269,7 +269,7 @@ a.submit_button:hover{background-color: #2160BA;color:white;}
 
 }
 .white-box h1{color:#2160BA;font-size: 28px;
-    font-weight: bold;line-height:10px; }
+    font-weight: bold;line-height:29px;margin:3px 10px; }
 .white-box #welcome-message{
  width:450px; 
 float:left;
