@@ -36,6 +36,7 @@ MyBookshelf::Application.routes.draw do
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
   get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'
 
+  get "facebook/canvas_permission" => 'sessions#canvas_permission', :as => 'canvas_permission'
   get "facebook/permission" => 'sessions#facebook_permission', :as => 'facebook_permission'
   
   get '/logout' => 'sessions#destroy', :as => :logout

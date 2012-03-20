@@ -18,7 +18,12 @@ class SessionsController < ApplicationController
 
   def canvas_callback
     facebook_oauth(canvas_callback_url)
-    redirect_to "http://apps.facebook.com/matumba/"
+    redirect_to "http://apps.facebook.com/teachingandsurfing/"
+  end
+
+  def canvas_permission
+    #redirect_to "https://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream" #&scope=offline_access%2Cread_stream"
+    render :inline =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email'</script>"
   end
 
   # This action redirects to facebook to ask for permission.

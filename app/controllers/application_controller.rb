@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
 
+
   def process_exception(exception)
     unless Rails.env.eql?('development')
       ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, current_user, request).deliver 
