@@ -88,10 +88,12 @@
   <div id="main-header">
       <%= yield :mainheader %>
   </div>
-
+<% unless flash[:canvas] %>
   <div id="main-sidebar">
     <%= yield :sidebar%>
   </div>
+<% end %>
+
   <div id="main-content">
       <%= yield %>
   </div>

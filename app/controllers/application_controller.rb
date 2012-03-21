@@ -8,7 +8,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
 
-  helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
+  helper_method :url_for, :current_user, :logged_in? #, :redirect_to_target_or_default
+
+  def url_for(options = {}, *paramas)
+   # paramas << (true )  # if request[:canvas] || request[:action].eql?('canvas')
+    return super(options, *paramas,:canvas => true)
+  end
 
 
   def process_exception(exception)
