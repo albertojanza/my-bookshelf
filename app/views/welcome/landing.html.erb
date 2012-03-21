@@ -6,10 +6,10 @@
         <div class="white-box">
           <h1><%= I18n.t 'landing_h1' %></h1>
           <div>
-          <div id="welcome-message">
+          <div id="welcome-message" style="<%= 'width:340px' if params[:action].eql?('canvas') %>" >
               <%= I18n.t 'welcome_message'%>
                       </div>
-          <div id="login-message">
+          <div id="login-message" style="<%= 'width:340px' if params[:action].eql?('canvas') %>" >
               <%= I18n.t 'login_message'%>
           </div>
           </div>

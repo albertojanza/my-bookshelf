@@ -8,12 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
 
-  helper_method :url_for, :current_user, :logged_in? #, :redirect_to_target_or_default
-
-  def url_for(options = {}, *paramas)
-   # paramas << (true )  # if request[:canvas] || request[:action].eql?('canvas')
-    return super(options, *paramas,:canvas => true)
-  end
+  helper_method :current_user, :logged_in? #, :redirect_to_target_or_default
 
 
   def process_exception(exception)
@@ -121,8 +116,13 @@ private
 
   def ouath_process
     respond_to do |format| 
-      format.html { redirect_to "http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream,email" }
-      format.js { render :inline =>  " top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream,email';" }
+      if params[:action].eql?('canvas') || params[:canvas]
+        format.html { redirect_to "https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email" }
+        format.js { render :inline =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email'</script>"}
+      else
+        format.html { redirect_to "http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream,email" }
+        format.js { render :inline =>  " top.location.href='http://graph.facebook.com/oauth/authorize?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{facebook_callback_url}&publish_stream,email';" }
+      end
     end 
     
   end
