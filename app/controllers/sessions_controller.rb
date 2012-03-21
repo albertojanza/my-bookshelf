@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def canvas_callback
     facebook_oauth(canvas_callback_url)
-    redirect_to "http://apps.facebook.com/teachingandsurfing/"
+    redirect_to "http://apps.facebook.com/#{ENV['FACEBOOK_NAME']}/"
   end
 
   def canvas_permission
