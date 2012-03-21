@@ -41,8 +41,8 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="fixed-header">
-  <div class="wrapper_with_wings">
-      <div id="header" class="wrapper">
+  <div class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings">
+      <div id="header" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
         <div id="logo" class="left_float" style="margin-top:5px">
             <%= link_to image_tag('logo.png'), root_path %>
         </div>
@@ -50,7 +50,7 @@
         
          <% unless logged_in? %> 
         <div class="right_float">
-            <%= link_to "<div class=\"green-button3-small\"><div class=\"facebook-small-icon\"></div><div class=\"button-text\">#{I18n.t('login_button')}</div></div>".html_safe, facebook_permission_path, :class => 'link' %>
+            <%= link_to "<div class=\"green-button3-small\"><div class=\"facebook-small-icon\"></div><div class=\"button-text\">#{I18n.t('login_button')}</div></div>".html_safe, (params[:action].eql?('canvas') || params[:canvas]) ? canvas_permission_path : facebook_permission_path, :class => 'link' %>
         </div>
           <% else %>
             <ul class="menu right_float">
@@ -75,8 +75,8 @@
     </div>
     </div>
 </div>
-<div id="main" class="wrapper_with_wings" >
-  <div class="wrapper">
+<div id="main" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings" >
+  <div class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
 
     <div id="main-header">
         <%= yield :mainheader %>
@@ -92,8 +92,8 @@
   </div>
 </div>
 
-  <div id="footer" class="wrapper_with_wings">
-    <div  class="wrapper">
+  <div id="footer" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings">
+    <div  class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
         <ul class="menu">
             <li><%= link_to I18n.t("contact"), root_path %></li>
             <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>

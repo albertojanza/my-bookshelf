@@ -36,13 +36,14 @@ MyBookshelf::Application.routes.draw do
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
   get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'
 
+  get "facebook/canvas_permission" => 'sessions#canvas_permission', :as => 'canvas_permission'
   get "facebook/permission" => 'sessions#facebook_permission', :as => 'facebook_permission'
   
   get '/logout' => 'sessions#destroy', :as => :logout
 
   get 'welcome/fake' => 'welcome#fake', :as => :fake
   get 'welcome/timeline' => 'welcome#timeline', :as => :timeline
-  post 'canvas' => 'welcome#canvas', :as => :canvas
+  match 'canvas' => 'welcome#canvas', :as => :canvas # Facebook sends a post 
 
 
   get 'welcome/privacy' => 'welcome#privacy', :as => :privacy
