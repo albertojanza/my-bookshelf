@@ -2,8 +2,8 @@
 
 
 class ApplicationController < ActionController::Base
-  rescue_from User::TokenExpiration, :with => :ouath_process
   rescue_from Exception, :with => :process_exception
+  rescue_from User::TokenExpiration, :with => :ouath_process
   protect_from_forgery
   before_filter :set_locale
 
