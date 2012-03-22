@@ -3,21 +3,27 @@
     <title>Libroshelf error</title>
   </head>
 <body style="font-family:Arial, Helvetica, Sans-Serif; font-size:9pt">
-User:
+<b>User</b>:
 <p>
  <%= @user.id if @user%>
+ <%= 'User not logged in' unless @user%>
 </p>
-Request:
+ <b>Request</b>:
 <p>
  <%= @request.url %>
 </p>
-Exception message:
+ <b>Request Params</b>:
 <p>
- <%= @message%>
+ <%= @request.params.to_s%>
 </p>
-Backtrace:
+ <b>Exception message:</b>
 <p>
-<%= @error %>
+ <%= "#{@exception.class.to_s} #{@exception.message}" %>
+</p>
+ <b>Backtrace:</b>
+<p>
+<% backtrace = ''; @exception.backtrace.each {|line| backtrace << "#{line} <br>" }%>
+<%= backtrace.html_safe %>
 </p>
 </body>
 </html>
