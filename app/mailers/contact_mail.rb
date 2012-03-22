@@ -9,13 +9,12 @@ class ContactMail < ActionMailer::Base
     mail(:to => ['bertojanza@gmail.com','contact@libroshelf.com'], :subject => "Libroshelf")
   end
 
- def error_message(email,message,error,user,request)
+ def error_message(email,exception,user,request)
     @user = user
     @request = request
     @email = email 
-    @message = message
-    @error = error
-    mail(:to => ['error@libroshelf.com'], :subject =>message )
+    @exception = exception
+    mail(:to => ['error@libroshelf.com'], :subject => exception.message )
   end
 
 end
