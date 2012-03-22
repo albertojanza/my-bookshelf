@@ -1,4 +1,10 @@
 class ReviewsController < ApplicationController
+
+  before_filter :login_required, :only => [:create,
+                                           :update,
+                                           :destroy]
+
+
   # GET /reviews
   # GET /reviews.json
  # def index

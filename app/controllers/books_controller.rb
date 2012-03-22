@@ -1,5 +1,10 @@
 class BooksController < ApplicationController
 
+  before_filter :login_required, :only => [:show_friends,
+                                           :shelf,
+                                           :bookcase]
+
+
 
   def index
 

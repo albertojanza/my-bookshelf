@@ -4,7 +4,6 @@ class WelcomeController < ApplicationController
   ########before_filter :required_logged_in, :only => :canvas 
 
   def index
-
     unless logged_in?
       # TODO take a look at the landing layout, if it is not useful remove it
       #render :landing, :layout => 'landing'
