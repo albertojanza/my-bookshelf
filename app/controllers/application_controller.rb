@@ -2,8 +2,8 @@
 
 
 class ApplicationController < ActionController::Base
-  rescue_from User::TokenExpiration, :with => :ouath_process
   rescue_from Exception, :with => :process_exception
+  rescue_from User::TokenExpiration, :with => :ouath_process
   protect_from_forgery
   before_filter :set_locale
 
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def process_exception(exception)
     unless Rails.env.eql?('development')
-      ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, current_user, request).deliver 
+      ContactMail.error_message('bertojanza@hotmail.com', exception.message, exception.backtrace.inspect, (logged_in? ? current_user : nil), request).deliver 
     else
       raise 
     end
