@@ -1,5 +1,5 @@
 <div id="experience_<%= book_item.user.eql?(current_user) ? book_item.id : book_item.book.asin %>" class="book-item" >
-  <%= link_to image_tag(book_item.book.tiny_image ? book_item.book.tiny_image : 'book-item-default-image.png'), book_item.book %>
+  <%= link_to image_tag(book_item.book.tiny_image ? amazon_url(book_item.book.tiny_image) : 'book-item-default-image.png'), book_item.book %>
   <div class="info-container">
     <div class="info">
       <div class="title"><%= link_to "<div>#{truncate(book_item.book.title, :length => 40, :separator => ' ', :omission => '..')}</div>".html_safe, book_item.book %></div>

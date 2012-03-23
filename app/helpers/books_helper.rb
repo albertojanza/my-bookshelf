@@ -1,5 +1,9 @@
 module BooksHelper
 
+  def amazon_url(url)
+    url['http://ecx.images-amazon.com'] = 'https://images-eu.ssl-images-amazon.com' if request.ssl?
+    url
+  end
 
   def by_authors(authors)
     if authors.class.eql? Array

@@ -51,11 +51,7 @@
   </div>
   
   <div class="book-image">
-    <% if @book.asin.eql? '0486411095' %>
-      <img alt="51wuzn-10-l" src="//ecx.images-amazon.com/images/I/51WuZn-10-L.jpg" width="250">
-    <% else %>
-        <%= link_to image_tag(@book.large_image ? @book.large_image : 'book-default-image.png',:width => 250), @book.detail_page_url %>
-    <% end %>
+        <%= link_to image_tag(@book.large_image ? amazon_url(@book.large_image) : 'book-default-image.png',:width => 250), @book.detail_page_url %>
   </div>
   <div class="book-info">
     <% if logged_in? %>
