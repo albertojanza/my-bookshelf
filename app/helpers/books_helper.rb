@@ -1,7 +1,7 @@
 module BooksHelper
 
   def amazon_url(url)
-    url['http://ecx.images-amazon.com'] = 'https://images-eu.ssl-images-amazon.com' if request.ssl?
+    url.gsub!(/(.|\s)*?\/images/,'https://images-eu.ssl-images-amazon.com/images') if request.ssl?
     url
   end
 
