@@ -4,12 +4,6 @@ class WelcomeController < ApplicationController
   ########before_filter :required_logged_in, :only => :canvas 
 
   def index
-  if request.ssl?
-    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAA AAA ")
-  else
-    logger.info("BbbbbBBBBBBBBBBBBBBBBBBBBBBBBBBBBAAA ")
-
-  end
 
     unless logged_in?
       # TODO take a look at the landing layout, if it is not useful remove it

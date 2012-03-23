@@ -14,9 +14,20 @@ class ApplicationController < ActionController::Base
   def process_exception(exception)
     unless Rails.env.eql?('development')
       ContactMail.error_message('bertojanza@hotmail.com', exception, (logged_in? ? current_user : nil), request).deliver 
+      redirect_to(:root)
     else
       raise 
     end
+  end
+
+
+  def login_required
+    if logged_in? 
+      return true
+    end
+    flash[:notice]='Please login to continue'
+    redirect_to(:root)
+    return false
   end
 
 

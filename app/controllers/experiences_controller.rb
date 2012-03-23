@@ -1,4 +1,10 @@
 class ExperiencesController < ApplicationController
+
+  before_filter :login_required, :only => [:create,
+                                           :update,
+                                           :destroy,
+                                           :create_recommendations,
+                                           :recommend]
   # GET /experiences
   # GET /experiences.json
   #def index
