@@ -1,5 +1,5 @@
 <div  id="friend-out-<%= friend_out['id'] %>" class="friend-box">
-    <%= image_tag("http://graph.facebook.com/#{friend_out['id']}/picture",:width => 45  )%>
+    <%= image_tag profile_picture_url(friend_out['id']),:width => 45  %>
     <div class="user-name"><%= friend_out['name'] %></div>
 </div>
 

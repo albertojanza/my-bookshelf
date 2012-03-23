@@ -10,7 +10,7 @@
 
 
             <div class="recommender">
-              <%= link_to image_tag("http://graph.facebook.com/#{book_item.user.uid}/picture",:width => 30  ), bookcase_path(:id => book_item.user.id )%>
+              <%= link_to image_tag(profile_picture_url(book_item.user.uid),:width => 30  ), bookcase_path(:id => book_item.user.id )%>
               <div class="user-name"><%= link_to book_item.user.name, bookcase_path(:id => book_item.user.id )%></div>
               <div class="cleaner"></div>
             </div>
@@ -120,7 +120,7 @@
             <% when 3 %>
               <div id="experience_options_<%= book_item.id%>">
             <div class="recommender">
-              <%= link_to image_tag("http://graph.facebook.com/#{book_item.recommender.uid}/picture",:width => 30  ), bookcase_path(:id => book_item.recommender.id )%>
+              <%= link_to image_tag(profile_picture_url(book_item.recommender.uid),:width => 30  ), bookcase_path(:id => book_item.recommender.id )%>
               <div class="user-name"><%= link_to book_item.recommender.name, bookcase_path(:id => book_item.recommender.id )%></div>
               <div class="cleaner"></div>
             </div>

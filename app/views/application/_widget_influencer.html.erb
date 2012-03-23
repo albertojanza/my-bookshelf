@@ -1,6 +1,6 @@
 <div class="white-box" >
 <%= user.uid %>
-    <%= image_tag("http://graph.facebook.com/#{user.uid}/picture",:width => 45  )%>
+    <%= image_tag(profile_picture_url(user.uid),:width => 45  )%>
     <div class="user-name"><%= user.name %></div>
 sdfsdfsdf
 </div>

@@ -1,5 +1,5 @@
 <div id="user-widget-<%= widget_user.id %>" class="user-widget">
-      <div> <%= image_tag("http://graph.facebook.com/#{widget_user.uid}/picture",:width => 45  )%>
+      <div> <%= image_tag(profile_picture_url(widget_user.uid),:width => 45  )%>
       <div class="user-name"><%= widget_user.name %></div>
       </div>
     <div class="user-influencer">
