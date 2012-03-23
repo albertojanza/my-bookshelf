@@ -7,11 +7,13 @@ class Book < ActiveRecord::Base
   validates :title, :presence => true
   #validates :author, :presence => true there are books without author
   validates :asin, :presence => true
+  validates :product_group , :inclusion => { :in => %w(eBooks Book), :message => "%{value} is not a book " }
 
 #  after_create :create_adventure
   before_save :create_permalink
 
   serialize :author
+
 
   def similarities
     client = ASIN::Client.instance
