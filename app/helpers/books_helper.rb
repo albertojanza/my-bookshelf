@@ -1,8 +1,7 @@
 module BooksHelper
 
   def amazon_url(url)
-    url.gsub!(/(.|\s)*?\/images/,'https://images-eu.ssl-images-amazon.com/images') if request.ssl?
-    url
+    request.ssl? ?  url.gsub(/(.|\s)*?\/images/,'https://images-eu.ssl-images-amazon.com/images') : url
   end
 
   def by_authors(authors)
