@@ -16,7 +16,8 @@ class FacebookController < ApplicationController
   end
 
   def dialog_response
-    redirect_to session[:return_to]
+    redirect_to session[:return_to] if session[:return_to]
+    redirect_to root_path unless session[:return_to]
   end
 
 end
