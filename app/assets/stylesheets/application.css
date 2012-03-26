@@ -199,14 +199,14 @@ h2:hover,.slider h2:hover {color:#333333;}
 .top_sidebar_shadow{ background:url('top_sidebar_shadow.png'); height:48px; width:11px;}
 .sidebar_shadow{ background:url('sidebar_shadow.png') repeat-y;  padding-left:20px;min-height:450px;position:relative;}
 .sidebar_shadow_container{margin-top:-30px;position:absolute;}
-#main-content{float:left;width:743px;margin-top:5px;}
+#main-content{float:right;width:743px;margin-top:5px;}
 @media screen and (min-width:1200px){
 	#main-content{
 		width:1000px;
 	}  
 }
-#main-content-canvas{float:left;width:500px;margin-top:5px;}
-@media screen and (min-width:990px){
+#main-content-canvas{float:right;width:500px;margin-top:5px;}
+@media screen and (min-width:980px){
 	#main-content-canvas{
 		width:743px;
 	}  

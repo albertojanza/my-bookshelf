@@ -2,9 +2,6 @@
 
   <%= render 'submenu_friends' %>
 
-<div class="title">
-<h1><%= I18n.t 'friends_bookcase'%></h1>
-</div>
 <div class="cleaner"></div>
 
 <% end %>
@@ -18,10 +15,36 @@
     
 <% end %>
 
+<div class="title">
+<h1><%= I18n.t 'friends_bookcase'%></h1>
+</div>
 
 <%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => '/books/book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
 
 <script type="text/javascript" >
     var sliders = [[0,<%= (@reading.size + 11) / 12 %>]];
 </script>    
+
+<% content_for :sidebar do %>
+
+  <div class="top_sidebar_shadow">
+  </div>
+
+  <div id="sidebar_shadow" class="sidebar_shadow" style="clear:both;">
+    <div id="sidebar_shadow_container" class="sidebar_shadow_container">
+      <div class="cleaner"></div>
+      <div id="book_similarities">
+      </div>
+    </div>
+  </div>
+  <div class="bottom_sidebar_shadow">
+  </div>
+
+
+          <% if @last_book %>
+              <script type="text/javascript" >
+                   $("#book_similarities").load("<%= book_similarities_path(:asin => @last_book.book.asin) %>"); 
+              </script>    
+          <% end %>
+<% end %>
 
