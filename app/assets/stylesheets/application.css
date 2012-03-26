@@ -181,7 +181,7 @@ h2, .slider h2{float:left;color:#8F8F8F;margin:0px;font-size:17px;margin-bottom:
 h2:hover,.slider h2:hover {color:#333333;}
 .section-title, .slider-title{border-bottom:2px solid #CCCCCC;margin-bottom:7px;height:25px;}
 .section-title:hover,.slider-title:hover{border-bottom:2px solid #333333;color:#333333;}
-.slider .menu{float:right;padding:5px 35px 0 0;}
+.slider .menu{float:right;padding:5px 5px 0 0;}
 .slider .menu li{padding:0 5px;}
 .slider .menu a{color:#333333;font-size:14px;}
 .slider .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}

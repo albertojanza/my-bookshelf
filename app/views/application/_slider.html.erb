@@ -10,7 +10,7 @@
     <% end %>
   <% if items_slide < collection.size %>    
     <ul class="menu">
-      <li><%= link_to "#{ I18n.t('slider_all')} - #{collection.size}", path, :class => 'link' %></li>
+      <li><%= link_to("#{ I18n.t('slider_all')} - #{collection.size}", path, :class => 'link') unless not_all_link  %></li>
       <li><%= link_to_function I18n.t('slider_previous'), "previous_slide(#{slider_index})", :class => 'link disabled',:id=> "previous_#{slider_index}" %></li>
       <li><%= link_to_function I18n.t('slider_next'), "next_slide(#{slider_index})", :class => 'link',:id=> "next_#{slider_index}"  %></li>
     </ul>
