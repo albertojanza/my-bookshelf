@@ -79,10 +79,13 @@
   <div id="main-header">
       <%= yield :mainheader %>
   </div>
+
+<%  unless (params[:canvas]) && params[:action].eql?('show') && params[:controller].eql?('books') %>
   <div id="main-sidebar">
     <%= yield :sidebar %>
   </div>
-  <div id="main-content<%= '-canvas' if params[:action].eql?('canvas') || params[:canvas] %>">
+<% end %>
+  <div id="main-content<%= '-canvas' if (params[:action].eql?('canvas') || params[:canvas]) && !(params[:action].eql?('show') && params[:controller].eql?('books')) %>">
       <%= yield %>
   </div>
   <div class="cleaner">
