@@ -19,10 +19,10 @@
 <h1><%# I18n.t 'friends_bookcase'%></h1>
 </div>
 
-<%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => '/books/book_item',:collection => @reading,  :items_slide => 12,:slider_index => 0 %>
+<%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => '/books/book_item',:collection => @reading,  :items_slide => 24,:slider_index => 0 %>
 
 <script type="text/javascript" >
-    var sliders = [[0,<%= (@reading.size + 11) / 12 %>]];
+    var sliders = [[0,<%= (@reading.size + 23) / 24 %>]];
 </script>    
 
 <% content_for :sidebar do %>
