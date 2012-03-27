@@ -175,20 +175,25 @@ a.modal-close-icon:hover{color: #000000;}
   overflow-y: scroll;
 }
 
-/* slider*/
-.slider a{text-decoration:none;}
-h2, .slider h2{float:left;color:#8F8F8F;margin:0px;font-size:17px;margin-bottom:2px;margin-top:3px;padding-left:5px;}
-h2:hover,.slider h2:hover {color:#333333;}
-.section-title, .slider-title{border-bottom:2px solid #CCCCCC;margin-bottom:7px;height:25px;}
-.section-title:hover,.slider-title:hover{border-bottom:2px solid #333333;color:#333333;}
-.slider .menu{float:right;padding:5px 0px 0 0;}
-.slider .menu li{padding:0 5px;}
-.slider .menu a{color:#333333;font-size:14px;}
-.slider .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
-.slider .menu a.disabled{color:#8F8F8F;cursor:default;}
-.empty-legend, .slider .empty-legend{color:#333333;font-size:13px;border: medium none; border-radius: 4px 4px 4px 4px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;background-color:#EBEBEB; margin:7px 7px 7px 7px;padding:6px 5px 5px 9px;}
+/*row */
+.row{height}
 
+/* slider and row*/
+.row a, .slider a{text-decoration:none;}
+h2, .row h2,.slider h2{float:left;color:#8F8F8F;margin:0px;font-size:17px;margin-bottom:2px;margin-top:3px;padding-left:5px;}
+h2:hover, .row h2:hover, .slider h2:hover {color:#333333;}
+.section-title, .row-title, .slider-title{border-bottom:2px solid #CCCCCC;margin-bottom:7px;height:25px;}
+.section-title:hover,.slider-title:hover{border-bottom:2px solid #333333;color:#333333;}
+.row .menu, .slider .menu{float:right;padding:5px 0px 0 0;}
+.row .menu li,.slider .menu li{padding:0 5px;}
+.row .menu a,.slider .menu a{color:#333333;font-size:14px;}
+.row .menu a:hover, .slider .menu a:hover{color:#333333;font-size:14px;text-decoration:underline;}
+.row .menu a.disabled, .slider .menu a.disabled{color:#8F8F8F;cursor:default;}
+.empty-legend, .row .empty-legend,.slider .empty-legend{color:#333333;font-size:13px;border: medium none; border-radius: 4px 4px 4px 4px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #FFFFFF;background-color:#EBEBEB; margin:7px 7px 7px 7px;padding:6px 5px 5px 9px;}
+
+.row-container{height:119px; overflow:hidden;padding:1px  1px 3px 1px;}
 .slider-container{padding:1px  1px 3px 1px;}
+.friends-container{height:53px; overflow:hidden;padding:1px  1px 3px 1px;}
 
 
 /* MAIN CONTENT */

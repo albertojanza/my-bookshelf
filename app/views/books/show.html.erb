@@ -56,10 +56,27 @@
   <div class="book-info">
     <% if logged_in? %>
       <div class="friends">
-        <%= render 'slider',:title => I18n.t('friends_with_it_title'),:empty_legend => I18n.t('friend_with_it_empty_legend'),:path => friends_bookcase_path, :partial => 'friend',:collection => @friends_have_read_it, :items_slide => 4,:slider_index => 0 %>
-        <script type="text/javascript" >
-          var sliders = [[0,<%= (@friends_have_read_it.size + 3) / 4 %>]];
-        </script>    
+        <div class="row"> 
+          <div>
+            <div class="row-title">
+              <%= link_to "<h2>#{I18n.t('friends_with_it_title')} - #{@friends_have_read_it.size}</h2> ".html_safe, book_show_friends_path(:id => @book.id), :class => 'link', :remote => true  %>
+            </div>
+          </div>
+          <% unless @friends_have_read_it.empty? %>
+            <div class="friends-container" >
+              <%= render :partial => 'friend', :collection => @friends_have_read_it[0..10]%>
+            </div> 
+          <% else %>
+            <div class="empty-legend" >
+              <%= I18n.t('friend_with_it_empty_legend').html_safe %>
+            </div> 
+          <% end %>
+          <div  style="clear:left;">
+          </div> 
+        </div> 
+
+
+
       </div>
     <% end %>
   </div>
