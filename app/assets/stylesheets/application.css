@@ -177,6 +177,7 @@ a.modal-close-icon:hover{color: #000000;}
 }
 
 /*row */
+.section-books{padding-left:4px;}
 
 /* slider and row*/
 .row a, .slider a{text-decoration:none;}
@@ -205,23 +206,24 @@ h2:hover, .row h2:hover, .slider h2:hover {color:#333333;}
 .sidebar_shadow{ background:url('sidebar_shadow.png') repeat-y;  padding-left:20px;min-height:450px;position:relative;}
 .sidebar_shadow_container{margin-top:-30px;position:absolute;}
 #main-content{float:right;width:500px;margin-top:5px;}
+#main-landing-canvas{width:735px; margin: 0 auto;}
+  #main-landing{width:735px; margin: 0 auto;}
 
 @media screen and (min-width:1000px){
-	#main-content{
-    width:743px;
-	}  
+	#main-content{ width:743px; }  
+  #main-landing{width:905px; margin: 0 auto;}
+  #landing-white-box{ margin: 10px auto;width:800px;}
 }
 
 @media screen and (min-width:1250px){
-	#main-content{
-		width:1000px;
-	}  
+	#main-content{ width:1000px; }  
+  #main-landing{width:1085px; margin: 0 auto;}
 }
 #main-content-canvas{float:right;width:500px;margin-top:5px;}
 @media screen and (min-width:980px){
-	#main-content-canvas{
-		width:743px;
-	}  
+	#main-content-canvas{ width:743px;}  
+  #main-landing-canvas{width:905px; margin: 0 auto;}
+
 }
 
 
@@ -285,12 +287,6 @@ a.submit_button:hover{background-color: #2160BA;color:white;}
   background-color:white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   color:#636363;
-
-}
-#landing-white-box{
-margin: 10px auto;width:80%;
-min-width:720px;
-max-width:1000px;
 
 }
 
