@@ -51,7 +51,7 @@
   </div>
   
   <div class="book-image">
-        <%= link_to image_tag(@book.large_image ? amazon_url(@book.large_image) : 'book-default-image.png',:width => 250), @book.detail_page_url %>
+        <%= link_to image_tag(@book.large_image ? amazon_url(@book.large_image) : 'book-default-image.png'), @book.detail_page_url %>
   </div>
   <div class="book-info">
     <% if logged_in? %>

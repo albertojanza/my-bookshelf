@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //book show page
-.book { position:relative;margin:0 0px 7px 0;padding:5px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3);} //rgba(0,0,0,.2) 0 1px 2px;
+.book {min-height:400px; position:relative;margin:0 0px 7px 0;padding:5px; border: medium none; border-radius: 4px 4px 4px 4px;  box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.3);} //rgba(0,0,0,.2) 0 1px 2px;
 .book .book-header{ margin: 0 80px 10px 15px;}
 .book .buy-it{margin-left:20px;min-width:70px;float:right;background-color: #2160BA;padding:5px;border-radius: 3px;}
 .book .buy-it a{background-color: #2160BA;color:white;font-size:19px;font-weight:bold;text-decoration:none;}
@@ -11,11 +11,26 @@
 .book h1{color:#333333;margin:0px;font-size:21px;margin-top:10px;padding-left:10px;}
 .book p.authors{font-size:14px;color:#8f8f8f;margin: 0 0 10px 15px; }
 .book img{border:1px solid; color:#e7e7e7;}
-.book .book-image{float:left;width:260px; }
-.book .book-info{float:right;height:100%;width:440px;word-wrap: break-word; }
+.book .book-image{float:left; }
+
+.book .book-image img{width:150px;margin-right:10px; }
+@media screen and (min-width:1000px){ #main-content .book .book-image img{ width:250px;}   }
+@media screen and (min-width:1250px){ #main-content .book .book-image img{ width:320px; }  }
+ #main-content-canvas .book .experiences,#main-content-canvas .book .book-image img{width:150px;}
+@media screen and (min-width:980px){ #main-content-canvas .book .book-image img{ width:250px;}  }
 
 
-.book .experiences{position:absolute; bottom:0px;right:10px;width:440px;overflow:hidden;}
+.book .book-info{float:right;height:100%;width:310px;word-wrap: break-word; }
+.book .experiences{position:absolute; bottom:0px;right:10px;width:310px;overflow:hidden;}
+@media screen and (min-width:1000px){ #main-content .book .experiences,#main-content .book .book-info{ width:440px;}   }
+@media screen and (min-width:1250px){ #main-content .book .experiences,#main-content .book .book-info{ width:640px; }  }
+ #main-content-canvas .book .experiences,#main-content-canvas .book .book-info{width:500px;}
+@media screen and (min-width:980px){ #main-content-canvas .book .experiences,#main-content-canvas .book .book-info{ width:743px;}  }
+
+
+
+
+
 .book .experiences ul {list-style: none; margin:0; padding:0; }
 //.book .experiences ul li{padding:0;font-size:20px;color:#8f8f8f;float:left;}
 //.book .experiences ul li.separator{padding:0 5px;}
