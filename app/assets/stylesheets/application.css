@@ -28,6 +28,7 @@ div.hidden {display:none;}
 
 /* HEADER */
 #fixed-header{
+  min-width:740px;
  background: -moz-linear-gradient(#FAFAFA, #EAEAEA) repeat scroll 0 0 transparent;
 background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea')";
@@ -197,7 +198,7 @@ h2:hover, .row h2:hover, .slider h2:hover {color:#333333;}
 
 
 /* MAIN CONTENT */
-#main{padding:45px 10px 80px 10px;min-height:550px;background-color:#ffffff;}
+#main{padding:45px 10px 80px 10px;min-height:550px;min-width:740px;background-color:#ffffff;}
 #main-sidebar{overflow:hidden;float:right;width:215px;}
 
 .bottom_sidebar_shadow{ background:url('bottom_sidebar_shadow.png'); height:48px; width:11px;}
