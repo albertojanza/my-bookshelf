@@ -22,12 +22,14 @@
       </div>
   </div>
 
+  <div id="main-landing<%= '-canvas' if (params[:action].eql?('canvas') || params[:canvas])  %>">
       <div class="section-title">
         <h2> <%=  'The last books that have shared on Libroshelf' %></h2>
       </div>
-        <div >
+        <div class="section-books">
           <%= render :partial => '/books/book_item_small', :collection => Book.last(20) %>
         </div>
+  </div>
 
 
 
