@@ -17,3 +17,5 @@ Resque.redis = resque_config[rails_env]
 Resque.redis = resque_config[rails_env]
 
 Resque.redis.namespace = "resque:Libroshelf"
+
+
