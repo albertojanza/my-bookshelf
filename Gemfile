@@ -16,10 +16,10 @@ gem 'mysql2'
 gem 'thin'
 
 
+gem 'aws-sdk'
 gem 'asin'
 #gem 'httpclient' # optional, see HTTPI
 #gem 'rash' # optional, see Response Configuration
-#gem 'aws-sdk'
 
 
 group :assets do
