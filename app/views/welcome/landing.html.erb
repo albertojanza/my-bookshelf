@@ -3,24 +3,34 @@
   <meta name="keywords" content="keywords, metatags, do, not, matter" />
 <% end %>
 
-        <div class="white-box">
+    <div id="landing-white-box"  >
+        <div  class="white-box" >
           <h1><%= I18n.t 'landing_h1' %></h1>
           <div>
-          <div id="welcome-message" style="<%= 'width:340px' if params[:action].eql?('canvas') %>" >
+          <div id="welcome-message"  >
               <%= I18n.t 'welcome_message'%>
                       </div>
-          <div id="login-message" style="<%= 'width:340px' if params[:action].eql?('canvas') %>" >
+          <div id="login-message" >
               <%= I18n.t 'login_message'%>
           </div>
           </div>
           <div class="cleaner">
           </div>
         </div>
+      <div style="height: 65px;padding:7px 0 2px 5px;">
+          <div class="fb-like" data-send="true" data-width="740" data-show-faces="true"></div>
+      </div>
+  </div>
 
+  <div id="main-landing<%= '-canvas' if (params[:action].eql?('canvas') || params[:canvas])  %>">
       <div class="section-title">
         <h2> <%=  I18n.t('lastest_shared_books') %></h2>
       </div>
-        <div>
-          <%= render :partial => '/books/book_item_small', :collection => Book.last(20) %>
+        <div class="section-books">
+          <% number_of_books = (params[:action].eql?('canvas') || params[:canvas]) ? 20 : 30 %>
+          <%= render :partial => '/books/book_item_small', :collection => Book.last(number_of_books) %>
         </div>
+  </div>
+
+
 

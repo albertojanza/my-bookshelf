@@ -40,19 +40,17 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div id="fixed-header">
-  <div class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings">
-      <div id="header" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
-        <div id="logo" class="left_float" style="margin-top:5px">
-            <%= link_to image_tag('logo.png'), root_path %>
-        </div>
-
+  <div id="fixed-header">
+    <div id="header" class="wrapper">
+      <div id="logo" class="left_float" style="margin-top:5px">
+        <%= link_to image_tag('logo.png'), root_path %>
+      </div>
         
-         <% unless logged_in? %> 
+      <% unless logged_in? %> 
         <div class="right_float">
             <%= link_to "<div class=\"green-button3-small\"><div class=\"facebook-small-icon\"></div><div class=\"button-text\">#{I18n.t('login_button')}</div></div>".html_safe, (params[:action].eql?('canvas') || params[:canvas]) ? canvas_permission_path : facebook_permission_path, :class => 'link' %>
         </div>
-          <% else %>
+      <% else %>
             <ul class="menu right_float">
               <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && !params[:action].eql?('friends_bookcase') ) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
@@ -61,26 +59,18 @@
               <li><%= link_to I18n.t('my_account'), account_path, :class => (params[:controller].eql?('users') )  %></li>
 
             </ul>
-          <% end %>
+      <% end %>
 
-        <div class="book-search-box" style="margin-right:100px;">
-          <%= form_tag search_path, :id => 'book_search_box'  do  %>
-            <%= text_field_tag 'title',(params[:title] ? params[:title] : I18n.t('input_search_field')),  { :id => 'book-search',:autocomplete =>'off',:onclick => "search_input();"} %>
-            <button title="Search" onclick="$('book_search_box').submit();" type="submit">
-                <span class="hidden">Search</span>
-            </button>
-          <% end %>
-        </div>
+      <div class="book-search-box" style="margin-right:100px;">
+        <%= form_tag search_path, :id => 'book_search_box'  do  %>
+          <%= text_field_tag 'title',(params[:title] ? params[:title] : I18n.t('input_search_field')),  { :id => 'book-search',:autocomplete =>'off',:onclick => "search_input();"} %>
+          <button title="Search" onclick="$('book_search_box').submit();" type="submit"><span class="hidden">Search</span></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div id="main" >
 
-    </div>
-    </div>
-</div>
-<div id="main" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings" >
-  <div class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
-
-    <div id="main-header">
-        <%= yield :mainheader %>
-    </div>
 
     <div >
         <%= yield %>
@@ -88,21 +78,15 @@
 
     <div class="cleaner">
     </div>
-    <div class="fb-like" data-send="true" data-width="740" data-show-faces="true"></div>
-  </div>
 </div>
 
-  <div id="footer" class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper_with_wings">
-    <div  class="<%= 'canvas_' if params[:action].eql?('canvas') || params[:canvas] %>wrapper">
+  <div id="footer" >
         <ul class="menu">
             <li><%= link_to I18n.t("contact"), root_path %></li>
             <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>
             <li><%= link_to I18n.t("terms_of_use") , root_path %></li>
         </ul>
-
-    </div>
-
-</div>
+  </div>
 
 
 </body>

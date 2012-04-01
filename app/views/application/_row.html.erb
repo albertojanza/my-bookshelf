@@ -1,0 +1,28 @@
+
+
+<div class="row"> 
+  <div>
+    <div class="row-title">
+    <% if path %>
+      <%= link_to "<h2>#{title} - #{collection.size}</h2>".html_safe, path, :class => 'link' %>
+    <% else %>
+      <%=  "<h2>#{title}</h2>".html_safe %>
+    <% end %>
+    </div>
+  </div>
+  <% unless collection.empty? %>
+    <div class="row-container" >
+      <%= render :partial => partial, :collection => collection[0..4]%>
+    </div> 
+  <% else %>
+    <div class="empty-legend" >
+      <%= empty_legend.html_safe %>
+    </div> 
+  <% end %>
+  <div  style="clear:left;">
+  </div> 
+</div> 
+
+
+
+
