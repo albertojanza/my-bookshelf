@@ -8,7 +8,7 @@ module FacebookHelper
     locale = 'en_US'
     if logged_in?
      locale = current_user.locale || 'en_US' 
-    else !request.env["HTTP_ACCEPT_LANGUAGE"].nil?
+    elsif !request.env["HTTP_ACCEPT_LANGUAGE"].nil?
       spanish = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
       locale = 'es_LA'  if spanish.eql? 'es'
     end
