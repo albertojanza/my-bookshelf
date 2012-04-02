@@ -35,6 +35,7 @@ en:
   landing_h1: "Libroshelf is a virtual bookshelf to share with friends"
   welcome_message: "Are you a reader? Try us. You will find out what your friends are reading or have read in the past. Share your readings."
   login_message: "What are you waiting for? Click on the green button above to start."
+  lastest_shared_books: "The last books on Libroshelf"
 
 #######################################
 # My bookcase or his bookcase pages

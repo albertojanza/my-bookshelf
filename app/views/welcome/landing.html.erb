@@ -18,16 +18,19 @@
           </div>
         </div>
       <div style="height: 65px;padding:7px 0 2px 5px;">
-          <div class="fb-like" data-send="true" data-width="740" data-show-faces="true"></div>
+          <div class="fb-like" data-href="http://libroshelf.com/" data-send="true" data-width="650" data-show-faces="true"></div>
       </div>
   </div>
 
+  <div id="main-landing<%= '-canvas' if (params[:action].eql?('canvas') || params[:canvas])  %>">
       <div class="section-title">
-        <h2> <%=  'The last books that have shared on Libroshelf' %></h2>
+        <h2> <%=  I18n.t('lastest_shared_books') %></h2>
       </div>
-        <div >
-          <%= render :partial => '/books/book_item_small', :collection => Book.last(20) %>
+        <div class="section-books">
+          <% number_of_books = (params[:action].eql?('canvas') || params[:canvas]) ? 20 : 30 %>
+          <%= render :partial => '/books/book_item_small', :collection => Book.last(number_of_books) %>
         </div>
+  </div>
 
 
 
