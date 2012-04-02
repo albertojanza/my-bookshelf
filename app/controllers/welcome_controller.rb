@@ -55,6 +55,8 @@ class WelcomeController < ApplicationController
           @reading = current_user.friends_reading
           @book_list = current_user.experiences_and_books_cache
           @last_book = last_book([@reading])
+          I18n.locale =  current_user.locale.scan(/^[a-z]{2}/).first.to_sym
+          session[:locale] = I18n.locale
           render 'books/friends_bookcase'
         else
           if I18n.available_locales.include? user_data['user']['locale'].scan(/^[a-z]{2}/).first.to_sym
@@ -67,9 +69,6 @@ class WelcomeController < ApplicationController
       else
         render :landing, :layout => 'landing'
       end
-
-
-  
 
   end
 
