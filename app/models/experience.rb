@@ -109,13 +109,21 @@ class Experience < ActiveRecord::Base
 
   end
 
-  def notifications
+  def notifications_dynamo
     dynamo = AWS::DynamoDB.new
     table = dynamo.tables['notifications']
     table.load_schema
     friend_ids = self.user.friends.map {|friend|  friend['id']}
     self.book.cache_people_have_read.select{ |user| friend_ids.include?(user[:uid])  }.each do |user| 
       table.items.put(:id => user[:id], :time => Time.now.to_i, :uid => user[:uid], :name => user[:name], :book_id => self.book.id, :title => self.book.title, :author => self.book.author, :ex_code => 0, :reader_id => self.user.id,:reader_uid => self.user.uid,:reader_name => self.user.name, :reader_ex_code => self.code) 
+    end
+  end
+
+  def notifications
+    redis = Redis.new(:host => "localhost", :port => 6379)
+    friend_ids = self.user.friends.map {|friend|  friend['id']}
+    self.book.cache_people_have_read.select{ |user| friend_ids.include?(user[:uid])  }.each do |user| 
+      redis.rpush "user:#{user[:id]}:notifications", {:book_id => self.book.id, :title => self.book.title, :author => self.book.author, :ex_code => 0, :reader_id => self.user.id,:reader_uid => self.user.uid,:reader_name => self.user.name, :reader_ex_code => self.code}.to_json
     end
   end
 

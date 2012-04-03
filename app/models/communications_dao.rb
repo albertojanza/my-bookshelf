@@ -1,7 +1,7 @@
 class CommunicationsDao
 
 
-    def self.user_notifications(user_id)
+    def self.user_notifications_old(user_id)
       dynamo = AWS::DynamoDB.new
       table = dynamo.tables['notifications']
       table.load_schema
@@ -11,5 +11,11 @@ class CommunicationsDao
 
 
     end
+
+  def self.user_notifications(user_id)
+    redis = Redis.new(:host => "localhost", :port => 6379)
+    redis.lrange "user:#{user_id}:notifications", 0, 20
+    
+  end
 
 end 
