@@ -16,6 +16,7 @@ es:
   input_search_field: "Buscador de libros"
 #Footer menu options
   terms_of_use: "Términos de Uso"
+  sites: "Webs amigas"
   privacy_policy: "Privacidad"
   contact: "Contacto"
   my_account: "Tu cuenta" 

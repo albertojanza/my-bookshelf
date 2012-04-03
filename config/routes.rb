@@ -46,6 +46,7 @@ MyBookshelf::Application.routes.draw do
   match 'canvas' => 'welcome#canvas', :as => :canvas # Facebook sends a post 
 
 
+  get 'sites' => 'welcome#sites', :as => :sites
   get 'welcome/privacy' => 'welcome#privacy', :as => :privacy
 
   # The priority is based upon order of creation:

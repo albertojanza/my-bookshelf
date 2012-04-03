@@ -16,6 +16,7 @@ en:
   input_search_field: "Search for books"
 #Footer menu options
   terms_of_use: "Terms"
+  sites: "Sites"
   privacy_policy: "Privacy"
   contact: "Contact"
   my_account: "Your account" 
