@@ -1,5 +1,7 @@
 MyBookshelf::Application.routes.draw do
 
+  get "/notifications" => 'interactions#notifications', :as => 'notifications'
+
   resources :contacts
 
   resources :comments

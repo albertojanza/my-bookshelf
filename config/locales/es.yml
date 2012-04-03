@@ -181,6 +181,12 @@ es:
   change_button: 'Cambiar'
   message: 'Tus cambios han sido actualizados.'
   communication_error_message: 'Al menos un canal de comunicación tiene que estar abierto.'
+
+#######################################
+# Interactions
+###################################
+  news: 'Noticias'
+
 #######################################
 # User account 
 ###################################

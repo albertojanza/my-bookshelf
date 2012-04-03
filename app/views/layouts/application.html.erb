@@ -60,6 +60,10 @@
         </div>
       <% else %>
         <ul class="menu right_float">
+          <% if  count = InteractionsDao.notifications_count(current_user.id)%>
+            <li><%= link_to "#{I18n.t('news')} (#{count})", notifications_path, :class => ( params[:action].eql?('notifications')  ? 'selected' : '')  %></li>
+            <li class="separator">|</li>
+          <% end %>
           <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && (params[:action].eql?('bookcase') || params[:action].eql?('shelf')) ) ? 'selected' : '')  %></li>
           <li class="separator">|</li>
           <li><%= link_to I18n.t('friends_bookcase_option'), friends_bookcase_path(:id => current_user.id), :class => ( (!current_user.eql?(@user) || (current_user.eql?(@user) &&  params[:action].eql?('friends_bookcase')))   ? 'selected' : '') %></li>
