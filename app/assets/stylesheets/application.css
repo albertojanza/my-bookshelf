@@ -299,6 +299,7 @@ float:left;
 padding:10px;
 }
 .white-box #login-message{
+margin-top:5px;
 float:left;
 
 
@@ -311,7 +312,7 @@ font-weight:bold;
     border-radius: 3px 3px 3px 3px;
     padding: 0 5px ;
 
-padding:10px;
+padding:5px 10px;
 
 width:45%; }
 

@@ -35,6 +35,7 @@ es:
   landing_h1: "Libroshelf es una estantería online para compartir con tus amigos."
   welcome_message: "Te gusta leer? Pruébanos. Encontrarás todo lo que tus amigos están leyendo o han leído en el pasado. Comparte tus lecturas."
   login_message: "A qué esperas? Usa el botón verde para empezar."
+  lastest_shared_books: "Últimos libros en Libroshelf"
 
 #######################################
 # My bookcase or his bookcase
@@ -180,6 +181,12 @@ es:
   change_button: 'Cambiar'
   message: 'Tus cambios han sido actualizados.'
   communication_error_message: 'Al menos un canal de comunicación tiene que estar abierto.'
+
+#######################################
+# Interactions
+###################################
+  news: 'Noticias'
+
 #######################################
 # User account 
 ###################################

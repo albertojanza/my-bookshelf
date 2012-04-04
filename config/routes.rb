@@ -1,8 +1,8 @@
 MyBookshelf::Application.routes.draw do
 
-  resources :contacts
+  get "/notifications" => 'interactions#notifications', :as => 'notifications'
 
-  resources :comments
+  resources :contacts
 
   get 'assure_destroy' => 'experiences#assure_destroy', :as => :assure_experience_destroy
   resources :experiences

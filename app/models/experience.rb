@@ -3,7 +3,6 @@ class Experience < ActiveRecord::Base
   belongs_to :user
   #belongs_to :adventure
   belongs_to :book
-  has_many :comments
   #belongs_to :resource, :polymorphic => true, :dependent => :destroy
   belongs_to :recommender, :class_name => 'User',:foreign_key  => 'recommender_id'
   belongs_to :evangelist, :class_name => 'User',:foreign_key  => 'evangelist_id'
@@ -21,9 +20,15 @@ class Experience < ActiveRecord::Base
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
   before_save :facebook_action
+  after_create :set_notifications
+
+  def set_notifications
+    InteractionsDao.set_notifications(self)
+  end
+
 
   def facebook_action
-  unless Rails.env.eql?('development')
+  unless (Rails.env.eql?('development') || Rails.env.eql?('test'))
    if code.eql?(0)
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -41,9 +46,7 @@ class Experience < ActiveRecord::Base
     data = MultiJson.decode(response.body)
     raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException') && data['error']['code'].eql?(190)
     i=0
-      puts "party"
     while (data['error'] && (i < 10)) do
-      puts "party"
       i = i + 1
       response = http.request request 
       data = MultiJson.decode(response.body)
