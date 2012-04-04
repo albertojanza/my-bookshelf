@@ -42,9 +42,9 @@ class InteractionsDao
 
   def self.set_notifications(experience)
     redis = Redis.new(:host => 'localhost', :port => 6379)
-    friend_ids = experience.user.friends.map {|friend|  friend['id']}
+    friend_uids = experience.user.friends.map {|friend|  friend['id']}
     readers = experience.book.cache_people_are_reading + experience.book.cache_people_have_read +  experience.book.cache_people_will_read + experience.book.cache_people_with_recommendations
-    friends_have_read_it = readers.select{ |user| friend_ids.include?(user[:uid])  }
+    friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
     redis.hmset "experience:#{experience.id}", 'user_id', experience.user.id, 'user_name', experience.user.name, 'user_uid', experience.user.uid, 'code', experience.code, 'title', experience.book.title, 'image', experience.book.tiny_image, 'author', experience.book.author.to_json, 'book_id',  experience.book.id
     redis.hmset "experience:#{experience.id}", 'recommender_id', experience.user.id, 'recommender_name', experience.user.name, 'recommender_uid', experience.user.uid if experience.recommender
     friends_have_read_it.each do |user| 

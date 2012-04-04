@@ -8,6 +8,14 @@ class InteractionsDaoTest < ActiveSupport::TestCase
   def setup
     if User.count.eql? 0
       FacebookUserSeed.seed
+    else 
+      user = User.last
+      begin 
+        user.friends
+      rescue User::TokenExpiration
+        User.all.each {|user| user.destroy}
+        FacebookUserSeed.seed
+      end
     end
     redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
     #redis.select 1
@@ -21,8 +29,45 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     # you understand how you can use the teardown method
   end
 
-   test "the truth" do
-     assert true
-   end
+  # the users have names of music groups
+  test "Friends receive the notification when a user starts reading abook that his friends have read" do
+    book = Book.find_by_asin '8498382548' 
+    scorpions = User.find_by_uid '100003593065982'
+    acdc = User.find_by_uid scorpions.friends.first['id']
+    # The acdc user doesn't have any notification yet
+    redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
+    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    assert_equal keys, []
+    count = redis.get "user:#{acdc.id}:noti_count"
+    assert_nil count
+
+    Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = acdc.id 
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+    # After creating an experience, acdc continues without having notification
+    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    assert_equal keys, []
+    count = redis.get "user:#{acdc.id}:noti_count"
+    assert_nil count
+
+    experience = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = scorpions.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+
+    # After creating an experience, acdc continues without having notification
+    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    assert_equal keys.first, "experience:#{experience.id}"
+    assert_equal keys.size, 1
+    count = redis.get "user:#{acdc.id}:noti_count"
+    assert_equal count, 1
+     
+
+  end
 
 end
