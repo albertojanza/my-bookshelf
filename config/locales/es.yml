@@ -166,6 +166,11 @@ es:
   similar_books: "Libros similares"
 
 #######################################
+# Friendly sites page
+###################################
+  friendly_sites: "Sites que soportan Libroshelf"
+
+#######################################
 # User account 
 ###################################
 #submenu options

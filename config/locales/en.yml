@@ -166,6 +166,12 @@ en:
   similar_books: "Similar books"
 
 #######################################
+# Friendly sites page
+###################################
+  friendly_sites: "Sites that support Libroshelf"
+
+
+#######################################
 # User account 
 ###################################
 #submenu options
