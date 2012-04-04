@@ -4,8 +4,6 @@ MyBookshelf::Application.routes.draw do
 
   resources :contacts
 
-  resources :comments
-
   get 'assure_destroy' => 'experiences#assure_destroy', :as => :assure_experience_destroy
   resources :experiences
   get 'recommend_books' => 'experiences#recommend', :as => :book_recommend

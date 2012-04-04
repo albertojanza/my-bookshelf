@@ -1,13 +1,27 @@
 
 <% content_for :page_title do %>
-  <%= "#{I18n.t('news')} (#{@count})" %> 
+  <%= "Libroshelf (#{@count})" %> 
 <% end %>
 
 
-<div>
+<% content_for :mainheader do %>
+  <%= render 'submenu_interactions' %>
+
+<div class="cleaner"></div>
+
+<% end %>
+
+
+<div class="interactions">
     <% @items.each do |item| %>
-      <br>
-      <%= item.to_json %>
+      <div class="item">
+        <%= link_to image_tag(profile_picture_url(item['user_uid']),:width => 45), bookcase_path(:id => item['user_id'] )  %>
+
+        <%= notification_message(item).html_safe %>
+        <%= item.to_json %>
+
+      </div>
+<div class="cleaner"></div>
     <% end %>
 </div>
 
