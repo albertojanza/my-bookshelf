@@ -17,9 +17,7 @@ class InteractionsDaoTest < ActiveSupport::TestCase
         FacebookUserSeed.seed
       end
     end
-    redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
-    #redis.select 1
-    redis.flushdb
+   REDIS.flushdb
   end
  
   # called after every single test
@@ -35,10 +33,9 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     scorpions = User.find_by_uid '100003593065982'
     acdc = User.find_by_uid scorpions.friends.first['id']
     # The acdc user doesn't have any notification yet
-    redis = Redis.new(:host => 'localhost', :port => 6379, :db => 1)
-    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    keys = REDIS.lrange("user:#{acdc.id}:notifications", 0, 20)
     assert_equal keys, []
-    count = redis.get "user:#{acdc.id}:noti_count"
+    count = REDIS.get "user:#{acdc.id}:noti_count"
     assert_nil count
 
     Experience.create do |experience|
@@ -48,9 +45,9 @@ class InteractionsDaoTest < ActiveSupport::TestCase
         experience.code = 0
     end
     # After creating an experience, acdc continues without having notification
-    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    keys = REDIS.lrange("user:#{acdc.id}:notifications", 0, 20)
     assert_equal keys, []
-    count = redis.get "user:#{acdc.id}:noti_count"
+    count = REDIS.get "user:#{acdc.id}:noti_count"
     assert_nil count
 
     experience = Experience.create do |experience|
@@ -61,11 +58,11 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     end
 
     # After creating an experience, acdc continues without having notification
-    keys = redis.lrange("user:#{acdc.id}:notifications", 0, 20)
+    keys = REDIS.lrange("user:#{acdc.id}:notifications", 0, 20)
     assert_equal keys.first, "experience:#{experience.id}"
     assert_equal keys.size, 1
-    count = redis.get "user:#{acdc.id}:noti_count"
-    assert_equal count, 1
+    count = REDIS.get "user:#{acdc.id}:noti_count"
+    assert_equal count, '1'
      
 
   end
