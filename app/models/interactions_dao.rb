@@ -41,7 +41,7 @@ class InteractionsDao
     keys = REDIS.lrange("user:#{user_id}:notifications", 0, 20)
     items = []
     #redis.pipelined do
-      keys.each { |key| items << redis.hgetall(key) }
+      keys.each { |key| items << REDIS.hgetall(key) }
       
     #end
     items
@@ -63,8 +63,8 @@ class InteractionsDao
       REDIS.lpush "experience:#{experience.id}:notifications", "user:#{user[:id]}" unless user.eql? experience.recommender
     end
     if experience.recommender
-        REDIS.lpush "user:#{recommender.id}:recommendations", "experience:#{experience.id}"
-        REDIS.incr "user:#{recommender.id}:reco_count"
+        REDIS.lpush "user:#{experience.recommender.id}:recommendations", "experience:#{experience.id}"
+        REDIS.incr "user:#{experience.recommender.id}:reco_count"
     end
 
   end

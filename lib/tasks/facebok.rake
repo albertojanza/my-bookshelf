@@ -247,8 +247,8 @@ end
 #Test user id: 100003612872856 
 #Test user id: 100003577706094 
 #Test user id: 100003611102868 sober_onqyfsq_sober@tfbnw.net 
-#Test user id: 100003529976191  
-#Test user id: 100003618332848 bunbury_qukrucn_bunbury@tfbnw.net 
+#Test user id: 100003529976191  bunbury_qukrucn_bunbury@tfbnw.net
+#Test user id: 100003618332848  
 #Test user id: 100003600212912  
 #Test user id: 100003646681574 
 #Test user id: 100003530845925 

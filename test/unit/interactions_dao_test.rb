@@ -7,6 +7,7 @@ class InteractionsDaoTest < ActiveSupport::TestCase
 ######################################
 ## THis task loads the Facebook users. It is cool to run it before passing the test to avoid to ask for the users before every test
 ## rake load_facebook_users RAILS_ENV=test --trace
+## ruby -Itest test/unit/interactions_dao_test.rb -n test_Notifications_in_a_book_recommendation. 
 ############################################3
 
   def setup
@@ -31,7 +32,73 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     # you understand how you can use the teardown method
   end
 
+  # Scenario: Three friends: Scorpions, Aeromisth and Bubury. 
+  # Two of them mark a book as a read and then of them sends a recommendation of this book to the third one.
   test 'Notifications in a book recommendation.' do
+    book = Book.find_by_asin '8498382548' 
+    # These three guys are friends
+    scorpions = User.find_by_uid '100003593065982'
+    bunbury = User.find_by_uid '100003529976191'
+    aerosmith = User.find_by_uid '100003533216061'
+
+    # We check out that they don't have any notifications
+    keys = REDIS.lrange("user:#{scorpions.id}:notifications", 0, 20)
+    assert_equal keys, []
+    count = REDIS.get "user:#{scorpions.id}:noti_count"
+    assert_nil count
+    keys = REDIS.lrange("user:#{aerosmith.id}:notifications", 0, 20)
+    assert_equal keys, []
+    count = REDIS.get "user:#{aerosmith.id}:noti_count"
+    assert_nil count
+    keys = REDIS.lrange("user:#{bunbury.id}:notifications", 0, 20)
+    assert_equal keys, []
+    count = REDIS.get "user:#{bunbury.id}:noti_count"
+    assert_nil count
+
+    # Scorpions marks the book as read
+    experience1 = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = scorpions.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+
+    # Bunbury marks the book as read
+    experience2 = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = bunbury.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+    # We check out that scorpions receives a notification 
+    keys = REDIS.lrange("user:#{scorpions.id}:notifications", 0, 20)
+    assert_equal keys.first, "experience:#{experience2.id}"
+    count = REDIS.get "user:#{scorpions.id}:noti_count"
+    assert_equal count, '1'
+    
+    # Bunbury sends a recommendation to aerosmith 
+    experience3 = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = aerosmith.id
+        experience.recommender_id = bunbury.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+
+    # We check out that scorpions receives a notification of this recommendation since aerosmith has now the book in its bookcase.
+    keys = REDIS.lrange("user:#{scorpions.id}:notifications", 0, 20)
+    assert_equal keys.first, "experience:#{experience3.id}"
+    count = REDIS.get "user:#{scorpions.id}:noti_count"
+    assert_equal count, '2'
+
+    # We check out that bunbury has this recommendation on it recommendation inbox.
+    keys = REDIS.lrange("user:#{bunbury.id}:recommendations", 0, 20)
+    assert_equal keys.first, "experience:#{experience3.id}"
+    count = REDIS.get "user:#{bunbury.id}:reco_count"
+    assert_equal count, '1'
+
+
+
   end
 
 
