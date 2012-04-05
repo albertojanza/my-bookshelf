@@ -51,8 +51,8 @@ class InteractionsDao
     friend_uids = experience.user.friends.map {|friend|  friend['id']}
     readers = experience.book.cache_people_are_reading + experience.book.cache_people_have_read +  experience.book.cache_people_will_read + experience.book.cache_people_with_recommendations
     friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
-    REDIS.hmset "experience:#{experience.id}", 'user_id', experience.user.id, 'user_name', experience.user.name, 'user_uid', experience.user.uid, 'code', experience.code, 'title', experience.book.title, 'image', experience.book.tiny_image, 'author', experience.book.author.to_json, 'book_id',  experience.book.id
-    REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.user.id, 'recommender_name', experience.user.name, 'recommender_uid', experience.user.uid if experience.recommender
+    REDIS.hmset "experience:#{experience.id}", 'user_id', experience.user.id, 'user_name', experience.user.name, 'user_uid', experience.user.uid, 'code', experience.code, 'title', experience.book.title, 'image', experience.book.tiny_image, 'author', (experience.book.author.class.eql?(Array) ? experience.book.author.to_json : [experience.book.author].to_json), 'book_id',  experience.book.permalink
+    REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.recommender.id, 'recommender_name', experience.recommender.name, 'recommender_uid', experience.recommender.uid if experience.recommender
     friends_have_read_it.each do |user| 
       unless user.eql? experience.recommender
         REDIS.lpush "user:#{user[:id]}:notifications", "experience:#{experience.id}"

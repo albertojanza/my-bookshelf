@@ -186,6 +186,11 @@ es:
 # Interactions
 ###################################
   news: 'Noticias'
+  noti_read_book_html: "%{name} acaba de marcar el libro %{title} como leído."
+  noti_reading_book_html: "%{name} acaba de empezar a leer %{title} de %{author}."
+  noti_next_book_html: "%{name} está pensando en leer %{title} de %{author}."
+  noti_recommendation_book_html: "%{name} está pensando en leer %{title} de %{author}."
+  noti_recommendation_book_html: "%{recommender} le ha recommendado a %{name} leer %{title} de %{author}."
 
 #######################################
 # User account 
