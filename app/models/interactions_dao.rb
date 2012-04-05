@@ -7,6 +7,13 @@ class InteractionsDao
   # It is an inverted index that point to the objets that have generated the notifications. For example an experience
   ########################
 
+  ###########################
+  # Cassandra: User Recommendations. Inverted index
+  # Redis: Every user has a list of recommendations that he has sent
+  # user:12:recommendations
+  # It is an inverted index that point to the objets that have generated the recommendations. For example an experience
+  ########################
+
   ####################################
   # Cassandra: Experiences.
   # Redis: experience is a object which we store in a hash structure
@@ -20,8 +27,10 @@ class InteractionsDao
   ########################
 
   #####################################
+  ## COUNTERs
   ## Notification counter per user
   ## user:12:noti_count
+  ## user:12:reco_count
   #######################################
   
   def self.notifications_count(user_id)
@@ -53,6 +62,11 @@ class InteractionsDao
     friends_have_read_it.each do |user| 
       REDIS.lpush "experience:#{experience.id}:notifications", "user:#{user[:id]}" unless user.eql? experience.recommender
     end
+    if experience.recommender
+        REDIS.lpush "user:#{recommender.id}:recommendations", "experience:#{experience.id}"
+        REDIS.incr "user:#{recommender.id}:reco_count"
+    end
+
   end
 
 end
