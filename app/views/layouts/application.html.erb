@@ -48,9 +48,10 @@
       </div>
   </div>
 
+
   <div id="fixed-header">
     <div id="header" class="wrapper">
-      <div id="logo" class="left_float" style="margin-top:5px">
+      <div id="logo" >
         <%= link_to image_tag('logo.png'), root_path %>
       </div>
         
@@ -80,10 +81,12 @@
     </div>
   </div>
 <div id="main" >
+<div  class="wrapper">
   <div id="main-header">
       <%= yield :mainheader %>
+    <!--div class="submenu">
+    </div-->
   </div>
-
   <div id="main-sidebar">
     <%= yield :sidebar %>
   </div>
@@ -93,9 +96,10 @@
   <div class="cleaner">
   </div>
 </div>
+</div>
 
   <div id="footer" >
-        <ul class="menu">
+        <ul class="menu wrapper">
             <li><%= link_to I18n.t("contact"), new_contact_path %></li>
             <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>
             <li><%= link_to I18n.t("terms_of_use") , root_path %></li>

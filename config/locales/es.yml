@@ -52,7 +52,7 @@ es:
   my_next_bookshelf: "Estante con libros que leerás"
   his_read_bookshelf: "Estante de libros leídos de %{name}"
   his_reading_bookshelf: "Estante con los libros que %{name} está leyendo"
-  his_recommended_bookshelf: "Estante con los libros recomendados por %{name}'"
+  his_recommended_bookshelf: "Estante con los libros recomendados a %{name}"
   his_favorite_bookshelf: "Estante con los libros favoritos de %{name}"
   his_next_bookshelf: "Estante con las próximas lecturas de %{name}"
 #bookshelves, empty legends
@@ -67,11 +67,11 @@ es:
   my_empty_favorite_bookshelf_html: "Your Favorite Bookshelf"
   my_empty_next_bookshelf_html: "Puedes usar esta estantería para guardar esos libros que te gustaría leer en un futuro, así no lo olvidarás. <br> Para mover un libro a esta estantería sólo tienes que clicar en el botón de Próximo que aparece dentro de cualquier libro."
 # submenu options
-  read_bookshelf: "Estante de Leídos"
-  reading_bookshelf: "Estante de Leyendo"
-  recommended_bookshelf: "Estante de Recomendados"
-  favorite_bookshelf: "Estante de Favoritos"
-  next_bookshelf: "Estante de Próximos"
+  read_bookshelf: "Leídos"
+  reading_bookshelf: "Leyendo"
+  recommended_bookshelf: "Recomendados"
+  favorite_bookshelf: "Favoritos"
+  next_bookshelf: "Próximos"
 # Book show and book item legends
   in_your_read_bookshelf_big: "Este libro ya está en tu Estantería de Leídos"
   in_your_reading_bookshelf_big: "Este libro está en tu Estantería de Leyendo"
