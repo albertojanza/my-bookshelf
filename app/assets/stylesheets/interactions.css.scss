@@ -2,5 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.interactions .item img.user{float:left;}
+.interactions .item {
+margin: 0 5px 9px 0;
+padding: 5px 0px 4px 4px;
+border: medium none;
+border-radius: 4px 4px 4px 4px;
+height: 65px;
+float: left;
+width:100%;
+border-bottom: 1px solid #E7E7E7;
+font-size:13px;
+
+}
+
+
+
+.interactions .item .book-image{float:left; border: 1px solid; color: #E7E7E7; max-height: 60px; }
+.interactions .item .user-image{float:left; height: 25px;padding-right:5px; }
+
+ .interactions .item .item-container{
+padding-left: 5px;
+word-wrap: break-word;
+display: table-cell;
+//float:left;
+vertical-align: top;
+}
+ .interactions .item .item-content{
+
+position: relative;
+}
 
