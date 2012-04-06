@@ -31,9 +31,13 @@ class Experience < ActiveRecord::Base
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
 
+    # Asking for the app token
+    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
+    app_token = CGI.parse(response.body)["access_token"][0]
+
     post =  "/#{self.user.uid}/apprequests?"
     request = Net::HTTP::Post.new post
-    request.set_form_data({ 'message' => 'Your friend has read the same book','data' => 'insert data', 'access_token' => self.user.token})
+    request.set_form_data({ 'message' => 'Your friend has read the same book','data' => 'insert data', 'access_token' => app_token})
     response = http.request request
 
   end
