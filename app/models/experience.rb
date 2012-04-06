@@ -27,6 +27,17 @@ class Experience < ActiveRecord::Base
   end
 
 
+  def facebook_request
+    http = Net::HTTP.new "graph.facebook.com", 443
+    http.use_ssl = true
+
+    post =  "/#{self.user.uid}/apprequests?"
+    request = Net::HTTP::Post.new post
+    request.set_form_data({ 'message' => 'Your friend has read the same book','data' => 'insert data', 'access_token' => self.user.token})
+    response = http.request request
+
+  end
+
   def facebook_action
   unless (Rails.env.eql?('development') || Rails.env.eql?('test'))
    if code.eql?(0)
