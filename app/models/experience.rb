@@ -1,3 +1,5 @@
+require 'facebook_api'
+
 class Experience < ActiveRecord::Base
 
   belongs_to :user
@@ -27,19 +29,16 @@ class Experience < ActiveRecord::Base
   end
 
 
+# if the user clicks on the link that appears on the sidebar: 3 teaching requests:
+#   "fb_source"=>"request", "request_ids"=>"334362366620410,225363117571571,325535667501147", "ref"=>"reminders"
+# if the user clicks on the link that appears on the bookmark 
+#  "fb_source"=>"bookmark_apps", "ref"=>"bookmarks", "count"=>"1", "fb_bmpos"=>"1_1"
+#  "fb_source"=>"bookmark_apps", "ref"=>"bookmarks", "count"=>"2", "fb_bmpos"=>"1_2"
+# if the user clicks on a specific request
+# , "fb_source"=>"request", "request_ids"=>"334362366620410"
+
   def facebook_request
-    http = Net::HTTP.new "graph.facebook.com", 443
-    http.use_ssl = true
-
-    # Asking for the app token
-    response = http.request(Net::HTTP::Get.new("/oauth/access_token?client_id=#{ENV['FACEBOOK_KEY']}&&client_secret=#{ENV['FACEBOOK_SECRET']}&grant_type=client_credentials"))
-    app_token = CGI.parse(response.body)["access_token"][0]
-
-    post =  "/#{self.user.uid}/apprequests?"
-    request = Net::HTTP::Post.new post
-    request.set_form_data({ 'message' => 'Your friend has read the same book','data' => 'insert data', 'access_token' => app_token})
-    response = http.request request
-
+  FacebookApi.send_request(self.user.uid,'Your friend has read the same book', 'insert data')
   end
 
   def facebook_action
