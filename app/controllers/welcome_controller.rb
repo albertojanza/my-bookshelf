@@ -3,6 +3,15 @@ require "base64"
 class WelcomeController < ApplicationController
   ########before_filter :required_logged_in, :only => :canvas 
 
+
+
+# if the user clicks on the link that appears on the sidebar: 3 teaching requests:
+#   "fb_source"=>"request", "request_ids"=>"334362366620410,225363117571571,325535667501147", "ref"=>"reminders"
+# if the user clicks on the link that appears on the bookmark 
+#  "fb_source"=>"bookmark_apps", "ref"=>"bookmarks", "count"=>"1", "fb_bmpos"=>"1_1"
+#  "fb_source"=>"bookmark_apps", "ref"=>"bookmarks", "count"=>"2", "fb_bmpos"=>"1_2"
+# if the user clicks on a specific request
+# , "fb_source"=>"request", "request_ids"=>"334362366620410"
   def index
 
     unless logged_in?

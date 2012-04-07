@@ -191,6 +191,10 @@ en:
   noti_reading_book_html: "%{name} just started reading %{title} by %{author}."
   noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
   noti_recommendation_book_html: "%{name} has received a recommendation of %{title} by %{author} from %{recommender}."
+  fb_request_read_book: "%{name} has read a book that you have read too. Ask them about it."
+  fb_request_reading_book: "%{name} is reading a book that you have read. Don't tell them the end XD."
+  fb_request_next_book: "%{name}  is thinking about reading a book that you have read. Give them your feedback."
+  fb_request_recommendation_book: "A friend just recommended %{name} a book that you have read. Give them your feedback."
 
 #######################################
 # User account 

@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'facebook_user_seed'
+require 'facebook_api'
 
 
 class InteractionsDaoTest < ActiveSupport::TestCase
@@ -30,6 +31,45 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     # as we are re-initializing @post before every test
     # setting it to nil here is not essential but I hope
     # you understand how you can use the teardown method
+  end
+
+
+  test 'Facebook request.' do
+    book = Book.find_by_asin '8498382548' 
+    # These three guys are friends
+    scorpions = User.find_by_uid '100003593065982'
+    FacebookApi.delete_all_request(scorpions.uid,scorpions.token)
+
+    # We check out that they don't have any facebook request
+    keys = REDIS.lrange("user:#{scorpions.id}:fb_requests", 0, 20)
+    assert_equal keys, []
+    count = REDIS.get "user:#{scorpions.id}:noti_requests_count"
+    assert_nil count
+
+    # Scorpions marks the book as read
+    experience1 = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = scorpions.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+
+
+    friends =  scorpions.friends.map{ |friend|  User.find_by_uid friend['id'] }
+
+    friends.each do |friend|
+      Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = friend.id
+        experience.started_at = Time.now 
+        experience.code = 0
+      end
+    end
+
+    count = REDIS.get "user:#{scorpions.id}:fb_requests_count"
+    assert_equal count.to_i, friends.size
+
+
   end
 
   # Scenario: Three friends: Scorpions, Aeromisth and Bubury. 

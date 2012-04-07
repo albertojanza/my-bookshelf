@@ -1,6 +1,22 @@
 class InteractionsDao
 
   ###########################
+  # Cassandra: Facebook requests. x
+  # Redis: Set. We track every facebook request 
+  # fb_requests:1232343453
+  # It is a set. When the user attends the request, we remove the request from its user set, and we update this hash to track if the request was attend by:
+  # - "source"=>"fb_request"
+  # - "source" => "web-news"
+  ########################
+
+  ###########################
+  # Cassandra: User facebook request. Inverted index
+  # Redis: Set. We track every facebook request that has been sent to an user
+  # user:12:fb_requests
+  # It is a set.
+  ########################
+
+  ###########################
   # Cassandra: User Notifications. Inverted index
   # Redis: Every user has a list of notifications
   # user:12:notifications
@@ -31,6 +47,7 @@ class InteractionsDao
   ## Notification counter per user
   ## user:12:noti_count
   ## user:12:reco_count
+  ## user:12:fb_requests_count
   #######################################
   
   def self.notifications_count(user_id)
@@ -57,6 +74,13 @@ class InteractionsDao
       unless user.eql? experience.recommender
         REDIS.lpush "user:#{user[:id]}:notifications", "experience:#{experience.id}"
         REDIS.incr "user:#{user[:id]}:noti_count"
+
+        # Facebook app-generated requests
+        data = FacebookApi.send_request(user[:uid],self.facebook_request_message(experience.code, user[:name]), 'insert data')
+        REDIS.hmset "fb_requests:#{data['request']}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}"
+        REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}"
+        REDIS.incr "user:#{user[:id]}:fb_requests_count"
+      
       end
     end
     friends_have_read_it.each do |user| 
@@ -67,6 +91,21 @@ class InteractionsDao
         REDIS.incr "user:#{experience.recommender.id}:reco_count"
     end
 
+  end
+
+private
+
+  def self.facebook_request_message code, name
+    case code
+      when 0
+        I18n.t 'fb_request_read_book', :name => name
+      when 1
+        I18n.t 'fb_request_reading_book', :name => name
+      when 2
+        I18n.t 'fb_request_next_book', :name => name
+      when 3
+        I18n.t 'fb_request_recommendation_book', :name => name
+    end
   end
 
 end
