@@ -4,9 +4,15 @@ class InteractionsDao
   # Cassandra: Facebook requests. x
   # Redis: Set. We track every facebook request 
   # fb_requests:1232343453
-  # It is a set. When the user attends the request, we remove the request from its user set, and we update this hash to track if the request was attend by:
+  # It is a hash. When the user attends the request, we remove the request from its user set, and we update this hash to track if the request was attend by:
   # - "source"=>"fb_request"
   # - "source" => "web-news"
+  # Hash structure 
+  #   - mandatory fields : user_id', 'user_uid', type
+  #   - optional fields experience_id
+  # type values: 
+  #   - app_generated_recommendation # recommendation to a book
+  #   - user_generated_invitation # invitation to use the app 
   ########################
 
   ###########################
@@ -77,7 +83,7 @@ class InteractionsDao
 
         # Facebook app-generated requests
         data = FacebookApi.send_request(user[:uid],self.facebook_request_message(experience.code, user[:name]), 'insert data')
-        REDIS.hmset "fb_requests:#{data['request']}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}"
+        REDIS.hmset "fb_requests:#{data['request']}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_recommendation'
         REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}"
         REDIS.incr "user:#{user[:id]}:fb_requests_count"
       
@@ -91,6 +97,14 @@ class InteractionsDao
         REDIS.incr "user:#{experience.recommender.id}:reco_count"
     end
 
+  end
+
+  def self.track_fb_invitation_request(request,to)
+    user = User.find_by_uid(to.first)
+    user = User.create(:uid => to.first) unless user
+    REDIS.hmset "fb_requests:#{request}", 'user_id', user.id, 'user_uid', user.uid, 'type', 'user_generated_invitation'
+    REDIS.sadd "user:#{user[:id]}:fb_requests", request
+    REDIS.incr "user:#{user[:id]}:fb_requests_count"
   end
 
 private

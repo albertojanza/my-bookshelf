@@ -195,6 +195,8 @@ es:
   fb_request_reading_book: "%{name} está leyendo un libro que tú has leído. No le estropees el final XD"
   fb_request_next_book: "%{name} está pensando en leer un libro que tú has leído, dale tu opinión."
   fb_request_recommendation_book: "Un amigo le ha recomendado a %{name} un libro que tú has leído. Dale tu opinión."
+  request_dialog_invitation_title: "Enviar esta invitación a tu amigo?"
+  request_dialog_invitation_message: "Usa Libroshelf para ver que libros estoy leyendo y para que compartas tus lecturas."
 
 #######################################
 # User account 

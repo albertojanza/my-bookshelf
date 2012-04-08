@@ -30,8 +30,10 @@ MyBookshelf::Application.routes.draw do
   post 'books/search' => 'books#search', :as => :search
   get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities
 
-  get 'facebook_dialog_response' => 'facebook#dialog_response', :as => :facebook_dialog_response
-  get 'facebook_dialog' => 'facebook#send_dialog', :as => :facebook_dialog
+  get 'fb_request_dialog_response' => 'facebook#request_dialog_response', :as => :facebook_request_dialog_response
+  get 'f_request_dialog' => 'facebook#request_dialog', :as => :facebook_request_dialog
+  get 'fb_send_dialog_response' => 'facebook#send_dialog_response', :as => :facebook_send_dialog_response
+  get 'fb_send_dialog' => 'facebook#send_dialog', :as => :facebook_send_dialog
   get 'friends' => 'facebook#friend_list', :as => :friends
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
   get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'

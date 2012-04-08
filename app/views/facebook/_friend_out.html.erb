@@ -6,7 +6,11 @@
 
 <script type="text/javascript" >
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
-top.location.href="<%= facebook_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% if params[:canvas] %>
+        top.location.href="<%= facebook_request_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% else %>
+        top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% end %>
     });
 </script>    
 <!--script type="text/javascript" >
