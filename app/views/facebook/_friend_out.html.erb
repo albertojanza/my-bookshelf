@@ -4,7 +4,8 @@
 </div>
 
 
-<script type="text/javascript" >
+<!--script type="text/javascript" >
+
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
       <% if params[:canvas] %>
         top.location.href="<%= facebook_request_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
@@ -12,7 +13,37 @@
         top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
       <% end %>
     });
-</script>    
+</script-->    
+
+<script>
+
+
+      function requestCallback(response) {
+        alert('hola');
+        // Handle callback here
+      }
+
+    $('#friend-out-<%= friend_out['id'] %>').click(function() {
+      <% if params[:canvas] %>
+      FB.init({
+        appId  : '<%= ENV['FACEBOOK_KEY'] %>',
+        frictionlessRequests: true,
+      });
+
+        FB.ui({method: 'apprequests',
+          display : 'iframe',
+          message: 'My Great Request',
+          to: '<%= friend_out['id'] %>', 
+        }, requestCallback);
+
+
+      <% else %>
+        top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% end %>
+    });
+
+    </script>
+
 <!--script type="text/javascript" >
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
 
