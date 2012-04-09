@@ -28,6 +28,18 @@ class FbRequestsBusiness
   ## user:12:fb_requests_count
   #######################################
 
+  def self.get_facebook_requests(user_id)
+    keys = REDIS.smembers("user:#{user_id}:fb_requests")
+    items = []
+    #redis.pipelined do
+      keys.each { |key| items << REDIS.hgetall(key) }
+    #end
+    items
+  end
+
+  def self.fb_requests_count(user_id)
+    news_count = REDIS.get "user:#{user_id}:fb_requests_count" 
+  end
 
   def self.track_fb_invitation_request(request,to)
     to.each do |uid|
@@ -44,10 +56,23 @@ class FbRequestsBusiness
         # Facebook app-generated requests
         data = FacebookApi.send_request(experience.user.uid,self.facebook_request_message(experience.code, experience.user.name), experience.id)
         REDIS.hmset "fb_requests:#{data['request']}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_recommendation'
-        REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}"
-        REDIS.incr "user:#{user[:id]}:fb_requests_count"
+        REDIS.sadd "user:#{experience.user.id}:fb_requests", "#{data['request']}"
+        REDIS.incr "user:#{experience.user.id}:fb_requests_count"
 
   end
+
+
+  def self.app_generated_fb_requests(experience)
+    friend_uids = experience.user.friends.map {|friend|  friend['id']}
+    readers = experience.book.cache_people_are_reading + experience.book.cache_people_have_read +  experience.book.cache_people_will_read + experience.book.cache_people_with_recommendations
+    friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
+    friends_have_read_it.each do |user| 
+        data = FacebookApi.send_request(user[:uid],self.facebook_request_message(experience.code, experience.user.name), experience.id)
+        REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}"
+        REDIS.incr "user:#{user[:id]}:fb_requests_count"
+    end
+  end
+
 
   def self.user_generated_fb_recommendation_request(request,to)
 
