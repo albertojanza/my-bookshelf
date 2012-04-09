@@ -53,8 +53,7 @@ class WelcomeController < ApplicationController
       if params[:signed_request]
         encoded_sig, payload = params[:signed_request].split('.')
         user_data =ActiveSupport::JSON.decode base64_url_decode(payload)
-        if user_data['user_id']
-          user = User.find_by_provider_and_uid('facebook', user_data['user_id'])
+        if user_data['user_id'] && (user = User.find_by_provider_and_uid('facebook', user_data['user_id']))
           # The next line doesnt work, because the previous call to logged_in? method already set up the @current_user variable.
           #session[:user_id] = authentication.user.id
           self.current_user=(user)

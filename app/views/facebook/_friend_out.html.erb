@@ -25,13 +25,13 @@
 
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
       <% if params[:canvas] %>
-      FB.init({
+ /*     FB.init({
         appId  : '<%= ENV['FACEBOOK_KEY'] %>',
         frictionlessRequests: true,
       });
 
+*/
         FB.ui({method: 'apprequests',
-          display : 'iframe',
           message: 'My Great Request',
           to: '<%= friend_out['id'] %>', 
         }, requestCallback);
