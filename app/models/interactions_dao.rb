@@ -105,6 +105,8 @@ class InteractionsDao
     REDIS.hmset "fb_requests:#{request}", 'user_id', user.id, 'user_uid', user.uid, 'type', 'user_generated_invitation'
     REDIS.sadd "user:#{user[:id]}:fb_requests", request
     REDIS.incr "user:#{user[:id]}:fb_requests_count"
+    #REDIS.smembers 'user:24:fb_requests'
+
   end
 
 private

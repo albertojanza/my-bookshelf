@@ -16,12 +16,17 @@
 </script-->    
 
 <script>
-
-
-      function requestCallback(response) {
-        alert('hola');
-        // Handle callback here
-      }
+    function requestCallback(response) {
+      if (response['request']) {
+        $.ajax({
+          url: "<%= tracking_request_dialog_path%>",
+          data: response,
+        success:    function(response, status) {
+                            console.log(status);
+                }
+        })
+      } 
+    }
 
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
       <% if params[:canvas] %>
@@ -31,6 +36,17 @@
       });
 
 */
+
+    <%# 
+      # Facebook properties
+      # app_id, redirect_ri
+      # to, filters, exclude_ids
+      # max_recipients, 
+      # message # invite requests (request to user that are not using libroshelf dont see this message) dont see this message.
+      # data # Optional, additional data you may pass for tracking. This will be stored as part of the request objects created. The maximum length is 255 characters.
+      # title
+    %>
+
         FB.ui({method: 'apprequests',
           message: 'My Great Request',
           to: '<%= friend_out['id'] %>', 
