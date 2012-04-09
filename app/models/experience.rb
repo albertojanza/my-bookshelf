@@ -22,11 +22,11 @@ class Experience < ActiveRecord::Base
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
   before_save :facebook_action
-  after_create :set_notifications
+  #after_create :set_notifications
 
-  def set_notifications
-    InteractionsDao.set_notifications(self)
-  end
+  #def set_notifications
+  #  ExperiencesDao.create_experience(self)
+  #end
 
 
 

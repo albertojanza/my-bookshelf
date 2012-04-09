@@ -54,6 +54,7 @@ class ExperiencesController < ApplicationController
         experience.started_at = Time.now 
         experience.code = params[:code]
       end
+      ExperiencesBusiness.create_experience(@experience)
     end
   end
 
@@ -127,6 +128,7 @@ class ExperiencesController < ApplicationController
             experience.started_at = Time.now 
             experience.code = 3
           end
+          ExperiencesBusiness.create_experience(@experience,'APP-GENERATED')
         rescue Experience::DuplicatedExperience => e
           logger.error("ERROR #{e.message}")
 
