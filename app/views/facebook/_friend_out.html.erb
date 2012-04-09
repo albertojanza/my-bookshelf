@@ -22,7 +22,7 @@
           url: "<%= tracking_request_dialog_path%>",
           data: response,
         success:    function(response, status) {
-                            console.log(status);
+                         //   console.log(status);
                 }
         })
       } 
@@ -50,6 +50,7 @@
         FB.ui({method: 'apprequests',
           message: 'My Great Request',
           to: '<%= friend_out['id'] %>', 
+          title: '<%=I18n.t('request_dialog_invitation_title')%>'
         }, requestCallback);
 
 

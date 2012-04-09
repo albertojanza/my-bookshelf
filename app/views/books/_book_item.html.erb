@@ -59,7 +59,13 @@
           <% case book_item.code 
             when 0 %>
               <ul>
-                <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
+                <% if params[:canvas] %>
+                  <li><%= link_to_function I18n.t('recommend'), "recommend_book(#{book_item.book.id},'Manuel te ha recomendado el libro lala la','title_title my title')" %></li>
+                <% else %>
+                  <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
+                <% end %>
+
+
                 <li class="separator">|</li>
                 <li><%= link_to I18n.t('book_show_friends_link'), book_show_friends_path(:id => book_item.book.id), :remote => true  %></li>
               </ul>

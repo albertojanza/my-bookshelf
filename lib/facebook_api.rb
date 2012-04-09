@@ -10,7 +10,7 @@ class FacebookApi
 
     post =  "/#{uid}/apprequests?"
     request = Net::HTTP::Post.new post
-    request.set_form_data({ 'message' => message,'data' => 'insert data', 'access_token' => app_token})
+    request.set_form_data({ 'message' => message,'data' => data, 'access_token' => app_token})
     response = http.request request
     data = MultiJson.decode(response.body)
 
