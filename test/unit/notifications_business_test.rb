@@ -94,8 +94,8 @@ class InteractionsDaoTest < ActiveSupport::TestCase
     assert_nil NotificationsBusiness.news_notifications_count(aerosmith.id)
     assert_equal NotificationsBusiness.get_news_notifications(aerosmith.id), []
     # We check out that aerosmith has this recommendation on it recommendation inbox.
-    assert_equal NotificationsBusiness.news_notifications_count(bunbury.id), '1'
-    assert_equal NotificationsBusiness.get_news_notifications(bunbury.id).first['id'], experience3.id.to_s
+    assert_nil NotificationsBusiness.news_notifications_count(bunbury.id)
+    assert_equal NotificationsBusiness.get_news_notifications(bunbury.id), []
 
 
     # We check out that bunbury has this recommendation on its recommendation list.
@@ -103,5 +103,81 @@ class InteractionsDaoTest < ActiveSupport::TestCase
 
 
   end
+
+
+
+  # Scenario: All friends of the user Scorpions mark a book, that Scorpions has read, as read. So Scorpions should receive an notification request per every friend.
+  test 'Notifications frome every friend.' do
+    book = Book.find_by_asin '8498382548' 
+    scorpions = User.find_by_uid '100003593065982'
+    friends =  scorpions.friends.map{ |friend|  User.find_by_uid friend['id'] }
+    # We check out that scorpions doesn't have any notifications
+    assert_nil NotificationsBusiness.news_notifications_count(scorpions.id)
+    assert_equal NotificationsBusiness.get_news_notifications(scorpions.id), []
+
+      experience = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = scorpions.id
+        experience.started_at = Time.now 
+        experience.code = 0
+      end
+    ExperiencesBusiness.create_experience(experience,'APP-GENERATED')
+
+    # Scorpions's friends just marked a book as read
+    experiences = []
+    friends.each do |friend|
+      experience1 = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = friend.id
+        experience.started_at = Time.now 
+        experience.code = 0
+      end
+      experiences << experience1
+      ExperiencesBusiness.create_experience(experience1,'APP-GENERATED')
+    end
+
+    #keys = REDIS.lrange("user:#{scorpions.id}:notifications", 0, 20)
+    scorpions_notifications = NotificationsBusiness.get_news_notifications(scorpions.id)
+    experiences.reverse.each_with_index { |ex,index| assert_equal scorpions_notifications[index]['id'],  ex.id.to_s } 
+    assert_equal experiences.size.to_s, NotificationsBusiness.news_notifications_count(scorpions.id)
+
+  end
+
+
+  # the users have names of music groups
+  test "Friends receive the notification when a user starts reading abook that his friends have read" do
+    book = Book.find_by_asin '8498382548' 
+    scorpions = User.find_by_uid '100003593065982'
+    friend = User.find_by_uid scorpions.friends.first['id']
+    # The friend doesn't have any notification yet
+    assert_nil NotificationsBusiness.news_notifications_count(friend.id)
+    assert_equal NotificationsBusiness.get_news_notifications(friend.id), []
+
+    experience = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = friend.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+    ExperiencesBusiness.create_experience(experience,'APP-GENERATED')
+    # After creating an experience, the friend continues without having notification
+    assert_nil NotificationsBusiness.news_notifications_count(friend.id)
+    assert_equal NotificationsBusiness.get_news_notifications(friend.id), []
+
+    experience = Experience.create do |experience|
+        experience.book_id = book.id
+        experience.user_id = scorpions.id
+        experience.started_at = Time.now 
+        experience.code = 0
+    end
+    ExperiencesBusiness.create_experience(experience,'APP-GENERATED')
+
+    #Now the friend got a notification
+    assert_equal NotificationsBusiness.news_notifications_count(friend.id), '1'
+    assert_equal NotificationsBusiness.get_news_notifications(friend.id).first['id'], experience.id.to_s
+     
+
+  end
+
 
 end

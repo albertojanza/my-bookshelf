@@ -39,6 +39,7 @@ class FbRequestsBusiness
 
   def self.fb_requests_count(user_id)
     news_count = REDIS.get "user:#{user_id}:fb_requests_count" 
+
   end
 
   def self.track_fb_invitation_request(request,to)
