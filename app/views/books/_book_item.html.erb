@@ -60,7 +60,7 @@
             when 0 %>
               <ul>
                 <% if params[:canvas] %>
-                  <li><%= link_to_function I18n.t('recommend'), "recommend_book(#{book_item.book.id},'Manuel te ha recomendado el libro lala la','title_title my title')" %></li>
+                  <li><%= link_to_function I18n.t('recommend'), "recommend_book(#{book_item.book.id},'#{I18n.t('request_dialog_recommendation_message',:name => current_user.name, :title => book_item.book.title)}','#{I18n.t('request_dialog_recommendation_title', :title => book_item.book.title)}')" %></li>
                 <% else %>
                   <li><%= link_to I18n.t('recommend'), book_recommend_path(:id => book_item.book.id), :remote => true  %></li>
                 <% end %>

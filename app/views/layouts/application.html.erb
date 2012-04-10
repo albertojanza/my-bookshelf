@@ -61,7 +61,7 @@
         </div>
       <% else %>
         <ul class="menu right_float">
-          <% if  count = InteractionsDao.notifications_count(current_user.id)%>
+          <% if  count =  NotificationsBusiness.notifications_count(current_user.id)%>
             <li><%= link_to "#{I18n.t('news')} (#{count})", notifications_path, :class => ( params[:action].eql?('notifications')  ? 'selected' : '')  %></li>
             <li class="separator">|</li>
           <% end %>

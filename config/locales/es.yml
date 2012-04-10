@@ -197,6 +197,8 @@ es:
   fb_request_recommendation_book: "Un amigo le ha recomendado a %{name} un libro que tú has leído. Dale tu opinión."
   request_dialog_invitation_title: "Enviar esta invitación a tu amigo?"
   request_dialog_invitation_message: "Usa Libroshelf para ver que libros estoy leyendo y para que compartas tus lecturas."
+  request_dialog_recommendation_title: "Recomendación de %{title}"
+  request_dialog_recommendation_message: "%{name} te ha recomendado el libro: %{title} en Libroshelf"
 
 #######################################
 # User account 
