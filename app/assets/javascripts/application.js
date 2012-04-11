@@ -13,7 +13,7 @@
 // This is used only when the app is showed in the Facebook canvas.
   function recommend_book(book_id,text_message,text_title) {
 
-        FB.ui({method: 'apprequests',display: 'iframe', data:book_id, message: text_message, title: text_title
+        FB.ui({method: 'apprequests',display: 'iframe', data: book_id, message: text_message, title: text_title
         }, recommend_book_callback);
 
   }
