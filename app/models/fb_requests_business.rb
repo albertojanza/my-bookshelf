@@ -45,6 +45,16 @@ class FbRequestsBusiness
   ## user:12:fb_requests_count
   #######################################
 
+  def self.remove_requests  user_token, user_id
+    request_ids = REDIS.smembers "user:#{user_id}:fb_requests"
+    request_ids.each do |request_id| 
+      REDIS.hset "fb_requests:#{request_id}", 'source', 'no-source'
+      REDIS.sadd "fb_requests", "fb_requests:#{request_id}"
+      REDIS.srem "user:#{user_id}:fb_requests", request_id
+      FacebookApi.delete_request("#{request_id}",user_token)
+    end
+  end
+
   def self.process_request request_ids, source,  user_token, user_uid
     experiences = []
     request_ids.split(',').each do |request|

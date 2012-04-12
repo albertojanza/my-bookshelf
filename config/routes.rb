@@ -1,6 +1,8 @@
 MyBookshelf::Application.routes.draw do
 
   get "/notifications" => 'interactions#notifications', :as => 'notifications'
+  get "/recommendations" => 'interactions#recommendations', :as => 'recommendations'
+  post "/reset_count" => 'interactions#reset_count', :as => 'reset_count'
 
   resources :contacts
 

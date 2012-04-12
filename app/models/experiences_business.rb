@@ -36,6 +36,7 @@ class ExperiencesBusiness
     REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.recommender.id, 'recommender_name', experience.recommender.name, 'recommender_uid', experience.recommender.uid if experience.recommender
     if experience.code.eql?(3)
       REDIS.lpush "user:#{experience.recommender.id}:recommendations", "experience:#{experience.id}"
+      NotificationsBusiness.set_recommendation_notifications(experience)
       unless origin.eql?('USER-GENERATED')
         FbRequestsBusiness.app_generated_fb_recommendation_requests(experience)
       end

@@ -21,8 +21,17 @@ class NotificationsBusiness
   ## user:12:reco_count
   #######################################
   
+
+  def self.reset_reco_notifications_count(user_id)
+    news_count = REDIS.set "user:#{user_id}:reco_count", '0'
+  end
+
+  def self.reset_news_notifications_count(user_id)
+    news_count = REDIS.set "user:#{user_id}:news_count", '0'
+  end
+
   def self.reco_notifications_count(user_id)
-    news_count = REDIS.get "user:#{user_id}:news_count" 
+    news_count = REDIS.get "user:#{user_id}:reco_count" 
   end
 
   def self.news_notifications_count(user_id)

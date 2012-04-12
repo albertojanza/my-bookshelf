@@ -187,6 +187,7 @@ en:
 # Interactions
 ###################################
   news: 'News'
+  recommendations: 'Recommendations'
   noti_read_book_html: "%{name}'s marked the book %{title} as read."
   noti_reading_book_html: "%{name} just started reading %{title} by %{author}."
   noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
