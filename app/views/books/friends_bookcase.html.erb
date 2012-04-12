@@ -14,7 +14,7 @@
   <meta name="keywords" content="  book, books, reading " />
     
 <% end %>
-
+<%= debug @experiences %>
 <%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => '/books/book_item',:collection => @reading,  :items_slide => 24,:slider_index => 0 %>
 
 <script type="text/javascript" >

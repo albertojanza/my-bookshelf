@@ -10,7 +10,7 @@ class FacebookController < ApplicationController
   end
 
   def tracking_request_dialog
-    InteractionsDao.track_fb_invitation_request(params[:request],params[:to])
+    FbRequestsBusiness.track_fb_invitation_request(params[:request],params[:to])
     respond_to do |format|
       format.json { head :ok }
     end
@@ -20,7 +20,7 @@ class FacebookController < ApplicationController
 
   def tracking_request_dialog_recommendations
     REDIS.set 'black', 'white'
-    InteractionsDao.user_generated_fb_recommendation_request(params[:request],params[:to])
+    FbRequestsBusiness.user_generated_fb_recommendation_request(params[:request],params[:to])
     respond_to do |format|
       format.json { head :ok }
     end

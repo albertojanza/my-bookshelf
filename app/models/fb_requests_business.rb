@@ -1,3 +1,4 @@
+require 'facebook_api'
 class FbRequestsBusiness
   ###########################
   # Cassandra: Facebook requests. x
@@ -17,6 +18,21 @@ class FbRequestsBusiness
   ########################
 
   ###########################
+  # Cassandra: Inverted index
+  # Redis:  We keep a set with the fbrquests that has been processed
+  # fb_requests:
+  # It is a set.
+  ########################
+
+
+  ###########################
+  # Cassandra: A experience can have several request. Inverted index
+  # Redis:  A user can receive several recommendations of the same book, so we keep this set to be able to remove the rest of requests.
+  # experience:12:fb_requests
+  # It is a set.
+  ########################
+
+  ###########################
   # Cassandra: User facebook request. Inverted index
   # Redis: Set. We track every facebook request that has been sent to an user
   # user:12:fb_requests
@@ -27,6 +43,26 @@ class FbRequestsBusiness
   ## COUNTERs
   ## user:12:fb_requests_count
   #######################################
+
+  def self.process_request request_ids, source, user_token
+    experiences = []
+    requests = (request_ids.class.eql?(String) ?  [request_ids] : request_ids) 
+    requests.each do |request|
+      REDIS.hset "fb_requests:#{request}", 'source', source
+      REDIS.sadd "fb_requests", request
+      experience = REDIS.hgetall "fb_requests:#{request}"
+      experiences << experience
+      REDIS.srem "user:#{experience['user_id']}:fb_requests", request
+      
+      FacebookApi.delete_request(request,user_token)
+    end
+    experiences
+  end
+
+  def self.get_facebook_request(request_id)
+    REDIS.hgetall("fb_requests:#{request_id}")
+  end
+
 
   def self.get_facebook_requests(user_id)
     keys = REDIS.smembers("user:#{user_id}:fb_requests")
@@ -82,19 +118,25 @@ class FbRequestsBusiness
     to.each do |uid|
       user = User.find_by_uid(uid)
       user = User.create(:uid => to.first) unless user
-      experience = Experience.create do |experience|
-        experience.book_id requ request_info['data']
-        experience.user_id = user.id
-        experience.recommender_id = recommender.id
-        experience.started_at = Time.now 
-        experience.code = 3
+      # Be careful a user can receive several recommendations of the same book
+      experience = Experience.find_by_user_id_and_book_id user.id, request_info['data']
+      unless experience 
+        experience = Experience.create do |experience|
+          experience.book_id = request_info['data']
+          experience.user_id = user.id
+          experience.recommender_id = recommender.id
+          experience.started_at = Time.now 
+          experience.code = 3
+        end
       end
 
-      ExperiencesBusiness.create_experience(@experience,'USER-GENERATED')
+      ExperiencesBusiness.create_experience(experience,'USER-GENERATED')
 
       REDIS.hmset "fb_requests:#{request}", 'user_id', user.id, 'user_uid', user.uid, 'experience_id', experience.id, 'type', 'user_generated_recommendation'
       REDIS.sadd "user:#{user[:id]}:fb_requests", request
       REDIS.incr "user:#{user[:id]}:fb_requests_count"
+      REDIS.sadd "experiences:#{experience.id}:fb_requests", request
+
       #REDIS.smembers 'user:24:fb_requests'
     end
   end
