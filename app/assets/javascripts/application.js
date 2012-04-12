@@ -22,7 +22,7 @@
   function recommend_book_callback(response) {
       if (response['request']) {
         $.ajax({
-          url: "tracking_request_dialog_recommendations",
+          url: "/tracking_request_dialog_recommendations",
           data: response,
         success:    function(response, status) {
                 }
