@@ -186,12 +186,15 @@ en:
 #######################################
 # Interactions
 ###################################
+  empty_news: "There are no notifications yet."
+  empty_recommendations: "No one of your friends has sent you a recommendation yet."
   news: 'News'
   recommendations: 'Recommendations'
   noti_read_book_html: "%{name}'s marked the book %{title} as read."
   noti_reading_book_html: "%{name} just started reading %{title} by %{author}."
   noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
   noti_recommendation_book_html: "%{name} has received a recommendation of %{title} by %{author} from %{recommender}."
+  reco_book_html: "%{recommender} has recommended you the book %{title} by %{author}."
   fb_request_read_book: "%{name} has read a book that you have read too. Ask them about it."
   fb_request_reading_book: "%{name} is reading a book that you have read. Don't tell them the end XD."
   fb_request_next_book: "%{name}  is thinking about reading a book that you have read. Give them your feedback."

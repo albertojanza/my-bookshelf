@@ -185,13 +185,15 @@ es:
 #######################################
 # Interactions
 ###################################
+  empty_news: "Por ahora no tienes nuevas notificaciones."
+  empty_recommendations: "Aún no te han enviado ninguna recomendación."
   news: 'Noticias'
   recommendations: 'Recomendaciones'
   noti_read_book_html: "%{name} acaba de marcar el libro %{title} como leído."
   noti_reading_book_html: "%{name} acaba de empezar a leer %{title} de %{author}."
   noti_next_book_html: "%{name} está pensando en leer %{title} de %{author}."
-  noti_recommendation_book_html: "%{name} está pensando en leer %{title} de %{author}."
   noti_recommendation_book_html: "%{recommender} le ha recommendado a %{name} leer %{title} de %{author}."
+  reco_book_html: "%{recommender} te ha recommendado el libro %{title} de %{author}."
   fb_request_read_book: "%{name} ha leído un libro que tu has leído. Pregúntale si te ha gustado."
   fb_request_reading_book: "%{name} está leyendo un libro que tú has leído. No le estropees el final XD"
   fb_request_next_book: "%{name} está pensando en leer un libro que tú has leído, dale tu opinión."

@@ -44,7 +44,7 @@ class NotificationsBusiness
     if news_count.nil? && reco_count.nil?
       nil
     else
-      ((news_count.nil? ? 0 : news_count.to_i) + (reco_count.nil? ? 0 : reco_count.to_i))
+      ((news_count.nil? ? 0 : news_count.to_i) + (reco_count.nil? ? 0 : reco_count.to_i)).to_s
     end
   end
 

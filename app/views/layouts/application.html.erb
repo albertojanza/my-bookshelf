@@ -63,7 +63,9 @@
         <ul class="menu right_float">
           <% if  count =  NotificationsBusiness.notifications_count(current_user.id)%>
             <% string_count = (!count.eql?('0') ? "(#{count})" : '')%>
-            <li><%= link_to "#{I18n.t('news')} <span id='count'>#{string_count}</span>".html_safe, notifications_path, :class => ( params[:action].eql?('notifications')  ? 'selected' : '')  %></li>
+            <% path = notifications_path %>
+            <% path = recommendations_path if NotificationsBusiness.get_news_notifications(current_user.id).empty? %>
+            <li><%= link_to "#{I18n.t('news')} <span id='count'>#{string_count}</span>".html_safe, path, :class => ( params[:action].eql?('notifications')  ? 'selected' : '')  %></li>
             <li class="separator">|</li>
           <% end %>
           <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && (params[:action].eql?('bookcase') || params[:action].eql?('shelf')) ) ? 'selected' : '')  %></li>

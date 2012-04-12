@@ -11,8 +11,12 @@
 
 <% end %>
 
+<div class="page-title">
+<h1><%= I18n.t 'news' %></h1>
+</div>
 
 <div class="interactions">
+    <%= I18n.t 'empty_news' if @items.empty? %>
     <% @items.each do |item| %>
       <div class="item">
         <%= link_to image_tag((item['image'] ? amazon_url(item['image']) : 'book-item-default-image.png'), :class => 'book-image'), book_path(:id => item['book_id']) %>

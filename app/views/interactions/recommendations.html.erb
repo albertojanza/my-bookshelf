@@ -11,15 +11,19 @@
 
 <% end %>
 
+<div class="page-title">
+<h1><%= I18n.t 'recommendations' %></h1>
+</div>
 
 <div class="interactions">
+    <%= I18n.t 'empty_recommendations' if @items.empty? %>
     <% @items.each do |item| %>
       <div class="item">
         <%= link_to image_tag((item['image'] ? amazon_url(item['image']) : 'book-item-default-image.png'), :class => 'book-image'), book_path(:id => item['book_id']) %>
       <div class="item-container">
         <div class="item-content">
             <%= link_to image_tag(profile_picture_url(item['user_uid']), :class => 'user-image'), bookcase_path(:id => item['user_id'] )  %>
-          <%= notification_message(item).html_safe %>
+          <%= recommendation_message(item).html_safe %>
         </div>
         </div>
 
@@ -50,8 +54,8 @@
 
 
               <script type="text/javascript" >
-                <% if @news_count.to_i > 0 %> 
-                  $.post('<%= reset_count_path %>', { count: "news" } );
+                <% if @reco_count.to_i > 0 %> 
+                  $.post('<%= reset_count_path %>', { count: "reco" } );
                 <% end %>
                    $("#book_similarities").load("<%= book_similarities_path(:asin => @last_book) %>"); 
               </script>    

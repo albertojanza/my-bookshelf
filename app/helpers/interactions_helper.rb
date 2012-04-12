@@ -16,4 +16,10 @@ module InteractionsHelper
 
   end
 
+
+  def recommendation_message(item)
+     I18n.t('reco_book_html', :recommender => link_to(item['recommender_name'],bookcase_path(:id => item['recommender_id'])), :title => link_to(item['title'],book_path(:id => item['book_id'])),:author => by_authors(JSON.parse(item['author']))).html_safe
+  end
+
+
 end
