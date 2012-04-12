@@ -75,7 +75,7 @@ class WelcomeController < ApplicationController
           self.current_user=(user)
 
           # The user has clicked on a notification or a request, so we know which one we have to show him
-          @experiences = FbRequestsBusiness.process_request(params['request_ids'], params['fb_source'], user.token)  if params['request_ids'] 
+          @experiences = FbRequestsBusiness.process_request(params['request_ids'], params['fb_source'], user.token, user.uid)  if params['request_ids'] 
           ###################################################################
           # DUPLICATED CODE IN books controller action friends_bookcase
           ###################################################################
