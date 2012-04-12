@@ -92,8 +92,9 @@ class WelcomeController < ApplicationController
             I18n.locale =  user_data['user']['locale'].scan(/^[a-z]{2}/).first.to_sym
             session[:locale] = I18n.locale
           end
-          render :landing, :layout => 'landing'
-          #render :text =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,publish_stream'</script>"
+       # redirect_to "https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email"
+        #  render :landing, :layout => 'landing'
+          render :text =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email'</script>"
         end
       else
         render :inline =>  "<script> top.location.href='https://www.facebook.com/dialog/oauth?client_id=#{ENV['FACEBOOK_KEY']}&redirect_uri=#{canvas_callback_url}&scope=publish_actions,email'</script>"
