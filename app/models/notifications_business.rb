@@ -79,9 +79,20 @@ class NotificationsBusiness
       REDIS.incr "user:#{user[:id]}:news_count"
     end
     friends_have_read_it.each do |user| 
-      REDIS.lpush "experience:#{experience.id}:news_notifications", "user:#{user[:id]}" 
+      REDIS.sadd "experience:#{experience.id}:news_notifications", "user:#{user[:id]}" 
     end
   end
+
+  # Generate echo-notification in the news on Libroshelf for every friend that has read or is reading the book
+  def self.update_news_notifications(experience)
+    users =  REDIS.smembers "experience:#{experience.id}:news_notifications"
+    users.each do |user|  
+      REDIS.lrem "#{user}:news_notifications", 0, "experience:#{experience.id}"
+      REDIS.lpush "#{user}:news_notifications", "experience:#{experience.id}"
+      REDIS.incr "#{user}:news_count"
+    end
+  end
+
 
   # Generate echo-notification in the news on Libroshelf for every friend that has read or is reading the book
   def self.set_recommendation_notifications(experience)

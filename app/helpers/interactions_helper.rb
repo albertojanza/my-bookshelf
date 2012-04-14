@@ -4,7 +4,11 @@ module InteractionsHelper
     message = ''
     case item['code'].to_i
       when 0
-        message <<  I18n.t('noti_read_book_html', :name => link_to(item['user_name'],bookcase_path(:id => item['user_id'])), :title => link_to(item['title'],book_path(:id => item['book_id']))).html_safe
+        if item['old_codes']
+          message <<  I18n.t('update_noti_read_book_html', :name => link_to(item['user_name'],bookcase_path(:id => item['user_id'])), :title => link_to(item['title'],book_path(:id => item['book_id']))).html_safe
+        else
+          message <<  I18n.t('noti_read_book_html', :name => link_to(item['user_name'],bookcase_path(:id => item['user_id'])), :title => link_to(item['title'],book_path(:id => item['book_id']))).html_safe
+        end
       when 1
         message <<  I18n.t('noti_reading_book_html', :name => link_to(item['user_name'],bookcase_path(:id => item['user_id'])), :title => link_to(item['title'],book_path(:id => item['book_id'])),:author => by_authors(JSON.parse(item['author']))).html_safe
       when 2

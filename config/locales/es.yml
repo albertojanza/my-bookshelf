@@ -189,6 +189,7 @@ es:
   empty_recommendations: "Aún no te han enviado ninguna recomendación."
   news: 'Noticias'
   recommendations: 'Recomendaciones'
+  update_noti_read_book_html: "%{name} acaba de terminar de leer %{title}."
   noti_read_book_html: "%{name} acaba de marcar el libro %{title} como leído."
   noti_reading_book_html: "%{name} acaba de empezar a leer %{title} de %{author}."
   noti_next_book_html: "%{name} está pensando en leer %{title} de %{author}."

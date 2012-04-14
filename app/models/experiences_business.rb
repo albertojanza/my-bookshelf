@@ -9,7 +9,7 @@ class ExperiencesBusiness
   ####################################
   # Cassandra: Experience notifications. Inverted Index
   # Redis: We need to keep track which users have been notified. To be able to remove the notifications. 
-  # experience:id:notifications
+  # experience:id:news_notifications
   ########################
 
   ####################################
@@ -47,7 +47,25 @@ class ExperiencesBusiness
     end
 
   end
- 
+
+  def self.update_experience(experience) 
+    REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.recommender.id, 'recommender_name', experience.recommender.name, 'recommender_uid', experience.recommender.uid  if experience.recommender
+    REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.evangelist.id, 'recommender_name', experience.evangelist.name, 'recommender_uid', experience.evangelist.uid  if experience.evangelist
+    REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.influencer.id, 'recommender_name', experience.influencer.name, 'recommender_uid', experience.influencer.uid  if experience.influencer
+    unless experience.code.eql? experience.code_was
+      old_codes =   REDIS.hget "experience:#{experience.id}", 'old_codes'
+      if old_codes
+        old_codes = JSON.parse old_codes
+        old_codes << experience.code_was
+      else
+        old_codes = [experience.code_was]
+      end
+      REDIS.hmset "experience:#{experience.id}", 'code', experience.code, 'old_codes', old_codes.to_json
+      NotificationsBusiness.update_news_notifications(experience)
+      FbRequestsBusiness.app_generated_fb_requests(experience)
+    end
+
+  end
 
   def self.get_recommendation_list(user_id)
     keys = REDIS.lrange("user:#{user_id}:recommendations", 0, 20)

@@ -18,6 +18,7 @@ class Experience < ActiveRecord::Base
   validates :book, :presence => true
   before_save :recommender_to_influencer
   after_update :count_influences
+  after_update :update_redis_experience
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
@@ -28,7 +29,9 @@ class Experience < ActiveRecord::Base
   #  ExperiencesDao.create_experience(self)
   #end
 
-
+  def update_redis_experience
+    ExperiencesBusiness.update_experience self    
+  end
 
 
   def facebook_action
