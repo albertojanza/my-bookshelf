@@ -185,6 +185,7 @@ es:
 #######################################
 # Interactions
 ###################################
+  noti_warning_html: "You have news from your friends, check out the %{news_section}"
   empty_news: "Por ahora no tienes nuevas notificaciones."
   empty_recommendations: "Aún no te han enviado ninguna recomendación."
   news: 'Noticias'
