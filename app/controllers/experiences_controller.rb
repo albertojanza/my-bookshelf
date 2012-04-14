@@ -54,6 +54,7 @@ class ExperiencesController < ApplicationController
         experience.started_at = Time.now 
         experience.code = params[:code]
       end
+      ExperiencesBusiness.create_experience(@experience)
     end
   end
 
@@ -82,6 +83,21 @@ class ExperiencesController < ApplicationController
     @experience = Experience.find(params[:id])
     @experience.destroy if @experience.user.eql? current_user
     render :destroy
+  end
+
+  def facebook_recommend
+    @book = Book.find params[:id]
+    @friends_with_experience = []
+    uid_people_have_read = @book.cache_people_have_read.map{|user| user[:uid]}
+    uid_people_are_reading = @book.cache_people_are_reading.map{|user| user[:uid]}
+    uid_people_will_read = @book.cache_people_will_read.map{|user| user[:uid]}
+    uid_people_with_recommendations = @book.cache_people_with_recommendations.map{|user| user[:uid]}
+    current_user.friends.each do |friend| 
+      if uid_people_have_read.include?(friend['id']) || uid_people_are_reading.include?(friend['id'])  || uid_people_will_read.include?(friend['id']) || uid_people_with_recommendations.include?(friend['id']) 
+        @friends_with_experience << friend['id']
+      end
+    end
+
   end
 
   def recommend
@@ -127,6 +143,7 @@ class ExperiencesController < ApplicationController
             experience.started_at = Time.now 
             experience.code = 3
           end
+          ExperiencesBusiness.create_experience(@experience,'APP-GENERATED')
         rescue Experience::DuplicatedExperience => e
           logger.error("ERROR #{e.message}")
 

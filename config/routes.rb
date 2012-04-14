@@ -1,8 +1,10 @@
 MyBookshelf::Application.routes.draw do
 
-  resources :contacts
+  get "/notifications" => 'interactions#notifications', :as => 'notifications'
+  get "/recommendations" => 'interactions#recommendations', :as => 'recommendations'
+  post "/reset_count" => 'interactions#reset_count', :as => 'reset_count'
 
-  resources :comments
+  resources :contacts
 
   get 'assure_destroy' => 'experiences#assure_destroy', :as => :assure_experience_destroy
   resources :experiences
@@ -30,8 +32,13 @@ MyBookshelf::Application.routes.draw do
   post 'books/search' => 'books#search', :as => :search
   get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities
 
-  get 'facebook_dialog_response' => 'facebook#dialog_response', :as => :facebook_dialog_response
-  get 'facebook_dialog' => 'facebook#send_dialog', :as => :facebook_dialog
+  get 'facebook_recommend' => 'experiences#facebook_recommend', :as => :facebook_recommend
+  get 'tracking_request_dialog_recommendations' => 'facebook#tracking_request_dialog_recommendations', :as => :tracking_request_dialog_recommendations
+  get 'tracking_request_dialog' => 'facebook#tracking_request_dialog', :as => :tracking_request_dialog
+  #get 'fb_request_dialog_response' => 'facebook#request_dialog_response', :as => :facebook_request_dialog_response
+  #get 'f_request_dialog' => 'facebook#request_dialog', :as => :facebook_request_dialog
+  get 'fb_send_dialog_response' => 'facebook#send_dialog_response', :as => :facebook_send_dialog_response
+  get 'fb_send_dialog' => 'facebook#send_dialog', :as => :facebook_send_dialog
   get 'friends' => 'facebook#friend_list', :as => :friends
   get "facebook/callback" => 'sessions#facebook_callback', :as => 'facebook_callback'
   get "canvas/callback" => 'sessions#canvas_callback', :as => 'canvas_callback'

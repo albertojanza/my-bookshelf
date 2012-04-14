@@ -1,9 +1,10 @@
+require 'facebook_api'
+
 class Experience < ActiveRecord::Base
 
   belongs_to :user
   #belongs_to :adventure
   belongs_to :book
-  has_many :comments
   #belongs_to :resource, :polymorphic => true, :dependent => :destroy
   belongs_to :recommender, :class_name => 'User',:foreign_key  => 'recommender_id'
   belongs_to :evangelist, :class_name => 'User',:foreign_key  => 'evangelist_id'
@@ -17,13 +18,24 @@ class Experience < ActiveRecord::Base
   validates :book, :presence => true
   before_save :recommender_to_influencer
   after_update :count_influences
+  after_update :update_redis_experience
   after_save :remove_book_cache
   after_save :remove_experiences_and_books_cache
   after_save :count_experiences
   before_save :facebook_action
+  #after_create :set_notifications
+
+  #def set_notifications
+  #  ExperiencesDao.create_experience(self)
+  #end
+
+  def update_redis_experience
+    ExperiencesBusiness.update_experience self    
+  end
+
 
   def facebook_action
-  unless Rails.env.eql?('development')
+  unless (Rails.env.eql?('development') || Rails.env.eql?('test'))
    if code.eql?(0)
     http = Net::HTTP.new "graph.facebook.com", 443
     http.use_ssl = true
@@ -41,9 +53,7 @@ class Experience < ActiveRecord::Base
     data = MultiJson.decode(response.body)
     raise(User::TokenExpiration.new(self,data['error']['message'])) if data['error'] && data['error']['type'].eql?('OAuthException') && data['error']['code'].eql?(190)
     i=0
-      puts "party"
     while (data['error'] && (i < 10)) do
-      puts "party"
       i = i + 1
       response = http.request request 
       data = MultiJson.decode(response.body)
@@ -109,6 +119,23 @@ class Experience < ActiveRecord::Base
 
   end
 
+#  def notifications_dynamo
+#    dynamo = AWS::DynamoDB.new
+#    table = dynamo.tables['notifications']
+#    table.load_schema
+#    friend_ids = self.user.friends.map {|friend|  friend['id']}
+#    self.book.cache_people_have_read.select{ |user| friend_ids.include?(user[:uid])  }.each do |user| 
+#      table.items.put(:id => user[:id], :time => Time.now.to_i, :uid => user[:uid], :name => user[:name], :book_id => self.book.id, :title => self.book.title, :author => self.book.author, :ex_code => 0, :reader_id => self.user.id,:reader_uid => self.user.uid,:reader_name => self.user.name, :reader_ex_code => self.code) 
+#    end
+#  end
+#
+#  def notifications
+#    redis = Redis.new(:host => "localhost", :port => 6379)
+#    friend_ids = self.user.friends.map {|friend|  friend['id']}
+#    self.book.cache_people_have_read.select{ |user| friend_ids.include?(user[:uid])  }.each do |user| 
+#      redis.rpush "user:#{user[:id]}:notifications", {:book_id => self.book.id, :title => self.book.title, :author => self.book.author, :ex_code => 0, :reader_id => self.user.id,:reader_uid => self.user.uid,:reader_name => self.user.name, :reader_ex_code => self.code}.to_json
+#    end
+#  end
 
 class DuplicatedExperience < Exception
   @experience

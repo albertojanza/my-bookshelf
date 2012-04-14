@@ -4,11 +4,63 @@
 </div>
 
 
-<script type="text/javascript" >
+<!--script type="text/javascript" >
+
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
-top.location.href="<%= facebook_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% if params[:canvas] %>
+        top.location.href="<%= facebook_request_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% else %>
+        top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% end %>
     });
-</script>    
+</script-->    
+
+<script>
+    function requestCallback(response) {
+      if (response['request']) {
+        $.ajax({
+          url: "<%= tracking_request_dialog_path%>",
+          data: response,
+        success:    function(response, status) {
+                         //   console.log(status);
+                }
+        })
+      } 
+    }
+
+    $('#friend-out-<%= friend_out['id'] %>').click(function() {
+      <% if params[:canvas] %>
+ /*     FB.init({
+        appId  : '<%= ENV['FACEBOOK_KEY'] %>',
+        frictionlessRequests: true,
+      });
+
+*/
+
+    <%# 
+      # Facebook properties
+      # app_id, redirect_ri
+      # to, filters, exclude_ids
+      # max_recipients, 
+      # message # invite requests (request to user that are not using libroshelf dont see this message) dont see this message.
+      # data # Optional, additional data you may pass for tracking. This will be stored as part of the request objects created. The maximum length is 255 characters.
+      # title
+    %>
+
+        FB.ui({method: 'apprequests',
+          message: 'My Great Request',
+          to: '<%= friend_out['id'] %>', 
+          title: '<%=I18n.t('request_dialog_invitation_title')%>'
+        }, requestCallback);
+
+
+      <% else %>
+        top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
+      <% end %>
+    });
+
+    </script>
+
 <!--script type="text/javascript" >
     $('#friend-out-<%= friend_out['id'] %>').click(function() {
 

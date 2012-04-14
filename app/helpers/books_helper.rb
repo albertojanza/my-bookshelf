@@ -5,9 +5,11 @@ module BooksHelper
   end
 
   def by_authors(authors)
-    if authors.class.eql? Array
+    if authors.class.eql?(Array) && (authors.size > 1)
       result = authors[0..(authors.size - 2)].join(', ')
       result << " #{I18n.t('and')} #{authors.last}"
+    elsif authors.class.eql?(Array)
+      result = authors.first
     else 
       result = authors
     end

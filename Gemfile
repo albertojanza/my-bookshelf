@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.2'
 
+gem 'resque'
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -14,10 +16,10 @@ gem 'mysql2'
 gem 'thin'
 
 
+gem 'aws-sdk'
 gem 'asin'
 #gem 'httpclient' # optional, see HTTPI
 #gem 'rash' # optional, see Response Configuration
-#gem 'aws-sdk'
 
 
 group :assets do

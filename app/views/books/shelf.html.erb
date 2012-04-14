@@ -3,10 +3,6 @@
 
   <%= render 'submenu_my_bookshelf' %>
 
-<div class="title">
-<h1><%= title(params[:code].to_i) %></h1>
-</div>
-<div class="cleaner"></div>
 <% end %>
 
 <% content_for :page_title do %>
@@ -18,6 +14,9 @@
     
 <% end %>
 
+<div class="page-title">
+<h1><%= title(params[:code].to_i) %></h1>
+</div>
 
   <% unless @books.empty? %>
       <div  style="height:<%= 125 * ((@books.size + 2) / 3) %>px">

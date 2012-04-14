@@ -41,24 +41,13 @@
 }(document, 'script', 'facebook-jssdk'));</script>
   <div id="fixed-header">
     <div id="header" class="wrapper">
-      <div id="logo" class="left_float" style="margin-top:5px">
+      <div id="logo">
         <%= link_to image_tag('logo.png'), root_path %>
       </div>
         
-      <% unless logged_in? %> 
         <div class="right_float">
             <%= link_to "<div class=\"green-button3-small\"><div class=\"facebook-small-icon\"></div><div class=\"button-text\">#{I18n.t('login_button')}</div></div>".html_safe, (params[:action].eql?('canvas') || params[:canvas]) ? canvas_permission_path : facebook_permission_path, :class => 'link' %>
         </div>
-      <% else %>
-            <ul class="menu right_float">
-              <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && !params[:action].eql?('friends_bookcase') ) ? 'selected' : '')  %></li>
-              <li class="separator">|</li>
-              <li><%= link_to I18n.t('friends_bookcase_option'), friends_bookcase_path(:id => current_user.id), :class => ((!current_user.eql?(@user) || params[:action].eql?('friends_bookcase'))   ? 'selected' : '') %></li>
-              <li class="separator">|</li>
-              <li><%= link_to I18n.t('my_account'), account_path, :class => (params[:controller].eql?('users') )  %></li>
-
-            </ul>
-      <% end %>
 
       <div class="book-search-box" style="margin-right:100px;">
         <%= form_tag search_path, :id => 'book_search_box'  do  %>

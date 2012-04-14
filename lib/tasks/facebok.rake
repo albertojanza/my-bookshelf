@@ -240,15 +240,15 @@ end
 
 #Test user id: 100003593065982 scorpions_acbbcko_scorpions@tfbnw.net
 #Test user id: 100003533216061 aerosmith_ddtzqmc_aerosmith@tfbnw.net
-#Test user id: 100003571136068 
-#Test user id: 100003568525827 
-#Test user id: 100003544705905 
-#Test user id: 100003605762907 
+#Test user id: 100003571136068 ironmaiden_kmqjkxc_ironmaiden@tfbnw.net # two friends: scorpions and bunbury
+#Test user id: 100003568525827 helloween_xhytbfb_helloween@tfbnw.net # two friends: scorpions and bunbury
+#Test user id: 100003544705905 acdc_thjqkru_acdc@tfbnw.net # two friends: scorpions and bunbury
+#Test user id: 100003605762907 bon_tulhjbq_jovi@tfbnw.net # two friends: scorpions and bunbury
 #Test user id: 100003612872856 
 #Test user id: 100003577706094 
 #Test user id: 100003611102868 sober_onqyfsq_sober@tfbnw.net 
-#Test user id: 100003529976191  
-#Test user id: 100003618332848 bunbury_qukrucn_bunbury@tfbnw.net 
+#Test user id: 100003529976191  bunbury_qukrucn_bunbury@tfbnw.net
+#Test user id: 100003618332848  
 #Test user id: 100003600212912  
 #Test user id: 100003646681574 
 #Test user id: 100003530845925 

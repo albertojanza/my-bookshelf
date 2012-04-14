@@ -1,0 +1,7 @@
+<ul class="menu">
+  <% string_news_count = (@news_count && !@news_count.eql?('0') ? "(#{@news_count})" : '')%>
+  <% string_reco_count = (@reco_count && !@reco_count.eql?('0') ? "(#{@reco_count})" : '')%>
+  <li><%= link_to "#{I18n.t('news')} <span id='news_count'>#{string_news_count}</span>".html_safe, notifications_path , :class => ( params[:action].eql?('notifications')  ? 'selected' : '')   %></li>
+              <li class="separator">|</li>
+  <li><%= link_to "#{I18n.t('recommendations')} <span id='reco_count'>#{string_reco_count}</span>".html_safe, recommendations_path , :class => ( params[:action].eql?('recommendations')  ? 'selected' : '')  %></li>
+</ul>

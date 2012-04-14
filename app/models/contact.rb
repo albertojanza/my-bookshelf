@@ -9,4 +9,8 @@ class Contact < ActiveRecord::Base
     ContactMail.contact_message(self.email, self.name, self.content).deliver
   end
 
+  def self.queue_email()
+    Resque.enqueue(Archive, 'bertojanza@gmail.com', 'Redis', 'FESTAAAA')
+  end
+
 end

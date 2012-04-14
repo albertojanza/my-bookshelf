@@ -34,7 +34,7 @@ es:
   meta_desc_landing: "Libroshelf es una red social para compartir libros, donde puedes organizar tus libros en estanterías y compártilos con tus amigos."
   meta_key_landing: "Libro, Libros, Lectura, Lecturas, Leer, Leído, Leyendo, Para leer."
   landing_h1: "Libroshelf es una estantería online para compartir con tus amigos."
-  welcome_message: "Te gusta leer? Pruébanos. Encontrarás todo lo que tus amigos están leyendo o han leído en el pasado. Comparte tus lecturas."
+  welcome_message: "Te gusta leer? En Libroshelf encontrarás todo lo que tus amigos están leyendo o han leído en el pasado. Comparte tus lecturas."
   login_message: "A qué esperas? Usa el botón verde para empezar."
   lastest_shared_books: "Últimos libros en Libroshelf"
 
@@ -53,7 +53,7 @@ es:
   my_next_bookshelf: "Estante con libros que leerás"
   his_read_bookshelf: "Estante de libros leídos de %{name}"
   his_reading_bookshelf: "Estante con los libros que %{name} está leyendo"
-  his_recommended_bookshelf: "Estante con los libros recomendados por %{name}'"
+  his_recommended_bookshelf: "Estante con los libros recomendados a %{name}"
   his_favorite_bookshelf: "Estante con los libros favoritos de %{name}"
   his_next_bookshelf: "Estante con las próximas lecturas de %{name}"
 #bookshelves, empty legends
@@ -68,11 +68,11 @@ es:
   my_empty_favorite_bookshelf_html: "Your Favorite Bookshelf"
   my_empty_next_bookshelf_html: "Puedes usar esta estantería para guardar esos libros que te gustaría leer en un futuro, así no lo olvidarás. <br> Para mover un libro a esta estantería sólo tienes que clicar en el botón de Próximo que aparece dentro de cualquier libro."
 # submenu options
-  read_bookshelf: "Estante de Leídos"
-  reading_bookshelf: "Estante de Leyendo"
-  recommended_bookshelf: "Estante de Recomendados"
-  favorite_bookshelf: "Estante de Favoritos"
-  next_bookshelf: "Estante de Próximos"
+  read_bookshelf: "Leídos"
+  reading_bookshelf: "Leyendo"
+  recommended_bookshelf: "Recomendados"
+  favorite_bookshelf: "Favoritos"
+  next_bookshelf: "Próximos"
 # Book show and book item legends
   in_your_read_bookshelf_big: "Este libro ya está en tu Estantería de Leídos"
   in_your_reading_bookshelf_big: "Este libro está en tu Estantería de Leyendo"
@@ -187,6 +187,30 @@ es:
   change_button: 'Cambiar'
   message: 'Tus cambios han sido actualizados.'
   communication_error_message: 'Al menos un canal de comunicación tiene que estar abierto.'
+
+#######################################
+# Interactions
+###################################
+  noti_warning_html: "You have news from your friends, check out the %{news_section}"
+  empty_news: "Por ahora no tienes nuevas notificaciones."
+  empty_recommendations: "Aún no te han enviado ninguna recomendación."
+  news: 'Noticias'
+  recommendations: 'Recomendaciones'
+  update_noti_read_book_html: "%{name} acaba de terminar de leer %{title}."
+  noti_read_book_html: "%{name} acaba de marcar el libro %{title} como leído."
+  noti_reading_book_html: "%{name} acaba de empezar a leer %{title} de %{author}."
+  noti_next_book_html: "%{name} está pensando en leer %{title} de %{author}."
+  noti_recommendation_book_html: "%{recommender} le ha recommendado a %{name} leer %{title} de %{author}."
+  reco_book_html: "%{recommender} te ha recommendado el libro %{title} de %{author}."
+  fb_request_read_book: "%{name} ha leído un libro que tu has leído. Pregúntale si te ha gustado."
+  fb_request_reading_book: "%{name} está leyendo un libro que tú has leído. No le estropees el final XD"
+  fb_request_next_book: "%{name} está pensando en leer un libro que tú has leído, dale tu opinión."
+  fb_request_recommendation_book: "Un amigo le ha recomendado a %{name} un libro que tú has leído. Dale tu opinión."
+  request_dialog_invitation_title: "Enviar esta invitación a tu amigo?"
+  request_dialog_invitation_message: "Usa Libroshelf para ver que libros estoy leyendo y para que compartas tus lecturas."
+  request_dialog_recommendation_title: "Recomendación de %{title}"
+  request_dialog_recommendation_message: "%{name} te ha recomendado el libro: %{title} en Libroshelf"
+
 #######################################
 # User account 
 ###################################

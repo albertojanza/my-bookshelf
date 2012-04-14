@@ -1,9 +1,13 @@
 <ul class="menu">
-  <li><%= link_to I18n.t('recommended_bookshelf'), shelf_path(:id => @user.id,:code => 3)  %></li>
+  <% if current_user.eql?(@user) %>
+    <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && (params[:action].eql?('bookcase') ) ) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
-  <li><%= link_to I18n.t('next_bookshelf'), shelf_path(:id => @user.id,:code => 2)  %></li>
+  <% end %>
+  <li><%= link_to I18n.t('recommended_bookshelf'), shelf_path(:id => @user.id,:code => 3), :class => ((params[:code] && params[:code].eql?('3') ) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
-  <li><%= link_to I18n.t('reading_bookshelf'), shelf_path(:id => @user.id,:code => 1)  %></li>
+  <li><%= link_to I18n.t('next_bookshelf'), shelf_path(:id => @user.id,:code => 2), :class => ((params[:code] && params[:code].eql?('2') ) ? 'selected' : '')  %></li>
               <li class="separator">|</li>
-  <li><%= link_to I18n.t('read_bookshelf'), shelf_path(:id => @user.id,:code => 0)  %></li>
+  <li><%= link_to I18n.t('reading_bookshelf'), shelf_path(:id => @user.id,:code => 1), :class => ((params[:code] && params[:code].eql?('1') ) ? 'selected' : '')  %></li>
+              <li class="separator">|</li>
+  <li><%= link_to I18n.t('read_bookshelf'), shelf_path(:id => @user.id,:code => 0), :class => ((params[:code] && params[:code].eql?('0') ) ? 'selected' : '')  %></li>
 </ul>

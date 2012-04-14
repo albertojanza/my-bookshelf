@@ -191,6 +191,29 @@ en:
   communication_error_message: 'At least one communication has to be open.'
 
 #######################################
+# Interactions
+###################################
+  noti_warning_html: "You have news from your friends, check out the %{news_section}"
+  empty_news: "There are no notifications yet."
+  empty_recommendations: "No one of your friends has sent you a recommendation yet."
+  news: 'News'
+  recommendations: 'Recommendations'
+  update_noti_read_book_html: "%{name} just finished reading the book %{title}."
+  noti_read_book_html: "%{name}'s marked the book %{title} as read."
+  noti_reading_book_html: "%{name} just started reading %{title} by %{author}."
+  noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
+  noti_recommendation_book_html: "%{name} has received a recommendation of %{title} by %{author} from %{recommender}."
+  reco_book_html: "%{recommender} has recommended you the book %{title} by %{author}."
+  fb_request_read_book: "%{name} has read a book that you have read too. Ask them about it."
+  fb_request_reading_book: "%{name} is reading a book that you have read. Don't tell them the end XD."
+  fb_request_next_book: "%{name}  is thinking about reading a book that you have read. Give them your feedback."
+  fb_request_recommendation_book: "A friend just recommended %{name} a book that you have read. Give them your feedback."
+  request_dialog_invitation_title: "Send an invitation to your friend?"
+  request_dialog_invitation_message: "Use Libroshelf to see what books I have read and to share your books with me."
+  request_dialog_recommendation_title: "Recommendation of %{title}"
+  request_dialog_recommendation_message: "%{name} has recommended you the book: %{title} on Libroshelf"
+
+#######################################
 # User account 
 ###################################
   contact_us: 'Contact us'

@@ -14,10 +14,14 @@
   <meta name="keywords" content="  book, books, reading " />
     
 <% end %>
-
-<div class="title">
-<h1><%# I18n.t 'friends_bookcase'%></h1>
-</div>
+<% if @experiences %>
+  <div id="book-guideline" class="guideline">
+    <%= link_to_function "X", "jQuery('#book-guideline').hide();", :class => 'right_float'%>
+            <% path = notifications_path %>
+            <% path = recommendations_path if NotificationsBusiness.get_news_notifications(current_user.id).empty? %>
+       <%= I18n.t('noti_warning_html', :news_section => link_to("#{I18n.t('news')}", path)).html_safe %>
+  </div>
+<% end %>
 
 <%= render 'slider',:title => I18n.t('read_and_reading'), :empty_legend => I18n.t('read_and_reading_empty_legend') ,:path => nil,:partial => '/books/book_item',:collection => @reading,  :items_slide => 24,:slider_index => 0 %>
 

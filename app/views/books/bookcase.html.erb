@@ -1,12 +1,6 @@
 <% content_for :mainheader do %>
 
   <%= render 'submenu_my_bookshelf' %>
-<div class="title">
-<h1><%= (logged_in? && @user.eql?(current_user)) ? I18n.t('my_bookcase') : I18n.t('his_bookcase', :name => @user.name.capitalize)%></h1>
-</div>
-
-<div class="cleaner"></div>
-
 <% end %>
 
 <% content_for :page_title do %>

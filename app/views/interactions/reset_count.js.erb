@@ -1,0 +1,7 @@
+  <% case params[:count] 
+    when 'news' %>
+   setTimeout(function() { $('#news_count').delay(1000).html(''); }, 3000);
+  <% when 'reco' %>
+   setTimeout(function() { $('#reco_count').delay(1000).html(''); }, 3000);
+  <% end %>
+   setTimeout(function() { $('#count').delay(1000).html(''); }, 3000);

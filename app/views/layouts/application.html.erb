@@ -36,7 +36,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/<%= facebook_locale %>/all.js#xfbml=1&appId=272512669482455";
+    js.src = "//connect.facebook.net/<%= facebook_locale %>/all.js#xfbml=1&appId=<%= ENV['FACEBOOK_KEY'] %>";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   <%# end %>
@@ -48,9 +48,10 @@
       </div>
   </div>
 
+
   <div id="fixed-header">
     <div id="header" class="wrapper">
-      <div id="logo" class="left_float" style="margin-top:5px">
+      <div id="logo" >
         <%= link_to image_tag('logo.png'), root_path %>
       </div>
         
@@ -60,11 +61,20 @@
         </div>
       <% else %>
         <ul class="menu right_float">
+          <% if  count =  NotificationsBusiness.notifications_count(current_user.id)%>
+            <% string_count = (!count.eql?('0') ? "(#{count})" : '')%>
+            <% path = notifications_path %>
+            <% path = recommendations_path if NotificationsBusiness.get_news_notifications(current_user.id).empty? %>
+            <li><%= link_to "#{I18n.t('news')} <span id='count'>#{string_count}</span>".html_safe, path, :class => ( params[:action].eql?('notifications')  ? 'selected' : '')  %></li>
+            <li class="separator">|</li>
+          <% end %>
           <li><%= link_to I18n.t('my_bookcase_option'), bookcase_path(:id => current_user.id), :class => ((current_user.eql?(@user) && (params[:action].eql?('bookcase') || params[:action].eql?('shelf')) ) ? 'selected' : '')  %></li>
           <li class="separator">|</li>
           <li><%= link_to I18n.t('friends_bookcase_option'), friends_bookcase_path(:id => current_user.id), :class => ( (!current_user.eql?(@user) || (current_user.eql?(@user) &&  params[:action].eql?('friends_bookcase')))   ? 'selected' : '') %></li>
-          <li class="separator">|</li>
-          <li><%= link_to I18n.t("logout"), logout_path %></li>
+          <% unless  params[:action].eql?('canvas') || params[:canvas]  %>
+            <li class="separator">|</li>
+            <li><%= link_to I18n.t("logout"), logout_path %></li>
+          <% end %>
         </ul>
       <% end %>
       <div class="book-search-box">
@@ -76,10 +86,12 @@
     </div>
   </div>
 <div id="main" >
+<div  class="wrapper">
   <div id="main-header">
       <%= yield :mainheader %>
+    <!--div class="submenu">
+    </div-->
   </div>
-
   <div id="main-sidebar">
     <%= yield :sidebar %>
   </div>
@@ -89,9 +101,10 @@
   <div class="cleaner">
   </div>
 </div>
+</div>
 
   <div id="footer" >
-        <ul class="menu">
+        <ul class="menu wrapper">
             <li><%= link_to I18n.t("contact"), new_contact_path %></li>
             <li><%= link_to  I18n.t("privacy_policy"), privacy_path %></li>
             <li><%= link_to I18n.t("terms_of_use") , root_path %></li>

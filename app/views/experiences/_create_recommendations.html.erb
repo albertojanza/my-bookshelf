@@ -12,7 +12,7 @@
           </ul>
         <% else  %>
           <p> <%= I18n.t 'friends_not_using_message' %>  </p>
-        <%= link_to I18n.t('invite_your_friends') , facebook_dialog_path(:link => book_url(@book), :name => @book.title, :uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
+        <%= link_to I18n.t('invite_your_friends') , facebook_send_dialog_path(:link => book_url(@book), :name => @book.title, :uid => @friends_out.map { |friend| friend['id'] }) ,:class => 'submit'   %>
         <% end %>
 
     </div>
