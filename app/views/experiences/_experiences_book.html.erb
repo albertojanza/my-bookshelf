@@ -10,9 +10,7 @@
           when 0%>
 
                 <% if params[:canvas] %>
-                  <li><%= link_to_function I18n.t('recommend'), "recommend_book(#{@experience.book.id},
-                            '#{truncate( escape_javascript( I18n.t('request_dialog_recommendation_message',:name => current_user.name, :title => @experience.book.title)),:length => 250, :separator => ' ', :omission => '..') }',
-                            '#{ truncate( escape_javascript(I18n.t('request_dialog_recommendation_title', :title => @experience.book.title)),  :length => 45, :separator => ' ', :omission => '..')  }')" %></li>
+                  <li><%= link_to I18n.t('recommend'), facebook_recommend_path(:id => @experience.book.id), :remote => true %></li>
                 <% else %>
                   <li><%= link_to I18n.t('big_recommend'), book_recommend_path(:id => @experience.book.id), :remote => true  %></li>
                 <% end %>

@@ -32,6 +32,7 @@ MyBookshelf::Application.routes.draw do
   post 'books/search' => 'books#search', :as => :search
   get 'book_similarities' => 'books#sidebar_similarities', :as => :book_similarities
 
+  get 'facebook_recommend' => 'experiences#facebook_recommend', :as => :facebook_recommend
   get 'tracking_request_dialog_recommendations' => 'facebook#tracking_request_dialog_recommendations', :as => :tracking_request_dialog_recommendations
   get 'tracking_request_dialog' => 'facebook#tracking_request_dialog', :as => :tracking_request_dialog
   #get 'fb_request_dialog_response' => 'facebook#request_dialog_response', :as => :facebook_request_dialog_response

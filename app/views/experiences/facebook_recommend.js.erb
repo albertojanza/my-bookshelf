@@ -1,0 +1,9 @@
+
+        FB.ui({method: 'apprequests',display: 'iframe', data: <%= @book.id %>, 
+            message: '<%= truncate( escape_javascript( I18n.t('request_dialog_recommendation_message',:name => current_user.name, :title => @book.title)),:length => 250, :separator => ' ', :omission => '..') %>',
+            title:  '<%= truncate( escape_javascript(I18n.t('request_dialog_recommendation_title', :title => @book.title)),  :length => 45, :separator => ' ', :omission => '..') %>',
+            exclude_ids: '[<%= @friends_with_experience.join(',') %>]'
+        }, recommend_book_callback);
+
+
+
