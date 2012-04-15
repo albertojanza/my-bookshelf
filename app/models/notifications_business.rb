@@ -94,11 +94,11 @@ class NotificationsBusiness
   end
 
   def self.delete_news_notifications(experience)
-      notifications = REDIS.smembers "experience:#{experince.id}:news_notifications"
+      users = REDIS.smembers "experience:#{experience.id}:news_notifications"
       users.each do |user|  
         REDIS.lrem "#{user}:news_notifications", 0, "experience:#{experience.id}"
       end
-      notifications = REDIS.del "experience:#{experince.id}:news_notifications"
+      notifications = REDIS.del "experience:#{experience.id}:news_notifications"
   end
 
   def self.delete_reco_notifications(experience)
