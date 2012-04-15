@@ -28,7 +28,7 @@ class FbRequestsBusiness
 
   ###########################
   # Cassandra: A experience can have several request. Inverted index
-  # Redis:  A user can receive several recommendations of the same book, so we keep this set to be able to remove the rest of requests.
+  # Redis:  We keep this index to be able to remove the request when removing an experience
   # experience:12:fb_requests
   # It is a set.
   ########################
@@ -44,6 +44,14 @@ class FbRequestsBusiness
   ## COUNTERs
   ## user:12:fb_requests_count
   #######################################
+
+  def self.experience_remove_request experience
+    request_ids = REDIS.smembers "experience:#{experience.id}:fb_requests"
+    request_ids.each do |request_id| 
+      FacebookApi.delete_request("#{request_id}",experience.user.token)
+    end
+    #request_ids = REDIS.del "experience:#{experience.id}:fb_requests"
+  end
 
   def self.remove_requests  user_token, user_id
     request_ids = REDIS.smembers "user:#{user_id}:fb_requests"
@@ -107,7 +115,7 @@ class FbRequestsBusiness
         REDIS.hmset "fb_requests:#{data['request']}_#{uid}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_recommendation'
         REDIS.sadd "user:#{experience.user.id}:fb_requests", "#{data['request']}_#{uid}"
         REDIS.incr "user:#{experience.user.id}:fb_requests_count"
-        REDIS.sadd "experiences:#{experience.id}:fb_requests", "#{data['request']}_#{uid}"
+        REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{uid}"
 
   end
 
@@ -121,7 +129,7 @@ class FbRequestsBusiness
         REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_notification'
         REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}_#{user[:uid]}"
         REDIS.incr "user:#{user[:id]}:fb_requests_count"
-        REDIS.sadd "experiences:#{experience.id}:fb_requests", "#{data['request']}_#{user[:uid]}"
+        REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{user[:uid]}"
     end
   end
 
@@ -150,7 +158,7 @@ class FbRequestsBusiness
       REDIS.hmset "fb_requests:#{request}_#{uid}", 'user_id', user.id, 'user_uid', user.uid, 'experience_id', experience.id, 'type', 'user_generated_recommendation'
       REDIS.sadd "user:#{user[:id]}:fb_requests", "#{request}_#{uid}"
       REDIS.incr "user:#{user[:id]}:fb_requests_count"
-      REDIS.sadd "experiences:#{experience.id}:fb_requests", "#{request}_#{uid}"
+      REDIS.sadd "experience:#{experience.id}:fb_requests", "#{request}_#{uid}"
 
       #REDIS.smembers 'user:24:fb_requests'
     end

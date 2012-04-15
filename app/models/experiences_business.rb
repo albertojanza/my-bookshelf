@@ -48,6 +48,18 @@ class ExperiencesBusiness
 
   end
 
+  def self.destroy_experience(experience)
+
+    FbRequestsBusiness.experience_remove_request experience
+    REDIS.del "experience:#{experience.id}"
+    if experience.code.eql? 3
+      NotificationsBusiness.delete_reco_notifications(experience)
+    else
+      NotificationsBusiness.delete_news_notifications(experience)
+    end
+  end
+
+
   def self.update_experience(experience) 
     REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.recommender.id, 'recommender_name', experience.recommender.name, 'recommender_uid', experience.recommender.uid  if experience.recommender
     REDIS.hmset "experience:#{experience.id}", 'recommender_id', experience.evangelist.id, 'recommender_name', experience.evangelist.name, 'recommender_uid', experience.evangelist.uid  if experience.evangelist

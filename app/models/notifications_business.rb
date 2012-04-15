@@ -93,6 +93,18 @@ class NotificationsBusiness
     end
   end
 
+  def self.delete_news_notifications(experience)
+      notifications = REDIS.smembers "experience:#{experince.id}:news_notifications"
+      users.each do |user|  
+        REDIS.lrem "#{user}:news_notifications", 0, "experience:#{experience.id}"
+      end
+      notifications = REDIS.del "experience:#{experince.id}:news_notifications"
+  end
+
+  def self.delete_reco_notifications(experience)
+      REDIS.lrem "user:#{experience.user.id}:reco_notifications", 0, "experience:#{experience.id}"
+  end
+
 
   # Generate echo-notification in the news on Libroshelf for every friend that has read or is reading the book
   def self.set_recommendation_notifications(experience)
