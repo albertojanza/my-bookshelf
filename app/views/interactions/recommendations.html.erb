@@ -22,7 +22,7 @@
         <%= link_to image_tag((item['image'] ? amazon_url(item['image']) : 'book-item-default-image.png'), :class => 'book-image'), book_path(:id => item['book_id']) %>
       <div class="item-container">
         <div class="item-content">
-            <%= link_to image_tag(profile_picture_url(item['user_uid']), :class => 'user-image'), bookcase_path(:id => item['user_id'] )  %>
+            <%= link_to image_tag(profile_picture_url(item['recommender_uid']), :class => 'user-image'), bookcase_path(:id => item['recommender_id'] )  %>
           <%= recommendation_message(item).html_safe %>
         </div>
         </div>
