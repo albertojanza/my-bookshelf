@@ -140,7 +140,7 @@ class FbRequestsBusiness
     recommender = User.find_by_uid request_info['from']['id']
     to.each do |uid|
       user = User.find_by_uid(uid)
-      user = User.create(:uid => to.first,:provider => 'facebook') unless user
+      user = User.create(:uid => uid,:provider => 'facebook') unless user
       # Be careful a user can receive several recommendations of the same book
       experience = Experience.find_by_user_id_and_book_id user.id, request_info['data']
       unless experience 
