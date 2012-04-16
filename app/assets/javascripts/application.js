@@ -9,10 +9,24 @@
 //= require jquery-ui
 //= require_tree .
 
+
+
   function recommend_book_callback(response) {
       if (response['request']) {
         $.ajax({
           url: "/tracking_request_dialog_recommendations",
+          data: response,
+        success:    function(response, status) {
+                }
+        })
+      } 
+
+  }
+
+  function facebook_invitation_callback(response) {
+      if (response['request']) {
+        $.ajax({
+          url: "/tracking_request_dialog",
           data: response,
         success:    function(response, status) {
                 }

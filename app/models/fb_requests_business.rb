@@ -101,7 +101,7 @@ class FbRequestsBusiness
   def self.track_fb_invitation_request(request,to)
     to.each do |uid|
       user = User.find_by_uid(uid)
-      user = User.create(:uid => to.first) unless user
+      user = User.create(:uid => to.first,:provider => 'facebook') unless user
       REDIS.hmset "fb_requests:#{request}_#{uid}", 'user_id', user.id, 'user_uid', user.uid, 'type', 'user_generated_invitation'
       REDIS.sadd "user:#{user[:id]}:fb_requests", "#{request}_#{uid}"
       REDIS.incr "user:#{user[:id]}:fb_requests_count"
@@ -140,7 +140,7 @@ class FbRequestsBusiness
     recommender = User.find_by_uid request_info['from']['id']
     to.each do |uid|
       user = User.find_by_uid(uid)
-      user = User.create(:uid => to.first) unless user
+      user = User.create(:uid => to.first,:provider => 'facebook') unless user
       # Be careful a user can receive several recommendations of the same book
       experience = Experience.find_by_user_id_and_book_id user.id, request_info['data']
       unless experience 

@@ -4,17 +4,6 @@
 </div>
 
 
-<!--script type="text/javascript" >
-
-    $('#friend-out-<%= friend_out['id'] %>').click(function() {
-      <% if params[:canvas] %>
-        top.location.href="<%= facebook_request_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
-      <% else %>
-        top.location.href="<%= facebook_send_dialog_path(:link => root_url,:name => 'Libroshelf',:uid => friend_out['id']) %>";
-      <% end %>
-    });
-</script-->    
-
 <script>
     function requestCallback(response) {
       if (response['request']) {
@@ -47,9 +36,12 @@
       # title
     %>
 
+
+    //    facebook_invitation('<%= truncate( escape_javascript(I18n.t('request_dialog_invitation_title')),:length => 250, :separator => ' ', :omission => '..') %>');
+
         FB.ui({method: 'apprequests',
           message: 'My Great Request',
-          to: '<%= friend_out['id'] %>', 
+         to: '<%= friend_out['id'] %>', 
           title: '<%=I18n.t('request_dialog_invitation_title')%>'
         }, requestCallback);
 
