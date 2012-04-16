@@ -89,9 +89,14 @@ class BooksController < ApplicationController
   end
 
   def sidebar_similarities
-    @book = Book.find_by_asin params[:asin]
-    @similarities = @book.similarities
-    render :partial => 'widget_similarities',:layout => nil
+    begin
+      @book = Book.find_by_asin params[:asin]
+      @similarities = @book.similarities
+      render :partial => 'widget_similarities',:layout => nil
+    rescue 
+      @books = Book.most_read
+      render :partial => 'widget_most_read',:layout => nil
+    end
   end
 
 

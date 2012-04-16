@@ -164,6 +164,7 @@ es:
 # Sidebar and widgets
 ###################################
   similar_books: "Libros similares"
+  most_read_books: "Más leídos"
 
 #######################################
 # Friendly sites page

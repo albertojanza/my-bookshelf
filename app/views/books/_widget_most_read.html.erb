@@ -1,0 +1,12 @@
+<div class="section-title">
+  <h2> <%= I18n.t 'most_read_books' %></h2>
+</div>
+ <%=   render :partial => 'book_item_small', :collection => @books[0..9]%>
+
+<div class="cleaner">
+</div>
+
+
+<script type="text/javascript" >
+ $('#sidebar_shadow').css('height',parseInt($('#sidebar_shadow_container').css('height')) - 30);
+</script>    

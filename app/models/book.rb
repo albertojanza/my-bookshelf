@@ -14,6 +14,15 @@ class Book < ActiveRecord::Base
 
   serialize :author
 
+  def self.most_read
+    books_cache = Rails.cache.fetch("most_read_books") 
+    unless books_cache
+      books_cache = Book.joins('left outer join experiences on experiences.book_id = books.id ').group('books.id').limit(30)
+      books_cache[7] # to trigger the select, in other way we are caching the query object not the query result
+      Rails.cache.write "most_read_books", books_cache
+    end
+    books_cache.shuffle
+  end
 
   def similarities
     client = ASIN::Client.instance
