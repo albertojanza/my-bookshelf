@@ -18,8 +18,12 @@ class SessionsController < ApplicationController
 
   def canvas_callback
     facebook_oauth(canvas_callback_url)
-    redirect_to "http://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" unless request.ssl?
-    redirect_to "https://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" if request.ssl?
+    #redirect_to "http://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" unless request.ssl?
+    #redirect_to "https://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" if request.ssl?
+
+        render :inline =>  "<script> top.location.href='http://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/'</script>" unless request.ssl?
+        render :inline =>  "<script> top.location.href='https://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/'</script>" if request.ssl?
+
   end
 
   def canvas_permission
