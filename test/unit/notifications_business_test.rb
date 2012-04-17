@@ -12,17 +12,6 @@ class InteractionsDaoTest < ActiveSupport::TestCase
 ############################################3
 
   def setup
-    if User.count.eql? 0
-      FacebookUserSeed.seed
-    else 
-      user = User.last
-      begin 
-        user.friends
-      rescue User::TokenExpiration
-        User.all.each {|user| user.destroy}
-        FacebookUserSeed.seed
-      end
-    end
    Rails.cache.clear
    REDIS.flushdb
   end

@@ -1,4 +1,19 @@
 class ExperiencesBusiness
+  # Model overview
+    # experience:id   
+    # experience:id:fb_requests
+
+    #fb_requests:id
+    #fb_requests
+
+    #user:id:fb_requests
+
+  # Model data structure
+    # experience:id - Hash: user_id, user_name, user_uid, code, title, image(opt), author (JSON array), book_id (permalink), recommender_id(opt), 
+    #               -       recommender_name(opt), recommender_uid(opt), old_codes (JSON array,opt)
+
+
+
 
   ####################################
   # Cassandra: Experiences.
@@ -73,7 +88,13 @@ class ExperiencesBusiness
         old_codes = [experience.code_was]
       end
       REDIS.hmset "experience:#{experience.id}", 'code', experience.code, 'old_codes', old_codes.to_json
-      NotificationsBusiness.update_news_notifications(experience)
+
+      if experience.code_was.eql? 3
+        NotificationsBusiness.set_news_notifications(experience)
+        NotificationsBusiness.accepted_recommendation_notifications experience
+      else
+        NotificationsBusiness.update_news_notifications(experience)
+      end
       FbRequestsBusiness.app_generated_fb_requests(experience)
     end
 

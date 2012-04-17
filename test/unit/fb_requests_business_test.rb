@@ -12,17 +12,6 @@ class InteractionsDaoTest < ActiveSupport::TestCase
 ############################################3
 
   def setup
-    if User.count.eql? 0
-      FacebookUserSeed.seed
-    else 
-      user = User.last
-      begin 
-        user.friends
-      rescue User::TokenExpiration
-        User.all.each {|user| user.destroy}
-        FacebookUserSeed.seed
-      end
-    end
    Rails.cache.clear
    REDIS.flushdb
   end
@@ -37,7 +26,6 @@ class InteractionsDaoTest < ActiveSupport::TestCase
   # Scenario: All friends of the user Scorpions mark a book, that Scorpions has read, as read. So Scorpions should receive an app-generated request per every friend.
   test 'Facebook app-generated request.' do
     book = Book.find_by_asin '8498382548' 
-    # These three guys are friends
     scorpions = User.find_by_uid '100003593065982'
     FacebookApi.delete_all_request(scorpions.uid,scorpions.token)
 

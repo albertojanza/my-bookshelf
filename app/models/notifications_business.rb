@@ -75,11 +75,13 @@ class NotificationsBusiness
     friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
     friends_have_read_it.each do |user| 
       # echo in the newsfeed on Libroshelf
-      REDIS.lpush "user:#{user[:id]}:news_notifications", "experience:#{experience.id}"
-      REDIS.incr "user:#{user[:id]}:news_count"
+      if !(experience.recommender && user[:id].eql?(experience.recommender.id))
+        REDIS.lpush "user:#{user[:id]}:news_notifications", "experience:#{experience.id}" 
+        REDIS.incr "user:#{user[:id]}:news_count"
+      end
     end
     friends_have_read_it.each do |user| 
-      REDIS.sadd "experience:#{experience.id}:news_notifications", "user:#{user[:id]}" 
+      REDIS.sadd "experience:#{experience.id}:news_notifications", "user:#{user[:id]}"  if !(experience.recommender && user[:id].eql?(experience.recommender.id))
     end
   end
 
@@ -106,13 +108,22 @@ class NotificationsBusiness
   end
 
 
-  # Generate echo-notification in the news on Libroshelf for every friend that has read or is reading the book
+  # recommendation notificaiton to the user that receives the recommendation
   def self.set_recommendation_notifications(experience)
 
     REDIS.lpush "user:#{experience.user.id}:reco_notifications", "experience:#{experience.id}"
     REDIS.incr "user:#{experience.user.id}:reco_count"
 
   end
+
+  # recommendation notificaiton to the user that receives the recommendation
+  def self.accepted_recommendation_notifications(experience)
+
+    REDIS.lpush "user:#{experience.recommender.id}:reco_notifications", "experience:#{experience.id}"
+    REDIS.incr "user:#{experience.recommender.id}:reco_count"
+
+  end
+  
 
 
 end

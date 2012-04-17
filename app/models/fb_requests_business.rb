@@ -1,14 +1,5 @@
 require 'facebook_api'
 class FbRequestsBusiness
-    # experience:id
-    # experience:id:fb_requests
-
-    #fb_requests:id
-    #fb_requests
-
-    #user:id:fb_requests
-
-
   ###########################
   # Cassandra: Facebook requests. x
   # Redis: Set. We track every facebook request 
@@ -135,12 +126,20 @@ class FbRequestsBusiness
     readers = experience.book.cache_people_are_reading + experience.book.cache_people_have_read +  experience.book.cache_people_will_read + experience.book.cache_people_with_recommendations
     friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
     friends_have_read_it.each do |user| 
+      if user[:id].eql? experience.recommender_id.to_s
+        data = FacebookApi.send_request(user[:uid],self.facebook_request_message_for_recommender(experience.code, experience.user.name), experience.id)
+        REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', experience.id, 'type', 'app_generated_notification'
+        REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}_#{user[:uid]}"
+        REDIS.incr "user:#{user[:id]}:fb_requests_count"
+        REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{user[:uid]}"
+      else
         data = FacebookApi.send_request(user[:uid],self.facebook_request_message(experience.code, experience.user.name), experience.id)
         #REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_notification'
         REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', experience.id, 'type', 'app_generated_notification'
         REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}_#{user[:uid]}"
         REDIS.incr "user:#{user[:id]}:fb_requests_count"
         REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{user[:uid]}"
+      end
     end
   end
 
@@ -186,8 +185,20 @@ private
         I18n.t 'fb_request_reading_book', :name => name
       when 2
         I18n.t 'fb_request_next_book', :name => name
-      when 3
-        I18n.t 'fb_request_recommendation_book', :name => name
+      when 3 # we don't sent messages from recommendations
+       # I18n.t 'fb_request_recommendation_book', :name => name
+    end
+  end
+
+  # These are the messages when a user moves a recommendation to a bookshelf. The message is sent to the recommender
+  def self.facebook_request_message_for_recommender code, name
+    case code
+      when 0
+        I18n.t 'fb_request_read_book_for_recommender', :name => name
+      when 1
+        I18n.t 'fb_request_reading_book_for_recommender', :name => name
+      when 2
+        I18n.t 'fb_request_next_book_for_recommender', :name => name
     end
   end
 
