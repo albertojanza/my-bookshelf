@@ -71,9 +71,81 @@ class InteractionsDaoTest < ActiveSupport::TestCase
 
   end
 
+  # Testing the method remove_requests. 
+  # Scenario every friend of scorpions reads a book that he has read and them he receives a facebook_request per every friend
+  test 'remove_facebook_requests.' do
+    scorpions = User.find_by_uid '100003593065982'
+    bunbury = User.find_by_uid '100003529976191'
+    aerosmith = User.find_by_uid '100003533216061'
+    helloween = User.find_by_uid '100003568525827'
+    acdc = User.find_by_uid '100003544705905'
+    ironmaiden = User.find_by_uid '100003571136068'
+    book = Book.find_by_asin '8498382548' 
+    users = [scorpions,bunbury,aerosmith,helloween,acdc,ironmaiden] 
+    experiences = []
+    
+    # We remove posible request that our test users can have
+    users.each { |user| FacebookApi.delete_all_request(user.uid,user.token) }
+  
+    users.each do |user| 
+      # Scorpions marks the book as read
+      experience = Experience.create do |experience|
+          experience.book_id = book.id
+          experience.user_id = user.id
+          experience.started_at = Time.now 
+          experience.code = 0
+      end
+      ExperiencesBusiness.create_experience(experience,'APP-GENERATED')
+      experiences << experience
+    end
+
+    FbRequestsBusiness.remove_requests scorpions.token, scorpions.id
+    requests = FacebookApi.user_get_all_request scorpions.uid
+    assert requests.empty?
+
+  end
+
+  # Testing the methods get_facebook_request and get_facebook_requets
+  # Scenario every friend of scorpions reads a book that he has read and them he receives a facebook_request per every friend
+  test 'get_facebook_requests.' do
+    scorpions = User.find_by_uid '100003593065982'
+    bunbury = User.find_by_uid '100003529976191'
+    aerosmith = User.find_by_uid '100003533216061'
+    helloween = User.find_by_uid '100003568525827'
+    acdc = User.find_by_uid '100003544705905'
+    ironmaiden = User.find_by_uid '100003571136068'
+    book = Book.find_by_asin '8498382548' 
+    users = [scorpions,bunbury,aerosmith,helloween,acdc,ironmaiden] 
+    experiences = []
+    
+    # We remove posible request that our test users can have
+    users.each { |user| FacebookApi.delete_all_request(user.uid,user.token) }
+  
+    users.each do |user| 
+      # Scorpions marks the book as read
+      experience = Experience.create do |experience|
+          experience.book_id = book.id
+          experience.user_id = user.id
+          experience.started_at = Time.now 
+          experience.code = 0
+      end
+      ExperiencesBusiness.create_experience(experience,'APP-GENERATED')
+      experiences << experience
+    end
+
+   
+    requests = FacebookApi.user_get_all_request scorpions.uid
+    keys = REDIS.smembers("user:#{scorpions.id}:fb_requests")
+    requests.each { |request| assert keys.include?(request['id'])}
+
+    fb_requests = FbRequestsBusiness.get_facebook_requests(scorpions.id)
+    assert_equal fb_requests.size, 5 
+
+  end
+
 
   # Scenario: Three friends: Scorpions, Aeromisth and Bubury. 
-  # Two of them mark a book as a read and then of them sends a recommendation of this book to the third one.
+  # Two of them mark a book as a read and then one of them sends a recommendation of this book to the third one.
   test 'App-generated requests in a book recommendation.' do
     book = Book.find_by_asin '8498382548' 
     # These three guys are friends

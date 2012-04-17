@@ -1,5 +1,14 @@
 require 'facebook_api'
 class FbRequestsBusiness
+    # experience:id
+    # experience:id:fb_requests
+
+    #fb_requests:id
+    #fb_requests
+
+    #user:id:fb_requests
+
+
   ###########################
   # Cassandra: Facebook requests. x
   # Redis: Set. We track every facebook request 
@@ -112,10 +121,11 @@ class FbRequestsBusiness
   def self.app_generated_fb_recommendation_requests(experience)
         # Facebook app-generated requests
         data = FacebookApi.send_request(experience.user.uid,self.facebook_request_message(experience.code, experience.user.name), experience.id)
-        REDIS.hmset "fb_requests:#{data['request']}_#{uid}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_recommendation'
-        REDIS.sadd "user:#{experience.user.id}:fb_requests", "#{data['request']}_#{uid}"
+        #REDIS.hmset "fb_requests:#{data['request']}_#{experience.user.uid}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_recommendation'
+        REDIS.hmset "fb_requests:#{data['request']}_#{experience.user.uid}", 'user_id', experience.user.id, 'user_uid', experience.user.uid, 'experience_id', experience.id, 'type', 'app_generated_recommendation'
+        REDIS.sadd "user:#{experience.user.id}:fb_requests", "#{data['request']}_#{experience.user.uid}"
         REDIS.incr "user:#{experience.user.id}:fb_requests_count"
-        REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{uid}"
+        REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{experience.user.uid}"
 
   end
 
@@ -126,7 +136,8 @@ class FbRequestsBusiness
     friends_have_read_it = readers.select{ |user| friend_uids.include?(user[:uid])  }
     friends_have_read_it.each do |user| 
         data = FacebookApi.send_request(user[:uid],self.facebook_request_message(experience.code, experience.user.name), experience.id)
-        REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_notification'
+        #REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', "experience:#{experience.id}", 'type', 'app_generated_notification'
+        REDIS.hmset "fb_requests:#{data['request']}_#{user[:uid]}", 'user_id', user[:id], 'user_uid', user[:uid], 'experience_id', experience.id, 'type', 'app_generated_notification'
         REDIS.sadd "user:#{user[:id]}:fb_requests", "#{data['request']}_#{user[:uid]}"
         REDIS.incr "user:#{user[:id]}:fb_requests_count"
         REDIS.sadd "experience:#{experience.id}:fb_requests", "#{data['request']}_#{user[:uid]}"
