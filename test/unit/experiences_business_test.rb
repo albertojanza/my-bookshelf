@@ -125,8 +125,8 @@ class ExperiencesBusinessTest < ActiveSupport::TestCase
 
 
     # Aerosmith moves the first recommendation to the next read shelf
-      experience5.code = 2 
-      experience5.save
+    experience5.code = 2 
+    experience5.save
     
     #Scorpions doesn't receive a new notification
     notifications = NotificationsBusiness.get_news_notifications(scorpions.id)
@@ -135,12 +135,31 @@ class ExperiencesBusinessTest < ActiveSupport::TestCase
     assert_equal '2', NotificationsBusiness.news_notifications_count(scorpions.id)
     
     #Scorpions receive a notification on his recommendations
+    notifications = NotificationsBusiness.get_reco_notifications(scorpions.id)
+    assert_equal notifications[0]['id'], experience5.id.to_s
+    assert_equal '1', NotificationsBusiness.reco_notifications_count(scorpions.id)
 
     # Bunbury receives a notification
-    notifications = NotificationsBusiness.get_news_notifications(scorpions.id)
+    notifications = NotificationsBusiness.get_news_notifications(bunbury.id)
     assert_equal notifications[0]['id'], experience5.id.to_s
     assert_equal notifications[0]['code'], '2'
     assert_equal '1',  NotificationsBusiness.news_notifications_count(bunbury.id)
+
+    # Aerosmith discards a recommendation
+    experience6.destroy
+
+
+    # Bunbury doesn't receive a new notification
+    notifications = NotificationsBusiness.get_news_notifications(bunbury.id)
+    assert_equal notifications[0]['id'], experience5.id.to_s
+    assert_equal notifications[0]['code'], '2'
+    assert_equal '1',  NotificationsBusiness.news_notifications_count(bunbury.id)
+
+    #Scorpions doesn't receive a new notification
+    notifications = NotificationsBusiness.get_news_notifications(scorpions.id)
+    assert_equal notifications[0]['id'], experience4.id.to_s
+    assert_equal notifications[1]['id'], experience3.id.to_s
+    assert_equal '2', NotificationsBusiness.news_notifications_count(scorpions.id)
 
 
   end
