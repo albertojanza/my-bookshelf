@@ -57,7 +57,7 @@ en:
   my_favorite_bookshelf: "Your Favorite Bookshelf"
   my_next_bookshelf: "Your To-read Bookshelf"
 #bookshelves, empty legends
-  his_empty_read_bookshelf_html: "<b>%{name}</b> hasn't put any books in his Read Bookshelf yet."
+  his_empty_read_bookshelf_html: "<b>%{name}</b> hasn't put any books in their Read Bookshelf yet."
   his_empty_reading_bookshelf_html: "It looks like <b>%{name}</b> is not reading any books right now.<br> If you have a good suggestion, you can recommend a book to them.<br> You only have to click on the Recommend button that appears on every book and choose the friends that you want to recommend it to."
   his_empty_recommended_bookshelf_html: "It looks like no one has recommended books to <b>%{name}</b> recently. <br>If you want to recommend a good book that you have read, you can do it by clicking on the Recommend button on a book from your bookcase or from a book search."
   his_empty_favorite_bookshelf_html: "<b>%{name}</b>'s Favorite Bookshelf"
@@ -196,7 +196,7 @@ en:
 ###################################
   noti_warning_html: "You have news from your friends, check out the %{news_section}"
   empty_news: "There are no notifications yet."
-  empty_recommendations: "No one of your friends has sent you a recommendation yet."
+  empty_recommendations: "None of your friends have sent you a recommendation yet."
   news: 'News'
   recommendations: 'Recommendations'
   update_noti_read_book_html: "%{name} just finished reading the book %{title}."
@@ -205,11 +205,11 @@ en:
   noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
   noti_recommendation_book_html: "%{name} has received a recommendation of %{title} by %{author} from %{recommender}."
   reco_book_html: "%{recommender} has recommended you the book %{title} by %{author}."
-  fb_request_read_book: "%{name} has read a book that you have read too. Ask them about it."
-  fb_request_reading_book: "%{name} is reading a book that you have read. Don't tell them the end XD."
-  fb_request_next_book: "%{name}  is thinking about reading a book that you have read. Give them your feedback."
-  fb_request_read_book_for_recommender: "%{name} just finished reading the book you recommended to them. Ask him whether their opinion."
-  fb_request_reading_book_for_recommender: "%{name} has started reading the book you recommended to them. Don't tell them the end!"
+  fb_request_read_book: "%{name} has read a book that you have in your bookcase. Ask them about it."
+  fb_request_reading_book: "%{name} is reading a book that you have in your bookcase. Don't tell them the ending."
+  fb_request_next_book: "%{name} is thinking about reading a book that you have in your bookcase. Give them your feedback."
+  fb_request_read_book_for_recommender: "%{name} just finished reading the book you recommended to them. Ask them their opinion."
+  fb_request_reading_book_for_recommender: "%{name} has started reading the book you recommended to them. Don't tell them the ending!"
   fb_request_next_book_for_recommender: "%{name} has marked the book you recommended to them as to-read."
   request_dialog_invitation_title: "Send an invitation to your friend?"
   request_dialog_invitation_message: "Use Libroshelf to see what books I have read and to share your books with me."
