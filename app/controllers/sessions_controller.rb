@@ -12,17 +12,22 @@ class SessionsController < ApplicationController
     #@spires = CGI.parse(response.body)["access_token"][1]
     #render "callback"
 
-    facebook_oauth(facebook_callback_url)
+    facebook_oauth(facebook_callback_url) unless params[:error]
     redirect_to root_path
   end
 
   def canvas_callback
-    facebook_oauth(canvas_callback_url)
+  if params[:error]
     #redirect_to "http://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" unless request.ssl?
     #redirect_to "https://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/" if request.ssl?
 
+      render '/welcome/landing', :layout => 'landing'
+  else
+
+    facebook_oauth(canvas_callback_url)
         render :inline =>  "<script> top.location.href='http://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/'</script>" unless request.ssl?
         render :inline =>  "<script> top.location.href='https://apps.facebook.com/#{ENV['FACEBOOK_APP_NAME']}/'</script>" if request.ssl?
+  end
 
   end
 
