@@ -1,13 +1,13 @@
 <% content_for :meta_seo do %>
   <meta name="description" content="<%= I18n.t 'meta_desc_landing'%>" />
   <meta name="keywords" content="  book, books, reading, author, bookshelf " />
-  <link rel="image_src" type="image/jpeg" href="<%= url_for '/square_logo.jpg' %>"/> 
+  <link rel="image_src" type="image/jpeg" href="<%= asset_path '/square_logo.jpg' %>"/> 
 
 <% end %>
 
 <% content_for :open_graph do %>
   <meta property="fb:app_id"      content="<%= ENV['FACEBOOK_KEY'] %>" /> 
-  <meta property="og:image" content="<%= url_for '/square_logo.jpg' %>" />
+  <meta property="og:image" content="<%= asset_path '/square_logo.jpg' %>" />
   <meta property="og:image:height" content="800" />
   <meta property="og:image:width" content="800" />
   <meta property="og:locale" content="en_US" />
