@@ -205,6 +205,7 @@ en:
   noti_next_book_html: "%{name} is thinking about reading %{title} by %{author}."
   noti_recommendation_book_html: "%{name} has received a recommendation of %{title} by %{author} from %{recommender}."
   reco_book_html: "%{recommender} has recommended you the book %{title} by %{author}."
+  reco_accepted_book_html: "%{recommended} likes your recommendations of %{title} by %{author}."
   fb_request_read_book: "%{name} has read a book that you have in your bookcase. Ask them about it."
   fb_request_reading_book: "%{name} is reading a book that you have in your bookcase. Don't tell them the ending."
   fb_request_next_book: "%{name} is thinking about reading a book that you have in your bookcase. Give them your feedback."
