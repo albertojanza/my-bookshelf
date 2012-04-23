@@ -146,7 +146,7 @@ class FbRequestsBusiness
 
   def self.user_generated_fb_recommendation_request(request,to)
 
-    request_info = FacebookApi.get_request request
+    request_info = FacebookApi.get_request ("#{request}_#{to.first}")
     recommender = User.find_by_uid request_info['from']['id']
     to.each do |uid|
       user = User.find_by_uid(uid)
