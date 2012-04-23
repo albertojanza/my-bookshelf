@@ -22,7 +22,11 @@ module InteractionsHelper
 
 
   def recommendation_message(item)
+    if item['recommender_uid'].eql? current_user.uid
+     I18n.t('reco_accepted_book_html', :recommended => link_to(item['user_name'],bookcase_path(:id => item['user_id'])), :title => link_to(item['title'],book_path(:id => item['book_id'])),:author => by_authors(JSON.parse(item['author']))).html_safe
+    else
      I18n.t('reco_book_html', :recommender => link_to(item['recommender_name'],bookcase_path(:id => item['recommender_id'])), :title => link_to(item['title'],book_path(:id => item['book_id'])),:author => by_authors(JSON.parse(item['author']))).html_safe
+    end
   end
 
 
