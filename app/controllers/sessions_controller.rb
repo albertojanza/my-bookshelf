@@ -66,8 +66,8 @@ private
     http.use_ssl = true
     response = http.request request
     token = CGI.parse(response.body)["access_token"][0]
-    expires = CGI.parse(response.body)["access_token"][1]
-    request  = Net::HTTP::Get.new "me?access_token=#{token.parameterize}"
+    expires = CGI.parse(response.body)["expires"][0]
+    request  = Net::HTTP::Get.new "/me?access_token=#{token}"
     response = http.request request
     user_data = MultiJson.decode response.body
 
