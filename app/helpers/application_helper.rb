@@ -6,7 +6,12 @@ module ApplicationHelper
 
   def url_for(options = nil)
     if Hash === options
-      options[:canvas] = true if params[:action].eql?('canvas') || params[:canvas]
+      if options[:like]
+        options[:protocol] = 'http' 
+        options.delete :like
+      else
+        options[:canvas] = true if params[:action].eql?('canvas') || params[:canvas]
+      end
     end
     super(options)
   end
